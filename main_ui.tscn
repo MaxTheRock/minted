@@ -1,0 +1,685 @@
+[gd_scene format=3 uid="uid://bn8eskys6mdwn"]
+
+[ext_resource type="Script" uid="uid://ed7j3rpvwggq" path="res://main_ui.gd" id="1_2ppmm"]
+[ext_resource type="Texture2D" uid="uid://c1xo0odtkro8h" path="res://default_pfp.png" id="2_ktt6o"]
+[ext_resource type="Texture2D" uid="uid://cbo5rypyxrkxx" path="res://alien_socks.png" id="3_4uoxc"]
+[ext_resource type="Texture2D" uid="uid://fa3u3sv2owa1" path="res://3_dots_small.png" id="3_llbac"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktt6o"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.47397572, 0.47397578, 0.47397548, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c3da"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llbac"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(3.898591e-06, 0.584425, 0.27214074, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MainUI" type="Control" unique_id=68240334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ppmm")
+
+[node name="MainMenu" type="Control" parent="." unique_id=971330452]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Play_Button" type="Button" parent="MainMenu" unique_id=883915343]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 184.0
+offset_right = 796.0
+offset_bottom = 287.0
+text = "Play"
+
+[node name="Options_Button" type="Button" parent="MainMenu" unique_id=575531364]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 330.0
+offset_right = 794.0
+offset_bottom = 434.0
+text = "Options
+"
+
+[node name="Quit_Button" type="Button" parent="MainMenu" unique_id=347030414]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 476.0
+offset_right = 796.0
+offset_bottom = 579.0
+text = "Quit"
+
+[node name="Label" type="Label" parent="MainMenu" unique_id=1810027945]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 104.0
+offset_right = 732.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 39
+text = "Vinted Simulator"
+
+[node name="Home" type="Control" parent="." unique_id=82502718]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sections" type="HBoxContainer" parent="Home" unique_id=371433169]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Navigation" type="VBoxContainer" parent="Home/Sections" unique_id=1016720758]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Navigation" unique_id=1420489614]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TextureRect2" type="TextureRect" parent="Home/Sections/Navigation/MarginContainer" unique_id=1828222211]
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("2_ktt6o")
+stretch_mode = 6
+
+[node name="Home" type="Button" parent="Home/Sections/Navigation" unique_id=532502981]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
+text = "Home"
+
+[node name="Newspaper" type="Button" parent="Home/Sections/Navigation" unique_id=554993645]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
+text = "Newspaper"
+
+[node name="Market" type="Button" parent="Home/Sections/Navigation" unique_id=1443069504]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
+text = "Market"
+
+[node name="Trading" type="Button" parent="Home/Sections/Navigation" unique_id=2145979407]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
+text = "Trading"
+
+[node name="Options" type="Button" parent="Home/Sections/Navigation" unique_id=1922782640]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktt6o")
+text = "Options
+"
+
+[node name="Centre" type="VBoxContainer" parent="Home/Sections" unique_id=463940233]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre" unique_id=2081514701]
+custom_minimum_size = Vector2(500, 650)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Home/Sections/Centre/MarginContainer" unique_id=2056421185]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer" unique_id=1944016850]
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=1299911351]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer" unique_id=1588338986]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer/HBoxContainer" unique_id=1276162731]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer" unique_id=412129037]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer/GridContainer" unique_id=1205894647]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer/GridContainer/VBoxContainer" unique_id=135211082]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer/GridContainer/VBoxContainer" unique_id=480503441]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer/GridContainer/VBoxContainer/MarginContainer" unique_id=1642935095]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=950346412]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2" unique_id=1438441232]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2/HBoxContainer" unique_id=1553830044]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2" unique_id=1812819559]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2/GridContainer" unique_id=1383768464]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2/GridContainer/VBoxContainer" unique_id=133334989]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2/GridContainer/VBoxContainer" unique_id=225610519]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=1585586425]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=52619858]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3" unique_id=2014907800]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3/HBoxContainer" unique_id=2102095460]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3" unique_id=1988629971]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3/GridContainer" unique_id=314834246]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3/GridContainer/VBoxContainer" unique_id=1812178737]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3/GridContainer/VBoxContainer" unique_id=54450496]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer3/GridContainer/VBoxContainer/MarginContainer" unique_id=9911126]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer4" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=1706149654]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4" unique_id=1153494636]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4/HBoxContainer" unique_id=694726993]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4" unique_id=724799406]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4/GridContainer" unique_id=836861380]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4/GridContainer/VBoxContainer" unique_id=1176593033]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4/GridContainer/VBoxContainer" unique_id=555922770]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer4/GridContainer/VBoxContainer/MarginContainer" unique_id=1709937821]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer5" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=355424469]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5" unique_id=1993086534]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5/HBoxContainer" unique_id=418437009]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5" unique_id=623526973]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5/GridContainer" unique_id=1357279196]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5/GridContainer/VBoxContainer" unique_id=1199562552]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5/GridContainer/VBoxContainer" unique_id=1644069135]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer5/GridContainer/VBoxContainer/MarginContainer" unique_id=1833459547]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer6" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=139977900]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6" unique_id=1690617770]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6/HBoxContainer" unique_id=497498595]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6" unique_id=1867708817]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6/GridContainer" unique_id=1260724330]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6/GridContainer/VBoxContainer" unique_id=929645174]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6/GridContainer/VBoxContainer" unique_id=1525516544]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer6/GridContainer/VBoxContainer/MarginContainer" unique_id=1238902177]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer7" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=280036053]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7" unique_id=1979184741]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7/HBoxContainer" unique_id=538563204]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7" unique_id=1209868907]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7/GridContainer" unique_id=1649893238]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7/GridContainer/VBoxContainer" unique_id=180489766]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7/GridContainer/VBoxContainer" unique_id=910322072]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer7/GridContainer/VBoxContainer/MarginContainer" unique_id=1862403313]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer8" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=1179573101]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8" unique_id=1145972070]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8/HBoxContainer" unique_id=1457131765]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8" unique_id=1601080169]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8/GridContainer" unique_id=263658233]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8/GridContainer/VBoxContainer" unique_id=447824907]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8/GridContainer/VBoxContainer" unique_id=1765530759]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer8/GridContainer/VBoxContainer/MarginContainer" unique_id=2011352688]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="PanelContainer9" type="PanelContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer" unique_id=1942154107]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9" unique_id=1677008567]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 10)
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9/HBoxContainer" unique_id=745687978]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 2
+theme_override_icons/arrow = ExtResource("3_llbac")
+alignment = 1
+icon_alignment = 1
+item_count = 3
+popup/item_0/text = "1"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="GridContainer" type="GridContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9" unique_id=924152766]
+layout_mode = 2
+theme_override_constants/h_separation = 21
+theme_override_constants/v_separation = 13
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9/GridContainer" unique_id=1558729332]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9/GridContainer/VBoxContainer" unique_id=1026720761]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("3_4uoxc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9/GridContainer/VBoxContainer" unique_id=185014555]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Buy_Button" type="Button" parent="Home/Sections/Centre/MarginContainer/ScrollContainer/GridContainer/PanelContainer9/GridContainer/VBoxContainer/MarginContainer" unique_id=1959394868]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_llbac")
+text = "Buy"
+
+[node name="Product_Details" type="VBoxContainer" parent="Home/Sections" unique_id=1319744705]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Home/Sections/Product_Details" unique_id=1874816033]
+custom_minimum_size = Vector2(200, 600)
+layout_mode = 2
+theme_override_constants/margin_top = 49
+
+[node name="Label" type="Label" parent="Home/Sections/Product_Details/MarginContainer" unique_id=1536027973]
+layout_mode = 2
+text = "Product Details"
+
+[node name="Label2" type="Label" parent="Home/Sections/Product_Details/MarginContainer" unique_id=591429619]
+layout_mode = 2
+text = "Details"
+
+[node name="Newspaper" type="Control" parent="." unique_id=1012253715]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Market" type="Control" parent="." unique_id=78568334]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Trading" type="Control" parent="." unique_id=1647712705]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Options" type="Control" parent="." unique_id=1749537648]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="MainMenu/Play_Button" to="." method="_on_button_pressed"]
