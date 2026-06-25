@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhynb0gac2y1w"]
+
+[ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_ge38h"]
+
+[node name="Newspaper" type="Control" unique_id=1782061001]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1498572072]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 719.0
+alignment = 2
+
+[node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_ge38h")]
+layout_mode = 2

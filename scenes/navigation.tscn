@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://b4apwjm4ouory"]
+
+[ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="1_5y6w5"]
+[ext_resource type="Script" uid="uid://bj63o1rkvxqaj" path="res://scripts/navigation.gd" id="1_6a1pe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46p8p"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reixx"]
+bg_color = Color(0, 0, 0, 0.61960787)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhids"]
+bg_color = Color(0, 0, 0, 0.7764706)
+
+[node name="PanelContainer" type="PanelContainer" unique_id=156462522]
+script = ExtResource("1_6a1pe")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=640637713]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=244898806]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=870927646]
+layout_mode = 2
+
+[node name="Home" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1045758236]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+icon = ExtResource("1_5y6w5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1964714242]
+layout_mode = 2
+
+[node name="Market" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2" unique_id=1899883534]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+text = "Market"
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=449794672]
+layout_mode = 2
+
+[node name="Newspaper" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer3" unique_id=164952317]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+text = "Newspaper"
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1921936018]
+layout_mode = 2
+
+[node name="Trading" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer4" unique_id=219293714]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+text = "Trading"
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1620945943]
+layout_mode = 2
+
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer5" unique_id=1797181365]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+text = "Options"
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/Market" to="." method="_on_market_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer3/Newspaper" to="." method="_on_newspaper_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer4/Trading" to="." method="_on_trading_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer5/Options" to="." method="_on_options_pressed"]

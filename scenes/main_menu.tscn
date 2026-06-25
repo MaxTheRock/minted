@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://6b5xby3glpnl"]
+
+[ext_resource type="Script" uid="uid://cx2r86r3pb2j2" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control" unique_id=859143254]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_l6cm7")
+
+[node name="Play_Button" type="Button" parent="." unique_id=540149891]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 184.0
+offset_right = 796.0
+offset_bottom = 287.0
+text = "Play"
+
+[node name="Options_Button" type="Button" parent="." unique_id=576103707]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 330.0
+offset_right = 794.0
+offset_bottom = 434.0
+text = "Options
+"
+
+[node name="Quit_Button" type="Button" parent="." unique_id=1348030729]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 476.0
+offset_right = 796.0
+offset_bottom = 579.0
+text = "Quit"
+
+[node name="Label" type="Label" parent="." unique_id=755504315]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 104.0
+offset_right = 732.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 39
+text = "Vinted Simulator"
+
+[connection signal="pressed" from="Play_Button" to="." method="_on_play_button_pressed"]
