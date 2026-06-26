@@ -6,6 +6,13 @@ extends PanelContainer
 @onready var trading_screen = get_node("/root/MainUI/Trading")
 @onready var options_screen = get_node("/root/MainUI/Options")
 
+func _ready() -> void:
+	home_screen.show()
+	market_screen.hide()
+	newspaper_screen.hide()
+	trading_screen.hide()
+	options_screen.hide()
+
 func _on_home_pressed() -> void:
 	home_screen.show()
 	market_screen.hide()
@@ -42,3 +49,7 @@ func _on_options_pressed() -> void:
 	newspaper_screen.hide()
 	trading_screen.hide()
 	options_screen.show()
+
+
+func _on_exit_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/room.tscn")

@@ -91,8 +91,22 @@ text = "Options"
 icon_alignment = 1
 expand_icon = true
 
+[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=790901659]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer6" unique_id=1499718563]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+text = "Exit"
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/Market" to="." method="_on_market_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer3/Newspaper" to="." method="_on_newspaper_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer4/Trading" to="." method="_on_trading_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer5/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer6/Exit" to="." method="_on_exit_pressed"]

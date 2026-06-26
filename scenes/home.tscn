@@ -17,3 +17,9 @@ alignment = 2
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_krot7")]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=1054857200]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Home"

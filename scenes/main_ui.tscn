@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bn8eskys6mdwn"]
 
 [ext_resource type="Script" uid="uid://ed7j3rpvwggq" path="res://scripts/main_ui.gd" id="1_j6a7c"]
-[ext_resource type="PackedScene" uid="uid://6b5xby3glpnl" path="res://scenes/main_menu.tscn" id="2_46p8p"]
 [ext_resource type="PackedScene" uid="uid://cxbgcv0xjeqmn" path="res://scenes/market.tscn" id="2_513t2"]
 [ext_resource type="PackedScene" uid="uid://cwxics053ly5x" path="res://scenes/home.tscn" id="3_okuri"]
 [ext_resource type="PackedScene" uid="uid://dhynb0gac2y1w" path="res://scenes/newspaper.tscn" id="5_kyx1g"]
@@ -17,12 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j6a7c")
 
-[node name="MainMenu" parent="." unique_id=859143254 instance=ExtResource("2_46p8p")]
-visible = true
-layout_mode = 0
-
 [node name="Home" parent="." unique_id=1623614779 instance=ExtResource("3_okuri")]
-visible = false
 layout_mode = 0
 
 [node name="Market" parent="." unique_id=2098111081 instance=ExtResource("2_513t2")]

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://tkwio75ov5xs"]
+
+[ext_resource type="Script" uid="uid://jpt5cerd61ct" path="res://scripts/player.gd" id="1_ffxv4"]
+[ext_resource type="Texture2D" uid="uid://dwjbbaxoamx0x" path="res://assets/icon.svg" id="2_85yof"]
+[ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="3_85yof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
+size = Vector2(123, 122)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
+radius = 300.10666
+
+[node name="Room" type="Node2D" unique_id=1370404577]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=594051949]
+script = ExtResource("1_ffxv4")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1938782641]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=331857807]
+texture = ExtResource("2_85yof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1651824242]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_qnalp")
+
+[node name="Computer" type="Sprite2D" parent="." unique_id=288269879]
+position = Vector2(448, -243)
+texture = ExtResource("2_85yof")
+script = ExtResource("3_85yof")
+
+[node name="Label" type="Label" parent="Computer" unique_id=1564051719]
+offset_left = -46.0
+offset_top = -89.0
+offset_right = 55.0
+offset_bottom = -66.0
+text = "Computer [F]"
+
+[node name="Area2D" type="Area2D" parent="Computer" unique_id=733437826]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1975276463]
+shape = SubResource("CircleShape2D_qnalp")
+
+[connection signal="body_entered" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_exited"]
