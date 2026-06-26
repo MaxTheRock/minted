@@ -1,7 +1,7 @@
 shader_type canvas_item;
 // used a tutorial here i can't lie.
 uniform sampler2D palette_texture : filter_nearest;
-uniform int color_count = 5;     // How many colors per palette (columns)
+uniform int color_count = 6;     // How many colors per palette (columns)
 uniform int palette_count = 10;   // Total number of palettes (rows)
 instance uniform int palette_index = 0;
 uniform float tolerance = 0.1;

@@ -10,9 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://dbpmblty3ytb1" path="res://assets/items/tshirt/tshirts.png" id="8_xr48l"]
 [ext_resource type="Texture2D" uid="uid://bvhxsqvq3nc70" path="res://assets/brand_icons/elemental/minimalistic_black.png" id="9_2xo3q"]
 [ext_resource type="Texture2D" uid="uid://buf1wsry626bq" path="res://assets/brand_icons/elemental/minimalistic_white.png" id="10_3l6h1"]
-[ext_resource type="Texture2D" uid="uid://0urssekbooyl" path="res://assets/items/shoes/shoes.png" id="11_34t5m"]
 [ext_resource type="Texture2D" uid="uid://cxh8vpp801mv5" path="res://assets/brand_icons/elemental/regular.png" id="11_ngcwe"]
 [ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="12_1ytmg"]
+[ext_resource type="Texture2D" uid="uid://0urssekbooyl" path="res://assets/items/shoes/shoes.png" id="13_2xo3q"]
+[ext_resource type="Texture2D" uid="uid://6ckxqo3jsxrf" path="res://assets/items/shorts/shorts_1.png" id="13_3l6h1"]
+[ext_resource type="Texture2D" uid="uid://8pq6tvacaqbl" path="res://assets/items/shorts/shorts_2.png" id="14_ngcwe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34t5m"]
 shader = ExtResource("5_j134a")
@@ -296,16 +298,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngcwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_3l6h1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ngcwe")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ox7tp"]
-atlas = ExtResource("11_34t5m")
+atlas = ExtResource("13_2xo3q")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8b0vj"]
-atlas = ExtResource("11_34t5m")
+atlas = ExtResource("13_2xo3q")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iq5q0"]
-atlas = ExtResource("11_34t5m")
+atlas = ExtResource("13_2xo3q")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dwrc3"]
@@ -359,7 +375,7 @@ animation = &"ele_minimalistic_black"
 
 [node name="shorts" type="AnimatedSprite2D" parent="TextureButton" unique_id=743636722 groups=["clothes"]]
 position = Vector2(32, 32)
-sprite_frames = SubResource("SpriteFrames_dwrc3")
+sprite_frames = SubResource("SpriteFrames_ngcwe")
 
 [node name="shoes" type="AnimatedSprite2D" parent="TextureButton" unique_id=1842506349 groups=["clothes"]]
 position = Vector2(32, 32)

@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://cxbgcv0xjeqmn"]
 
 [ext_resource type="Script" uid="uid://b6xai0ehay28i" path="res://scripts/product_details.gd" id="2_7bpo7"]
+[ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="2_d6tgm"]
 [ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="3_d6tgm"]
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="4_7bpo7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46p8p"]
+shader = ExtResource("2_d6tgm")
+shader_parameter/color_count = 6
+shader_parameter/palette_count = 10
+shader_parameter/tolerance = 0.1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnalp"]
 bg_color = Color(0.14044765, 0.14044744, 0.14044729, 1)
@@ -126,6 +133,7 @@ text = "Product Information"
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/MarginContainer" unique_id=79644451]
+material = SubResource("ShaderMaterial_46p8p")
 custom_minimum_size = Vector2(5, 200)
 layout_mode = 2
 texture = ExtResource("3_d6tgm")
@@ -169,21 +177,6 @@ theme_override_constants/margin_bottom = 5
 [node name="Color" type="Label" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=1012050692]
 layout_mode = 2
 
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1501116050]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3" unique_id=1656218032]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Price" type="Label" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer" unique_id=2095278118]
-layout_mode = 2
-
 [node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1381000896]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
@@ -211,6 +204,21 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Condition" type="Label" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer" unique_id=2126525800]
 layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1501116050]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3" unique_id=1656218032]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Price" type="Label" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer" unique_id=2095278118]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.11372549, 1)
 
 [node name="PanelContainer2" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("4_7bpo7")]
 layout_mode = 2

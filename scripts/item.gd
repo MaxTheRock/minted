@@ -76,7 +76,7 @@ func _on_texture_button_mouse_exited():
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.visible and child is AnimatedSprite2D and child.owner == self:
-			details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition)
+			details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number)
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
 			while new_frame == child.frame and max_frames > 1:
@@ -122,15 +122,15 @@ func generate_parameters(type):
 		shippingTime = rng.randi_range(1, 5.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		price = snapped(3 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		price = snapped(15 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		
 func condition_mult_calc(condition: String) -> float:
 	if condition == "Poor":
-		return 0.35
+		return 0.4
 	elif condition == "Satisfactory":
-		return 0.55
+		return 0.6
 	elif condition == "Good":
-		return 0.75
+		return 0.8
 	elif condition == "Great":
 		return 0.9
 	else:
@@ -140,6 +140,5 @@ func switch_shirt(sprite, num):
 	set_node_palette(sprite, num)
 
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
-	print(target_sprite.name, " material: ", target_sprite.material, " is_shader: ", target_sprite.material is ShaderMaterial)
 	if target_sprite and target_sprite.material is ShaderMaterial:
 		target_sprite.set_instance_shader_parameter("palette_index", num)
