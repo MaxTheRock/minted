@@ -52,9 +52,15 @@ func _ready() -> void:
 	elif type == "shoes":
 		switch_shirt(shoes_sprite, number)
 		sprite_image = shoes_sprite
+		selected_brand = "elemental"
+		brand = "ele_shoes"
+		color = "grey"
 	elif type == "cd_player":
 		switch_shirt(cd_player_sprite, number)
 		sprite_image = cd_player_sprite
+		selected_brand = "C.O.M.A"
+		brand = "C.O.M.A"
+		color = "grey"
 
 func logo_calculator(color_of_shirt: String) -> void:
 	selected_brand = brands.pick_random()
@@ -110,7 +116,6 @@ func _on_frame_timer_timeout():
 			if counter < 12:
 				child.frame = counter
 				counter += 1
-				print("INCREASE", counter)
 			else:
 				child.frame = 12
 
