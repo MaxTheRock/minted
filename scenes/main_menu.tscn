@@ -44,3 +44,4 @@ theme_override_font_sizes/font_size = 39
 text = "Vinted Simulator"
 
 [connection signal="pressed" from="Play_Button" to="." method="_on_play_button_pressed"]
+[connection signal="button_down" from="Options_Button" to="." method="_on_options_button_button_down"]

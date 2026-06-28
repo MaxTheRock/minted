@@ -117,12 +117,14 @@ func set_item_type(item_type: String) -> void:
 			child.visible = (child.name == item_type)
 	
 func _on_texture_button_mouse_entered():
+	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	if type == "cd_player":
 		counter = 0
 	$FrameTimer.start()
 
 func _on_texture_button_mouse_exited():
+	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
@@ -151,10 +153,12 @@ func _on_frame_timer_timeout():
 
 
 func button_enter():
+	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	$FrameTimer.start()
 	
 func button_exit():
+	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):

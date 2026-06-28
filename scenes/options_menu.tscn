@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cgkn6sx0gwdy5"]
+
+[ext_resource type="Script" uid="uid://dkkpymqr0tn11" path="res://scripts/options_menu.gd" id="1_ijpji"]
+[ext_resource type="Texture2D" uid="uid://bav4r0yf67yy" path="res://back.png" id="1_liyum"]
+
+[node name="options_menu" type="Control" unique_id=1583969960]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ijpji")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=70657767]
+layout_mode = 0
+offset_right = 1285.0
+offset_bottom = 722.0
+
+[node name="resolution" type="OptionButton" parent="." unique_id=1689128356]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 160.0
+offset_right = 667.0
+offset_bottom = 196.0
+selected = 1
+item_count = 4
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "960×540"
+popup/item_2/id = 2
+popup/item_3/text = "854x480"
+popup/item_3/id = 3
+
+[node name="Label" type="Label" parent="resolution" unique_id=1358480825]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -46.0
+offset_right = 296.0
+offset_bottom = -11.0
+theme_override_font_sizes/font_size = 25
+text = "Resolution:"
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1665289900]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 28.0
+offset_right = 123.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_liyum")
+stretch_mode = 0
+
+[connection signal="item_selected" from="resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
