@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://csyx1m4i6wle"]
+
+[ext_resource type="FontFile" uid="uid://d27f0kxbi0qvo" path="res://fonts/Daydream.otf" id="1_rjgu6"]
+
+[resource]
+default_font = ExtResource("1_rjgu6")

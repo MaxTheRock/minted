@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://6b5xby3glpnl"]
 
+[ext_resource type="Theme" uid="uid://csyx1m4i6wle" path="res://themes/main_theme.tres" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://cx2r86r3pb2j2" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 
 [node name="MainMenu" type="Control" unique_id=859143254]
@@ -7,6 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_ekxnf")
 script = ExtResource("1_l6cm7")
 
 [node name="Play_Button" type="Button" parent="." unique_id=540149891]
@@ -36,10 +38,10 @@ text = "Quit"
 
 [node name="Label" type="Label" parent="." unique_id=755504315]
 layout_mode = 0
-offset_left = 590.0
-offset_top = 117.0
-offset_right = 724.0
-offset_bottom = 171.0
+offset_left = 543.0
+offset_top = 115.0
+offset_right = 792.0
+offset_bottom = 179.0
 theme_override_font_sizes/font_size = 39
 text = "Minted"
 
