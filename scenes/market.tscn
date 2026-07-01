@@ -236,20 +236,172 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Sections/Centre" unique_id=764952681]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/Sections/Centre" unique_id=1364613776]
+layout_mode = 2
+current_tab = 0
+
+[node name="All" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=764952681]
 custom_minimum_size = Vector2(0, 560)
 layout_mode = 2
 theme_override_constants/margin_left = 47
 theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 46
 theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/MarginContainer" unique_id=478810383]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/All" unique_id=478810383]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/MarginContainer/ScrollContainer" unique_id=1478268056]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer" unique_id=1478268056]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Clothes" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=147803316]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Clothes" unique_id=1237679118]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Clothes/ScrollContainer" unique_id=394190659]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Toys" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1874659325]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Toys" unique_id=399215782]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Toys/ScrollContainer" unique_id=412595774]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Home" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=450006888]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Home" unique_id=1782754222]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Home/ScrollContainer" unique_id=1706009310]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Electronics" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1226039065]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Electronics" unique_id=23962911]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Electronics/ScrollContainer" unique_id=1983559992]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="BooksMedia" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=413864740]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/BooksMedia" unique_id=1346616722]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/BooksMedia/ScrollContainer" unique_id=497884320]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Collectables" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1549802885]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Collectables" unique_id=532445599]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Collectables/ScrollContainer" unique_id=2081072107]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Sports" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1290849622]
+visible = false
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 2
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 7
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Sports" unique_id=876280792]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer" unique_id=1891526818]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -300,9 +452,8 @@ stretch_mode = 5
 position = Vector2(207, 81)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_k7ps5")
-animation = &"none"
+animation = &"ele_minimalistic_black"
 autoplay = "none"
-frame_progress = 0.23014782
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=49860229]
 layout_mode = 2

@@ -44,11 +44,7 @@ func _on_trading_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	home_screen.hide()
-	market_screen.hide()
-	newspaper_screen.hide()
-	trading_screen.hide()
-	options_screen.show()
+	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
 
 
 func _on_exit_pressed() -> void:

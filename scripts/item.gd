@@ -6,6 +6,15 @@ var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube"]
 var brands: Array = ["none", "elemental"]
+# Categories
+var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes"]
+var toys: Array = ["puzzle_cube"]
+var home: Array = ["spud_poster"]
+var electronics: Array = ["cd_player"]
+var books_and_media: Array = ["spud_poster"]
+var collectables: Array = ["puzzle_cube", "spud_poster"]
+var sports: Array = []
+# ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var number: int = 0
 var color: String = ""
@@ -43,20 +52,40 @@ signal rarity_ui(item_rarity: String)
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
 
-func initialize_item():
+func initialize_item(category := "All"):
 	rng.randomize()
-	rarity = get_rarity()
-	if rarity == "common":
-		type = common_items[rng.randi_range(0, common_items.size() - 1)]
-	elif rarity == "uncommon":
-		type = uncommon_items[rng.randi_range(0, uncommon_items.size() - 1)]
-		
+	match category:
+		"Clothes":
+			type = clothes.pick_random()
+		"Toys":
+			type = toys.pick_random()
+		"Home":
+			type = home.pick_random()
+		"Electronics":
+			type = electronics.pick_random()
+		"BooksMedia":
+			type = books_and_media.pick_random()
+		"Collectables":
+			type = collectables.pick_random()
+		"Sports":
+			if sports.size() > 0:
+				type = sports.pick_random()
+			else:
+				type = common_items.pick_random()
+		_:
+			rarity = get_rarity()
+			if rarity == "common":
+				type = common_items.pick_random()
+			else:
+				type = uncommon_items.pick_random()
 	generate_parameters(type)
 	set_item_type(type)
+
 	if sprites.has(type):
 		var sprite = sprites[type]
 		set_node_palette(sprite, number)
 		sprite_image = sprite
+
 	if type == "tshirt":
 		logo_calculator(color)
 	elif type == "shoes":
@@ -71,7 +100,7 @@ func initialize_item():
 		color = "multi"
 	elif type == "spud_poster":
 		color = "brown"
-	
+		
 func get_rarity():
 	rng.randomize()
 	var weighted_sum = 0

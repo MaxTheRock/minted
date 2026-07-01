@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgaswxsmgb5f3"]
 
-[ext_resource type="Script" uid="uid://dn4wxjm4ay8ic" path="res://scenes/level_display.gd" id="1_2nk5d"]
+[ext_resource type="Script" uid="uid://dn4wxjm4ay8ic" path="res://scripts/level_display.gd" id="1_2nk5d"]
 [ext_resource type="Texture2D" uid="uid://cgibiwsi0lwcg" path="res://assets/level_icons.png" id="1_qayw3"]
 [ext_resource type="FontFile" uid="uid://d27f0kxbi0qvo" path="res://fonts/Daydream.otf" id="2_7bve8"]
 

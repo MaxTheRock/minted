@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="1_5y6w5"]
 [ext_resource type="Script" uid="uid://bj63o1rkvxqaj" path="res://scripts/navigation.gd" id="1_6a1pe"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvm52"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46p8p"]
 content_margin_left = 20.0
 content_margin_right = 20.0
@@ -14,6 +17,7 @@ bg_color = Color(0, 0, 0, 0.61960787)
 bg_color = Color(0, 0, 0, 0.7764706)
 
 [node name="PanelContainer" type="PanelContainer" unique_id=156462522]
+theme_override_styles/panel = SubResource("StyleBoxFlat_hvm52")
 script = ExtResource("1_6a1pe")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=640637713]

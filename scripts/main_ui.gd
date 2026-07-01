@@ -10,15 +10,23 @@ func show_page(page_name):
 func _on_button_pressed() -> void:
 	show_page("Market")
 
-func generate_item() -> void:
-	var item = load("res://scenes/item_ui.tscn")
-	var item_scene = item.instantiate()
-	item_scene.set_name("item UI")
-	$Market/VBoxContainer/Sections/Centre/MarginContainer/ScrollContainer/GridContainer.add_child(item_scene)
+func generate_items(grid: GridContainer, category: String, amount: int):
+	var packed = preload("res://scenes/item_ui.tscn")
+
+	for i in range(amount):
+		var item_ui = packed.instantiate()
+		grid.add_child(item_ui)
+		item_ui.get_node("item").initialize_item(category)
 	
-func _ready() -> void:
-	for n in 25:
-		generate_item()
+func _ready():
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer/GridContainer, "All", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Clothes/ScrollContainer/GridContainer, "Clothes", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Toys/ScrollContainer/GridContainer, "Toys", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Home/ScrollContainer/GridContainer, "Home", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Electronics/ScrollContainer/GridContainer, "Electronics", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/BooksMedia/ScrollContainer/GridContainer, "BooksMedia", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Collectables/ScrollContainer/GridContainer, "Collectables", 25)
+	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer, "Sports", 25)
 	
 func _process(delta: float) -> void:
 	money_ui_element.text = "$" + str(Global.money)

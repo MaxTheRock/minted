@@ -7,8 +7,9 @@ extends Control
 var xp_mult = 1
 
 func _ready() -> void:
-	item.initialize_item()
-	_rarity_ui(item.rarity)	
+	if item.type == "":
+		item.initialize_item()
+	_rarity_ui(item.rarity)
 
 func _rarity_ui(item_rarity) -> void:
 	if item_rarity == "common":
