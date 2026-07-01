@@ -73,4 +73,7 @@ func name_generator(brand, color, type, condition) -> String:
 		display_color = display_color[0].to_upper() + display_color.substr(1)
 	if type == "cd_player":
 		display_type = "CD Player"
+	if type == "puzzle_cube":
+		display_type = "Puzzle Cube"
+		display_color = ""
 	return brand_print + display_color + " " + display_type + "."

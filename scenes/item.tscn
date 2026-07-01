@@ -464,6 +464,39 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kj5vo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usmfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muevd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqkql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf0sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qthxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3bit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_743hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii35d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kytja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or6sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pm74")
 }],
 "loop": 1,
 "name": &"default",
@@ -556,10 +589,40 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tcqxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqs26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kwet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc0ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qys0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3l1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju53k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skaia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr5ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84h63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el3wq")
 }],
 "loop": 1,
 "name": &"default",
-"speed": 12.0
+"speed": 16.0
 }]
 
 [node name="item" type="Node2D" unique_id=942505978]
@@ -607,7 +670,7 @@ position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_fih1l")
 frame_progress = 0.07507769
 
-[node name="rubik\'s_cube" type="AnimatedSprite2D" parent="TextureButton" unique_id=506931965 groups=["clothes"]]
+[node name="puzzle_cube" type="AnimatedSprite2D" parent="TextureButton" unique_id=506931965 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sqt0q")
 frame_progress = 0.78475225

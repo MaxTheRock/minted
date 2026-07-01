@@ -3,8 +3,8 @@ extends Node2D
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["black", "white", "grey", "blue", "green"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
-var uncommon_items: Array = ["cd_player"]
-
+var uncommon_items: Array = ["cd_player", "puzzle_cube"]
+var items_with_regular_animation = ["cd_player", "puzzle_cube"]
 var brands: Array = ["none", "elemental"]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var number: int = 0
@@ -37,6 +37,7 @@ signal rarity_ui(item_rarity: String)
 @onready var cd_player_sprite: AnimatedSprite2D = $TextureButton/cd_player
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
+@onready var rubiks_cube_sprite: AnimatedSprite2D = $TextureButton/puzzle_cube
 
 func initialize_item():
 	rng.randomize()
@@ -73,8 +74,10 @@ func initialize_item():
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
 		color = "grey"
-		
-	
+	elif type == "puzzle_cube":
+		switch_shirt(rubiks_cube_sprite, number)
+		sprite_image = rubiks_cube_sprite
+		color = "multi"
 	
 func get_rarity():
 	rng.randomize()
@@ -119,7 +122,7 @@ func set_item_type(item_type: String) -> void:
 func _on_texture_button_mouse_entered():
 	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
-	if type == "cd_player":
+	if type in items_with_regular_animation:
 		counter = 0
 	$FrameTimer.start()
 
@@ -128,6 +131,7 @@ func _on_texture_button_mouse_exited():
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
+		child.stop()
 		if child.owner == self:
 			child.frame = 0
 			tshirt_logo.frame = 0
@@ -135,7 +139,7 @@ func _on_texture_button_mouse_exited():
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
 		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
-		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type == "cd_player"):
+		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
 			while new_frame == child.frame and max_frames > 1:
@@ -143,13 +147,8 @@ func _on_frame_timer_timeout():
 			child.frame = new_frame
 			tshirt_logo.frame = new_frame
 			details_ui.display_logo(tshirt_logo, brand,new_frame)
-		elif child.visible and child is AnimatedSprite2D and child.owner == self and type == "cd_player":
-			if counter < 12:
-				child.frame = counter
-				counter += 1
-				details_ui.display_logo(tshirt_logo, brand,counter)
-			else:
-				child.frame = 12
+		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
+			child.play("default")
 
 
 func button_enter():
@@ -206,12 +205,15 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(15 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "cd_player":
-		number = rng.randi_range(0, colours.size()-1)
-		color = colours[number]
 		shippingTime = rng.randi_range(2, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(10 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "puzzle_cube":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		
 func condition_mult_calc(condition: String) -> float:
 	if condition == "Poor":
