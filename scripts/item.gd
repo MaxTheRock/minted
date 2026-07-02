@@ -4,16 +4,18 @@ var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple
 var trouser_colours: Array = ["black", "white", "grey", "blue", "green"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster"]
+var rare_items: Array = []
+var epic_items: Array = ["beh_enclosed_shirt"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube"]
 var brands: Array = ["none", "elemental"]
 # Categories
-var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes"]
+var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt"]
 var toys: Array = ["puzzle_cube"]
 var home: Array = ["spud_poster"]
 var electronics: Array = ["cd_player"]
 var books_and_media: Array = ["spud_poster"]
-var collectables: Array = ["puzzle_cube", "spud_poster"]
-var sports: Array = []
+var collectables: Array = ["puzzle_cube", "spud_poster", "beh_enclosed_shirt"]
+var sports: Array = ["beh_enclosed_shirt"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var number: int = 0
@@ -33,7 +35,9 @@ var selected_brand = "none"
 var counter: int = 0
 var rarities = {
 	"common": 1000,
-	"uncommon": 300
+	"uncommon": 300,
+	"rare": 100,
+	"epic": 20,
 }
 var rarity = "common"
 signal rarity_ui(item_rarity: String)
@@ -51,12 +55,16 @@ var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 	"cd_player": $TextureButton/cd_player,
 	"puzzle_cube": $TextureButton/puzzle_cube,
 	"spud_poster": $TextureButton/spud_poster,
+	"beh_enclosed_shirt": $TextureButton/beh_enclosed_shirt,
 }
 
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
 
 func initialize_item(category := "All"):
+	brandmult = 1
+	brand = "none"
+	selected_brand = "none"
 	rng.randomize()
 	match category:
 		"Clothes":
@@ -72,24 +80,26 @@ func initialize_item(category := "All"):
 		"Collectables":
 			type = collectables.pick_random()
 		"Sports":
-			if sports.size() > 0:
-				type = sports.pick_random()
-			else:
-				type = common_items.pick_random()
+			type = sports.pick_random()
 		_:
-			rarity = get_rarity()
-			if rarity == "common":
-				type = common_items.pick_random()
-			else:
-				type = uncommon_items.pick_random()
+			type = get_random_item()
 	generate_parameters(type)
 	set_item_type(type)
-
+	
+	if type in common_items:
+		rarity = "common"
+	elif type in uncommon_items:
+		rarity = "uncommon"
+	elif type in rare_items:
+		rarity = "rare"
+	elif type in epic_items:
+		rarity = "epic"
+	
 	if sprites.has(type):
 		var sprite = sprites[type]
 		set_node_palette(sprite, number)
 		sprite_image = sprite
-
+	
 	if type == "tshirt":
 		logo_calculator(color)
 	elif type == "shoes":
@@ -102,9 +112,44 @@ func initialize_item(category := "All"):
 		color = "grey"
 	elif type == "puzzle_cube":
 		color = "multi"
+		brand = "none"
 	elif type == "spud_poster":
 		color = "brown"
-		
+	elif type == "beh_enclosed_shirt":
+		color = "turquoise"
+	emit_signal("rarity_ui", rarity)
+
+func get_random_item() -> String:
+	var total_weight := 0
+
+	if common_items.size() > 0:
+		total_weight += rarities["common"]
+	if uncommon_items.size() > 0:
+		total_weight += rarities["uncommon"]
+	if rare_items.size() > 0:
+		total_weight += rarities["rare"]
+	if epic_items.size() > 0:
+		total_weight += rarities["epic"]
+
+	var roll := rng.randi_range(1, total_weight)
+
+	if common_items.size() > 0:
+		if roll <= rarities["common"]:
+			return common_items.pick_random()
+		roll -= rarities["common"]
+
+	if uncommon_items.size() > 0:
+		if roll <= rarities["uncommon"]:
+			return uncommon_items.pick_random()
+		roll -= rarities["uncommon"]
+
+	if rare_items.size() > 0:
+		if roll <= rarities["rare"]:
+			return rare_items.pick_random()
+		roll -= rarities["rare"]
+
+	return epic_items.pick_random()
+	
 func get_rarity():
 	rng.randomize()
 	var weighted_sum = 0
@@ -151,6 +196,7 @@ func _on_texture_button_mouse_entered():
 	if type in items_with_regular_animation:
 		counter = 0
 	$FrameTimer.start()
+	print(rarity)
 
 func _on_texture_button_mouse_exited():
 	details_ui.display_logo(tshirt_logo, brand,0)
@@ -245,6 +291,11 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "beh_enclosed_shirt":
+		shippingTime = rng.randi_range(3, 10.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(13 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		
 func condition_mult_calc(condition: String) -> float:
 	if condition == "Poor":

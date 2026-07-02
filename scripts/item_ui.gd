@@ -7,9 +7,9 @@ extends Control
 var xp_mult = 1
 
 func _ready() -> void:
+	item.rarity_ui.connect(_rarity_ui)
 	if item.type == "":
 		item.initialize_item()
-	_rarity_ui(item.rarity)
 
 func _rarity_ui(item_rarity) -> void:
 	if item_rarity == "common":
@@ -17,6 +17,12 @@ func _rarity_ui(item_rarity) -> void:
 	elif item_rarity == "uncommon":
 		panel_container.self_modulate = Color8(20,235,30)
 		xp_mult = 1.2
+	elif item_rarity == "rare":
+		panel_container.self_modulate = Color8(54,136,177)
+		xp_mult = 2
+	elif item_rarity == "epic":
+		panel_container.self_modulate = Color8(153,51,255)
+		xp_mult = 4.5
 
 
 func _on_buy_button_pressed() -> void:

@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="12_1ytmg"]
 [ext_resource type="Texture2D" uid="uid://0urssekbooyl" path="res://assets/items/shoes/shoes.png" id="13_2xo3q"]
 [ext_resource type="Texture2D" uid="uid://b7qjgavr1c341" path="res://assets/items/shorts/shorts.png" id="13_ngcwe"]
+[ext_resource type="Texture2D" uid="uid://cxyx6q3t16g3u" path="res://assets/items/beh_enclosed_shirt/beh_enclosed_shirt.png" id="15_ngcwe"]
 [ext_resource type="Texture2D" uid="uid://dm3s8yelfdxf1" path="res://assets/items/cube/cube.png" id="16_1g6oc"]
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="16_1ytmg"]
 [ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="17_1g6oc"]
@@ -611,6 +612,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hdml"]
+atlas = ExtResource("15_ngcwe")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wgoy"]
+atlas = ExtResource("15_ngcwe")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leyr8"]
+atlas = ExtResource("15_ngcwe")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jpt8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hdml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wgoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leyr8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -662,6 +692,10 @@ frame_progress = 0.78475225
 [node name="spud_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=573951217 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_4c3da")
+
+[node name="beh_enclosed_shirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=118288681 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_jpt8c")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

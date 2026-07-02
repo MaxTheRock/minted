@@ -82,4 +82,7 @@ func name_generator(brand, color, type, condition) -> String:
 	if type == "spud_poster":
 		display_type = "Spud Poster"
 		display_color = ""
+	if type == "beh_enclosed_shirt":
+		display_type = "BEH Enclosed shirt"
+		display_color = ""
 	return brand_print + display_color + " " + display_type + "."
