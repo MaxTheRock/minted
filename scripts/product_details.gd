@@ -14,6 +14,8 @@ var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
 var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
 var socks_texture = preload("res://shaders/socks_colours.png")
 var tshirt_texture = preload("res://shaders/tshirt_colours.png")
+var trousers_texture = preload("res://shaders/trousers_colours.png")
+var shorts_texture = preload("res://shaders/shorts_colours.png")
 
 func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping, condition, color_index, brand) -> void:
 	preview_image.visible = true
@@ -28,7 +30,11 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 	shipping_label.text = "Shipping Time: " + str(shipping) + " days"
 	condition_label.text = "Condition: " + str(condition)
 	brand_label.text = "Brand: " + str(brand)[0].to_upper() + str(brand).substr(1)
-	
+	if condition == "Minted":
+		condition_label.self_modulate = Color8(62, 180, 137) # mint colour
+	else:
+		condition_label.self_modulate = Color8(255,255,255)
+		
 	if preview_image.material == null:
 		preview_image.material = ShaderMaterial.new()
 	if type == "socks":
@@ -47,12 +53,28 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.material.set_shader_parameter("color_count", 5)
 		preview_image.material.set_shader_parameter("palette_count", 10)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
-	
+	elif type == "shorts":
+		preview_image.material.shader = tshirt_shader
+		
+		preview_image.material.set_shader_parameter("palette_texture", shorts_texture)
+		preview_image.material.set_shader_parameter("tolerance", 0.1)
+		preview_image.material.set_shader_parameter("color_count", 4)
+		preview_image.material.set_shader_parameter("palette_count", 5)
+		preview_image.set_instance_shader_parameter("palette_index", color_index)
+	elif type == "trousers":
+		preview_image.material.shader = tshirt_shader
+		
+		preview_image.material.set_shader_parameter("palette_texture", trousers_texture)
+		preview_image.material.set_shader_parameter("tolerance", 0.1)
+		preview_image.material.set_shader_parameter("color_count", 4)
+		preview_image.material.set_shader_parameter("palette_count", 5)
+		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		
 	else:
 		preview_image.material.shader = null
 		
 func display_logo(sprite: AnimatedSprite2D, brand, frame):
-	if brand == "C.O.M.A":
+	if brand == "ele_shoes":
 		logo.animation = "none"
 		logo.frame = 0
 	else:
@@ -81,6 +103,9 @@ func name_generator(brand, color, type, condition) -> String:
 		display_color = ""
 	if type == "spud_poster":
 		display_type = "Spud Poster"
+		display_color = ""
+	if type == "potion_poster":
+		display_type = "Potion Poster"
 		display_color = ""
 	if type == "beh_enclosed_shirt":
 		display_type = "BEH Enclosed shirt"

@@ -78,6 +78,11 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7ps5"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"C.O.M.A",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3tic0")
@@ -452,7 +457,7 @@ stretch_mode = 5
 position = Vector2(207, 81)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_k7ps5")
-animation = &"ele_minimalistic_black"
+animation = &"C.O.M.A"
 autoplay = "none"
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=49860229]

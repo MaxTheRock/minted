@@ -1,9 +1,9 @@
 extends Node2D
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
-var trouser_colours: Array = ["black", "white", "grey", "blue", "green"]
+var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster"]
 var rare_items: Array = []
 var epic_items: Array = ["beh_enclosed_shirt"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube"]
@@ -11,9 +11,9 @@ var brands: Array = ["none", "elemental"]
 # Categories
 var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt"]
 var toys: Array = ["puzzle_cube"]
-var home: Array = ["spud_poster"]
+var home: Array = ["spud_poster","potion_poster"]
 var electronics: Array = ["cd_player"]
-var books_and_media: Array = ["spud_poster"]
+var books_and_media: Array = ["spud_poster","potion_poster"]
 var collectables: Array = ["puzzle_cube", "spud_poster", "beh_enclosed_shirt"]
 var sports: Array = ["beh_enclosed_shirt"]
 # ---------------------------------------------
@@ -45,6 +45,8 @@ var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
 var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
 var socks_texture = preload("res://shaders/socks_colours.png")
 var tshirt_texture = preload("res://shaders/tshirt_colours.png")
+var trousers_texture = preload("res://shaders/trousers_colours.png")
+var shorts_texture = preload("res://shaders/shorts_colours.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
@@ -56,6 +58,7 @@ var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 	"puzzle_cube": $TextureButton/puzzle_cube,
 	"spud_poster": $TextureButton/spud_poster,
 	"beh_enclosed_shirt": $TextureButton/beh_enclosed_shirt,
+	"potion_poster": $TextureButton/potion_poster
 }
 
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
@@ -117,6 +120,8 @@ func initialize_item(category := "All"):
 		color = "brown"
 	elif type == "beh_enclosed_shirt":
 		color = "turquoise"
+	elif type == "potion_poster":
+		color = "purple & black"
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -196,7 +201,6 @@ func _on_texture_button_mouse_entered():
 	if type in items_with_regular_animation:
 		counter = 0
 	$FrameTimer.start()
-	print(rarity)
 
 func _on_texture_button_mouse_exited():
 	details_ui.display_logo(tshirt_logo, brand,0)
@@ -295,8 +299,16 @@ func generate_parameters(type):
 		shippingTime = rng.randi_range(3, 10.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		price = snapped(13 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-		
+		price = snapped(23 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "potion_poster":
+		shippingTime = rng.randi_range(1, 5.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	
+	# minimum price is £1
+	if price < 1:
+		price = 1.00
 func condition_mult_calc(condition: String) -> float:
 	if condition == "Poor":
 		return 0.4
@@ -328,6 +340,22 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
 		target_sprite.material.set_shader_parameter("color_count", 5)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
+		target_sprite.set_instance_shader_parameter("palette_index", num)
+	elif type == "shorts":
+		target_sprite.material.shader = tshirt_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", shorts_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color_count", 4)
+		target_sprite.material.set_shader_parameter("palette_count", 5)
+		target_sprite.set_instance_shader_parameter("palette_index", num)
+	elif type == "trousers":
+		target_sprite.material.shader = tshirt_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", trousers_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color_count", 4)
+		target_sprite.material.set_shader_parameter("palette_count", 5)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	
 	else:
