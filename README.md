@@ -1,0 +1,21 @@
+To-do list (add as we go and delete when completed):
+- Shipping mechanic
+- Selling mechanic
+- Bidding
+- Sellers information
+- Reputation
+- Cd mechanic
+- Seperate sprites in room
+- Day/night cycle
+- Rent system
+- Achievments
+- Saving mechanic
+- More items
+- Endings
+- Scamming
+- Upgradable things in room
+- actuall inventory system
+- Newspaper
+- Trading items
+- Music
+- More rooms
