@@ -108,16 +108,22 @@ func name_generator(brand, color, type, condition) -> String:
 		display_color = display_color[0].to_upper() + display_color.substr(1)
 	if type == "cd_player":
 		display_type = "CD Player"
-	if type == "puzzle_cube":
+	elif type == "puzzle_cube":
 		display_type = "Puzzle Cube"
 		display_color = ""
-	if type == "spud_poster":
+	elif type == "spud_poster":
 		display_type = "Spud Poster"
 		display_color = ""
-	if type == "potion_poster":
+	elif type == "potion_poster":
 		display_type = "Potion Poster"
 		display_color = ""
-	if type == "beh_enclosed_shirt":
+	elif type == "beh_enclosed_shirt":
 		display_type = "BEH Enclosed shirt"
+		display_color = ""
+	elif type == "the_big_mint":
+		display_type = "The Big Mint CD"
+		display_color = ""
+	elif type == "smooth_jazz_1":
+		display_type = "Smooth Jazz Vol.1 CD"
 		display_color = ""
 	return brand_print + display_color + " " + display_type + "."

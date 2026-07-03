@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://cv41xyf8st72r" path="res://assets/items/potion_poster/potion_poster.png" id="16_ox7tp"]
 [ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="17_1g6oc"]
 [ext_resource type="Texture2D" uid="uid://swcbdxg8h07" path="res://assets/items/boxers/boxers.png" id="17_ox7tp"]
+[ext_resource type="Texture2D" uid="uid://dno075h5l7yyo" path="res://assets/cds/the_big_mint/the_big_mint.png" id="18_8b0vj"]
+[ext_resource type="Texture2D" uid="uid://6ddu8alan6ll" path="res://assets/cds/smooth_jazz_1/smooth_jazz.png" id="19_iq5q0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34t5m"]
 load_path = "res://.godot/imported/socks.png-35deec6bfe146b9ee338775648b09581.ctex"
@@ -736,6 +738,36 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_88tay"]
+atlas = ExtResource("18_8b0vj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xj5vb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88tay")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg0nt"]
+atlas = ExtResource("19_iq5q0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vwip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg0nt")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -802,6 +834,14 @@ frame_progress = 0.40995625
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_lkluq")
 frame_progress = 0.58312744
+
+[node name="the_big_mint" type="AnimatedSprite2D" parent="TextureButton" unique_id=1277573031 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_xj5vb")
+
+[node name="smooth_jazz_1" type="AnimatedSprite2D" parent="TextureButton" unique_id=7081158 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_6vwip")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

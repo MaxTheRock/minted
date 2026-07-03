@@ -2,18 +2,19 @@ extends Node2D
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster"]
-var rare_items: Array = []
+var rare_items: Array = ["the_big_mint"]
 var epic_items: Array = ["beh_enclosed_shirt"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube"]
+var items_that_spin = ["the_big_mint", "smooth_jazz_1"]
 var brands: Array = ["none", "elemental"]
 # Categories
 var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
 var toys: Array = ["puzzle_cube"]
 var home: Array = ["spud_poster","potion_poster"]
-var electronics: Array = ["cd_player"]
-var books_and_media: Array = ["spud_poster","potion_poster"]
+var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1"]
+var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1"]
 var collectables: Array = ["puzzle_cube", "spud_poster", "beh_enclosed_shirt"]
 var sports: Array = ["beh_enclosed_shirt"]
 # ---------------------------------------------
@@ -33,6 +34,7 @@ var brandmult = 1
 var brand = "none"
 var selected_brand = "none"
 var counter: int = 0
+var hovering = false
 var rarities = {
 	"common": 1000,
 	"uncommon": 300,
@@ -60,11 +62,27 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"spud_poster": $TextureButton/spud_poster,
 	"beh_enclosed_shirt": $TextureButton/beh_enclosed_shirt,
 	"potion_poster": $TextureButton/potion_poster,
-	"boxers": $TextureButton/boxers
+	"boxers": $TextureButton/boxers,
+	"the_big_mint": $TextureButton/the_big_mint,
+	"smooth_jazz_1": $TextureButton/smooth_jazz_1,
 }
 
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
+
+func _process(delta):
+	if !hovering:
+		for child in get_tree().get_nodes_in_group("clothes"):
+			if child.owner == self:
+				child.rotation_degrees = 0
+		return
+
+	if !(type in items_that_spin):
+		return
+
+	for child in get_tree().get_nodes_in_group("clothes"):
+		if child.visible and child is AnimatedSprite2D and child.owner == self:
+			child.rotation_degrees += 160 * delta
 
 func initialize_item(category := "All"):
 	brandmult = 1
@@ -121,9 +139,13 @@ func initialize_item(category := "All"):
 	elif type == "spud_poster":
 		color = "brown"
 	elif type == "beh_enclosed_shirt":
-		color = "turquoise"
+		color = "turquoise & blue"
 	elif type == "potion_poster":
 		color = "purple & black"
+	elif type == "the_big_mint":
+		color == "black & green"
+	elif type == "smooth_jazz_1":
+		color == "cream"
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -198,6 +220,7 @@ func set_item_type(item_type: String) -> void:
 			child.visible = (child.name == item_type)
 	
 func _on_texture_button_mouse_entered():
+	hovering = true
 	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	if type in items_with_regular_animation:
@@ -205,6 +228,7 @@ func _on_texture_button_mouse_entered():
 	$FrameTimer.start()
 
 func _on_texture_button_mouse_exited():
+	hovering = false
 	details_ui.display_logo(tshirt_logo, brand,0)
 	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
 	$FrameTimer.stop()
@@ -227,7 +251,6 @@ func _on_frame_timer_timeout():
 			details_ui.display_logo(tshirt_logo, brand,new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
 			child.play("default")
-
 
 func button_enter():
 	details_ui.display_logo(tshirt_logo, brand,0)
@@ -314,6 +337,16 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(2 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "the_big_mint":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "smooth_jazz_1":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	
 	# minimum price is £1
 	if price < 1:
