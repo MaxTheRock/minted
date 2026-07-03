@@ -16,6 +16,7 @@ var socks_texture = preload("res://shaders/socks_colours.png")
 var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
+var boxers_texture = preload("res://shaders/boxers_colours.png")
 
 func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping, condition, color_index, brand) -> void:
 	preview_image.visible = true
@@ -68,6 +69,15 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
 		preview_image.material.set_shader_parameter("color_count", 4)
 		preview_image.material.set_shader_parameter("palette_count", 5)
+		preview_image.set_instance_shader_parameter("palette_index", color_index)
+	
+	elif type == "boxers":
+		preview_image.material.shader = tshirt_shader
+		
+		preview_image.material.set_shader_parameter("palette_texture", boxers_texture)
+		preview_image.material.set_shader_parameter("tolerance", 0.1)
+		preview_image.material.set_shader_parameter("color_count", 6)
+		preview_image.material.set_shader_parameter("palette_count", 10)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
 		
 	else:

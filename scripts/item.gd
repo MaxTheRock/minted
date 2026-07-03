@@ -2,14 +2,14 @@ extends Node2D
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster"]
 var rare_items: Array = []
 var epic_items: Array = ["beh_enclosed_shirt"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube"]
 var brands: Array = ["none", "elemental"]
 # Categories
-var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt"]
+var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
 var toys: Array = ["puzzle_cube"]
 var home: Array = ["spud_poster","potion_poster"]
 var electronics: Array = ["cd_player"]
@@ -47,6 +47,7 @@ var socks_texture = preload("res://shaders/socks_colours.png")
 var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
+var boxers_texture = preload("res://shaders/boxers_colours.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
@@ -58,7 +59,8 @@ var shorts_texture = preload("res://shaders/shorts_colours.png")
 	"puzzle_cube": $TextureButton/puzzle_cube,
 	"spud_poster": $TextureButton/spud_poster,
 	"beh_enclosed_shirt": $TextureButton/beh_enclosed_shirt,
-	"potion_poster": $TextureButton/potion_poster
+	"potion_poster": $TextureButton/potion_poster,
+	"boxers": $TextureButton/boxers
 }
 
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
@@ -305,6 +307,13 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "boxers":
+		number = rng.randi_range(0, colours.size()-1)
+		color = colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(2 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	
 	# minimum price is £1
 	if price < 1:
@@ -357,6 +366,13 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("color_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
-	
+	elif type == "boxers":
+		target_sprite.material.shader = tshirt_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", boxers_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color_count", 6)
+		target_sprite.material.set_shader_parameter("palette_count", 10)
+		target_sprite.set_instance_shader_parameter("palette_index", num)
 	else:
 		target_sprite.material.shader = null

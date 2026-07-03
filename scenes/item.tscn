@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="16_1ytmg"]
 [ext_resource type="Texture2D" uid="uid://cv41xyf8st72r" path="res://assets/items/potion_poster/potion_poster.png" id="16_ox7tp"]
 [ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="17_1g6oc"]
+[ext_resource type="Texture2D" uid="uid://swcbdxg8h07" path="res://assets/items/boxers/boxers.png" id="17_ox7tp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34t5m"]
 load_path = "res://.godot/imported/socks.png-35deec6bfe146b9ee338775648b09581.ctex"
@@ -692,6 +693,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_d442s"]
+atlas = ExtResource("17_ox7tp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bix73"]
+atlas = ExtResource("17_ox7tp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxys2"]
+atlas = ExtResource("17_ox7tp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl720"]
+atlas = ExtResource("17_ox7tp")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agb1b"]
+atlas = ExtResource("17_ox7tp")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkluq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d442s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bix73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxys2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl720")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agb1b")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -753,6 +797,11 @@ sprite_frames = SubResource("SpriteFrames_jpt8c")
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sowbf")
 frame_progress = 0.40995625
+
+[node name="boxers" type="AnimatedSprite2D" parent="TextureButton" unique_id=193976886 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_lkluq")
+frame_progress = 0.58312744
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2
