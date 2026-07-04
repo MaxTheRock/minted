@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cwxics053ly5x" path="res://scenes/home.tscn" id="3_okuri"]
 [ext_resource type="PackedScene" uid="uid://dhynb0gac2y1w" path="res://scenes/newspaper.tscn" id="5_kyx1g"]
 [ext_resource type="PackedScene" uid="uid://5fnes7u1us3e" path="res://scenes/trading.tscn" id="6_r8eje"]
+[ext_resource type="PackedScene" uid="uid://sb8cwtgdt6rd" path="res://scenes/selling.tscn" id="7_46p8p"]
 [ext_resource type="PackedScene" uid="uid://d08uynbk0tyuu" path="res://scenes/options.tscn" id="7_r0apq"]
 
 [node name="MainUI" type="Control" unique_id=68240334]
@@ -31,3 +32,6 @@ layout_mode = 0
 
 [node name="Options" parent="." unique_id=20333252 instance=ExtResource("7_r0apq")]
 layout_mode = 0
+
+[node name="Selling" parent="." unique_id=2079572264 instance=ExtResource("7_46p8p")]
+layout_mode = 1

@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://sb8cwtgdt6rd"]
+
+[ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_hdcek"]
+[ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="2_cm14b"]
+
+[node name="selling" type="Control" unique_id=2079572264]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -3.0
+offset_right = 9.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemTexture" type="ColorRect" parent="." unique_id=105893288]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 29.0
+offset_right = 351.0
+offset_bottom = 211.0
+color = Color(1, 0.4509804, 1, 1)
+
+[node name="Name" type="LineEdit" parent="." unique_id=1442158482]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 269.0
+offset_right = 817.0
+offset_bottom = 316.0
+theme_override_font_sizes/font_size = 20
+icon_expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Name" unique_id=697580088]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Name:"
+
+[node name="Type" type="LineEdit" parent="." unique_id=2080409203]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 382.0
+offset_right = 427.0
+offset_bottom = 429.0
+theme_override_font_sizes/font_size = 20
+max_length = 20
+right_icon = ExtResource("2_cm14b")
+icon_expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Type" unique_id=1520835356]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Type:"
+
+[node name="Condition" type="LineEdit" parent="." unique_id=339611856]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 380.0
+offset_right = 802.0
+offset_bottom = 427.0
+theme_override_font_sizes/font_size = 20
+max_length = 20
+right_icon = ExtResource("2_cm14b")
+icon_expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Condition" unique_id=464506469]
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Condition:"
+
+[node name="Color" type="LineEdit" parent="." unique_id=1190792838]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 485.0
+offset_right = 424.0
+offset_bottom = 532.0
+theme_override_font_sizes/font_size = 20
+max_length = 20
+right_icon = ExtResource("2_cm14b")
+icon_expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Color" unique_id=238900649]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Color:"
+
+[node name="Brand" type="LineEdit" parent="." unique_id=713754711]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 488.0
+offset_right = 805.0
+offset_bottom = 535.0
+theme_override_font_sizes/font_size = 20
+max_length = 15
+right_icon = ExtResource("2_cm14b")
+icon_expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Brand" unique_id=1827732966]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Brand:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=517744692]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+alignment = 2
+
+[node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_hdcek")]
+layout_mode = 2

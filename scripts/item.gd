@@ -8,6 +8,7 @@ var rare_items: Array = ["the_big_mint"]
 var epic_items: Array = ["beh_enclosed_shirt"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera"]
 var items_that_spin = ["the_big_mint", "smooth_jazz_1"]
+var cds = ["the_big_mint", "smooth_jazz_1"]
 var brands: Array = ["none", "elemental"]
 # Categories
 var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
@@ -32,6 +33,8 @@ var chosen_frame: int = 0
 var sprite_image: AnimatedSprite2D
 var brandmult = 1
 var brand = "none"
+var genre = "none"
+var cd: bool = false
 var selected_brand = "none"
 var counter: int = 0
 var hovering = false
@@ -89,6 +92,8 @@ func initialize_item(category := "All"):
 	brandmult = 1
 	brand = "none"
 	selected_brand = "none"
+	genre = "none"
+	cd = false
 	rng.randomize()
 	match category:
 		"Clothes":
@@ -124,9 +129,7 @@ func initialize_item(category := "All"):
 		set_node_palette(sprite, number)
 		sprite_image = sprite
 	
-	if type == "tshirt":
-		logo_calculator(color)
-	elif type == "shoes":
+	if type == "shoes":
 		selected_brand = "elemental"
 		brand = "ele_shoes"
 		color = "grey"
@@ -144,9 +147,9 @@ func initialize_item(category := "All"):
 	elif type == "potion_poster":
 		color = "purple & black"
 	elif type == "the_big_mint":
-		color == "black & green"
+		color = "black & green"
 	elif type == "smooth_jazz_1":
-		color == "cream"
+		color = "cream"
 	elif type == "camera":
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
@@ -227,7 +230,7 @@ func set_item_type(item_type: String) -> void:
 func _on_texture_button_mouse_entered():
 	hovering = true
 	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+	
 	if type in items_with_regular_animation:
 		counter = 0
 	$FrameTimer.start()
@@ -235,7 +238,7 @@ func _on_texture_button_mouse_entered():
 func _on_texture_button_mouse_exited():
 	hovering = false
 	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		child.stop()
@@ -245,7 +248,7 @@ func _on_texture_button_mouse_exited():
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
-		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
@@ -259,12 +262,12 @@ func _on_frame_timer_timeout():
 
 func button_enter():
 	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.start()
 	
 func button_exit():
 	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand)
+	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
@@ -278,6 +281,7 @@ func generate_parameters(type):
 		shippingTime = rng.randi_range(1, 5.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
+		logo_calculator(color)
 		price = snapped(2.5 * condition_price_mult * rng.randf_range(0.8,1.2) * brandmult,0.01)
 		
 	elif type == "socks":
@@ -346,17 +350,22 @@ func generate_parameters(type):
 		shippingTime = rng.randi_range(1, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		genre = "rage"
+		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "smooth_jazz_1":
 		shippingTime = rng.randi_range(1, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		genre = "jazz"
 	elif type == "camera":
 		shippingTime = rng.randi_range(1, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	
+	if type in cds:
+		cd = true
 	
 	# minimum price is £1
 	if price < 1:
