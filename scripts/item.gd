@@ -3,17 +3,17 @@ extends Node2D
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera"]
 var rare_items: Array = ["the_big_mint"]
 var epic_items: Array = ["beh_enclosed_shirt"]
-var items_with_regular_animation = ["cd_player", "puzzle_cube"]
+var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera"]
 var items_that_spin = ["the_big_mint", "smooth_jazz_1"]
 var brands: Array = ["none", "elemental"]
 # Categories
 var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
 var toys: Array = ["puzzle_cube"]
 var home: Array = ["spud_poster","potion_poster"]
-var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1"]
+var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera"]
 var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1"]
 var collectables: Array = ["puzzle_cube", "spud_poster", "beh_enclosed_shirt"]
 var sports: Array = ["beh_enclosed_shirt"]
@@ -65,6 +65,7 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"boxers": $TextureButton/boxers,
 	"the_big_mint": $TextureButton/the_big_mint,
 	"smooth_jazz_1": $TextureButton/smooth_jazz_1,
+	"camera": $TextureButton/camera,
 }
 
 @onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
@@ -146,6 +147,10 @@ func initialize_item(category := "All"):
 		color == "black & green"
 	elif type == "smooth_jazz_1":
 		color == "cream"
+	elif type == "camera":
+		selected_brand = "C.O.M.A"
+		brand = "C.O.M.A"
+		color = "grey"
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -343,6 +348,11 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "smooth_jazz_1":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "camera":
 		shippingTime = rng.randi_range(1, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
