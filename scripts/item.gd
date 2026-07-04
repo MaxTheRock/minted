@@ -428,3 +428,5 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	else:
 		target_sprite.material.shader = null
+
+#------ for storage
