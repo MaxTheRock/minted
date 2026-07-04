@@ -71,7 +71,7 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"camera": $TextureButton/camera,
 }
 
-@onready var details_ui = get_node("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
+@onready var details_ui = get_node_or_null("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
 
 func _process(delta):
@@ -229,7 +229,8 @@ func set_item_type(item_type: String) -> void:
 	
 func _on_texture_button_mouse_entered():
 	hovering = true
-	details_ui.display_logo(tshirt_logo, brand,0)
+	if Global.inWardrobe == false:
+		details_ui.display_logo(tshirt_logo, brand,0)
 	
 	if type in items_with_regular_animation:
 		counter = 0
@@ -237,8 +238,9 @@ func _on_texture_button_mouse_entered():
 
 func _on_texture_button_mouse_exited():
 	hovering = false
-	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+	if Global.inWardrobe == false:
+		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		child.stop()
@@ -248,7 +250,8 @@ func _on_texture_button_mouse_exited():
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
-		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+		if Global.inWardrobe == false:
+			details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
@@ -256,18 +259,21 @@ func _on_frame_timer_timeout():
 				new_frame = rng.randi_range(0, max_frames - 1)
 			child.frame = new_frame
 			tshirt_logo.frame = new_frame
-			details_ui.display_logo(tshirt_logo, brand,new_frame)
+			if Global.inWardrobe == false:
+				details_ui.display_logo(tshirt_logo, brand,new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
 			child.play("default")
 
 func button_enter():
-	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+	if Global.inWardrobe == false:
+		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.start()
 	
 func button_exit():
-	details_ui.display_logo(tshirt_logo, brand,0)
-	details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+	if Global.inWardrobe == false:
+		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
@@ -430,3 +436,47 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.shader = null
 
 #------ for storage
+func get_data() -> Dictionary:
+	return {
+		"type": type,
+		"number": number,
+		"color": color,
+		"price": price,
+		"shippingTime": shippingTime,
+		"condition": condition,
+		"condition_price_mult": condition_price_mult,
+		"brand": brand,
+		"selected_brand": selected_brand,
+		"genre": genre,
+		"cd": cd,
+		"rarity": rarity,
+		"logo_animation": tshirt_logo.animation if tshirt_logo else "none",
+	}
+
+func load_data(data: Dictionary) -> void:
+	type = data.get("type", "")
+	number = data.get("number", 0)
+	color = data.get("color", "")
+	price = data.get("price", 0)
+	shippingTime = data.get("shippingTime", 0)
+	condition = data.get("condition", "")
+	condition_price_mult = data.get("condition_price_mult", 1)
+	brand = data.get("brand", "none")
+	selected_brand = data.get("selected_brand", "none")
+	genre = data.get("genre", "none")
+	cd = data.get("cd", false)
+	rarity = data.get("rarity", "common")
+
+	set_item_type(type)
+
+	if sprites.has(type):
+		var sprite = sprites[type]
+		set_node_palette(sprite, number)
+		sprite_image = sprite
+
+	if type == "tshirt" and tshirt_logo:
+		tshirt_logo.animation = data.get("logo_animation", "none")
+		tshirt_logo.frame = 0
+		tshirt_logo.stop()
+
+	emit_signal("rarity_ui", rarity)
