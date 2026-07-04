@@ -1,12 +1,21 @@
 [gd_scene format=3 uid="uid://cwxics053ly5x"]
 
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_krot7"]
+[ext_resource type="Texture2D" uid="uid://dmumb1a3rsm1i" path="res://assets/wallpaper.png" id="1_u4wd2"]
 
 [node name="Home" type="Control" unique_id=1623614779]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=649087083]
+layout_mode = 0
+offset_top = -159.0
+offset_right = 1280.0
+offset_bottom = 97.0
+scale = Vector2(1, 4.0416284)
+texture = ExtResource("1_u4wd2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1505844076]
 custom_minimum_size = Vector2(1280, 720)
@@ -17,9 +26,3 @@ alignment = 2
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_krot7")]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="." unique_id=1054857200]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Home"
