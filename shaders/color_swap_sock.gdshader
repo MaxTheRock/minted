@@ -1,31 +1,15 @@
 shader_type canvas_item;
-// used a tutorial here i can't lie.
-uniform sampler2D palette_texture : filter_nearest;
-uniform int color_count = 6;     // How many colors per palette (columns)
-uniform int palette_count = 10;   // Total number of palettes (rows)
-instance uniform int palette_index = 0;
-uniform float tolerance = 0.1;
+
+uniform vec2 shadow_offset = vec2(4.0, 4.0);
+uniform vec4 shadow_color : source_color = vec4(0.0, 0.0, 0.0, 0.5);
 
 void fragment() {
-    vec4 current_color = texture(TEXTURE, UV);
-    vec4 final_color = current_color;
+    // Get the base texture pixel
+    vec4 col = texture(TEXTURE, UV);
 
-    // row index 0 contains the original reference colors.
-    float original_y = 0.5 / float(palette_count);
-    float target_y = (float(palette_index) + 0.5) / float(palette_count);
+    vec2 size = vec2(textureSize(TEXTURE, 0));
+    vec2 offset_uv = UV - (shadow_offset / size);
+    vec4 shadow_col = texture(TEXTURE, offset_uv);
 
-    for (int i = 0; i < color_count; i++) {
-        float uv_x = (float(i) + 0.5) / float(color_count);
-        
-        // read original color from row 0.
-        vec4 orig_color = texture(palette_texture, vec2(uv_x, original_y));
-
-        if (distance(current_color.rgb, orig_color.rgb) < tolerance) {
-            vec4 target_color = texture(palette_texture, vec2(uv_x, target_y));
-            final_color.rgb = target_color.rgb;
-            break;
-        }
-    }
-
-    COLOR = vec4(final_color.rgb, current_color.a);
+    COLOR = mix(vec4(shadow_color.rgb, shadow_col.a * shadow_color.a), col, col.a);
 }
