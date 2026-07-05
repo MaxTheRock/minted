@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
 [ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="3_85yof"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="4_14vil"]
+[ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="5_jxe34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxe34"]
 size = Vector2(413, 206.5)
@@ -60,7 +61,28 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-17, 32)
 shape = SubResource("CircleShape2D_qnalp")
 
+[node name="Shelf" type="Sprite2D" parent="." unique_id=760899138]
+position = Vector2(493, -217)
+script = ExtResource("5_jxe34")
+
+[node name="Label" type="Label" parent="Shelf" unique_id=169525992]
+offset_left = -1086.0
+offset_top = 98.0
+offset_right = -985.0
+offset_bottom = 121.0
+text = "Shelf [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Shelf" unique_id=146887645]
+position = Vector2(-1025, 188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf/Area2D" unique_id=1458060442]
+position = Vector2(32, 13)
+shape = SubResource("CircleShape2D_qnalp")
+
 [connection signal="body_entered" from="Area2D" to="Computer" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Computer" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_body_exited"]

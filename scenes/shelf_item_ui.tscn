@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cc1aav0qv8nnu"]
+[gd_scene format=3 uid="uid://bqut7lxls2lix"]
 
-[ext_resource type="Script" uid="uid://b4n564qwq0325" path="res://scripts/storage_ui.gd" id="1_pf4g1"]
-[ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_2cyhs"]
+[ext_resource type="Script" uid="uid://b4n564qwq0325" path="res://scripts/storage_ui.gd" id="1_s6urm"]
+[ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_qo4bt"]
 
 [sub_resource type="Gradient" id="Gradient_6tkj6"]
 colors = PackedColorArray(0.42042565, 0.44699717, 0.48742068, 1, 0.3113863, 0.1358085, 0.61206234, 1)
@@ -35,7 +35,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="storage UI" type="Control" unique_id=2005130059]
+[node name="shelf_item_ui" type="Control" unique_id=2005130059]
 custom_minimum_size = Vector2(150, 220)
 layout_mode = 3
 anchors_preset = 15
@@ -44,7 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_pf4g1")
+script = ExtResource("1_s6urm")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=929768543]
 self_modulate = Color(0.5019608, 0.37254903, 0.48235294, 1)
@@ -55,7 +55,7 @@ offset_right = 141.0
 offset_bottom = 213.0
 texture = SubResource("GradientTexture2D_6snss")
 
-[node name="item" parent="." unique_id=720823212 instance=ExtResource("2_2cyhs")]
+[node name="item" parent="." unique_id=720823212 instance=ExtResource("2_qo4bt")]
 position = Vector2(5, 25)
 scale = Vector2(2, 2)
 
@@ -88,14 +88,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Take_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=99252260]
+[node name="Place_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=99252260]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(2, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_my6qv")
-text = "Take"
+text = "Place"
 
-[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Take_Button" to="." method="_on_buy_button_mouse_entered"]
-[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Take_Button" to="." method="_on_buy_button_mouse_exited"]
-[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Take_Button" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_pressed"]

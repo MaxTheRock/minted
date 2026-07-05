@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://eennxivxn1du"]
+
+[ext_resource type="Script" uid="uid://bkp6gvhlllvme" path="res://scripts/shelf_node.gd" id="1_eyi4x"]
+[ext_resource type="PackedScene" uid="uid://be113ma8jh1q" path="res://scenes/shelf_placed_ui.tscn" id="2_00mi8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5u3a"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Shelf" type="Control" unique_id=123048220]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eyi4x")
+
+[node name="Close" type="Button" parent="." unique_id=629223714]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 72.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_x5u3a")
+text = "X"
+
+[node name="Control" type="Control" parent="." unique_id=1652507381]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="shelf_placed_ui" parent="Control" unique_id=301841 instance=ExtResource("2_00mi8")]
+layout_mode = 1
+offset_left = 133.0
+offset_top = 120.0
+offset_right = 243.0
+offset_bottom = 300.0
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

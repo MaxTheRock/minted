@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bgetdl1dx048f"]
+
+[ext_resource type="Script" uid="uid://bjktqtg1xxpha" path="res://scripts/shelf_item_select.gd" id="1_1wiwu"]
+
+[node name="ShelfItemSelect" type="Control" unique_id=1285364655]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wiwu")
+
+[node name="items" type="MarginContainer" parent="." unique_id=1393528589]
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 0
+offset_left = 105.0
+offset_top = 81.0
+offset_right = 1050.0
+offset_bottom = 641.0
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 46
+theme_override_constants/margin_bottom = 42
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="items" unique_id=896780704]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="items/ScrollContainer" unique_id=1192951011]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5

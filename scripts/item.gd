@@ -223,13 +223,14 @@ func logo_calculator(color_of_shirt: String) -> void:
 	details_ui.stop_logo()
 
 func set_item_type(item_type: String) -> void:
-	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.owner == self:
-			child.visible = (child.name == item_type)
+	for sprite in sprites.values():
+		sprite.hide()
+	if sprites.has(item_type):
+		sprites[item_type].show()
 	
 func _on_texture_button_mouse_entered():
 	hovering = true
-	if Global.inWardrobe == false:
+	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 	
 	if type in items_with_regular_animation:
@@ -238,7 +239,7 @@ func _on_texture_button_mouse_entered():
 
 func _on_texture_button_mouse_exited():
 	hovering = false
-	if Global.inWardrobe == false:
+	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.stop()
@@ -250,7 +251,7 @@ func _on_texture_button_mouse_exited():
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if Global.inWardrobe == false:
+		if Global.inWardrobe == false and Global.inShelf == false:
 			details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
@@ -259,19 +260,19 @@ func _on_frame_timer_timeout():
 				new_frame = rng.randi_range(0, max_frames - 1)
 			child.frame = new_frame
 			tshirt_logo.frame = new_frame
-			if Global.inWardrobe == false:
+			if Global.inWardrobe == false and Global.inShelf == false:
 				details_ui.display_logo(tshirt_logo, brand,new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
 			child.play("default")
 
 func button_enter():
-	if Global.inWardrobe == false:
+	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.start()
 	
 func button_exit():
-	if Global.inWardrobe == false:
+	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
 	$FrameTimer.stop()

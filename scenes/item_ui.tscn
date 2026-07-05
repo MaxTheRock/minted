@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dccm2cqx7r3hk"]
 
 [ext_resource type="Script" uid="uid://bstavajvi5kim" path="res://scripts/item_ui.gd" id="1_6tkj6"]
-[ext_resource type="Texture2D" uid="uid://fa3u3sv2owa1" path="res://assets/3_dots_small.png" id="1_v7xym"]
 [ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_v7xym"]
 
 [sub_resource type="Gradient" id="Gradient_6tkj6"]
@@ -66,29 +65,6 @@ offset_right = 144.0
 offset_bottom = 217.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0011")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2" unique_id=1463773413]
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(40, 10)
-mouse_filter = 2
-alignment = 2
-
-[node name="OptionButton" type="OptionButton" parent="PanelContainer2/HBoxContainer" unique_id=2103321285]
-custom_maximum_size = Vector2(0, 0)
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(10, -10)
-theme_override_icons/arrow = ExtResource("1_v7xym")
-alignment = 1
-icon_alignment = 1
-item_count = 3
-popup/item_0/text = "1"
-popup/item_0/id = 0
-popup/item_1/text = "2"
-popup/item_1/id = 1
-popup/item_2/text = "3"
-popup/item_2/id = 2
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer2" unique_id=1351385291]
 layout_mode = 2
