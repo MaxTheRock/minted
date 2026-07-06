@@ -8,7 +8,6 @@ const StorageItemScene = preload("res://scenes/storage_ui.tscn")
 
 var inventory_index = 0
 
-
 func _ready() -> void:
 	if Global.inShelf == true and Global.shelf_inventory:
 		item.rarity_ui.connect(_rarity_ui)
