@@ -11,6 +11,7 @@ func _on_button_pressed() -> void:
 	show_page("Market")
 
 func generate_items(grid: GridContainer, category: String, amount: int):
+	Inventory.current_ui_type = "market"
 	var packed = preload("res://scenes/item_ui.tscn")
 
 	for i in range(amount):

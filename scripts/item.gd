@@ -220,7 +220,8 @@ func logo_calculator(color_of_shirt: String) -> void:
 
 	tshirt_logo.frame = 0
 	tshirt_logo.stop()
-	details_ui.stop_logo()
+	if details_ui != null:
+		details_ui.stop_logo()
 
 func set_item_type(item_type: String) -> void:
 	for sprite in sprites.values():

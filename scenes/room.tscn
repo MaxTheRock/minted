@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://tkwio75ov5xs"]
 
+[ext_resource type="Script" uid="uid://ccjfyofdq3qt3" path="res://scripts/room.gd" id="1_jn645"]
 [ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/room.png" id="1_jxe34"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
 [ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="3_85yof"]
@@ -12,7 +13,21 @@ size = Vector2(413, 206.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
 radius = 127.09839
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
+bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
+border_width_left = 5
+border_width_top = 7
+border_width_right = 5
+border_width_bottom = 7
+border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
+
 [node name="Room" type="Node2D" unique_id=1370404577]
+script = ExtResource("1_jn645")
 
 [node name="room" type="Sprite2D" parent="." unique_id=677097860]
 scale = Vector2(2, 2)
@@ -79,6 +94,37 @@ position = Vector2(-1025, 188)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf/Area2D" unique_id=1458060442]
 position = Vector2(32, 13)
 shape = SubResource("CircleShape2D_qnalp")
+
+[node name="inventory" type="MarginContainer" parent="." unique_id=1100900620]
+offset_left = -628.0
+offset_top = -353.0
+offset_right = -256.0
+offset_bottom = -133.0
+scale = Vector2(0.8696565, 0.753144)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="ColorRect" type="Panel" parent="inventory" unique_id=2139248076]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, -10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_6snss")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=1010322587]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=1015543522]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
 
 [connection signal="body_entered" from="Area2D" to="Computer" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Computer" method="_on_area_2d_body_exited"]

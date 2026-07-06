@@ -1,21 +1,28 @@
 extends Control
 
-var cd_player_placable = false
-var cd_player_placed = false
+@onready var grid = $items/ScrollContainer/GridContainer
+@onready var inventory_grid = $inventory/ScrollContainer/GridContainer
 
 func _ready() -> void:
-	for item in Global.inventory:
-		if item["type"] == "cd_player":
-			cd_player_placable = true
+	Global.inShelf = true
+	Global.inWardrobe = false
+	Inventory.current_ui_type = "shelf"
 
-func _process(delta: float) -> void:
-	pass
+	for i in range(Inventory.shelf_inventory.size()):
+		var packed = preload("res://scenes/item_ui.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.inventory_index = i
+		grid.add_child(storage_ui)
+	
+	Inventory.current_ui_type = "place"
+	for i in range(Inventory.player_inventory.size()):
+		var packed = preload("res://scenes/item_ui.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.inventory_index = i
+		inventory_grid.add_child(storage_ui)
+
 
 
 func _on_close_pressed() -> void:
 	Global.inShelf = false
 	get_tree().change_scene_to_file("res://scenes/room.tscn")
-
-
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/shelf_item_select.tscn")

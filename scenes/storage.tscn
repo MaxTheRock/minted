@@ -9,6 +9,19 @@ content_margin_right = 10.0
 content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnb4j"]
+bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
+border_width_left = 5
+border_width_top = 7
+border_width_right = 5
+border_width_bottom = 7
+border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
+
 [node name="Storage" type="Control" unique_id=923301302]
 layout_mode = 3
 anchors_preset = 15
@@ -37,12 +50,13 @@ offset_right = 1278.0
 offset_bottom = 520.0
 
 [node name="items" type="MarginContainer" parent="." unique_id=725211342]
-custom_minimum_size = Vector2(0, 560)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 0
-offset_left = 105.0
-offset_top = 81.0
-offset_right = 1050.0
-offset_bottom = 641.0
+offset_left = 129.0
+offset_top = 48.0
+offset_right = 1074.0
+offset_bottom = 608.0
+scale = Vector2(0.69993496, 1.0254841)
 theme_override_constants/margin_left = 47
 theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 46
@@ -51,13 +65,46 @@ metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="items" unique_id=1331925654]
 layout_mode = 2
-size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="items/ScrollContainer" unique_id=1152428461]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+columns = 4
+
+[node name="inventory" type="MarginContainer" parent="." unique_id=461284479]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 0
+offset_left = 934.00006
+offset_top = 269.0
+offset_right = 1306.0
+offset_bottom = 569.0
+scale = Vector2(0.8696565, 0.753144)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="ColorRect" type="Panel" parent="inventory" unique_id=1686495102]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, -10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnb4j")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=420799071]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=642555713]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 5
+columns = 2
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

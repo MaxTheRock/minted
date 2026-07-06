@@ -22,6 +22,7 @@ buses/default_bus_layout=""
 [autoload]
 
 Global="*uid://bx2lesv27p3gw"
+Inventory="*uid://dmgolie3fbs52"
 
 [display]
 
