@@ -130,4 +130,13 @@ func name_generator(brand, color, type, condition) -> String:
 	elif type == "smooth_jazz_1":
 		display_type = "Smooth Jazz Vol.1 CD"
 		display_color = ""
+	elif type == "three_jelly":
+		display_type = "Three Jelly CD"
+		display_color = ""
+	elif type == "evil_pulsation":
+		display_type = "Evil Pulsation CD"
+		display_color = ""
+	elif type == "jungle":
+		display_type = "Jungle CD"
+		display_color = ""
 	return brand_print + display_color + " " + display_type + "."

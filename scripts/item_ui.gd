@@ -9,6 +9,7 @@ extends Control
 @onready var grid_container = $PanelContainer2/GridContainer
 @onready var background = $TextureRect
 @onready var put_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Put_Button
+@onready var use_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button
 var placeable_items: Array = ["cd_player","camera"]
 
 var inventory_index = 0
@@ -22,6 +23,7 @@ func _ready() -> void:
 		place_button.hide()
 		shelf_ui_buttons.hide()
 		put_button.hide()
+		use_button.hide()
 		grid_container.show()
 		item.rarity_ui.connect(_rarity_ui)
 		if item.type == "":
@@ -32,6 +34,7 @@ func _ready() -> void:
 		place_button.hide()
 		shelf_ui_buttons.hide()
 		put_button.hide()
+		use_button.hide()
 		grid_container.show()
 		
 		if Inventory.wardrobe_inventory:
@@ -49,6 +52,7 @@ func _ready() -> void:
 		place_button.hide()
 		shelf_ui_buttons.show()
 		put_button.hide()
+		use_button.hide()
 		grid_container.show()
 		
 		if Inventory.shelf_inventory:
@@ -69,6 +73,7 @@ func _ready() -> void:
 		place_button.show()
 		put_button.hide()
 		shelf_ui_buttons.hide()
+		use_button.hide()
 		grid_container.show()
 		
 		if Inventory.player_inventory:
@@ -91,6 +96,7 @@ func _ready() -> void:
 		place_button.hide()
 		put_button.hide()
 		shelf_ui_buttons.hide()
+		use_button.hide()
 		grid_container.hide()
 		panel_container.custom_maximum_size = Vector2(150,160)
 		$TextureRect.custom_maximum_size = Vector2(150,158)
@@ -110,6 +116,7 @@ func _ready() -> void:
 		take_button.hide()
 		place_button.hide()
 		put_button.show()
+		use_button.hide()
 		shelf_ui_buttons.hide()
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -119,8 +126,24 @@ func _ready() -> void:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
 				item.load_data(Inventory.player_inventory[inventory_index])
+	
+	elif Inventory.current_ui_type == "cd_player":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.show()
+		grid_container.show()
 		
-		
+		if Inventory.wardrobe_inventory:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.wardrobe_inventory.size():
+				item.load_data(Inventory.wardrobe_inventory[inventory_index])
+				if !(item.cd):
+					queue_free()
+					return
+			
 func _rarity_ui(item_rarity) -> void:
 	if item_rarity == "common":
 		background.self_modulate = Color("616161ff")
@@ -230,3 +253,28 @@ func _on_remove_pressed() -> void:
 		get_tree().reload_current_scene()
 	else:
 		print("Cannot carry any more items!")
+
+
+func _on_use_pressed() -> void:
+	print(item.type)
+	if item.type == "cd_player":
+		get_tree().change_scene_to_file("res://scenes/cd_player.tscn")
+
+
+func _on_use_button_pressed() -> void:
+	Global.now_playing = str(item.type)
+	if item.condition == "Poor":
+		AudioManager.music_player.bus = "LowQuality"
+	else:
+		AudioManager.music_player.bus = "Master"
+	if item.type == "the_big_mint":
+		AudioManager.play_music(AudioManager.the_big_mint)
+	elif item.type == "smooth_jazz_1":
+		AudioManager.play_music(AudioManager.smooth_jazz_1)
+	elif item.type == "evil_pulsation":
+		AudioManager.play_music(AudioManager.evil_pulsation)
+	elif item.type == "jungle":
+		AudioManager.play_music(AudioManager.jungle)
+	elif item.type == "three_jelly":
+		AudioManager.play_music(AudioManager.three_jelly)
+	

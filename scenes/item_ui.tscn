@@ -24,6 +24,17 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tkj6"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.47050893, 0.4584753, 0.6642592, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my6qv"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -36,17 +47,6 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7xym"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.47050893, 0.4584753, 0.6642592, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tkj6"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
@@ -133,6 +133,14 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
+[node name="Use_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=1426874111]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6tkj6")
+text = "Use"
+
 [node name="Buy_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=99252260]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -184,6 +192,7 @@ offset_transform_position = Vector2(2, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_yw7qx")
 text = "Remove"
 
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_pressed"]
@@ -196,6 +205,7 @@ text = "Remove"
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_button_up"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_pressed"]
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Use" to="." method="_on_use_pressed"]
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_up"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_pressed"]

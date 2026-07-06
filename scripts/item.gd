@@ -3,20 +3,20 @@ extends Node2D
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera"]
-var rare_items: Array = ["the_big_mint"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly"]
+var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle"]
 var epic_items: Array = ["beh_enclosed_shirt"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera"]
-var items_that_spin = ["the_big_mint", "smooth_jazz_1"]
-var cds = ["the_big_mint", "smooth_jazz_1"]
+var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
+var cds = items_that_spin
 var brands: Array = ["none", "elemental"]
 # Categories
 var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
 var toys: Array = ["puzzle_cube"]
 var home: Array = ["spud_poster","potion_poster"]
-var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera"]
-var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1"]
-var collectables: Array = ["puzzle_cube", "spud_poster", "beh_enclosed_shirt"]
+var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle"]
+var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
+var collectables: Array = ["spud_poster", "beh_enclosed_shirt"]
 var sports: Array = ["beh_enclosed_shirt"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -34,7 +34,7 @@ var sprite_image: AnimatedSprite2D
 var brandmult = 1
 var brand = "none"
 var genre = "none"
-var cd: bool = false
+var cd: bool
 var selected_brand = "none"
 var counter: int = 0
 var hovering = false
@@ -69,6 +69,9 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"the_big_mint": $TextureButton/the_big_mint,
 	"smooth_jazz_1": $TextureButton/smooth_jazz_1,
 	"camera": $TextureButton/camera,
+	"three_jelly": $TextureButton/three_jelly,
+	"evil_pulsation": $TextureButton/evil_pulsation,
+	"jungle": $TextureButton/jungle
 }
 
 @onready var details_ui = get_node_or_null("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
@@ -93,7 +96,6 @@ func initialize_item(category := "All"):
 	brand = "none"
 	selected_brand = "none"
 	genre = "none"
-	cd = false
 	rng.randomize()
 	match category:
 		"Clothes":
@@ -154,6 +156,12 @@ func initialize_item(category := "All"):
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
 		color = "grey"
+	elif type == "three_jelly":
+		color = "green"
+	elif type == "evil_pulsation":
+		color = "grey"
+	elif type == "jungle":
+		color = "green & black"
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -283,6 +291,10 @@ func button_exit():
 			tshirt_logo.frame = 0
 	
 func generate_parameters(type):
+	if type in cds:
+		cd = true
+	else:
+		cd = false
 	if type == "tshirt":
 		number = rng.randi_range(0, colours.size()-1)
 		color = colours[number]
@@ -358,7 +370,7 @@ func generate_parameters(type):
 		shippingTime = rng.randi_range(1, 6.0)
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		genre = "rage"
+		genre = "phonk"
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "smooth_jazz_1":
 		shippingTime = rng.randi_range(1, 6.0)
@@ -371,9 +383,24 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-	
-	if type in cds:
-		cd = true
+	elif type == "three_jelly":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		genre = "rage"
+		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "evil_pulsation":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		genre = "noise"
+		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "jungle":
+		shippingTime = rng.randi_range(1, 6.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		genre = "jungle"
+		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	
 	# minimum price is £1
 	if price < 1:

@@ -17,9 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://cv41xyf8st72r" path="res://assets/items/potion_poster/potion_poster.png" id="16_ox7tp"]
 [ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="17_1g6oc"]
 [ext_resource type="Texture2D" uid="uid://swcbdxg8h07" path="res://assets/items/boxers/boxers.png" id="17_ox7tp"]
-[ext_resource type="Texture2D" uid="uid://dno075h5l7yyo" path="res://assets/cds/the_big_mint/the_big_mint.png" id="18_8b0vj"]
-[ext_resource type="Texture2D" uid="uid://6ddu8alan6ll" path="res://assets/cds/smooth_jazz_1/smooth_jazz.png" id="19_iq5q0"]
+[ext_resource type="Texture2D" uid="uid://dno075h5l7yyo" path="res://assets/cds/the_big_mint.png" id="18_8b0vj"]
+[ext_resource type="Texture2D" uid="uid://6ddu8alan6ll" path="res://assets/cds/smooth_jazz.png" id="19_iq5q0"]
 [ext_resource type="Texture2D" uid="uid://dpojrv2bp68fk" path="res://assets/items/camera/camera.png" id="20_iq5q0"]
+[ext_resource type="Texture2D" uid="uid://ctnurbdwvvxkv" path="res://assets/cds/3_jelly.png" id="21_rkinn"]
+[ext_resource type="Texture2D" uid="uid://chnlv8left1xc" path="res://assets/cds/evil_pulsation.png" id="22_a0ks6"]
+[ext_resource type="Texture2D" uid="uid://cdjj4smabnxee" path="res://assets/cds/jungle.png" id="23_dxgow"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34t5m"]
 load_path = "res://.godot/imported/socks.png-35deec6bfe146b9ee338775648b09581.ctex"
@@ -1169,6 +1172,51 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgwft"]
+atlas = ExtResource("21_rkinn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxa2n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgwft")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukif5"]
+atlas = ExtResource("22_a0ks6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhpjx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukif5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swpw3"]
+atlas = ExtResource("23_dxgow")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skoww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swpw3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -1247,6 +1295,18 @@ sprite_frames = SubResource("SpriteFrames_6vwip")
 [node name="camera" type="AnimatedSprite2D" parent="TextureButton" unique_id=1614814084 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_n31g0")
+
+[node name="three_jelly" type="AnimatedSprite2D" parent="TextureButton" unique_id=1634629574 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_lxa2n")
+
+[node name="evil_pulsation" type="AnimatedSprite2D" parent="TextureButton" unique_id=1666947527 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_xhpjx")
+
+[node name="jungle" type="AnimatedSprite2D" parent="TextureButton" unique_id=997423714 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_skoww")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

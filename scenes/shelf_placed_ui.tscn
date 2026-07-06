@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://be113ma8jh1q"]
 
 [ext_resource type="Script" uid="uid://b4n564qwq0325" path="res://scripts/storage_ui.gd" id="1_div31"]
+[ext_resource type="Script" uid="uid://b6iuuq5f5i06y" path="res://scripts/shelf_placed_ui.gd" id="1_w7mil"]
 [ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_kv112"]
 [ext_resource type="Texture2D" uid="uid://di7ej87wna738" path="res://assets/plus.png" id="2_w7mil"]
 
@@ -56,6 +57,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("1_w7mil")
 
 [node name="BLANK" type="Button" parent="." unique_id=431299542]
 layout_mode = 0

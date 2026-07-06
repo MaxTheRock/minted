@@ -13,16 +13,17 @@ config_version=5
 config/name="Minted"
 run/main_scene="uid://6b5xby3glpnl"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://assets/icon.svg"
+config/icon="uid://chmkshoe0k71w"
 
 [audio]
 
-buses/default_bus_layout=""
+buses/default_bus_layout="uid://dmm3swaq2lbxc"
 
 [autoload]
 
 Global="*uid://bx2lesv27p3gw"
 Inventory="*uid://dmgolie3fbs52"
+AudioManager="*uid://dm2w3brxvqgpm"
 
 [display]
 
