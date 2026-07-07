@@ -79,6 +79,15 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6no7o"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.2585297, 0.63840044, 0.86727947, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="item UI" type="Control" unique_id=2005130059]
 custom_minimum_size = Vector2(150, 220)
 propagate_maximum_size = true
@@ -192,6 +201,25 @@ offset_transform_position = Vector2(2, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_yw7qx")
 text = "Remove"
 
+[node name="cd_playing" type="HBoxContainer" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=550442928]
+layout_mode = 2
+
+[node name="Use" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing" unique_id=654698979]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ug85g")
+text = "Use"
+
+[node name="Eject" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing" unique_id=1117322559]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+offset_transform_position = Vector2(-80, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6no7o")
+text = "Eject
+"
+
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_exited"]
@@ -209,3 +237,5 @@ text = "Remove"
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_up"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_pressed"]

@@ -34,5 +34,6 @@ func play_sfx(sound: AudioStream) -> void:
 	sfx_player.play()
 
 func eject():
+	AudioManager.music_player.bus = "Master"
 	music_player.stream = background_menu_music
 	music_player.play()

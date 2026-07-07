@@ -7,6 +7,7 @@ extends Control
 @onready var place_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button
 @onready var shelf_ui_buttons = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer
 @onready var grid_container = $PanelContainer2/GridContainer
+@onready var eject_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing
 @onready var background = $TextureRect
 @onready var put_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Put_Button
 @onready var use_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button
@@ -24,6 +25,7 @@ func _ready() -> void:
 		shelf_ui_buttons.hide()
 		put_button.hide()
 		use_button.hide()
+		eject_button.hide()
 		grid_container.show()
 		item.rarity_ui.connect(_rarity_ui)
 		if item.type == "":
@@ -35,6 +37,7 @@ func _ready() -> void:
 		shelf_ui_buttons.hide()
 		put_button.hide()
 		use_button.hide()
+		eject_button.hide()
 		grid_container.show()
 		
 		if Inventory.wardrobe_inventory:
@@ -53,6 +56,7 @@ func _ready() -> void:
 		shelf_ui_buttons.show()
 		put_button.hide()
 		use_button.hide()
+		eject_button.hide()
 		grid_container.show()
 		
 		if Inventory.shelf_inventory:
@@ -63,8 +67,10 @@ func _ready() -> void:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.shelf_inventory.size():
 				item.load_data(Inventory.shelf_inventory[inventory_index])
-
-			
+		
+		if item.type == "cd_player" and Inventory.cd_inventory.size() == 1:
+			eject_button.show()
+			shelf_ui_buttons.hide()
 		
 				
 	elif Inventory.current_ui_type == "place":
@@ -74,6 +80,7 @@ func _ready() -> void:
 		put_button.hide()
 		shelf_ui_buttons.hide()
 		use_button.hide()
+		eject_button.hide()
 		grid_container.show()
 		
 		if Inventory.player_inventory:
@@ -88,7 +95,8 @@ func _ready() -> void:
 		var current_item_data = item.get_data()
 		if current_item_data.type not in placeable_items:
 			place_button.hide()
-			
+		
+		
 		
 	elif Inventory.current_ui_type == "player":
 		buy_button.hide()
@@ -97,6 +105,7 @@ func _ready() -> void:
 		put_button.hide()
 		shelf_ui_buttons.hide()
 		use_button.hide()
+		eject_button.hide()
 		grid_container.hide()
 		panel_container.custom_maximum_size = Vector2(150,160)
 		$TextureRect.custom_maximum_size = Vector2(150,158)
@@ -116,6 +125,7 @@ func _ready() -> void:
 		take_button.hide()
 		place_button.hide()
 		put_button.show()
+		eject_button.hide()
 		use_button.hide()
 		shelf_ui_buttons.hide()
 		if Inventory.player_inventory:
@@ -134,6 +144,7 @@ func _ready() -> void:
 		put_button.hide()
 		shelf_ui_buttons.hide()
 		use_button.show()
+		eject_button.hide()
 		grid_container.show()
 		
 		if Inventory.player_inventory:
@@ -224,12 +235,15 @@ func _on_place_button_button_up() -> void:
 
 func _on_place_button_pressed() -> void:
 	if Inventory.shelf_inventory.size() <= 5:
-		var current_item_data = item.get_data()
-		inventory_index = Inventory.player_inventory.find(current_item_data)
-		Inventory.transfer_item(Inventory.player_inventory,
-		Inventory.shelf_inventory, inventory_index)
-		queue_free()
-		get_tree().reload_current_scene()
+		if Inventory.shelf_inventory.any(func(d): return d.has("type") and d["type"] == "cd_player") and item.type == "cd_player":
+			print("cannit place duplacate items on shelf!")
+		else:
+			var current_item_data = item.get_data()
+			inventory_index = Inventory.player_inventory.find(current_item_data)
+			Inventory.transfer_item(Inventory.player_inventory,
+			Inventory.shelf_inventory, inventory_index)
+			queue_free()
+			get_tree().reload_current_scene()
 	else:
 		print("Shelf cannot annot carry any more items!")
 
@@ -256,7 +270,6 @@ func _on_remove_pressed() -> void:
 
 
 func _on_use_pressed() -> void:
-	print(item.type)
 	if item.type == "cd_player":
 		get_tree().change_scene_to_file("res://scenes/cd_player.tscn")
 
@@ -288,3 +301,15 @@ func _on_use_button_pressed() -> void:
 	else:
 		print("there is a cd in use!")
 		
+
+
+func _on_eject_pressed() -> void:
+	if Inventory.player_inventory.size() < 2:
+		AudioManager.music_player.bus = "Master"
+		AudioManager.eject()
+		Inventory.transfer_item(Inventory.cd_inventory,
+		Inventory.player_inventory, 0)
+		get_tree().reload_current_scene()
+		Global.now_playing = ""
+	else:
+		print("Player Inventory full!")

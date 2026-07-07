@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cxbgcv0xjeqmn"]
 
+[ext_resource type="Script" uid="uid://bjdovmv78p4t1" path="res://scripts/market.gd" id="1_4msli"]
 [ext_resource type="PackedScene" uid="uid://bgaswxsmgb5f3" path="res://scenes/level_display.tscn" id="1_hvm52"]
 [ext_resource type="Script" uid="uid://b6xai0ehay28i" path="res://scripts/product_details.gd" id="2_7bpo7"]
 [ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="2_d6tgm"]
@@ -12,9 +13,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_46p8p"]
 shader = ExtResource("2_d6tgm")
-shader_parameter/color_count = 6
-shader_parameter/palette_count = 10
-shader_parameter/tolerance = 0.1
+shader_parameter/shadow_offset = Vector2(4, 4)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3tic0"]
 atlas = ExtResource("4_ennqm")
@@ -173,6 +173,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_4msli")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=819516122]
 layout_mode = 0
