@@ -11,6 +11,9 @@ extends Control
 @onready var background = $TextureRect
 @onready var put_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Put_Button
 @onready var use_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button
+@onready var upload_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button
+signal page_requested(page_name: String) 
+
 var placeable_items: Array = ["cd_player","camera"]
 
 var inventory_index = 0
@@ -26,6 +29,7 @@ func _ready() -> void:
 		put_button.hide()
 		use_button.hide()
 		eject_button.hide()
+		upload_button.hide()
 		grid_container.show()
 		item.rarity_ui.connect(_rarity_ui)
 		if item.type == "":
@@ -38,6 +42,7 @@ func _ready() -> void:
 		put_button.hide()
 		use_button.hide()
 		eject_button.hide()
+		upload_button.hide()
 		grid_container.show()
 		
 		if Inventory.wardrobe_inventory:
@@ -57,6 +62,7 @@ func _ready() -> void:
 		put_button.hide()
 		use_button.hide()
 		eject_button.hide()
+		upload_button.hide()
 		grid_container.show()
 		
 		if Inventory.shelf_inventory:
@@ -81,6 +87,7 @@ func _ready() -> void:
 		shelf_ui_buttons.hide()
 		use_button.hide()
 		eject_button.hide()
+		upload_button.hide()
 		grid_container.show()
 		
 		if Inventory.player_inventory:
@@ -107,6 +114,7 @@ func _ready() -> void:
 		use_button.hide()
 		eject_button.hide()
 		grid_container.hide()
+		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150,160)
 		$TextureRect.custom_maximum_size = Vector2(150,158)
 		
@@ -127,6 +135,7 @@ func _ready() -> void:
 		put_button.show()
 		eject_button.hide()
 		use_button.hide()
+		upload_button.hide()
 		shelf_ui_buttons.hide()
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -145,6 +154,7 @@ func _ready() -> void:
 		shelf_ui_buttons.hide()
 		use_button.show()
 		eject_button.hide()
+		upload_button.hide()
 		grid_container.show()
 		
 		if Inventory.player_inventory:
@@ -154,7 +164,42 @@ func _ready() -> void:
 				if !(item.cd):
 					queue_free()
 					return
-			
+	
+	elif Inventory.current_ui_type == "selling":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.hide()
+		eject_button.hide()
+		upload_button.show()
+		grid_container.show()
+		
+		if Inventory.display_item:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
+				item.load_data(Inventory.player_inventory[inventory_index])
+		else:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
+				item.load_data(Inventory.player_inventory[inventory_index])
+		
+	if Inventory.current_ui_type == "display":
+		$TextureRect.hide()
+		$PanelContainer2.hide()
+		if Inventory.display_item:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.display_item.size():
+				item.load_data(Inventory.display_item[inventory_index])
+		else:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.display_item.size():
+				item.load_data(Inventory.display_item[inventory_index])
+	else:
+		$TextureRect.show()
+		$PanelContainer2.show()
+		
 func _rarity_ui(item_rarity) -> void:
 	if item_rarity == "common":
 		background.self_modulate = Color("616161ff")
@@ -197,7 +242,6 @@ func _on_take_button_pressed() -> void:
 		inventory_index = Inventory.wardrobe_inventory.find(current_item_data)
 		Inventory.transfer_item(Inventory.wardrobe_inventory,
 		Inventory.player_inventory, inventory_index)
-		queue_free()
 		get_tree().reload_current_scene()
 	else:
 		print("Cannot carry any more items!")
@@ -313,3 +357,19 @@ func _on_eject_pressed() -> void:
 		Global.now_playing = ""
 	else:
 		print("Player Inventory full!")
+
+
+func _on_upload_button_button_down() -> void:
+	item.button_enter()
+
+
+func _on_upload_button_button_up() -> void:
+	item.button_exit()
+
+
+func _on_upload_button_pressed() -> void:
+	Inventory.display_item = []
+	Inventory.display_item.append(item.get_data())
+	page_requested.emit("Selling")
+	
+	

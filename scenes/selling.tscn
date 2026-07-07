@@ -1,7 +1,22 @@
 [gd_scene format=3 uid="uid://sb8cwtgdt6rd"]
 
+[ext_resource type="Script" uid="uid://ro5g3sj2lshk" path="res://scripts/selling.gd" id="1_3jkmn"]
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_hdcek"]
 [ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="2_cm14b"]
+[ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="3_d3n2a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm14b"]
+bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
+border_width_left = 5
+border_width_top = 7
+border_width_right = 5
+border_width_bottom = 7
+border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 10
 
 [node name="selling" type="Control" unique_id=2079572264]
 layout_mode = 3
@@ -14,20 +29,32 @@ offset_right = 9.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3jkmn")
+
+[node name="photo_label" type="Label" parent="." unique_id=1229980567]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 80.0
+offset_right = 428.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 45
+text = "Photo:"
 
 [node name="ItemTexture" type="ColorRect" parent="." unique_id=105893288]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 29.0
-offset_right = 351.0
-offset_bottom = 211.0
-color = Color(1, 0.4509804, 1, 1)
+offset_left = 465.0
+offset_top = 55.0
+offset_right = 585.0
+offset_bottom = 175.0
+scale = Vector2(1.5337619, 1.4946233)
+offset_transform_enabled = true
+color = Color(0.7391589, 0.6686526, 0.8565493, 1)
 
 [node name="Name" type="LineEdit" parent="." unique_id=1442158482]
 layout_mode = 0
 offset_left = 137.0
 offset_top = 269.0
-offset_right = 817.0
+offset_right = 794.0
 offset_bottom = 316.0
 theme_override_font_sizes/font_size = 20
 icon_expand_mode = 1
@@ -67,9 +94,10 @@ text = "Type:"
 layout_mode = 0
 offset_left = 483.0
 offset_top = 380.0
-offset_right = 802.0
+offset_right = 793.0
 offset_bottom = 427.0
 theme_override_font_sizes/font_size = 20
+allow_reselect = true
 item_count = 6
 popup/item_0/text = "Poor"
 popup/item_0/id = 0
@@ -98,7 +126,7 @@ text = "Condition:"
 layout_mode = 0
 offset_left = 133.0
 offset_top = 485.0
-offset_right = 424.0
+offset_right = 430.0
 offset_bottom = 532.0
 theme_override_font_sizes/font_size = 20
 max_length = 20
@@ -119,7 +147,7 @@ text = "Color:"
 layout_mode = 0
 offset_left = 487.0
 offset_top = 488.0
-offset_right = 805.0
+offset_right = 794.0
 offset_bottom = 535.0
 theme_override_font_sizes/font_size = 20
 max_length = 15
@@ -136,6 +164,83 @@ mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Brand:"
 
+[node name="Price" type="LineEdit" parent="." unique_id=995151250]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 586.0
+offset_right = 436.0
+offset_bottom = 633.0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 20
+placeholder_text = "X.XX"
+max_length = 15
+right_icon = ExtResource("3_d3n2a")
+icon_expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Price" unique_id=1831067901]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Price:"
+
+[node name="sell_button" type="Button" parent="." unique_id=515806981]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 557.0
+offset_right = 684.0
+offset_bottom = 630.0
+theme_override_colors/font_color = Color(0.6880813, 0.37404057, 0.8417459, 1)
+theme_override_colors/font_focus_color = Color(0.85994095, 0.5478075, 0.91201293, 1)
+theme_override_font_sizes/font_size = 30
+text = "Sell
+"
+
+[node name="inventory" type="MarginContainer" parent="." unique_id=690765484]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 0
+offset_left = 872.0
+offset_top = 264.0
+offset_right = 1244.0
+offset_bottom = 564.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="ColorRect" type="Panel" parent="inventory" unique_id=991274284]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, -10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_cm14b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=1394893930]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=469360293]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="display_error" type="Label" parent="." unique_id=1336974508]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 195.0
+offset_right = 339.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1.1004806, 0.17704102, 0.16845088, 1)
+theme_override_font_sizes/font_size = 25
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=517744692]
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 0
@@ -146,3 +251,6 @@ alignment = 2
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_hdcek")]
 layout_mode = 2
+
+[connection signal="item_selected" from="Condition" to="." method="_on_condition_item_selected"]
+[connection signal="pressed" from="sell_button" to="." method="_on_sell_button_pressed"]

@@ -5,7 +5,9 @@ var player_inventory: Array = []
 var wardrobe_inventory: Array = []
 var shelf_inventory: Array = []
 var cd_inventory: Array = []
-
+var display_item: Array = []
+var actual_selling: Array = []
+var player_selling: Array = []
 # global signal
 signal inventories_changed
 

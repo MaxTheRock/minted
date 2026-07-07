@@ -182,6 +182,14 @@ offset_transform_position = Vector2(2, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_6tkj6")
 text = "Place"
 
+[node name="Upload_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=1078435909]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_6tkj6")
+text = "Upload Photo"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=832685599]
 layout_mode = 2
 
@@ -233,6 +241,9 @@ text = "Eject
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_button_up"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_pressed"]
+[connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_button_down"]
+[connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_button_up"]
+[connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_pressed"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Use" to="." method="_on_use_pressed"]
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_up"]

@@ -1,6 +1,7 @@
 extends Control
 
 @onready var money_ui_element = $Market/VBoxContainer/PanelContainer/Right/Money_Container/Money
+@onready var ui_element = preload("res://scenes/item_ui.tscn")
 
 func show_page(page_name):
 	for child in get_children():
@@ -20,6 +21,7 @@ func generate_items(grid: GridContainer, category: String, amount: int):
 		item_ui.get_node("item").initialize_item(category)
 	
 func _ready():
+	$Selling.page_requested.connect(show_page)
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer/GridContainer, "All", 15)
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Clothes/ScrollContainer/GridContainer, "Clothes", 15)
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Toys/ScrollContainer/GridContainer, "Toys", 15)
