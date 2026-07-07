@@ -24,6 +24,8 @@ func clear_contents() -> void:
 	condition_display.select(-1)
 	color_display.clear()
 	price_display.clear()
+	for child in item_display.get_children():
+		child.queue_free()
 	exeption_message.text = ""
 	current_text = ""
 	
