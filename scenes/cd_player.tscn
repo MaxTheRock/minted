@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://rab0h4v2jijd" path="res://scripts/cd_player.gd" id="1_8n6u6"]
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="2_r5n3w"]
+[ext_resource type="Texture2D" uid="uid://cr30fcedpmuut" path="res://assets/os/icons/pause.png" id="3_q4ilb"]
+[ext_resource type="Texture2D" uid="uid://cy24khvum67yi" path="res://assets/os/icons/eject.svg" id="4_h2j5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]
 content_margin_left = 10.0
@@ -189,4 +191,31 @@ offset_right = 525.0
 offset_bottom = 62.0
 text = "Now Playing: Main Theme"
 
+[node name="Pause" type="Button" parent="." unique_id=501074061]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 75.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
+icon = ExtResource("3_q4ilb")
+expand_icon = true
+
+[node name="Eject" type="Button" parent="." unique_id=1165429063]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 174.0
+offset_right = 75.0
+offset_bottom = 235.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
+icon = ExtResource("4_h2j5b")
+flat = true
+expand_icon = true
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Eject" to="." method="_on_eject_pressed"]

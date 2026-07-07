@@ -13,7 +13,7 @@ extends Control
 var placeable_items: Array = ["cd_player","camera"]
 
 var inventory_index = 0
-
+	
 func _ready() -> void:
 	var custom_minumum_size = Vector2(150, 220)
 
@@ -136,10 +136,10 @@ func _ready() -> void:
 		use_button.show()
 		grid_container.show()
 		
-		if Inventory.wardrobe_inventory:
+		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
-			if inventory_index >= 0 and inventory_index < Inventory.wardrobe_inventory.size():
-				item.load_data(Inventory.wardrobe_inventory[inventory_index])
+			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
+				item.load_data(Inventory.player_inventory[inventory_index])
 				if !(item.cd):
 					queue_free()
 					return
@@ -236,11 +236,11 @@ func _on_place_button_pressed() -> void:
 
 
 func _on_remove_button_down() -> void:
-	pass # Replace with function body.
+	item.button_enter()
 
 
 func _on_remove_button_up() -> void:
-	pass # Replace with function body.
+	item.button_exit()
 
 
 func _on_remove_pressed() -> void:
@@ -262,19 +262,29 @@ func _on_use_pressed() -> void:
 
 
 func _on_use_button_pressed() -> void:
-	Global.now_playing = str(item.type)
-	if item.condition == "Poor":
-		AudioManager.music_player.bus = "LowQuality"
+	if Inventory.cd_inventory.size() < 1:
+		Global.now_playing = str(item.type)
+		if item.condition == "Poor":
+			AudioManager.music_player.bus = "LowQuality"
+		else:
+			AudioManager.music_player.bus = "Master"
+		if item.type == "the_big_mint":
+			AudioManager.play_music(AudioManager.the_big_mint)
+		elif item.type == "smooth_jazz_1":
+			AudioManager.play_music(AudioManager.smooth_jazz_1)
+		elif item.type == "evil_pulsation":
+			AudioManager.play_music(AudioManager.evil_pulsation)
+		elif item.type == "jungle":
+			AudioManager.play_music(AudioManager.jungle)
+		elif item.type == "three_jelly":
+			AudioManager.play_music(AudioManager.three_jelly)
+		
+		var current_item_data = item.get_data()
+		inventory_index = Inventory.player_inventory.find(current_item_data)
+		Inventory.transfer_item(Inventory.player_inventory,
+		Inventory.cd_inventory, inventory_index)
+		queue_free()
+		get_tree().reload_current_scene()
 	else:
-		AudioManager.music_player.bus = "Master"
-	if item.type == "the_big_mint":
-		AudioManager.play_music(AudioManager.the_big_mint)
-	elif item.type == "smooth_jazz_1":
-		AudioManager.play_music(AudioManager.smooth_jazz_1)
-	elif item.type == "evil_pulsation":
-		AudioManager.play_music(AudioManager.evil_pulsation)
-	elif item.type == "jungle":
-		AudioManager.play_music(AudioManager.jungle)
-	elif item.type == "three_jelly":
-		AudioManager.play_music(AudioManager.three_jelly)
-	
+		print("there is a cd in use!")
+		

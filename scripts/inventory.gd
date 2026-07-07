@@ -3,7 +3,8 @@ extends Node
 var current_ui_type = "market"
 var player_inventory: Array = []
 var wardrobe_inventory: Array = []
-var shelf_inventory: Array= []
+var shelf_inventory: Array = []
+var cd_inventory: Array = []
 
 # global signal
 signal inventories_changed

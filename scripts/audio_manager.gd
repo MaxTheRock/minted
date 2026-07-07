@@ -25,10 +25,14 @@ func play_music(music: AudioStream) -> void:
 	music_player.play()
 
 
-func stop_music() -> void:
-	music_player.stop()
+func pause(toggle) -> void:
+	music_player.stream_paused = toggle
 
 
 func play_sfx(sound: AudioStream) -> void:
 	sfx_player.stream = sound
 	sfx_player.play()
+
+func eject():
+	music_player.stream = background_menu_music
+	music_player.play()

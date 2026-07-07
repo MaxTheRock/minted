@@ -9,3 +9,5 @@ var inShelf: bool = false
 var now_playing: String = ""
 var music_volume: int = -10
 var sfx_volume: int = -5
+signal pause_toggled(is_paused: bool)
+signal eject
