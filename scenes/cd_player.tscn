@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://xsvmn1ovp4pb"]
 
 [ext_resource type="Script" uid="uid://rab0h4v2jijd" path="res://scripts/cd_player.gd" id="1_8n6u6"]
+[ext_resource type="Texture2D" uid="uid://cahq4j73asnf4" path="res://assets/shelf.png" id="2_gttna"]
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="2_r5n3w"]
 [ext_resource type="Texture2D" uid="uid://cr30fcedpmuut" path="res://assets/os/icons/pause.png" id="3_q4ilb"]
 [ext_resource type="Texture2D" uid="uid://cy24khvum67yi" path="res://assets/os/icons/eject.svg" id="4_h2j5b"]
@@ -132,6 +133,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8n6u6")
+
+[node name="Shelf" type="TextureRect" parent="." unique_id=1233027534]
+layout_mode = 0
+offset_left = -777.99994
+offset_top = -463.99997
+offset_right = -377.99994
+offset_bottom = -263.99997
+scale = Vector2(10, 10)
+texture = ExtResource("2_gttna")
 
 [node name="Close" type="Button" parent="." unique_id=1793356023]
 layout_mode = 0
