@@ -103,10 +103,10 @@ script = ExtResource("1_6tkj6")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=929768543]
 self_modulate = Color(0.5019608, 0.37254903, 0.48235294, 1)
 layout_mode = 0
-offset_left = 5.0
-offset_top = 2.0
-offset_right = 141.0
-offset_bottom = 213.0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 143.0
+offset_bottom = 219.0
 texture = SubResource("GradientTexture2D_6snss")
 
 [node name="item" parent="." unique_id=720823212 instance=ExtResource("2_v7xym")]
@@ -115,16 +115,14 @@ scale = Vector2(2, 2)
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=209778367]
 layout_mode = 0
-offset_right = 144.0
-offset_bottom = 217.0
+offset_right = 146.0
+offset_bottom = 224.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0011")
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer2" unique_id=1351385291]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/h_separation = 21
-theme_override_constants/v_separation = 13
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/GridContainer" unique_id=308258434]
 layout_mode = 2
@@ -138,9 +136,9 @@ mouse_filter = 2
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/GridContainer/VBoxContainer" unique_id=931499451]
 layout_mode = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_bottom = 10
 
 [node name="Use_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=1426874111]
 custom_minimum_size = Vector2(0, 50)

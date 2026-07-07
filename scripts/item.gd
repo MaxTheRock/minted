@@ -2,7 +2,7 @@ extends Node2D
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle"]
 var epic_items: Array = ["beh_enclosed_shirt"]
@@ -12,12 +12,12 @@ var cds = items_that_spin
 var brands: Array = ["none", "elemental"]
 # Categories
 var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
-var toys: Array = ["puzzle_cube"]
+var toys: Array = ["puzzle_cube", "football"]
 var home: Array = ["spud_poster","potion_poster"]
 var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle"]
 var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
 var collectables: Array = ["spud_poster", "beh_enclosed_shirt"]
-var sports: Array = ["beh_enclosed_shirt"]
+var sports: Array = ["beh_enclosed_shirt", "football"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var number: int = 0
@@ -71,7 +71,8 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"camera": $TextureButton/camera,
 	"three_jelly": $TextureButton/three_jelly,
 	"evil_pulsation": $TextureButton/evil_pulsation,
-	"jungle": $TextureButton/jungle
+	"jungle": $TextureButton/jungle,
+	"football": $TextureButton/football,
 }
 
 @onready var details_ui = get_node_or_null("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
@@ -162,6 +163,8 @@ func initialize_item(category := "All"):
 		color = "grey"
 	elif type == "jungle":
 		color = "green & black"
+	elif type == "football":
+		color = "black & white"
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -401,6 +404,11 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		genre = "jungle"
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+	elif type == "football":
+		shippingTime = rng.randi_range(1, 5.0)
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	
 	# minimum price is £1
 	if price < 1:

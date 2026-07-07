@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://ctnurbdwvvxkv" path="res://assets/cds/3_jelly.png" id="21_rkinn"]
 [ext_resource type="Texture2D" uid="uid://chnlv8left1xc" path="res://assets/cds/evil_pulsation.png" id="22_a0ks6"]
 [ext_resource type="Texture2D" uid="uid://cdjj4smabnxee" path="res://assets/cds/jungle.png" id="23_dxgow"]
+[ext_resource type="Texture2D" uid="uid://cvyfd2xdf7un0" path="res://assets/items/football/football.png" id="24_rf8yr"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34t5m"]
 load_path = "res://.godot/imported/socks.png-35deec6bfe146b9ee338775648b09581.ctex"
@@ -1217,6 +1218,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_skoww"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nwqs"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ouyo"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0cln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skoww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nwqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ouyo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_vljjh")
 
@@ -1307,6 +1337,10 @@ sprite_frames = SubResource("SpriteFrames_xhpjx")
 [node name="jungle" type="AnimatedSprite2D" parent="TextureButton" unique_id=997423714 groups=["clothes"]]
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_skoww")
+
+[node name="football" type="AnimatedSprite2D" parent="TextureButton" unique_id=1526951585 groups=["clothes"]]
+position = Vector2(34, 32)
+sprite_frames = SubResource("SpriteFrames_k0cln")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

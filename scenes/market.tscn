@@ -264,6 +264,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Clothes" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=147803316]
@@ -285,6 +286,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Toys" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1874659325]
@@ -306,6 +308,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Home" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=450006888]
@@ -327,6 +330,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Electronics" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1226039065]
@@ -348,6 +352,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="BooksMedia" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=413864740]
@@ -369,6 +374,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Collectables" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1549802885]
@@ -390,6 +396,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Sports" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=1290849622]
@@ -411,6 +418,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 5
 
 [node name="Product_Details" type="VBoxContainer" parent="VBoxContainer/Sections" unique_id=701358320]
