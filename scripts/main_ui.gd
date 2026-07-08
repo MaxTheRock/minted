@@ -30,6 +30,3 @@ func _ready():
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/BooksMedia/ScrollContainer/GridContainer, "BooksMedia", 15)
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Collectables/ScrollContainer/GridContainer, "Collectables", 15)
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer, "Sports", 15)
-	
-func _process(delta: float) -> void:
-	money_ui_element.text = "$" + str(Global.money)

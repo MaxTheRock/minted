@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxbgcv0xjeqmn"]
 
 [ext_resource type="Script" uid="uid://bjdovmv78p4t1" path="res://scripts/market.gd" id="1_4msli"]
-[ext_resource type="PackedScene" uid="uid://bgaswxsmgb5f3" path="res://scenes/level_display.tscn" id="1_hvm52"]
+[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="2_4msli"]
 [ext_resource type="Script" uid="uid://b6xai0ehay28i" path="res://scripts/product_details.gd" id="2_7bpo7"]
 [ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="2_d6tgm"]
 [ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="3_d6tgm"]
@@ -180,59 +180,8 @@ layout_mode = 0
 offset_right = 1285.0
 offset_bottom = 722.0
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1371470325]
+[node name="PanelContainer" parent="VBoxContainer" unique_id=1234875554 instance=ExtResource("2_4msli")]
 layout_mode = 2
-
-[node name="Left" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=1881440239]
-layout_mode = 2
-
-[node name="Level_Display" parent="VBoxContainer/PanelContainer/Left" unique_id=548205697 instance=ExtResource("1_hvm52")]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/Left" unique_id=2105976252]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 10
-
-[node name="Username" type="Label" parent="VBoxContainer/PanelContainer/Left/MarginContainer" unique_id=132678109]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "Epic_Seller123"
-
-[node name="Right" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=11056605]
-layout_mode = 2
-alignment = 2
-
-[node name="Money_Container" type="MarginContainer" parent="VBoxContainer/PanelContainer/Right" unique_id=1374840820]
-layout_mode = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 10
-
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/PanelContainer/Right/Money_Container" unique_id=1618232363]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-color = Color(0.7607843, 0.69411767, 0, 1)
-
-[node name="Money" type="Label" parent="VBoxContainer/PanelContainer/Right/Money_Container" unique_id=627079413]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "$0"
-
-[node name="Time_Container" type="MarginContainer" parent="VBoxContainer/PanelContainer/Right" unique_id=2132714495]
-layout_mode = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 10
-
-[node name="Time" type="Label" parent="VBoxContainer/PanelContainer/Right/Time_Container" unique_id=901177230]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "15:52 23/06/2026"
 
 [node name="Sections" type="HBoxContainer" parent="VBoxContainer" unique_id=187412644]
 custom_minimum_size = Vector2(0, 560)

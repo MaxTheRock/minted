@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dmm3swaq2lbxc"
 Global="*uid://bx2lesv27p3gw"
 Inventory="*uid://dmgolie3fbs52"
 AudioManager="*uid://dm2w3brxvqgpm"
+ShippingHandler="*uid://4xcuwmqdjr78"
 
 [display]
 

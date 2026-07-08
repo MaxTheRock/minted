@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c7p47o7mucht3"]
+
+[ext_resource type="Texture2D" uid="uid://c1xo0odtkro8h" path="res://assets/default_pfp.png" id="1_4the7"]
+
+[node name="MailUser" type="Control" unique_id=179058187]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -874.0
+offset_bottom = -593.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2077551615]
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 127.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=278631724]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NamenTime" type="Label" parent="PanelContainer/VBoxContainer" unique_id=620952769]
+layout_mode = 2
+text = "Name: 6:30pm"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1491017712]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=767869226]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+offset_transform_enabled = true
+mouse_filter = 2
+texture = ExtResource("1_4the7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Latest_Message" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=183127891]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/Latest_Message" unique_id=1487718808]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.6431373)
+text = "Thanks for buying, we will send your parcel when we want to. "
+autowrap_mode = 2

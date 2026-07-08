@@ -224,7 +224,8 @@ func _on_buy_button_pressed() -> void:
 	if Global.money < item.price:
 		return
 	Global.money -= item.price
-	Inventory.wardrobe_inventory.append(item.get_data())
+	Global.create_mail.emit()
+	ShippingHandler.shipping_list.append([item.get_data(), Global.time_mins])
 	queue_free()
 
 

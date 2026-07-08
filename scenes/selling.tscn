@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_hdcek"]
 [ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="2_cm14b"]
 [ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="3_d3n2a"]
+[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="4_vplqk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm14b"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -248,6 +249,16 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 alignment = 2
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1435179552]
+layout_mode = 2
+
+[node name="PanelContainer2" parent="VBoxContainer/Control" unique_id=1234875554 instance=ExtResource("4_vplqk")]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -645.0
+offset_right = 1276.0
+offset_bottom = -575.0
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_hdcek")]
 layout_mode = 2

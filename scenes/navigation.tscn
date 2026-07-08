@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b4apwjm4ouory"]
 
-[ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="1_5y6w5"]
 [ext_resource type="Script" uid="uid://bj63o1rkvxqaj" path="res://scripts/navigation.gd" id="1_6a1pe"]
+[ext_resource type="Texture2D" uid="uid://cqwfsk5ra50cx" path="res://assets/power_off.png" id="3_hgpfg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvm52"]
 bg_color = Color(0, 0, 0, 1)
@@ -32,23 +32,23 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=244898806]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=870927646]
+[node name="Home" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=870927646]
 layout_mode = 2
 
-[node name="Home" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1045758236]
+[node name="Home" type="Button" parent="MarginContainer/HBoxContainer/Home" unique_id=1045758236]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
-icon = ExtResource("1_5y6w5")
+text = "Home"
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1964714242]
+[node name="Market" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1964714242]
 layout_mode = 2
 
-[node name="Market" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2" unique_id=1899883534]
+[node name="Market" type="Button" parent="MarginContainer/HBoxContainer/Market" unique_id=1899883534]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
@@ -58,10 +58,24 @@ text = "Market"
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=449794672]
+[node name="Mail" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=432849123]
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="Mail" type="Button" parent="MarginContainer/HBoxContainer/Mail" unique_id=212384988]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+text = "Mail"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Newspaper" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=449794672]
 layout_mode = 2
 
-[node name="Newspaper" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer3" unique_id=164952317]
+[node name="Newspaper" type="Button" parent="MarginContainer/HBoxContainer/Newspaper" unique_id=164952317]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
@@ -71,10 +85,10 @@ text = "Newspaper"
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1921936018]
+[node name="Bidding" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1921936018]
 layout_mode = 2
 
-[node name="Trading" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer4" unique_id=219293714]
+[node name="Trading" type="Button" parent="MarginContainer/HBoxContainer/Bidding" unique_id=219293714]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
@@ -85,10 +99,10 @@ text = "Bidding
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer7" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=41074520]
+[node name="Selling" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=41074520]
 layout_mode = 2
 
-[node name="Selling" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer7" unique_id=883584612]
+[node name="Selling" type="Button" parent="MarginContainer/HBoxContainer/Selling" unique_id=883584612]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
@@ -98,24 +112,11 @@ text = "Selling"
 icon_alignment = 1
 expand_icon = true
 
-[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=790901659]
-layout_mode = 2
-
-[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer6" unique_id=1499718563]
-custom_minimum_size = Vector2(100, 48)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
-text = "Exit"
-icon_alignment = 1
-expand_icon = true
-
-[node name="PanelContainer5" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1620945943]
+[node name="Options" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1620945943]
 layout_mode = 2
 offset_transform_enabled = true
 
-[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer5" unique_id=1797181365]
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/Options" unique_id=1797181365]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
@@ -125,10 +126,30 @@ text = "Options"
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/Home" to="." method="_on_home_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer2/Market" to="." method="_on_market_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer3/Newspaper" to="." method="_on_newspaper_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer4/Trading" to="." method="_on_trading_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer7/Selling" to="." method="_on_selling_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer6/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer5/Options" to="." method="_on_options_pressed"]
+[node name="Power" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1887037378]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="PanelContainer6" type="PanelContainer" parent="MarginContainer/HBoxContainer/Power" unique_id=790901659]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/Power/PanelContainer6" unique_id=1499718563]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+theme_override_constants/icon_max_width = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
+icon = ExtResource("3_hgpfg")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Home/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Market/Market" to="." method="_on_market_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Mail/Mail" to="." method="_on_mail_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Newspaper/Newspaper" to="." method="_on_newspaper_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Bidding/Trading" to="." method="_on_trading_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Selling/Selling" to="." method="_on_selling_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Options/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Power/PanelContainer6/Exit" to="." method="_on_exit_pressed"]
