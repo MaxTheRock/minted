@@ -4,14 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/room.png" id="1_jxe34"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
 [ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="3_85yof"]
+[ext_resource type="PackedScene" uid="uid://srrkw1j4nlaa" path="res://scenes/parcels.tscn" id="3_qvc4m"]
+[ext_resource type="Script" uid="uid://bummubx5xkx6u" path="res://scenes/parcels.gd" id="4_7dqbv"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="4_14vil"]
 [ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="5_jxe34"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxe34"]
-size = Vector2(413, 206.5)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
 radius = 127.09839
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxe34"]
+size = Vector2(413, 206.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -36,6 +38,30 @@ texture = ExtResource("1_jxe34")
 [node name="Camera2D" type="Camera2D" parent="room" unique_id=1938782641]
 scale = Vector2(0.5, 0.5)
 
+[node name="Parcels" parent="." unique_id=798899600 instance=ExtResource("3_qvc4m")]
+offset_left = -43.0
+offset_top = -226.0
+offset_right = -43.0
+offset_bottom = -226.0
+script = ExtResource("4_7dqbv")
+
+[node name="Area2D" type="Area2D" parent="Parcels" unique_id=1808956327]
+position = Vector2(38.5, 13.5)
+scale = Vector2(0.65999997, 0.32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parcels/Area2D" unique_id=1926348386]
+position = Vector2(-17, 32)
+shape = SubResource("CircleShape2D_qnalp")
+
+[node name="Label" type="Label" parent="Parcels" unique_id=629886725]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -26.0
+offset_right = 86.0
+offset_bottom = -3.0
+scale = Vector2(0.5, 0.5)
+text = "Collect [F]"
+
 [node name="Computer" type="Sprite2D" parent="." unique_id=288269879]
 position = Vector2(-17, 302)
 script = ExtResource("3_85yof")
@@ -49,7 +75,7 @@ text = "Computer [F]"
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=733437826]
-position = Vector2(-17, 302)
+position = Vector2(-16, 302)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1975276463]
 position = Vector2(-10.5, -47.25)
@@ -125,8 +151,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[connection signal="body_entered" from="Area2D" to="Computer" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Computer" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_body_entered"]

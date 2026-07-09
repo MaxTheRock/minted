@@ -1,0 +1,579 @@
+[gd_scene format=3 uid="uid://srrkw1j4nlaa"]
+
+[ext_resource type="Texture2D" uid="uid://be7mgvo4ot3ii" path="res://assets/parcels/small_cylinder.png" id="1_6l4d1"]
+[ext_resource type="Texture2D" uid="uid://de682msngovyd" path="res://assets/parcels/small_rectangle.png" id="2_n6gie"]
+[ext_resource type="Texture2D" uid="uid://cxw4umtxdf0m6" path="res://assets/parcels/small_square.png" id="3_4yw3a"]
+[ext_resource type="Texture2D" uid="uid://bry0k5bs0ikq6" path="res://assets/parcels/med_rectangle.png" id="4_h50gs"]
+[ext_resource type="Texture2D" uid="uid://dprnpp68l7ohy" path="res://assets/parcels/large_rectangle.png" id="5_8m8cs"]
+[ext_resource type="Texture2D" uid="uid://cb3bcyqk8k7qn" path="res://assets/parcels/large_square.png" id="6_c52y4"]
+
+[node name="Parcels" type="Control" unique_id=798899600]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="1" type="Control" parent="." unique_id=293377606]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_cylinder" type="Sprite2D" parent="1" unique_id=349433957]
+position = Vector2(16, 16)
+texture = ExtResource("1_6l4d1")
+
+[node name="2" type="Control" parent="." unique_id=1927853149]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_rectangle" type="Sprite2D" parent="2" unique_id=467931229]
+position = Vector2(16, 16)
+texture = ExtResource("2_n6gie")
+
+[node name="3" type="Control" parent="." unique_id=2125328258]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_rectangle" type="Sprite2D" parent="3" unique_id=266583374]
+position = Vector2(16, 16)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="3" unique_id=807700415]
+position = Vector2(36.5, 19)
+texture = ExtResource("1_6l4d1")
+
+[node name="4" type="Control" parent="." unique_id=1219394933]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_rectangle" type="Sprite2D" parent="4" unique_id=1276019745]
+position = Vector2(16, 16)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="4" unique_id=1403043387]
+position = Vector2(16, 5.5)
+texture = ExtResource("2_n6gie")
+
+[node name="5" type="Control" parent="." unique_id=696504676]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_square" type="Sprite2D" parent="5" unique_id=1962467807]
+position = Vector2(16, 18)
+texture = ExtResource("3_4yw3a")
+
+[node name="6" type="Control" parent="." unique_id=767488379]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_square" type="Sprite2D" parent="6" unique_id=1524097293]
+position = Vector2(16, 18)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_cylinder" type="Sprite2D" parent="6" unique_id=940919185]
+position = Vector2(30, 22.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="7" type="Control" parent="." unique_id=186809334]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_square" type="Sprite2D" parent="7" unique_id=1032474320]
+position = Vector2(16, 18)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="7" unique_id=1700076273]
+position = Vector2(30.5, 26.5)
+texture = ExtResource("2_n6gie")
+
+[node name="8" type="Control" parent="." unique_id=2124941539]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_square" type="Sprite2D" parent="8" unique_id=1498166412]
+position = Vector2(16, 18)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="8" unique_id=941465181]
+position = Vector2(30.5, 26)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="8" unique_id=2086659074]
+position = Vector2(2.5, 23.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="9" type="Control" parent="." unique_id=965936]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="small_square" type="Sprite2D" parent="9" unique_id=1661130755]
+position = Vector2(16, 18)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="9" unique_id=527311562]
+position = Vector2(32.5, 30.5)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="9" unique_id=174660789]
+position = Vector2(32.5, 20.5)
+texture = ExtResource("2_n6gie")
+
+[node name="10" type="Control" parent="." unique_id=186771533]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="10" unique_id=583380515]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="11" type="Control" parent="." unique_id=319533977]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="11" unique_id=1763198988]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_cylinder" type="Sprite2D" parent="11" unique_id=279925069]
+position = Vector2(-5, 23)
+texture = ExtResource("1_6l4d1")
+
+[node name="12" type="Control" parent="." unique_id=1210127036]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="12" unique_id=1916350299]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_rectangle" type="Sprite2D" parent="12" unique_id=1030418194]
+position = Vector2(17.5, 1.5)
+texture = ExtResource("2_n6gie")
+
+[node name="13" type="Control" parent="." unique_id=250923393]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="13" unique_id=1811875327]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_rectangle" type="Sprite2D" parent="13" unique_id=1468489123]
+position = Vector2(15.5, 1.5)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="13" unique_id=1500261449]
+position = Vector2(20.5, 25.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="14" type="Control" parent="." unique_id=998393821]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="14" unique_id=2120092792]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_rectangle" type="Sprite2D" parent="14" unique_id=30097008]
+position = Vector2(41, 25)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="14" unique_id=361306337]
+position = Vector2(16.5, 1.5)
+texture = ExtResource("2_n6gie")
+
+[node name="15" type="Control" parent="." unique_id=1859426363]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="15" unique_id=845549116]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_square" type="Sprite2D" parent="15" unique_id=1089147655]
+position = Vector2(-8, 22.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="16" type="Control" parent="." unique_id=1636438168]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="16" unique_id=274031990]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_square" type="Sprite2D" parent="16" unique_id=372988557]
+position = Vector2(-8.5, 21.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_cylinder" type="Sprite2D" parent="16" unique_id=1965338966]
+position = Vector2(18.5, 26)
+texture = ExtResource("1_6l4d1")
+
+[node name="17" type="Control" parent="." unique_id=1852300159]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="17" unique_id=2136169732]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_square" type="Sprite2D" parent="17" unique_id=1590500749]
+position = Vector2(-8.5, 21.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="17" unique_id=1700486021]
+position = Vector2(16, 1.5)
+texture = ExtResource("2_n6gie")
+
+[node name="18" type="Control" parent="." unique_id=861522630]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="18" unique_id=156879462]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_square" type="Sprite2D" parent="18" unique_id=808463523]
+position = Vector2(-10.5, 21.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="18" unique_id=1554475462]
+position = Vector2(15.5, 1)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="18" unique_id=63490808]
+position = Vector2(17, 27)
+texture = ExtResource("1_6l4d1")
+
+[node name="19" type="Control" parent="." unique_id=1585645203]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="medium_rectangle" type="Sprite2D" parent="19" unique_id=467056157]
+position = Vector2(18, 17)
+texture = ExtResource("4_h50gs")
+
+[node name="small_square" type="Sprite2D" parent="19" unique_id=1538225122]
+position = Vector2(48, 19.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="19" unique_id=51173211]
+position = Vector2(17.5, 0.5)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="19" unique_id=1598056661]
+position = Vector2(48, 3.5)
+texture = ExtResource("2_n6gie")
+
+[node name="20" type="Control" parent="." unique_id=751089776]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="20" unique_id=155317428]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="21" type="Control" parent="." unique_id=289647069]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="21" unique_id=155637358]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_cylinder" type="Sprite2D" parent="21" unique_id=881159997]
+position = Vector2(69, 24.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="22" type="Control" parent="." unique_id=1382402793]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="22" unique_id=1154664479]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_rectangle" type="Sprite2D" parent="22" unique_id=1380044947]
+position = Vector2(-20, 25.5)
+texture = ExtResource("2_n6gie")
+
+[node name="23" type="Control" parent="." unique_id=129907054]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="23" unique_id=1818570321]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_rectangle" type="Sprite2D" parent="23" unique_id=779152662]
+position = Vector2(73.5, 30)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="23" unique_id=1816450192]
+position = Vector2(-21, 25.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="24" type="Control" parent="." unique_id=2104296757]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="24" unique_id=1844175445]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_rectangle" type="Sprite2D" parent="24" unique_id=1570067671]
+position = Vector2(72.5, 26)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="24" unique_id=1353961522]
+position = Vector2(72.5, 15)
+texture = ExtResource("2_n6gie")
+
+[node name="25" type="Control" parent="." unique_id=1366027270]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="25" unique_id=1338803139]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_square" type="Sprite2D" parent="25" unique_id=1161301419]
+position = Vector2(78.5, 25.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="26" type="Control" parent="." unique_id=610119096]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="26" unique_id=931914163]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_square" type="Sprite2D" parent="26" unique_id=179068512]
+position = Vector2(76.5, 26.5)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_cylinder" type="Sprite2D" parent="26" unique_id=1892679807]
+position = Vector2(-19, 25)
+texture = ExtResource("1_6l4d1")
+
+[node name="27" type="Control" parent="." unique_id=1350248852]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="27" unique_id=155023705]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_square" type="Sprite2D" parent="27" unique_id=278564318]
+position = Vector2(75.5, 27)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="27" unique_id=6697324]
+position = Vector2(-16.5, 27)
+texture = ExtResource("2_n6gie")
+
+[node name="28" type="Control" parent="." unique_id=542324395]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="28" unique_id=422584191]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_square" type="Sprite2D" parent="28" unique_id=1586591373]
+position = Vector2(76, 29)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="28" unique_id=1399716228]
+position = Vector2(-21.5, 26)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="28" unique_id=1771087282]
+position = Vector2(42.5, 30)
+texture = ExtResource("1_6l4d1")
+
+[node name="29" type="Control" parent="." unique_id=772713195]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="29" unique_id=400354272]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="small_square" type="Sprite2D" parent="29" unique_id=60382476]
+position = Vector2(73.5, 30)
+texture = ExtResource("3_4yw3a")
+
+[node name="small_rectangle" type="Sprite2D" parent="29" unique_id=832545520]
+position = Vector2(-16.5, 27)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="29" unique_id=1676720579]
+position = Vector2(3.5, 31)
+texture = ExtResource("2_n6gie")
+
+[node name="30" type="Control" parent="." unique_id=336066518]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="30" unique_id=1254456268]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="medium_rectangle" type="Sprite2D" parent="30" unique_id=108285094]
+position = Vector2(40.5, 29)
+texture = ExtResource("4_h50gs")
+
+[node name="31" type="Control" parent="." unique_id=1362298177]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="31" unique_id=517632898]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="medium_rectangle" type="Sprite2D" parent="31" unique_id=855879851]
+position = Vector2(38, 28)
+texture = ExtResource("4_h50gs")
+
+[node name="small_cylinder" type="Sprite2D" parent="31" unique_id=1395930292]
+position = Vector2(12.5, 29.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="32" type="Control" parent="." unique_id=810346566]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="32" unique_id=1531226072]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="medium_rectangle" type="Sprite2D" parent="32" unique_id=418407960]
+position = Vector2(37, 27)
+texture = ExtResource("4_h50gs")
+
+[node name="small_rectangle" type="Sprite2D" parent="32" unique_id=1454755637]
+position = Vector2(35, 10.5)
+texture = ExtResource("2_n6gie")
+
+[node name="33" type="Control" parent="." unique_id=2025276420]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="33" unique_id=164923805]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="medium_rectangle" type="Sprite2D" parent="33" unique_id=1488818450]
+position = Vector2(37, 26.5)
+texture = ExtResource("4_h50gs")
+
+[node name="small_rectangle" type="Sprite2D" parent="33" unique_id=1804007521]
+position = Vector2(37, 11)
+texture = ExtResource("2_n6gie")
+
+[node name="small_cylinder" type="Sprite2D" parent="33" unique_id=1137829185]
+position = Vector2(-11, 25.5)
+texture = ExtResource("1_6l4d1")
+
+[node name="34" type="Control" parent="." unique_id=1523351131]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_rectangle" type="Sprite2D" parent="34" unique_id=1667557698]
+position = Vector2(21.5, 18)
+texture = ExtResource("5_8m8cs")
+
+[node name="medium_rectangle" type="Sprite2D" parent="34" unique_id=132084559]
+position = Vector2(37.5, 27)
+texture = ExtResource("4_h50gs")
+
+[node name="small_rectangle" type="Sprite2D" parent="34" unique_id=1213826641]
+position = Vector2(35.5, 12)
+texture = ExtResource("2_n6gie")
+
+[node name="small_rectangle2" type="Sprite2D" parent="34" unique_id=221877514]
+position = Vector2(35.5, 0.5)
+texture = ExtResource("2_n6gie")
+
+[node name="35" type="Control" parent="." unique_id=1966680235]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="large_square" type="Sprite2D" parent="35" unique_id=535880295]
+position = Vector2(19.5, 14)
+texture = ExtResource("6_c52y4")

@@ -1,6 +1,8 @@
 extends Node
 
 var shipping_list: Array = []
+var shipping_value: int = 0
+var delivered_list: Array = []
 
 func _process(delta: float) -> void:
 	Inventory.current_ui_type = "shipping"
@@ -9,15 +11,15 @@ func _process(delta: float) -> void:
 		var progress = get_progress(entry)
 		if progress["percentage"] >= 100.0:
 			shipping_list.erase(i)
-			Inventory.wardrobe_inventory.append(entry[0])
-			print(Inventory.wardrobe_inventory)
+			delivered_list.append(entry)
+			shipping_value += i[0]["shippingValue"]
 
 func get_progress(entry: Array) -> Dictionary:
 	var total_time = entry[0]["shippingTime"]
 	var elapsed = Global.time_mins - entry[1]
 	var percentage = clamp((elapsed / (total_time * 1440)) * 100.0, 0.0, 100.0)
 
-	var status = "Prepareing"
+	var status = "Preparing"
 	var stage_image = 0
 	if percentage >= 100.0:
 		status = "Delivered"

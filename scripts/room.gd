@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var grid = $inventory/ScrollContainer/GridContainer
 
-
 func _ready() -> void:
 	Inventory.current_ui_type = "player"
 

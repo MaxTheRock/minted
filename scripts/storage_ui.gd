@@ -4,8 +4,6 @@ extends Control
 @onready var panel_container = $PanelContainer2
 @onready var take_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Take_Button
 @onready var background = $TextureRect
-const StorageItemScene = preload("res://scenes/storage_ui.tscn")
-
 var inventory_index = 0
 
 func _ready() -> void:

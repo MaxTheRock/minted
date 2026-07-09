@@ -4,5 +4,6 @@ extends PanelContainer
 @onready var time_ui = $Right/Time_Container/Time
 
 func _process(delta):
-	money_ui.text = "$" + str(Global.money)
+	money_ui.text = "$" + str(round(Global.money * 100.0) / 100.0)
+
 	time_ui.text = Global.get_time_text()
