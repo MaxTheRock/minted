@@ -87,7 +87,6 @@ func _on_sell_button_pressed() -> void:
 			"color": color_display.text,
 			"price": price_written,
 		}
-		print(display_dict)
 		Inventory.player_selling.append(display_dict)
 		clear_contents()
 

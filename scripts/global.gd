@@ -22,7 +22,8 @@ var year = 2026
 var time_mins = 0
 
 var clock_timer = 0.0
-const CLOCK_SPEED = 0.50 # ---> The lower, the faster jsuk rohan for testing
+const CLOCK_SPEED = 0.00000001 # ---> The lower, the faster jsuk rohan for testing
+const SPEED_MULT = 10 # just makes time even faster, default to 1.
 
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
@@ -35,8 +36,8 @@ func _process(delta):
 		new_time_calc(1)
 		
 func new_time_calc(min_added: int) -> void:
-	min += min_added
-	time_mins += min_added
+	min += min_added * SPEED_MULT
+	time_mins += min_added * SPEED_MULT
 
 	if min >= 60:
 		min -= 60

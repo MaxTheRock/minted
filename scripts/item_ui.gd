@@ -184,6 +184,19 @@ func _ready() -> void:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
 				item.load_data(Inventory.player_inventory[inventory_index])
+	
+	elif Inventory.current_ui_type == "shipping":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.hide()
+		eject_button.hide()
+		grid_container.hide()
+		upload_button.hide()
+		panel_container.custom_maximum_size = Vector2(150,160)
+		$TextureRect.custom_maximum_size = Vector2(150,158)
 		
 	if Inventory.current_ui_type == "display":
 		$TextureRect.hide()
@@ -199,6 +212,7 @@ func _ready() -> void:
 	else:
 		$TextureRect.show()
 		$PanelContainer2.show()
+		
 		
 func _rarity_ui(item_rarity) -> void:
 	if item_rarity == "common":
@@ -224,8 +238,8 @@ func _on_buy_button_pressed() -> void:
 	if Global.money < item.price:
 		return
 	Global.money -= item.price
-	Global.create_mail.emit()
 	ShippingHandler.shipping_list.append([item.get_data(), Global.time_mins])
+	Global.create_mail.emit()
 	queue_free()
 
 
@@ -281,7 +295,7 @@ func _on_place_button_button_up() -> void:
 func _on_place_button_pressed() -> void:
 	if Inventory.shelf_inventory.size() <= 5:
 		if Inventory.shelf_inventory.any(func(d): return d.has("type") and d["type"] == "cd_player") and item.type == "cd_player":
-			print("cannit place duplacate items on shelf!")
+			print("cannot place duplacate items on shelf!")
 		else:
 			var current_item_data = item.get_data()
 			inventory_index = Inventory.player_inventory.find(current_item_data)
@@ -373,4 +387,5 @@ func _on_upload_button_pressed() -> void:
 	Inventory.display_item.append(item.get_data())
 	page_requested.emit("Selling")
 	
-	
+func load_data(data):
+	item.load_data(data)	

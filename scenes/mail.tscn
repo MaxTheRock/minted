@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="1_bw536"]
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_efmr2"]
-[ext_resource type="Script" uid="uid://d2sohxyso662k" path="res://scenes/mail.gd" id="1_npxm5"]
+[ext_resource type="Script" uid="uid://d2sohxyso662k" path="res://scripts/mail.gd" id="1_npxm5"]
 
 [node name="Mail" type="Control" unique_id=559621438]
 layout_mode = 3
@@ -40,7 +40,13 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_constants/margin_top = 70
 
-[node name="Users" type="VBoxContainer" parent="VBoxContainer/Sections/MarginContainer" unique_id=1861554840]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/MarginContainer" unique_id=1366648982]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Users" type="VBoxContainer" parent="VBoxContainer/Sections/MarginContainer/ScrollContainer" unique_id=1861554840]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
@@ -49,5 +55,12 @@ layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 100
 
-[node name="Message" type="VBoxContainer" parent="VBoxContainer/Sections/MarginContainer2" unique_id=510965892]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/MarginContainer2" unique_id=1438590497]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Message" type="VBoxContainer" parent="VBoxContainer/Sections/MarginContainer2/ScrollContainer" unique_id=510965892]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2

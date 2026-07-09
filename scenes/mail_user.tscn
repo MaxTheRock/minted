@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c7p47o7mucht3"]
 
 [ext_resource type="Texture2D" uid="uid://c1xo0odtkro8h" path="res://assets/default_pfp.png" id="1_4the7"]
+[ext_resource type="Script" uid="uid://b58wrow8u7ql8" path="res://scripts/mail_user.gd" id="1_5jt3h"]
 
 [node name="MailUser" type="Control" unique_id=179058187]
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +13,7 @@ offset_right = -874.0
 offset_bottom = -593.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5jt3h")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2077551615]
 layout_mode = 0

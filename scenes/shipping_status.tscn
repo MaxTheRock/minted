@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dlomccpkdc0op"]
 
 [ext_resource type="FontFile" uid="uid://d27f0kxbi0qvo" path="res://fonts/Daydream.otf" id="1_8smkt"]
-[ext_resource type="Script" uid="uid://0m06q8pqlqg0" path="res://scenes/shipping_status.gd" id="1_ffs1v"]
+[ext_resource type="Script" uid="uid://0m06q8pqlqg0" path="res://scripts/shipping_status.gd" id="1_ffs1v"]
 [ext_resource type="Texture2D" uid="uid://ddb62bvq6iexq" path="res://assets/shipping_stages.png" id="2_ffs1v"]
+[ext_resource type="PackedScene" uid="uid://dccm2cqx7r3hk" path="res://scenes/item_ui.tscn" id="4_cgwc4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnalp"]
 bg_color = Color(0.9166399, 0.91663986, 0.9166398, 1)
@@ -54,10 +55,13 @@ animations = [{
 }]
 
 [node name="ShippingStatus" type="Control" unique_id=373914343]
+custom_minimum_size = Vector2(100, 250)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -619.0
+offset_bottom = -486.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ffs1v")
@@ -101,3 +105,15 @@ offset_bottom = 149.0
 theme_override_colors/font_color = Color(0.1728327, 0.17283267, 0.17283267, 1)
 theme_override_fonts/font = ExtResource("1_8smkt")
 text = "Estimated delivery time: 10 hours"
+
+[node name="item_UI" parent="." unique_id=2005130059 instance=ExtResource("4_cgwc4")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 548.0
+offset_top = -3.0
+offset_right = 1189.0
+offset_bottom = 217.0
+grow_horizontal = 1
+grow_vertical = 1
