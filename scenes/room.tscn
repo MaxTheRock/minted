@@ -74,10 +74,10 @@ offset_bottom = -66.0
 text = "Computer [F]"
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=733437826]
-position = Vector2(-16, 302)
+[node name="Area2D" type="Area2D" parent="Computer" unique_id=733437826]
+position = Vector2(1, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1975276463]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1975276463]
 position = Vector2(-10.5, -47.25)
 shape = SubResource("RectangleShape2D_jxe34")
 
@@ -153,6 +153,8 @@ columns = 2
 
 [connection signal="body_entered" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_body_entered"]
