@@ -515,6 +515,7 @@ func load_data(data: Dictionary) -> void:
 	color = data.get("color", "")
 	price = data.get("price", 0)
 	shippingTime = data.get("shippingTime", 0)
+	shippingValue = data.get("shippingValue",1)
 	condition = data.get("condition", "")
 	condition_price_mult = data.get("condition_price_mult", 1)
 	brand = data.get("brand", "none")

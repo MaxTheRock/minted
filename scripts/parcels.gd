@@ -13,10 +13,7 @@ func _process(delta: float) -> void:
 		nodes[i].visible = (i == ShippingHandler.shipping_value)
 	if label_shown and Input.is_action_just_pressed("interact"):
 		if ShippingHandler.delivered_list.size() > 0:
-			while ShippingHandler.delivered_list.size() > 0:
-				var delivered_entry = ShippingHandler.delivered_list.pop_front()
-				Inventory.wardrobe_inventory.append(delivered_entry[0])
-			ShippingHandler.shipping_value = 0
+			get_tree().change_scene_to_file("res://scenes/parcel.tscn")
 		else:
 			print("No delivered items to collect")
 

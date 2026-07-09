@@ -17,6 +17,7 @@ signal page_requested(page_name: String)
 var placeable_items: Array = ["cd_player","camera"]
 
 var inventory_index = 0
+var is_parcel = false
 	
 func _ready() -> void:
 	var custom_minumum_size = Vector2(150, 220)
@@ -197,7 +198,28 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150,160)
 		$TextureRect.custom_maximum_size = Vector2(150,158)
+	
+	elif Inventory.current_ui_type == "parcel":
+		buy_button.hide()
+		take_button.show()
+		place_button.hide()
+		shelf_ui_buttons.hide()
+		put_button.hide()
+		use_button.hide()
+		eject_button.hide()
+		upload_button.hide()
+		grid_container.show()
 		
+		if ShippingHandler.delivered_list:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
+				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
+		else:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
+				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
+			
+				
 	if Inventory.current_ui_type == "display":
 		$TextureRect.hide()
 		$PanelContainer2.hide()
@@ -252,14 +274,30 @@ func _on_take_button_mouse_exited() -> void:
 
 
 func _on_take_button_pressed() -> void:
-	if Inventory.player_inventory.size() <= 1:
-		var current_item_data = item.get_data()
-		inventory_index = Inventory.wardrobe_inventory.find(current_item_data)
-		Inventory.transfer_item(Inventory.wardrobe_inventory,
-		Inventory.player_inventory, inventory_index)
-		get_tree().reload_current_scene()
+	if is_parcel:
+		if Inventory.player_inventory.size() <= 1:
+			var current_item_data = item.get_data()
+			var trimmed_list = []
+			for item in ShippingHandler.delivered_list:
+				trimmed_list.append(item[0])
+			inventory_index = trimmed_list.find(current_item_data)
+			Inventory.transfer_item(trimmed_list,
+			Inventory.player_inventory, inventory_index)
+			ShippingHandler.delivered_list.remove_at(inventory_index)
+			if ShippingHandler.delivered_list.size() == 0:
+				ShippingHandler.shipping_value = 0
+			get_tree().reload_current_scene()
+		else:
+			print("Cannot carry any more items!")
 	else:
-		print("Cannot carry any more items!")
+		if Inventory.player_inventory.size() <= 1:
+			var current_item_data = item.get_data()
+			inventory_index = Inventory.wardrobe_inventory.find(current_item_data)
+			Inventory.transfer_item(Inventory.wardrobe_inventory,
+			Inventory.player_inventory, inventory_index)
+			get_tree().reload_current_scene()
+		else:
+			print("Cannot carry any more items!")
 
 
 
