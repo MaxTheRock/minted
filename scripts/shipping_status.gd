@@ -6,7 +6,7 @@ extends Control
 @onready var container = $PanelContainer
 @onready var item_display = $item_UI
 var estimated_hours = 0
-var timer = 0
+var timer = 3
 var shipping_entry = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
