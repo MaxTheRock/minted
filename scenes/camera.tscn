@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://ht8a2t22tldl"]
+
+[ext_resource type="Script" uid="uid://bxqwymcbghoyp" path="res://scripts/camera.gd" id="1_b05li"]
+[ext_resource type="Texture2D" uid="uid://cahq4j73asnf4" path="res://assets/shelf.png" id="1_kod1s"]
+[ext_resource type="Texture2D" uid="uid://dpojrv2bp68fk" path="res://assets/items/camera/camera.png" id="2_tmlye"]
+[ext_resource type="StyleBox" uid="uid://slilu4t6l1d1" path="res://themes/new_style_box_flat.tres" id="3_gtx3x"]
+[ext_resource type="AudioStream" uid="uid://dfna17sd16br1" path="res://audio/SFX/camera-sound.mp3" id="3_tmlye"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtx3x"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw2v7"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndm20"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6rg2"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfryc"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca23l"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdjbn"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3whki"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvs3x"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfvoe"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27b2b"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaphg"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj1k8"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0math"]
+atlas = ExtResource("2_tmlye")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b05li"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw2v7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndm20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6rg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfryc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca23l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdjbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3whki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvs3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfvoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27b2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaphg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj1k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0math")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b05li"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.26737493, 0.5436675, 0.49043304, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.27782905, 0.5908218, 0.5502011, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0.043350644, 0.18123007, 0.18511963, 0.6)
+shadow_size = 3
+
+[sub_resource type="Gradient" id="Gradient_b05li"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.02471483, 1)
+colors = PackedColorArray(0.42, 0.42, 0.42, 0.7137255, 1, 1, 1, 0.49019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6snss"]
+gradient = SubResource("Gradient_b05li")
+fill = 1
+fill_from = Vector2(0.46245733, 0.5341297)
+fill_to = Vector2(0, 0.03242321)
+
+[node name="camera" type="Control" unique_id=48735802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b05li")
+
+[node name="Shelf" type="TextureRect" parent="." unique_id=571201720]
+layout_mode = 0
+offset_left = -777.99994
+offset_top = -463.99997
+offset_right = -377.99994
+offset_bottom = -263.99997
+scale = Vector2(10, 10)
+texture = ExtResource("1_kod1s")
+
+[node name="Close" type="Button" parent="." unique_id=1562498125]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 72.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_gtx3x")
+text = "X"
+
+[node name="camera" type="AnimatedSprite2D" parent="." unique_id=1566264223 groups=["clothes"]]
+position = Vector2(367.99997, 271.99997)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_b05li")
+
+[node name="take_photo" type="Button" parent="." unique_id=1284745170]
+custom_minimum_size = Vector2(300, 300)
+custom_maximum_size = Vector2(300, 300)
+layout_mode = 0
+offset_left = 718.0
+offset_top = 114.0
+offset_right = 1018.0
+offset_bottom = 414.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_gtx3x")
+theme_override_styles/pressed = ExtResource("3_gtx3x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b05li")
+text = "Take Photo"
+
+[node name="CameraSound" type="AudioStreamPlayer" parent="." unique_id=344569974]
+stream = ExtResource("3_tmlye")
+
+[node name="TextureBG" type="TextureRect" parent="." unique_id=1264850696]
+visible = false
+layout_mode = 0
+offset_left = -502.0
+offset_top = -609.0
+offset_right = -438.0
+offset_bottom = -545.0
+scale = Vector2(39.31193, 35.46684)
+texture = SubResource("GradientTexture2D_6snss")
+
+[node name="photos" type="Control" parent="." unique_id=117581331]
+anchors_preset = 0
+offset_left = 485.0
+offset_top = 263.0
+offset_right = 525.0
+offset_bottom = 303.0
+
+[node name="clear_photo" type="Button" parent="." unique_id=964173183]
+visible = false
+layout_mode = 0
+offset_left = 1073.0
+offset_top = 62.0
+offset_right = 1206.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0.7635372, 0.4752062, 0.74080336, 1)
+theme_override_colors/font_focus_color = Color(0.8127856, 0.21963692, 0.99999994, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.33333334, 0.5294118, 1)
+theme_override_colors/font_hover_color = Color(0.7749429, 0.08646866, 0.7799711, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Clear
+"
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="take_photo" to="." method="_on_take_photo_pressed"]
+[connection signal="pressed" from="clear_photo" to="." method="_on_clear_photo_pressed"]

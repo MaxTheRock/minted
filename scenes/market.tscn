@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://buf1wsry626bq" path="res://assets/brand_icons/elemental/minimalistic_white.png" id="5_hvm52"]
 [ext_resource type="Texture2D" uid="uid://cxh8vpp801mv5" path="res://assets/brand_icons/elemental/regular.png" id="6_4msli"]
 [ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="7_wa5cj"]
+[ext_resource type="Texture2D" uid="uid://desj2yykwoxb7" path="res://assets/os/icons/refresh.png" id="11_wa5cj"]
+[ext_resource type="Texture2D" uid="uid://b5otyytahqibf" path="res://themes/progress.tres" id="12_k7ps5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_46p8p"]
 shader = ExtResource("2_d6tgm")
@@ -167,6 +169,15 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_blend = true
+
+[sub_resource type="Gradient" id="Gradient_1syoy"]
+offsets = PackedFloat32Array(0, 0.56772906, 0.59960157, 0.79083663, 0.99800795)
+colors = PackedColorArray(0, 0.6732479, 0.3207137, 1, 0.08235294, 0.654902, 0.3137255, 1, 0.54519236, 0.54519236, 0.54519236, 0, 0.45, 0.45, 0.45, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4okcq"]
+gradient = SubResource("Gradient_1syoy")
+fill = 1
+fill_from = Vector2(0.4761092, 0.48976108)
 
 [node name="Market" type="Control" unique_id=2098111081]
 layout_mode = 3
@@ -529,4 +540,29 @@ layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -18)
 
+[node name="Button" type="Button" parent="." unique_id=878027279]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 799.00006
+offset_top = 82.00001
+offset_right = 899.00006
+offset_bottom = 182.0
+scale = Vector2(0.66573346, 0.66573346)
+icon = ExtResource("11_wa5cj")
+expand_icon = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Button" unique_id=1920264447]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 4.0
+offset_right = 104.0
+offset_bottom = 100.0
+scale = Vector2(1.5, 1.5)
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("12_k7ps5")
+texture_progress = SubResource("GradientTexture2D_4okcq")
+
+[connection signal="tab_selected" from="VBoxContainer/Sections/Centre/TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="ready" from="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/MarginContainer/TextureRect" to="VBoxContainer/Sections/Product_Details" method="_on_texture_rect_ready"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

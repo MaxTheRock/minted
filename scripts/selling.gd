@@ -3,16 +3,17 @@ extends Control
 signal page_requested(page_name: String)
 
 var current_text = ""
-@onready var inventory_grid = $inventory/ScrollContainer/GridContainer
-@onready var item_display = $ItemTexture
+@onready var inventory_grid = $"Sections/Centre/TabContainer/Sell Item/sell_item/inventory/ScrollContainer/GridContainer"
+@onready var item_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ItemTexture"
+@onready var selling_display = $Sections/Centre/TabContainer/sell_list/ScrollContainer/GridContainer
 
-@onready var name_display = $Name
-@onready var type_display = $Type
-@onready var condition_display = $Condition
-@onready var color_display = $Color
-@onready var brand_display = $Brand
-@onready var price_display = $Price
-@onready var exeption_message = $display_error
+@onready var name_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Name"
+@onready var type_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Type"
+@onready var condition_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Condition"
+@onready var color_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Color"
+@onready var brand_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Brand"
+@onready var price_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Price"
+@onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/display_error"
 
 func _ready() -> void:
 	_build_page()
@@ -50,7 +51,15 @@ func _build_page() -> void:
 		storage_ui.inventory_index = i
 		storage_ui.page_requested.connect(_on_item_page_requested)
 		item_display.add_child(storage_ui)
-
+	
+	Inventory.current_ui_type = "display_selling"
+	for i in range(Inventory.actual_selling.size()):
+		var packed = preload("res://scenes/selling_ui.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.item_index = i
+		selling_display.add_child(storage_ui)
+		
+	
 func _on_item_page_requested(page_name: String) -> void:
 	_build_page()
 	page_requested.emit(page_name)
@@ -86,9 +95,17 @@ func _on_sell_button_pressed() -> void:
 			"condition": current_text,
 			"color": color_display.text,
 			"price": price_written,
+			"brand": brand_display.text,
 		}
 		Inventory.player_selling.append(display_dict)
 		clear_contents()
+		
+		Inventory.current_ui_type = "display_selling"
+		var packed = preload("res://scenes/selling_ui.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.item_index = Inventory.player_selling.size() - 1
+		selling_display.add_child(storage_ui)
+		
 
 
 func _on_condition_item_selected(index: int) -> void:

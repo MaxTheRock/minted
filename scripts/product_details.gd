@@ -18,31 +18,40 @@ var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
 
-func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping, condition, color_index, brand, cd, genre) -> void:
+func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 	preview_image.visible = true
 	if sprite:
 		preview_image.texture = sprite.sprite_frames.get_frame_texture("default", sprite.frame)
-	product_label_name.text = name_generator(brand, color, type, condition)
-	color_label.text = "Colour: " + color.capitalize()
-	if str(price)[-2] == ".":
-		price_label.text = "$" + str(price) + "0"
-	else:
-		price_label.text = "$" + str(price)
-	shipping_label.text = "Shipping Time: " + str(shipping) + " days"
-	condition_label.text = "Condition: " + str(condition)
-	brand_label.text = "Brand: " + brand.capitalize()
+	product_label_name.text = name_generator(data)
 	
-	if cd == true:
-		brand_label.text = "Genre: " + genre.capitalize()
+	if data["color2"] == "":
+		color_label.text = "Colour: " + data["color1"].capitalize()
+	else:
+		color_label.text = "Colour: " + data["color1"].capitalize() + " & " +  data["color2"].capitalize()
+	
+	var price_string = str(data["price"])
+	if price_string[-2] == ".":
+		price_label.text = "$" + str(data["price"]) + "0"
+	else:
+		price_label.text = "$" + str(data["price"])
+	shipping_label.text = "Shipping Time: " + str(data["shippingTime"]) + " days"
+	condition_label.text = "Condition: " + str(data["condition"])
+	brand_label.text = "Brand: " + data["brand"].capitalize()
+	
+	if data["cd"] == true:
+		brand_label.text = "Genre: " + data["genre"].capitalize()
+	
+	var color_index = data["number"]
 		
-	if condition == "Minted":
+	if data["condition"] == "Minted":
 		condition_label.self_modulate = Color8(62, 180, 137) # mint colour
 	else:
 		condition_label.self_modulate = Color8(255,255,255)
 		
 	if preview_image.material == null:
 		preview_image.material = ShaderMaterial.new()
-	if type == "socks":
+	
+	if data["type"] == "socks":
 		preview_image.material.shader = socks_shader
 		
 		preview_image.material.set_shader_parameter("palette_texture", socks_texture)
@@ -51,14 +60,14 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.material.set_shader_parameter("palette_count", 10)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
 		
-	elif type == "tshirt":
+	elif data["type"] == "tshirt":
 		preview_image.material.shader = tshirt_shader
 		preview_image.material.set_shader_parameter("palette_texture", tshirt_texture)
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
 		preview_image.material.set_shader_parameter("color_count", 5)
 		preview_image.material.set_shader_parameter("palette_count", 10)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
-	elif type == "shorts":
+	elif data["type"] == "shorts":
 		preview_image.material.shader = tshirt_shader
 		
 		preview_image.material.set_shader_parameter("palette_texture", shorts_texture)
@@ -66,7 +75,7 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.material.set_shader_parameter("color_count", 4)
 		preview_image.material.set_shader_parameter("palette_count", 5)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
-	elif type == "trousers":
+	elif data["type"] == "trousers":
 		preview_image.material.shader = tshirt_shader
 		
 		preview_image.material.set_shader_parameter("palette_texture", trousers_texture)
@@ -75,11 +84,11 @@ func display_product_info(sprite: AnimatedSprite2D, type, color, price, shipping
 		preview_image.material.set_shader_parameter("palette_count", 5)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
 	
-	elif type == "boxers":
+	elif data["type"] == "boxers":
 		preview_image.material.shader = tshirt_shader
 		
 		preview_image.material.set_shader_parameter("palette_texture", boxers_texture)
-		preview_image.material.set_shader_parameter("tolerance", 0.1)
+		preview_image.material.set_shader_parameter("tolerance", 0.2)
 		preview_image.material.set_shader_parameter("color_count", 6)
 		preview_image.material.set_shader_parameter("palette_count", 10)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
@@ -102,10 +111,15 @@ func stop_logo() -> void:
 func on_ready() -> void:
 	preview_image.visible = false
 
-func name_generator(brand, color, type, condition) -> String:
+func name_generator(data) -> String:
 	var brand_print = ""
-	var display_color = color
-	var display_type = type
+	var display_color = data["color1"]
+	var display_color2 = data["color2"]
+	
+	var display_type = data["type"]
+	var brand = data["brand"]
+	var type = data["type"]
+	
 	if brand != "none":
 		brand_print = brand.capitalize() + " "
 	elif brand == "none":
@@ -139,4 +153,8 @@ func name_generator(brand, color, type, condition) -> String:
 	elif type == "jungle":
 		display_type = "Jungle CD"
 		display_color = ""
-	return brand_print + display_color + " " + display_type + "."
+	
+	if display_color2 != "" and display_color != "":
+		return brand_print + display_color + " & " + display_color2 + " " + display_type + "."
+	else:
+		return brand_print + display_color + " " + display_type + "."

@@ -1,0 +1,311 @@
+[gd_scene format=3 uid="uid://c31vvu4617r78"]
+
+[ext_resource type="PackedScene" uid="uid://dccm2cqx7r3hk" path="res://scenes/item_ui.tscn" id="1_3tgxq"]
+[ext_resource type="Script" uid="uid://uejvqcpw4hxo" path="res://scripts/selling_ui.gd" id="1_cn1dw"]
+[ext_resource type="Texture2D" uid="uid://w5vi05v5cwoc" path="res://assets/os/icons/down.png" id="2_cn1dw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
+bg_color = Color(0.17823571, 0.40951663, 0.36457154, 1)
+border_width_left = 2
+border_width_top = 5
+border_width_right = 2
+border_width_bottom = 5
+border_color = Color(0.91426766, 0.93909305, 0.9789037, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccrme"]
+bg_color = Color(0.9105786, 0.96863705, 0.96787184, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgxq"]
+bg_color = Color(0.9105786, 0.96863705, 0.96787184, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m3l8"]
+bg_color = Color(0.44422385, 0.5877664, 0.6098973, 1)
+border_width_left = 2
+border_width_top = 5
+border_width_right = 2
+border_width_bottom = 5
+border_color = Color(0.91426766, 0.93909305, 0.9789037, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwrc3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.029117353, 0.1806812, 0.22107518, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="selling UI" type="Control" unique_id=453926443]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cn1dw")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1572891437]
+layout_mode = 0
+offset_top = -10.0
+offset_right = 150.0
+offset_bottom = 180.0
+scale = Vector2(3.6933727, 1.1821021)
+theme_override_styles/panel = SubResource("StyleBoxFlat_6snss")
+
+[node name="item_name" type="Control" parent="." unique_id=1210914329]
+anchors_preset = 0
+offset_left = 7.3867455
+offset_top = 5.9105105
+offset_right = 153.38675
+offset_bottom = 175.9105
+
+[node name="name" type="Panel" parent="item_name" unique_id=120553778]
+layout_mode = 0
+offset_left = 165.61325
+offset_top = 46.08949
+offset_right = 390.61325
+offset_bottom = 81.08949
+theme_override_styles/panel = SubResource("StyleBoxFlat_ccrme")
+
+[node name="name" type="Label" parent="item_name/name" unique_id=1903330605]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "price"
+
+[node name="Label" type="Label" parent="item_name" unique_id=1958979963]
+layout_mode = 0
+offset_left = 168.61325
+offset_top = 17.089489
+offset_right = 264.61325
+offset_bottom = 40.08949
+text = "Item Listing:"
+
+[node name="price" type="Control" parent="." unique_id=1235356184]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 70.0
+offset_right = 155.0
+offset_bottom = 290.0
+
+[node name="name" type="Panel" parent="price" unique_id=858444801]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 27.999996
+offset_right = 352.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3tgxq")
+
+[node name="price" type="Label" parent="price/name" unique_id=178020641]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 51.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.80467606, 0.6819106, 0, 1)
+text = "price"
+
+[node name="Label" type="Label" parent="price" unique_id=1595786363]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 36.999996
+offset_right = 269.0
+offset_bottom = 59.999996
+theme_override_font_sizes/font_size = 20
+text = "Price:"
+
+[node name="clear" type="Button" parent="." unique_id=927173108]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 42.0
+offset_right = 527.0
+offset_bottom = 142.0
+text = "Clear 
+Listing"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1660451385]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -11.0
+offset_right = 163.0
+offset_bottom = 219.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="item UI" parent="MarginContainer" unique_id=2005130059 instance=ExtResource("1_3tgxq")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=2001921481]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 161.0
+offset_right = 536.0
+offset_bottom = 311.0
+scale = Vector2(0.9881497, 1.167264)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1m3l8")
+
+[node name="additional_info" type="Label" parent="." unique_id=1241375945]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 172.0
+offset_right = 546.0
+offset_bottom = 214.0
+theme_override_font_sizes/font_size = 30
+text = "Additional Info:"
+
+[node name="info" type="Control" parent="." unique_id=972866516]
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 226.0
+offset_right = 154.0
+offset_bottom = 266.0
+
+[node name="color" type="Panel" parent="info" unique_id=635519749]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 1.0
+offset_right = 379.0
+offset_bottom = 31.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwrc3")
+
+[node name="color_label" type="Label" parent="info/color" unique_id=228812904]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 105.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.09571596, 0.10536637, 0.09733129, 1)
+theme_override_colors/font_shadow_color = Color(0.4045111, 0.40451115, 0.4045111, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 1
+text = "Item Listing:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="info/color" unique_id=1677926528]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-70, 0)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Color:
+"
+
+[node name="type" type="Panel" parent="info" unique_id=1091204638]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwrc3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="info/type" unique_id=1386836379]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-70, 0)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Type:
+"
+
+[node name="type_label" type="Label" parent="info/type" unique_id=229922044]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 105.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.09571596, 0.10536637, 0.09733129, 1)
+theme_override_colors/font_shadow_color = Color(0.4045111, 0.40451115, 0.4045111, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 1
+text = "Item Listing:"
+
+[node name="condition" type="Panel" parent="info" unique_id=563573992]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 54.0
+offset_right = 153.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwrc3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="info/condition" unique_id=737808567]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-75, 3)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
+text = "Condition:
+"
+
+[node name="condition_label" type="Label" parent="info/condition" unique_id=536655715]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 105.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.09571596, 0.10536637, 0.09733129, 1)
+theme_override_colors/font_shadow_color = Color(0.4045111, 0.40451115, 0.4045111, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 1
+text = "Item Listing:"
+
+[node name="brand" type="Panel" parent="info" unique_id=191090228]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 53.0
+offset_right = 386.0
+offset_bottom = 83.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwrc3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="info/brand" unique_id=1369013507]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 47.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-70, 0)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Brand:
+"
+
+[node name="brand_label" type="Label" parent="info/brand" unique_id=447918868]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 105.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.09571596, 0.10536637, 0.09733129, 1)
+theme_override_colors/font_shadow_color = Color(0.4045111, 0.40451115, 0.4045111, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 1
+text = "Item Listing:"
+
+[node name="info_button" type="Button" parent="." unique_id=50718718]
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 478.0
+offset_top = 172.0
+offset_right = 518.0
+offset_bottom = 212.0
+icon = ExtResource("2_cn1dw")
+expand_icon = true
+
+[connection signal="pressed" from="clear" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="info_button" to="." method="_on_info_button_pressed"]

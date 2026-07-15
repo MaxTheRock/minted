@@ -1,6 +1,7 @@
 extends Node
 
-var current_ui_type = "market"
+var current_ui_type = ""
+var current_market_type = "All"
 var player_inventory: Array = []
 var wardrobe_inventory: Array = []
 var shelf_inventory: Array = []
@@ -8,6 +9,10 @@ var cd_inventory: Array = []
 var display_item: Array = []
 var actual_selling: Array = []
 var player_selling: Array = []
+
+var item_id: int = 0
+var market_items: Dictionary = {}
+
 # global signal
 signal inventories_changed
 

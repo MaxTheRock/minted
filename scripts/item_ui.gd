@@ -15,6 +15,7 @@ extends Control
 signal page_requested(page_name: String) 
 
 var placeable_items: Array = ["cd_player","camera"]
+var market_type = ""
 
 var inventory_index = 0
 var is_parcel = false
@@ -218,7 +219,30 @@ func _ready() -> void:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
 				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
-			
+	
+	elif Inventory.current_ui_type == "display_selling":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.hide()
+		eject_button.hide()
+		grid_container.hide()
+		upload_button.hide()
+		panel_container.custom_maximum_size = Vector2(150,160)
+		$TextureRect.custom_maximum_size = Vector2(150,158)
+		
+		if Inventory.actual_selling:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.actual_selling.size():
+				item.load_data(Inventory.actual_selling[inventory_index])
+		else:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.actual_selling.size():
+				item.load_data(Inventory.actual_selling[inventory_index])
+		
+		
 				
 	if Inventory.current_ui_type == "display":
 		$TextureRect.hide()
@@ -262,6 +286,10 @@ func _on_buy_button_pressed() -> void:
 	Global.money -= item.price
 	ShippingHandler.shipping_list.append([item.get_data(), Global.time_mins])
 	Global.create_mail.emit()
+	var current_item_data = item.get_data()
+	var inventory_index = Inventory.market_items[market_type].find(current_item_data)
+	Inventory.market_items[market_type].pop_at(inventory_index)
+	
 	queue_free()
 
 
@@ -369,6 +397,9 @@ func _on_remove_pressed() -> void:
 func _on_use_pressed() -> void:
 	if item.type == "cd_player":
 		get_tree().change_scene_to_file("res://scenes/cd_player.tscn")
+	elif item.type == "camera":
+		Global.camera_quality = item.condition
+		get_tree().change_scene_to_file("res://scenes/camera.tscn")
 
 
 func _on_use_button_pressed() -> void:
@@ -427,3 +458,6 @@ func _on_upload_button_pressed() -> void:
 	
 func load_data(data):
 	item.load_data(data)	
+
+func get_data():
+	return item.get_data()

@@ -20,8 +20,10 @@ var collectables: Array = ["spud_poster", "beh_enclosed_shirt"]
 var sports: Array = ["beh_enclosed_shirt", "football"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var ID = -1
 var number: int = 0
-var color: String = ""
+var color1: String = ""
+var color2: String = ""
 var shippingTime: float = 0
 var shippingValue: int = 0
 var conditions = ["Poor", "Satisfactory", "Good", "Great", "Excellent", "Minted"]
@@ -94,6 +96,10 @@ func _process(delta):
 			child.rotation_degrees += 160 * delta
 
 func initialize_item(category := "All"):
+	if ID == -1: #has not been assigned an ID
+		ID = Inventory.item_id
+		Inventory.item_id += 1
+		
 	brandmult = 1
 	brand = "none"
 	selected_brand = "none"
@@ -136,36 +142,41 @@ func initialize_item(category := "All"):
 	if type == "shoes":
 		selected_brand = "elemental"
 		brand = "ele_shoes"
-		color = "grey"
+		color1 = "grey"
 	elif type == "cd_player":
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
-		color = "grey"
+		color1 = "grey"
 	elif type == "puzzle_cube":
-		color = "multi"
+		color1 = "multi"
 		brand = "none"
 	elif type == "spud_poster":
-		color = "brown"
+		color1 = "brown"
 	elif type == "beh_enclosed_shirt":
-		color = "turquoise & blue"
+		color1 = "blue"
+		color2 = "cyan"
 	elif type == "potion_poster":
-		color = "purple & black"
+		color1 = "purple"
+		color2 = "black"
 	elif type == "the_big_mint":
-		color = "black & green"
+		color1 = "black"
+		color2 = "green"
 	elif type == "smooth_jazz_1":
-		color = "cream"
+		color1 = "cream"
 	elif type == "camera":
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
-		color = "grey"
+		color1 = "grey"
 	elif type == "three_jelly":
-		color = "green"
+		color1 = "green"
 	elif type == "evil_pulsation":
-		color = "grey"
+		color1 = "grey"
 	elif type == "jungle":
-		color = "green & black"
+		color1 = "green & black"
 	elif type == "football":
-		color = "black & white"
+		color1 = "black"
+		color2 = "white"
+		
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -213,15 +224,15 @@ func get_rarity():
 			rarity_selected -= rarities[n]
 			
 				
-func logo_calculator(color_of_shirt: String) -> void:
+func logo_calculator(color1_of_shirt: String) -> void:
 	selected_brand = brands.pick_random()
 	if selected_brand == "elemental":
 		brandmult = 1.5
 		var rnd_outcome = [1,2].pick_random()
-		if color_of_shirt == "black" and rnd_outcome == 1:
+		if color1_of_shirt == "black" and rnd_outcome == 1:
 			brand = "ele_minimalistic_black"
 			tshirt_logo.animation = "ele_minimalistic_white"
-		elif color_of_shirt == "white" and rnd_outcome == 1:
+		elif color1_of_shirt == "white" and rnd_outcome == 1:
 			tshirt_logo.animation = "ele_minimalistic_black"
 			brand = "ele_minimalistic_white"
 		else:
@@ -254,7 +265,7 @@ func _on_texture_button_mouse_exited():
 	hovering = false
 	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
-		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+		details_ui.display_product_info(sprite_image, get_data())
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		child.stop()
@@ -265,7 +276,7 @@ func _on_texture_button_mouse_exited():
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if Global.inWardrobe == false and Global.inShelf == false:
-			details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+			details_ui.display_product_info(sprite_image, get_data())
 		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
@@ -281,13 +292,13 @@ func _on_frame_timer_timeout():
 func button_enter():
 	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
-		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+		details_ui.display_product_info(sprite_image, get_data())
 	$FrameTimer.start()
 	
 func button_exit():
 	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
-		details_ui.display_product_info(sprite_image, type, color, price, shippingTime, condition, number, selected_brand, cd, genre)
+		details_ui.display_product_info(sprite_image, get_data())
 	$FrameTimer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
@@ -301,16 +312,16 @@ func generate_parameters(type):
 		cd = false
 	if type == "tshirt":
 		number = rng.randi_range(0, colours.size()-1)
-		color = colours[number]
+		color1 = colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		logo_calculator(color)
+		logo_calculator(color1)
 		price = snapped(2.5 * condition_price_mult * rng.randf_range(0.8,1.2) * brandmult,0.01)
 	elif type == "socks":
 		number = rng.randi_range(0, colours.size()-1)
-		color = colours[number]
+		color1 = colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
@@ -319,7 +330,7 @@ func generate_parameters(type):
 	
 	elif type == "trousers":
 		number = rng.randi_range(0, trouser_colours.size()-1)
-		color = trouser_colours[number]
+		color1 = trouser_colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
@@ -328,7 +339,7 @@ func generate_parameters(type):
 		
 	elif type == "shorts":
 		number = rng.randi_range(0, trouser_colours.size()-1)
-		color = trouser_colours[number]
+		color1 = trouser_colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
@@ -336,7 +347,7 @@ func generate_parameters(type):
 		price = snapped(3 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "shoes":
 		number = rng.randi_range(0, colours.size()-1)
-		color = colours[number]
+		color1 = colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 2
 		condition = conditions.pick_random()
@@ -374,7 +385,7 @@ func generate_parameters(type):
 		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 	elif type == "boxers":
 		number = rng.randi_range(0, colours.size()-1)
-		color = colours[number]
+		color1 = colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
@@ -451,7 +462,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		
 		target_sprite.material.set_shader_parameter("palette_texture", socks_texture)
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 6)
+		target_sprite.material.set_shader_parameter("color1_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 		
@@ -460,7 +471,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		
 		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 5)
+		target_sprite.material.set_shader_parameter("color1_count", 5)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "shorts":
@@ -468,7 +479,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		
 		target_sprite.material.set_shader_parameter("palette_texture", shorts_texture)
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 4)
+		target_sprite.material.set_shader_parameter("color1_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "trousers":
@@ -476,15 +487,15 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		
 		target_sprite.material.set_shader_parameter("palette_texture", trousers_texture)
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 4)
+		target_sprite.material.set_shader_parameter("color1_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "boxers":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", boxers_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 6)
+		target_sprite.material.set_shader_parameter("tolerance", 0.2)
+		target_sprite.material.set_shader_parameter("color1_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	else:
@@ -493,9 +504,11 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 #------ for storage
 func get_data() -> Dictionary:
 	return {
+		"ID": ID,
 		"type": type,
 		"number": number,
-		"color": color,
+		"color1": color1,
+		"color2": color2,
 		"price": price,
 		"shippingTime": shippingTime,
 		"shippingValue": shippingValue,
@@ -510,9 +523,11 @@ func get_data() -> Dictionary:
 	}
 
 func load_data(data: Dictionary) -> void:
+	ID = data.get("ID", -1)
 	type = data.get("type", "")
 	number = data.get("number", 0)
-	color = data.get("color", "")
+	color1 = data.get("color1", "")
+	color2 = data.get("color2", "")
 	price = data.get("price", 0)
 	shippingTime = data.get("shippingTime", 0)
 	shippingValue = data.get("shippingValue",1)

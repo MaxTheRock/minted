@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://dw5tjhgs2a7w8"]
+
+[ext_resource type="Texture2D" uid="uid://cuotnvjch1r2h" path="res://assets/photo/photo_base.png" id="1_1hq7u"]
+[ext_resource type="Script" uid="uid://di15u3aqa6kqf" path="res://scripts/photo.gd" id="1_6t3jx"]
+[ext_resource type="Texture2D" uid="uid://id3foyag64yr" path="res://assets/photo/faces/faces/face_1.PNG" id="2_6t3jx"]
+[ext_resource type="Texture2D" uid="uid://dcbopn3dwaosq" path="res://assets/photo/faces/faces/face_2.PNG" id="3_q70nt"]
+[ext_resource type="Texture2D" uid="uid://cdfog4r7l8tgq" path="res://assets/photo/faces/faces/face_3.PNG" id="4_y2diq"]
+[ext_resource type="Texture2D" uid="uid://e33e3ash450c" path="res://assets/photo/faces/faces/face_4.PNG" id="5_t8cgr"]
+[ext_resource type="Texture2D" uid="uid://jijbbjdv02wl" path="res://assets/photo/faces/faces/face_5.PNG" id="6_kbq1w"]
+[ext_resource type="Texture2D" uid="uid://bm5ak1t8uujle" path="res://assets/photo/faces/faces/face_6.PNG" id="7_ybgxs"]
+[ext_resource type="Texture2D" uid="uid://cxftcqgil5pi2" path="res://assets/photo/faces/faces/face_7.PNG" id="8_215b4"]
+[ext_resource type="Texture2D" uid="uid://dprt26y1quxhr" path="res://assets/photo/faces/faces/face_8.PNG" id="9_gwy6v"]
+[ext_resource type="Texture2D" uid="uid://cwia7deh7vajd" path="res://assets/photo/faces/faces/face_9.PNG" id="10_4gcdg"]
+[ext_resource type="Texture2D" uid="uid://bu64ghgmsm2a7" path="res://assets/photo/faces/faces/face_10.PNG" id="11_svt7j"]
+[ext_resource type="Texture2D" uid="uid://dqnxr67f7tdrq" path="res://assets/photo/faces/faces/face_11.PNG" id="12_p7jdn"]
+[ext_resource type="Texture2D" uid="uid://du1mxsk42efw0" path="res://assets/photo/faces/faces/face_12.PNG" id="13_rt685"]
+[ext_resource type="Texture2D" uid="uid://cx5vu0tn7q3lj" path="res://assets/photo/faces/faces/face_13.PNG" id="14_n0p5e"]
+[ext_resource type="Texture2D" uid="uid://blmf4aat80pqa" path="res://assets/photo/faces/faces/face_14.PNG" id="15_2rddj"]
+[ext_resource type="Texture2D" uid="uid://b7oxuqqrj7qci" path="res://assets/photo/faces/faces/face_15.PNG" id="16_qn6hh"]
+[ext_resource type="Texture2D" uid="uid://dqoft67ub58wi" path="res://assets/photo/faces/faces/face_16.PNG" id="17_eo0b2"]
+[ext_resource type="Texture2D" uid="uid://dh7vx1ngce1ro" path="res://assets/photo/faces/faces/face_17.PNG" id="18_er1e1"]
+[ext_resource type="Texture2D" uid="uid://gsyt34av3aut" path="res://assets/photo/faces/faces/face_18.PNG" id="19_pmu2v"]
+[ext_resource type="Texture2D" uid="uid://bsxbedm6qdjny" path="res://assets/photo/faces/faces/face_19.PNG" id="20_amgem"]
+[ext_resource type="Texture2D" uid="uid://cpmyrugyjuabm" path="res://assets/photo/faces/faces/face_20.PNG" id="21_qcg00"]
+[ext_resource type="Texture2D" uid="uid://d4ddkn3sni6mr" path="res://assets/photo/filters/Excellent.PNG" id="23_215b4"]
+[ext_resource type="Texture2D" uid="uid://csm0k2mol58g1" path="res://assets/photo/filters/Good.PNG" id="24_gwy6v"]
+[ext_resource type="Texture2D" uid="uid://coyen5gmhwxmm" path="res://assets/photo/filters/Great.PNG" id="25_4gcdg"]
+[ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="26_svt7j"]
+[ext_resource type="Texture2D" uid="uid://dqjqq50f8typi" path="res://assets/photo/filters/Poor.PNG" id="27_p7jdn"]
+[ext_resource type="Texture2D" uid="uid://776nmq17a1ml" path="res://assets/photo/filters/Satisfactory.PNG" id="28_rt685"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6snss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6t3jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q70nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y2diq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t8cgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kbq1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ybgxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_215b4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gwy6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4gcdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_svt7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p7jdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rt685")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_n0p5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2rddj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_qn6hh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_eo0b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_er1e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pmu2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_amgem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qcg00")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_215b4")
+}],
+"loop": 1,
+"name": &"Excellent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_gwy6v")
+}],
+"loop": 1,
+"name": &"Good",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_4gcdg")
+}],
+"loop": 1,
+"name": &"Great",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_svt7j")
+}],
+"loop": 1,
+"name": &"Minted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_p7jdn")
+}],
+"loop": 1,
+"name": &"Poor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_rt685")
+}],
+"loop": 1,
+"name": &"Satisfactory",
+"speed": 5.0
+}]
+
+[node name="photo" type="Node2D" unique_id=43443440]
+scale = Vector2(2, 2)
+script = ExtResource("1_6t3jx")
+
+[node name="PhotoBase" type="Sprite2D" parent="." unique_id=1548669533]
+position = Vector2(65, 54)
+texture = ExtResource("1_1hq7u")
+
+[node name="faces" type="AnimatedSprite2D" parent="." unique_id=99147826]
+position = Vector2(59, 24)
+sprite_frames = SubResource("SpriteFrames_6snss")
+
+[node name="filter" type="AnimatedSprite2D" parent="." unique_id=1654405258]
+position = Vector2(65.333336, 54.333336)
+sprite_frames = SubResource("SpriteFrames_ccrme")
+animation = &"Satisfactory"

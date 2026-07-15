@@ -14,12 +14,21 @@ func _on_button_pressed() -> void:
 func generate_items(grid: GridContainer, category: String, amount: int):
 	Inventory.current_ui_type = "market"
 	var packed = preload("res://scenes/item_ui.tscn")
-
-	for i in range(amount):
-		var item_ui = packed.instantiate()
-		grid.add_child(item_ui)
-		item_ui.get_node("item").initialize_item(category)
 	
+	if not Inventory.market_items.has(category):
+		Inventory.market_items[category] = []
+		for i in range(amount):
+			var item_ui = packed.instantiate()
+			grid.add_child(item_ui)
+			item_ui.get_node("item").initialize_item(category)
+			item_ui.market_type = category
+			Inventory.market_items[category].append(item_ui.get_data())
+	else:
+		for data in Inventory.market_items[category]:
+			var item_ui = packed.instantiate()
+			grid.add_child(item_ui)
+			item_ui.get_node("item").load_data(data)
+			
 func _ready():
 	$Selling.page_requested.connect(show_page)
 	generate_items($Market/VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer/GridContainer, "All", 15)
