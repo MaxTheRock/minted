@@ -13,19 +13,16 @@ extends Control
 @onready var sports = $VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer
 
 
-var percent = 100
-
 func _ready() -> void:
 	Global.inShelf = false
 	Global.inWardrobe = false
 
 func _on_button_pressed() -> void:
-	if Inventory.current_market_type != "" and percent >= 100:
+	if Inventory.current_market_type != "" and Global.refreshProgress >= 100:
 		Inventory.current_ui_type = "market"
 		Inventory.market_items[Inventory.current_market_type] = []
 		progress.value = 0
-		percent = 0
-		
+		Global.refreshProgress = 0
 		var packed = preload("res://scenes/item_ui.tscn")
 		var category = Inventory.current_market_type
 		
@@ -118,11 +115,9 @@ func _on_tab_container_tab_selected(tab: int) -> void:
 		print("active market category: ", Inventory.current_market_type)
 
 func _process(delta: float) -> void:
-	if percent >= 100:
+	if Global.refreshProgress >= 100:
 		progress.hide()
-		print(percent)
 	else:
 		progress.show()
-	
-	percent += delta*10 # will change this into 4 hours of in game time.
-	progress.value = percent
+
+	progress.value = min(Global.refreshProgress,100)

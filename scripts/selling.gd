@@ -14,7 +14,9 @@ var current_text = ""
 @onready var brand_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Brand"
 @onready var price_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Price"
 @onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/display_error"
-
+@onready var item_count = $Sections/Centre/TabContainer/sell_list/Label
+var template = "Items: {items}/{storage}"
+	
 func _ready() -> void:
 	_build_page()
 
@@ -83,17 +85,38 @@ func _on_sell_button_pressed() -> void:
 		exeption_message.text = "Please select a condition."
 	elif Inventory.display_item.size() == 0:
 		exeption_message.text = "Please upload a picture."
+	elif Inventory.player_selling.size() >= 10:
+		exeption_message.text = "Cannot sell any more items."
 	else:
 		if current_text == "":
 			current_text = condition_display.get_item_text(condition_display.selected)
 			
 		Inventory.transfer_item(Inventory.display_item,
 		Inventory.actual_selling, 0)
+		
+		var color = color_display.text
+		var color1 = ""
+		var color2 = ""
+		var colors = color.split(" ") 
+		if colors.size() >= 3:
+			for col in colors:
+				if col == "+" or col == "&" or col.to_lower() == "and":
+					colors.erase(col)
+		if colors.size() == 2:
+			color1 = colors[0]
+			color2 = colors[1]
+		elif colors.size() == 1:
+			color1 = colors[0]
+			color2 = "none"
+			
+				
 		var display_dict: Dictionary = {
 			"name": name_display.text,
 			"type": type_display.text,
 			"condition": current_text,
 			"color": color_display.text,
+			"color1": color1,
+			"color2": color2,
 			"price": price_written,
 			"brand": brand_display.text,
 		}
@@ -110,3 +133,7 @@ func _on_sell_button_pressed() -> void:
 
 func _on_condition_item_selected(index: int) -> void:
 	current_text = condition_display.get_item_text(index)
+
+func _process(delta: float) -> void:
+
+	item_count.text = template.format({"items":Inventory.player_selling.size(),"storage":10})

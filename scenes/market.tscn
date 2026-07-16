@@ -563,6 +563,7 @@ fill_mode = 4
 texture_under = ExtResource("12_k7ps5")
 texture_progress = SubResource("GradientTexture2D_4okcq")
 
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="tab_selected" from="VBoxContainer/Sections/Centre/TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="ready" from="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/MarginContainer/TextureRect" to="VBoxContainer/Sections/Product_Details" method="_on_texture_rect_ready"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

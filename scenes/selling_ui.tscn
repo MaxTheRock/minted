@@ -28,9 +28,9 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m3l8"]
 bg_color = Color(0.44422385, 0.5877664, 0.6098973, 1)
-border_width_left = 2
+border_width_left = 5
 border_width_top = 5
-border_width_right = 2
+border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.91426766, 0.93909305, 0.9789037, 1)
 
@@ -104,10 +104,10 @@ offset_bottom = 290.0
 
 [node name="name" type="Panel" parent="price" unique_id=858444801]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 27.999996
-offset_right = 352.0
-offset_bottom = 78.0
+offset_left = 238.0
+offset_top = 33.999996
+offset_right = 358.0
+offset_bottom = 77.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3tgxq")
 
 [node name="price" type="Label" parent="price/name" unique_id=178020641]
@@ -154,8 +154,7 @@ layout_mode = 0
 offset_left = 36.0
 offset_top = 161.0
 offset_right = 536.0
-offset_bottom = 311.0
-scale = Vector2(0.9881497, 1.167264)
+offset_bottom = 341.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1m3l8")
 
 [node name="additional_info" type="Label" parent="." unique_id=1241375945]
