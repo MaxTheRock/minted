@@ -3,6 +3,7 @@ extends Node
 var shipping_list: Array = []
 var shipping_value: int = 0
 var delivered_list: Array = []
+var mail_user_list: Array = []
 
 func _process(delta: float) -> void:
 	Inventory.current_ui_type = "shipping"

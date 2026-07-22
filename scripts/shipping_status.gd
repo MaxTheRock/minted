@@ -8,11 +8,11 @@ extends Control
 var estimated_hours = 0
 var timer = 3
 var shipping_entry = null
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
+	visible = false
 	if shipping_entry:
 		item_display.load_data(shipping_entry[0])
-
 
 func _process(delta: float) -> void:
 	if shipping_entry == null:
@@ -24,7 +24,13 @@ func _process(delta: float) -> void:
 	if estimated_hours > 0:
 		estimate.text = "Estimated delivery time - " + str(int(round(estimated_hours))) + " hours"
 	elif estimated_hours > -1 and timer > 0:
-		timer -= delta # deletes completes delivery text after a second.
+		timer -= delta
 		estimate.text = "Parcel has delivered."
 	else:
 		queue_free()
+
+func show_only(node_to_show: Control):
+	for child in $Container.get_children():
+		child.visible = false
+
+	node_to_show.visible = true

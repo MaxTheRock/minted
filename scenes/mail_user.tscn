@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c7p47o7mucht3"]
 
-[ext_resource type="Texture2D" uid="uid://c1xo0odtkro8h" path="res://assets/default_pfp.png" id="1_4the7"]
 [ext_resource type="Script" uid="uid://b58wrow8u7ql8" path="res://scripts/mail_user.gd" id="1_5jt3h"]
+[ext_resource type="Texture2D" uid="uid://jp8x71olgos" path="res://assets/brand_icons/shippley/wallpaper_shippley.png" id="2_seybc"]
+[ext_resource type="Texture2D" uid="uid://dptsyh77eukpj" path="res://assets/brand_icons/shippley/shippley_logo.png" id="3_xkhmy"]
 
 [node name="MailUser" type="Control" unique_id=179058187]
 custom_minimum_size = Vector2(300, 150)
@@ -15,41 +16,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5jt3h")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2077551615]
+[node name="Button" type="Button" parent="." unique_id=300814563]
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 126.5
+toggle_mode = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Button" unique_id=2077551615]
 layout_mode = 0
 offset_right = 404.0
 offset_bottom = 127.0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=278631724]
+[node name="VBoxContainer" type="VBoxContainer" parent="Button/PanelContainer" unique_id=278631724]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NamenTime" type="Label" parent="PanelContainer/VBoxContainer" unique_id=620952769]
+[node name="NamenTime" type="Label" parent="Button/PanelContainer/VBoxContainer" unique_id=620952769]
 layout_mode = 2
-text = "Name: 6:30pm"
+text = "SDS - Shippley Delivery Service  =  6:30pm"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1491017712]
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/PanelContainer/VBoxContainer" unique_id=1491017712]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=767869226]
+[node name="MarginContainer" type="MarginContainer" parent="Button/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1698943409]
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="Button/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=419458036]
+texture_repeat = 2
+layout_mode = 2
+texture = ExtResource("2_seybc")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Button/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=767869226]
 custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
 offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
 mouse_filter = 2
-texture = ExtResource("1_4the7")
+texture = ExtResource("3_xkhmy")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Latest_Message" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=183127891]
+[node name="Latest_Message" type="MarginContainer" parent="Button/PanelContainer/VBoxContainer/HBoxContainer" unique_id=183127891]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/Latest_Message" unique_id=1487718808]
+[node name="Label" type="Label" parent="Button/PanelContainer/VBoxContainer/HBoxContainer/Latest_Message" unique_id=1487718808]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.6431373)
-text = "Thanks for buying, we will send your parcel when we want to. "
+text = "Your parcel is on its way! Your tracking information is shown below. For further information your ident..."
 autowrap_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
