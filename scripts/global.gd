@@ -61,7 +61,11 @@ func new_time_calc(min_added: int) -> void:
 				year += 1
 
 func get_time_text() -> String:
-	return format_time(hour) + ":" + format_time(min) + " " + format_time(day) + "/" + format_time(month) + "/" + format_time(year)
+	return format_time(hour) + ":" + format_time(min)
+
+func get_date_text() -> String:
+	return format_time(day) + "/" + format_time(month) + "/" + format_time(year)
+
 
 func calc_days_in_month(month, year) -> int:
 	if month in months_31:
