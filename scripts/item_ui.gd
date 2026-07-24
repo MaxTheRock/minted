@@ -304,6 +304,7 @@ func _on_take_button_mouse_exited() -> void:
 func _on_take_button_pressed() -> void:
 	if is_parcel:
 		if Inventory.player_inventory.size() <= 1:
+			ShippingHandler.shipping_value -= item.shippingValue
 			var current_item_data = item.get_data()
 			var trimmed_list = []
 			for item in ShippingHandler.delivered_list:

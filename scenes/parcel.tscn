@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://c3jaeqh4gycfo"]
 
 [ext_resource type="Script" uid="uid://dca7nmf1xgssp" path="res://scripts/box.gd" id="1_40veq"]
+[ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/room.png" id="2_fve4f"]
+[ext_resource type="PackedScene" uid="uid://srrkw1j4nlaa" path="res://scenes/parcels.tscn" id="3_7w5s1"]
+[ext_resource type="Script" uid="uid://bi18asxnt023v" path="res://scripts/parcel.gd" id="4_3o1h4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40veq"]
 content_margin_left = 10.0
@@ -31,6 +34,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_40veq")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1668318763]
+layout_mode = 0
+offset_left = -1771.0
+offset_top = -182.0
+offset_right = 2520.5552
+offset_bottom = 2232.0
+texture = ExtResource("2_fve4f")
+
 [node name="Close" type="Button" parent="." unique_id=281439670]
 layout_mode = 0
 offset_left = 21.0
@@ -45,10 +56,10 @@ text = "X"
 [node name="items" type="MarginContainer" parent="." unique_id=1275630380]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 0
-offset_left = 129.0
-offset_top = 48.0
-offset_right = 781.0
-offset_bottom = 608.0
+offset_left = 614.0
+offset_top = 17.0
+offset_right = 1266.0
+offset_bottom = 384.0
 theme_override_constants/margin_left = 47
 theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 46
@@ -69,10 +80,10 @@ columns = 4
 [node name="inventory" type="MarginContainer" parent="." unique_id=981788832]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 0
-offset_left = 819.0
-offset_top = 273.0
-offset_right = 1191.0
-offset_bottom = 573.0
+offset_left = 895.0
+offset_top = 402.0
+offset_right = 1267.0
+offset_bottom = 702.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -97,5 +108,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
+
+[node name="Parcels" parent="." unique_id=798899600 instance=ExtResource("3_7w5s1")]
+layout_mode = 1
+offset_left = 230.0
+offset_top = 295.0
+offset_right = 284.22217
+offset_bottom = 325.5
+scale = Vector2(6, 6)
+script = ExtResource("4_3o1h4")
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

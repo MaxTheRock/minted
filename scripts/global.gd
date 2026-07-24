@@ -10,6 +10,8 @@ var music_volume: int = -10
 var sfx_volume: int = -5
 var camera_quality = "Good"
 var refreshProgress = 100
+var player_saved_x = 0
+var player_saved_y = 0
 signal pause_toggled(is_paused: bool)
 signal eject
 signal create_mail
@@ -27,7 +29,7 @@ var clock_timer = 0.0
 var paused = false
 
 const CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
-const SPEED_MULT = 1 # just makes time even faster, default to 1.
+const SPEED_MULT = 10 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
