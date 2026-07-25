@@ -80,6 +80,7 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 
 @onready var details_ui = get_node_or_null("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
+@onready var frame_timer = $FrameTimer
 
 func _process(delta):
 	if !hovering:
@@ -259,14 +260,14 @@ func _on_texture_button_mouse_entered():
 	
 	if type in items_with_regular_animation:
 		counter = 0
-	$FrameTimer.start()
+	frame_timer.start()
 
 func _on_texture_button_mouse_exited():
 	hovering = false
 	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 		details_ui.display_product_info(sprite_image, get_data())
-	$FrameTimer.stop()
+	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		child.stop()
 		if child.owner == self:
@@ -287,19 +288,22 @@ func _on_frame_timer_timeout():
 			if Global.inWardrobe == false and Global.inShelf == false:
 				details_ui.display_logo(tshirt_logo, brand,new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
-			child.play("default")
+			if not child.is_playing():
+				child.play("default")
+			display_fps(child.sprite_frames.get_animation_speed(child.animation))
+			
 
 func button_enter():
 	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 		details_ui.display_product_info(sprite_image, get_data())
-	$FrameTimer.start()
+	frame_timer.start()
 	
 func button_exit():
 	if Global.inWardrobe == false and Global.inShelf == false:
 		details_ui.display_logo(tshirt_logo, brand,0)
 		details_ui.display_product_info(sprite_image, get_data())
-	$FrameTimer.stop()
+	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
 			child.frame = 0
@@ -454,6 +458,9 @@ func condition_mult_calc(condition: String) -> float:
 	else:
 		return 1.0
 
+func display_fps(fps):
+	frame_timer.wait_time = 1/fps
+	
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
 	if target_sprite.material == null:
 		target_sprite.material = ShaderMaterial.new()
