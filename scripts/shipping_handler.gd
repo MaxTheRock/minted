@@ -6,7 +6,7 @@ var delivered_list: Array = []
 var mail_user_list: Array = []
 
 func _process(delta: float) -> void:
-	Inventory.current_ui_type = "shipping"
+	#Inventory.current_ui_type = "shipping"
 	for i in shipping_list:
 		var entry = i
 		var progress = get_progress(entry)

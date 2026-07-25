@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://dpgwvowos1n7g"]
+
+[ext_resource type="Script" uid="uid://dobygv5tj146e" path="res://scripts/poster_script.gd" id="1_k0mpp"]
+[ext_resource type="Script" uid="uid://c7ybfo8tiw0an" path="res://scripts/texture_button.gd" id="2_xjijs"]
+[ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="14_g1b73"]
+[ext_resource type="Texture2D" uid="uid://cv41xyf8st72r" path="res://assets/items/potion_poster/potion_poster.png" id="16_bvkls"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twbge"]
+atlas = ExtResource("14_g1b73")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_243t2"]
+atlas = ExtResource("14_g1b73")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwylo"]
+atlas = ExtResource("14_g1b73")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe6rj"]
+atlas = ExtResource("14_g1b73")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c3da"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twbge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_243t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwylo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe6rj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdfv5"]
+atlas = ExtResource("16_bvkls")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdrl4"]
+atlas = ExtResource("16_bvkls")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujcq7"]
+atlas = ExtResource("16_bvkls")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7g51"]
+atlas = ExtResource("16_bvkls")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qtv2"]
+atlas = ExtResource("16_bvkls")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s800r"]
+atlas = ExtResource("16_bvkls")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sowbf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdfv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdrl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujcq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7g51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qtv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s800r")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="poster_item" type="Node2D" unique_id=942505978]
+script = ExtResource("1_k0mpp")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1967034513]
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("2_xjijs")
+
+[node name="spud_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=573951217 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_4c3da")
+frame_progress = 0.63871384
+
+[node name="potion_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=1550037590 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_sowbf")
+frame_progress = 0.40995625
+
+[node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
+wait_time = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1359772644]
+
+[connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="_on_texture_button_mouse_exited"]
+[connection signal="timeout" from="FrameTimer" to="." method="_on_frame_timer_timeout"]

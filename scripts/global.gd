@@ -12,6 +12,7 @@ var camera_quality = "Good"
 var refreshProgress = 100
 var player_saved_x = 0
 var player_saved_y = 0
+var room_poster = ""
 signal pause_toggled(is_paused: bool)
 signal eject
 signal create_mail

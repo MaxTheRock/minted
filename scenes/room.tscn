@@ -8,12 +8,20 @@
 [ext_resource type="Script" uid="uid://bummubx5xkx6u" path="res://scripts/parcels.gd" id="4_7dqbv"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="4_14vil"]
 [ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="5_jxe34"]
+[ext_resource type="Script" uid="uid://dkdv0h01l33ky" path="res://scripts/poster.gd" id="6_ybpoa"]
+[ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="7_qtoah"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
-radius = 127.09839
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtoah"]
+radius = 104.26311
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxe34"]
 size = Vector2(413, 206.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eom3m"]
+size = Vector2(100, 257.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qnalp"]
+radius = 127.09839
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -50,8 +58,8 @@ position = Vector2(38.5, 13.5)
 scale = Vector2(0.65999997, 0.32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parcels/Area2D" unique_id=1926348386]
-position = Vector2(-17, 32)
-shape = SubResource("CircleShape2D_qnalp")
+position = Vector2(-34.09091, 48.437508)
+shape = SubResource("CircleShape2D_qtoah")
 
 [node name="Label" type="Label" parent="Parcels" unique_id=629886725]
 layout_mode = 0
@@ -81,6 +89,29 @@ position = Vector2(1, 0)
 position = Vector2(-10.5, -47.25)
 shape = SubResource("RectangleShape2D_jxe34")
 
+[node name="Poster" type="Sprite2D" parent="." unique_id=84297382]
+position = Vector2(-17, 302)
+script = ExtResource("6_ybpoa")
+
+[node name="Label" type="Label" parent="Poster" unique_id=81270908]
+offset_left = 233.0
+offset_top = -538.0
+offset_right = 334.0
+offset_bottom = -515.0
+text = "Poster [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Poster" unique_id=1860751751]
+position = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poster/Area2D" unique_id=1306420848]
+position = Vector2(263, -528.625)
+shape = SubResource("RectangleShape2D_eom3m")
+
+[node name="poster_item" parent="Poster" unique_id=942505978 instance=ExtResource("7_qtoah")]
+position = Vector2(202, -656)
+scale = Vector2(2, 2)
+
 [node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_14vil")]
 position = Vector2(47, 109)
 
@@ -99,7 +130,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Area2D" type="Area2D" parent="Storage" unique_id=1097988032]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Storage/Area2D" unique_id=1060257465]
-position = Vector2(-17, 32)
+position = Vector2(-16, 76)
 shape = SubResource("CircleShape2D_qnalp")
 
 [node name="Shelf" type="Sprite2D" parent="." unique_id=760899138]
@@ -155,6 +186,8 @@ columns = 2
 [connection signal="body_exited" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Computer/Area2D" to="Computer" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Poster/Area2D" to="Poster" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Poster/Area2D" to="Poster" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_body_entered"]

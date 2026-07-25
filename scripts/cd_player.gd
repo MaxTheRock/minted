@@ -50,7 +50,7 @@ func _on_eject_pressed() -> void:
 func _on_global_pause_toggled(is_paused: bool) -> void:	
 	AudioManager.pause(is_paused)
 
-
+ 
 func _on_global_eject() -> void:
 	if Inventory.player_inventory.size() < 2:
 		AudioManager.eject()

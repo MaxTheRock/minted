@@ -15,8 +15,8 @@ func _ready():
 	for entry in ShippingHandler.shipping_list:
 		_on_create_mail(entry)
 
-
 func _on_create_mail(entry = null):
+	Inventory.current_ui_type = "shipping"
 	if entry == null and not ShippingHandler.shipping_list.is_empty():
 		entry = ShippingHandler.shipping_list[-1]
 	var mail = mail_user_scene.instantiate()
