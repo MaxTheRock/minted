@@ -4,15 +4,14 @@ extends Control
 @onready var poster_item_container = $poster_item/TextureButton
 
 var item_ui_scene = preload("res://scenes/item_ui.tscn")
-var selected_poster: String = Global.room_poster
 
 
 func _ready() -> void:
 	Inventory.current_ui_type = "poster"
 	for item in poster_item_container.get_children():
 		item.hide()
-	if selected_poster != "":
-		var poster = poster_item_container.get_node_or_null(selected_poster)
+	if Inventory.display_poster.size() > 0:
+		var poster = poster_item_container.get_node_or_null(Inventory.display_poster[0]["type"])
 		if poster != null:
 			poster.show()
 
@@ -35,16 +34,24 @@ func load_inventory() -> void:
 
 
 func _on_poster_selected(item_data: Dictionary) -> void:
-	
 	for poster in poster_item_container.get_children():
 		poster.hide()
 	var poster_type: String = item_data.get("type", "")
 	var poster = poster_item_container.get_node_or_null(poster_type)
 	if poster != null:
-		selected_poster = poster_type
-		Global.room_poster = poster_type
 		poster.show()
 
 
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/room.tscn")
+
+
+func _on_put_back_pressed() -> void:
+	if Inventory.display_poster.size() > 0:
+		Inventory.transfer_item(
+					Inventory.display_poster,
+					Inventory.player_inventory,
+					0
+				)
+	get_tree().reload_current_scene()
+	

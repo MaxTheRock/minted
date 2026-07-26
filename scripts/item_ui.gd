@@ -405,6 +405,13 @@ func _on_place_button_button_up() -> void:
 func _on_place_button_pressed() -> void:
 	print(Inventory.current_ui_type)
 	if Inventory.current_ui_type == "poster":
+		var current_item_data = item.get_data()
+		inventory_index = Inventory.player_inventory.find(current_item_data)
+		Inventory.transfer_item(
+				Inventory.player_inventory,
+				Inventory.display_poster,
+				inventory_index
+			)
 		poster_selected.emit(item.get_data())
 		return
 

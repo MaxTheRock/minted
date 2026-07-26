@@ -88,4 +88,14 @@ columns = 2
 position = Vector2(147.99998, 2.9999998)
 scale = Vector2(7, 7)
 
+[node name="put_back" type="Button" parent="." unique_id=1438202216]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 491.0
+offset_right = 517.0
+offset_bottom = 611.0
+theme_override_font_sizes/font_size = 30
+text = "put back"
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="put_back" to="." method="_on_put_back_pressed"]

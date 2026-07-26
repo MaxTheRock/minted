@@ -9,6 +9,7 @@ var cd_inventory: Array = []
 var display_item: Array = []
 var actual_selling: Array = []
 var player_selling: Array = []
+var display_poster: Array = []
 
 var item_id: int = 0
 var market_items: Dictionary = {}
