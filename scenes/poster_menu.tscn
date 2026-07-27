@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dx0cwg4hnjsl6"]
 
 [ext_resource type="Script" uid="uid://wk44d2urwwny" path="res://scripts/poster_menu.gd" id="1_1f6ci"]
-[ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/room.png" id="2_1f6ci"]
+[ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/old_room.png" id="2_1f6ci"]
 [ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="3_dd176"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]

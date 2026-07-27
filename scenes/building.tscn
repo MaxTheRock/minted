@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bs2geidmgyaeh"]
+
+[ext_resource type="Texture2D" uid="uid://bp1047q7r7k1h" path="res://assets/room/room_template.png" id="1_n8bkc"]
+[ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="2_ejq8p"]
+[ext_resource type="Texture2D" uid="uid://1jctyxr0fxeh" path="res://assets/room/broke/broke_floor.png" id="3_rla3o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvy8r"]
+bg_color = Color(0.8474744, 0.84747446, 0.84747446, 1)
+
+[node name="Building" type="Node2D" unique_id=2101118295]
+
+[node name="Background" type="PanelContainer" parent="." unique_id=790604640]
+offset_left = -641.0
+offset_top = -361.0
+offset_right = 641.0
+offset_bottom = 361.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uvy8r")
+
+[node name="template" type="Sprite2D" parent="." unique_id=1317997496]
+scale = Vector2(2, 2)
+texture = ExtResource("1_n8bkc")
+
+[node name="walls" type="Sprite2D" parent="." unique_id=1810467751]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ejq8p")
+
+[node name="floor" type="Sprite2D" parent="." unique_id=805817670]
+scale = Vector2(2, 2)
+texture = ExtResource("3_rla3o")
