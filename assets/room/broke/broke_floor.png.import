@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5pxw6i1bllbk"
-path="res://.godot/imported/room.png-7f06d319f8f3173fbb1166c5076150af.ctex"
+uid="uid://1jctyxr0fxeh"
+path="res://.godot/imported/broke_floor.png-bbf576b0554674a8d623a0e151f518a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/room/room.png"
-dest_files=["res://.godot/imported/room.png-7f06d319f8f3173fbb1166c5076150af.ctex"]
+source_file="res://assets/room/broke/broke_floor.png"
+dest_files=["res://.godot/imported/broke_floor.png-bbf576b0554674a8d623a0e151f518a3.ctex"]
 
 [params]
 
