@@ -3,18 +3,31 @@
 [ext_resource type="Texture2D" uid="uid://bp1047q7r7k1h" path="res://assets/room/room_template.png" id="1_n8bkc"]
 [ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="2_ejq8p"]
 [ext_resource type="Texture2D" uid="uid://1jctyxr0fxeh" path="res://assets/room/broke/broke_floor.png" id="3_rla3o"]
+[ext_resource type="Texture2D" uid="uid://cop04idyjaq6l" path="res://assets/room/broke/broke_door.png" id="4_7huw0"]
+[ext_resource type="PackedScene" uid="uid://srrkw1j4nlaa" path="res://scenes/parcels.tscn" id="4_iwd2d"]
+[ext_resource type="Script" uid="uid://bummubx5xkx6u" path="res://scripts/parcels.gd" id="5_7huw0"]
+[ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="6_blq7k"]
+[ext_resource type="Script" uid="uid://dkdv0h01l33ky" path="res://scripts/poster.gd" id="7_nm462"]
+[ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="8_jc16f"]
+[ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="9_g4d30"]
+[ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="10_jrfpq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvy8r"]
-bg_color = Color(0.8474744, 0.84747446, 0.84747446, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l4d1"]
+size = Vector2(120.45455, 225.31253)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nge4r"]
+size = Vector2(237, 95.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gur"]
+size = Vector2(155, 184.3125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yw3a"]
+size = Vector2(113, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6gie"]
+size = Vector2(83.98825, 154.61908)
 
 [node name="Building" type="Node2D" unique_id=2101118295]
-
-[node name="Background" type="PanelContainer" parent="." unique_id=790604640]
-offset_left = -641.0
-offset_top = -361.0
-offset_right = 641.0
-offset_bottom = 361.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_uvy8r")
 
 [node name="template" type="Sprite2D" parent="." unique_id=1317997496]
 scale = Vector2(2, 2)
@@ -27,3 +40,138 @@ texture = ExtResource("2_ejq8p")
 [node name="floor" type="Sprite2D" parent="." unique_id=805817670]
 scale = Vector2(2, 2)
 texture = ExtResource("3_rla3o")
+
+[node name="door" type="Sprite2D" parent="." unique_id=1608178060]
+position = Vector2(0, -152)
+scale = Vector2(2, 2)
+texture = ExtResource("4_7huw0")
+
+[node name="collisions" type="StaticBody2D" parent="." unique_id=1453865646]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=1854077721]
+polygon = PackedVector2Array(-307, -76, 279, -75, 348, 194, 347, 249, -377, 250, -379, 195, -309, -76, -306, -54, -375, 223, -376, 228, 346, 229, 345, 219, 276, -56, 274, -53, -305, -54)
+
+[node name="Parcels" parent="." unique_id=798899600 instance=ExtResource("4_iwd2d")]
+offset_left = -34.0
+offset_top = -85.0
+offset_right = -34.0
+offset_bottom = -85.0
+script = ExtResource("5_7huw0")
+
+[node name="Area2D" type="Area2D" parent="Parcels" unique_id=1694951760]
+position = Vector2(38.5, 13.5)
+scale = Vector2(0.65999997, 0.32)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parcels/Area2D" unique_id=1242078354]
+position = Vector2(-31.4394, -32.96875)
+shape = SubResource("RectangleShape2D_6l4d1")
+
+[node name="Label" type="Label" parent="Parcels" unique_id=224476471]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -23.0
+offset_right = 75.0
+scale = Vector2(0.5, 0.5)
+text = "Collect [F]"
+
+[node name="Computer" type="Sprite2D" parent="." unique_id=1867859156]
+position = Vector2(-17, 302)
+script = ExtResource("6_blq7k")
+
+[node name="Label" type="Label" parent="Computer" unique_id=237188752]
+offset_left = -38.0
+offset_top = -200.0
+offset_right = 63.0
+offset_bottom = -177.0
+text = "Computer [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Computer" unique_id=1176618904]
+position = Vector2(1, 0)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1852202949]
+position = Vector2(13.5, -125.375)
+shape = SubResource("RectangleShape2D_nge4r")
+
+[node name="Poster" type="Sprite2D" parent="." unique_id=2064951654]
+position = Vector2(-17, 302)
+script = ExtResource("7_nm462")
+
+[node name="Label" type="Label" parent="Poster" unique_id=25234462]
+offset_left = -213.0
+offset_top = -404.0
+offset_right = -112.0
+offset_bottom = -381.0
+text = "Poster [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Poster" unique_id=1648176903]
+position = Vector2(1, 0)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poster/Area2D" unique_id=1168374791]
+position = Vector2(-173.5, -446.84375)
+shape = SubResource("RectangleShape2D_s0gur")
+
+[node name="poster_item" parent="Poster" unique_id=942505978 instance=ExtResource("8_jc16f")]
+position = Vector2(-238, -532)
+scale = Vector2(2, 2)
+
+[node name="Storage" type="Sprite2D" parent="." unique_id=1536087972]
+position = Vector2(493, -217)
+script = ExtResource("9_g4d30")
+
+[node name="Label" type="Label" parent="Storage" unique_id=1602704653]
+offset_left = -325.0
+offset_top = -30.0
+offset_right = -224.0
+offset_bottom = -7.0
+text = "Storage [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Storage" unique_id=571986441]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Storage/Area2D" unique_id=1965242888]
+position = Vector2(-276, 91)
+shape = SubResource("RectangleShape2D_4yw3a")
+
+[node name="Shelf" type="Sprite2D" parent="." unique_id=433187156]
+position = Vector2(493, -217)
+script = ExtResource("10_jrfpq")
+
+[node name="Label" type="Label" parent="Shelf" unique_id=1992749825]
+offset_left = -822.0
+offset_top = 291.0
+offset_right = -721.0
+offset_bottom = 314.0
+text = "Shelf [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Shelf" unique_id=1293250216]
+position = Vector2(-1025, 188)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf/Area2D" unique_id=639157772]
+position = Vector2(203, 43.999996)
+rotation = 0.18544084
+shape = SubResource("RectangleShape2D_n6gie")
+
+[connection signal="area_entered" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Computer/Area2D" to="Computer" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Computer/Area2D" to="Computer" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Poster/Area2D" to="Poster" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Poster/Area2D" to="Poster" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Storage/Area2D" to="Storage" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_area_exited"]

@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://jpt5cerd61ct" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bvh50ksmcbxhf" path="res://assets/player/directions.png" id="2_g2els"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(56, 166)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
 region = Rect2(0, 0, 64, 100)
@@ -57,14 +54,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
+size = Vector2(24, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pjmv"]
+size = Vector2(41, 122)
+
 [node name="player" type="Node2D" unique_id=1318553151]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=923979185]
+collision_layer = 2
 script = ExtResource("1_g2els")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=165784921]
-position = Vector2(-4, 9)
-shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Player" type="AnimatedSprite2D" parent="Player" unique_id=1083422136]
 position = Vector2(0, -2)
@@ -72,3 +72,17 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6snss")
 animation = &"down"
 autoplay = "down"
+
+[node name="building_collision" type="CollisionShape2D" parent="Player" unique_id=344316980]
+position = Vector2(-3, 85)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_4c3da")
+debug_color = Color(0.381612, 0.11398546, 0.024642583, 0.41960785)
+
+[node name="Player_Detector" type="Area2D" parent="Player" unique_id=603105424]
+collision_layer = 2
+
+[node name="detection" type="CollisionShape2D" parent="Player/Player_Detector" unique_id=1866695373]
+position = Vector2(-2.5, 17)
+shape = SubResource("RectangleShape2D_4pjmv")
+debug_color = Color(1, 1, 0, 0.41960785)
