@@ -1,20 +1,14 @@
 extends Control
 
 @onready var inventory_grid = $inventory/ScrollContainer/GridContainer
-@onready var poster_item_container = $poster_item/TextureButton
+@onready var put_back_button = $put_back
 
 var item_ui_scene = preload("res://scenes/item_ui.tscn")
 
 
 func _ready() -> void:
 	Inventory.current_ui_type = "poster"
-	for item in poster_item_container.get_children():
-		item.hide()
-	if Inventory.display_poster.size() > 0:
-		var poster = poster_item_container.get_node_or_null(Inventory.display_poster[0]["type"])
-		if poster != null:
-			poster.show()
-
+	put_back_button.hide()
 	load_inventory()
 
 
@@ -34,12 +28,8 @@ func load_inventory() -> void:
 
 
 func _on_poster_selected(item_data: Dictionary) -> void:
-	for poster in poster_item_container.get_children():
-		poster.hide()
 	var poster_type: String = item_data.get("type", "")
-	var poster = poster_item_container.get_node_or_null(poster_type)
-	if poster != null:
-		poster.show()
+	put_back_button.show()
 
 
 func _on_close_pressed() -> void:
@@ -48,6 +38,7 @@ func _on_close_pressed() -> void:
 
 func _on_put_back_pressed() -> void:
 	if Inventory.display_poster.size() > 0:
+		put_back_button.hide()
 		Inventory.transfer_item(
 					Inventory.display_poster,
 					Inventory.player_inventory,

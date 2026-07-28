@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://dx0cwg4hnjsl6"]
 
 [ext_resource type="Script" uid="uid://wk44d2urwwny" path="res://scripts/poster_menu.gd" id="1_1f6ci"]
-[ext_resource type="Texture2D" uid="uid://5pxw6i1bllbk" path="res://assets/room/old_room.png" id="2_1f6ci"]
-[ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="3_dd176"]
+[ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_1f6ci"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]
 content_margin_left = 10.0
@@ -33,13 +32,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1f6ci")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1300230208]
-layout_mode = 0
-offset_left = -2604.0
-offset_top = -33.0
-offset_right = 1687.5552
-offset_bottom = 2381.0
-texture = ExtResource("2_1f6ci")
+[node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_1f6ci")]
+position = Vector2(949, 751)
+scale = Vector2(3, 3)
 
 [node name="Close" type="Button" parent="." unique_id=1793356023]
 layout_mode = 0
@@ -83,10 +78,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
-
-[node name="poster_item" parent="." unique_id=942505978 instance=ExtResource("3_dd176")]
-position = Vector2(147.99998, 2.9999998)
-scale = Vector2(7, 7)
 
 [node name="put_back" type="Button" parent="." unique_id=1438202216]
 layout_mode = 0

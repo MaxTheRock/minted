@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://xsvmn1ovp4pb"]
 
 [ext_resource type="Script" uid="uid://rab0h4v2jijd" path="res://scripts/cd_player.gd" id="1_8n6u6"]
-[ext_resource type="Texture2D" uid="uid://cahq4j73asnf4" path="res://assets/shelf.png" id="2_gttna"]
+[ext_resource type="Texture2D" uid="uid://d3uqf1m2u01pw" path="res://assets/room/small_shelf.png" id="2_gttna"]
 [ext_resource type="Texture2D" uid="uid://buqf0uc15fer2" path="res://assets/items/cd_player/cd_player.png" id="2_r5n3w"]
+[ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="2_t0ai1"]
 [ext_resource type="Texture2D" uid="uid://cr30fcedpmuut" path="res://assets/os/icons/pause.png" id="3_q4ilb"]
 [ext_resource type="Texture2D" uid="uid://cy24khvum67yi" path="res://assets/os/icons/eject.svg" id="4_h2j5b"]
 
@@ -134,12 +135,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8n6u6")
 
-[node name="Shelf" type="TextureRect" parent="." unique_id=1233027534]
+[node name="Wall" type="TextureRect" parent="." unique_id=231508726]
 layout_mode = 0
-offset_left = -777.99994
-offset_top = -463.99997
-offset_right = -377.99994
-offset_bottom = -263.99997
+offset_left = -2586.0
+offset_top = -721.0
+offset_right = -1946.0
+offset_bottom = -361.0
+scale = Vector2(10, 10)
+texture = ExtResource("2_t0ai1")
+
+[node name="Shelf" type="TextureRect" parent="." unique_id=41745123]
+layout_mode = 0
+offset_left = -1640.0
+offset_top = -445.99997
+offset_right = -1240.0
+offset_bottom = -245.99997
 scale = Vector2(10, 10)
 texture = ExtResource("2_gttna")
 
@@ -156,7 +166,7 @@ text = "X"
 
 [node name="cd_player" type="AnimatedSprite2D" parent="." unique_id=63191797]
 position = Vector2(423.00003, 361.99997)
-scale = Vector2(10.328125, 10.328125)
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_qnalp")
 frame = 2
 frame_progress = 0.48959258
