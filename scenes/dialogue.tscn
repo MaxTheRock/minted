@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dasxcj57x3w1g"]
+
+[ext_resource type="Script" uid="uid://8ks4cyrn35kd" path="res://scripts/dialogue.gd" id="1_jwyou"]
+
+[sub_resource type="CameraTexture" id="CameraTexture_ccrme"]
+
+[node name="dialogue" type="Control" unique_id=2010025206]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwyou")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=969856573]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 250.0
+color = Color(0.25193202, 0.3847354, 0.35099882, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=1614527342]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 32.0
+offset_right = 733.0
+offset_bottom = 220.0
+theme_override_font_sizes/normal_font_size = 30
+
+[node name="choices" type="Control" parent="ColorRect" unique_id=1412240598]
+anchors_preset = 0
+offset_left = 286.0
+offset_top = 32.0
+offset_right = 326.0
+offset_bottom = 72.0
+
+[node name="choiceA" type="Label" parent="ColorRect/choices" unique_id=340283519]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 52.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 25
+text = "lerp
+"
+
+[node name="choiceB" type="Label" parent="ColorRect/choices" unique_id=2133144025]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 89.0
+offset_right = 51.0
+offset_bottom = 162.0
+theme_override_font_sizes/font_size = 25
+text = "larp
+"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1455196284]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 33.0
+offset_right = 211.0
+offset_bottom = 203.0
+texture = SubResource("CameraTexture_ccrme")
+
+[node name="Label" type="Label" parent="." unique_id=1747820778]
+layout_mode = 0
+offset_left = 746.0
+offset_top = 191.0
+offset_right = 790.0
+offset_bottom = 241.0
+theme_override_font_sizes/font_size = 36
+text = "[F]"

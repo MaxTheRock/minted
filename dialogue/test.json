@@ -1,1 +1,100 @@
-bomboclat
+[
+  {
+	"id": "0",
+	"speaker": "landlord",
+	"face": "neutral",
+	"text": "Hey, so you found the apartment!",
+	"type": "line",
+	"next_id": "1"
+  },
+  {
+	"id": "1",
+	"speaker": "margaret",
+	"face": "unimp",
+	"text": "This was the best you could do?",
+	"type": "line",
+	"next_id": "2"
+  },
+  {
+	"id": "2",
+	"speaker": "landlord",
+	"face": "neutral",
+	"text": "You signed up for this, you saw the photos.",
+	"type": "line",
+	"next_id": "3"
+  },
+  {
+	"id": "3",
+	"speaker": "landlord",
+	"face": "smug",
+	"text": "(I see you took the divorce well)",
+	"type": "line",
+	"next_id": "4"
+  },
+  {
+	"id": "4",
+	"speaker": "none",
+	"face": "none",
+	"type": "choice",
+	"choices": [
+	  { "text": "I'm going to make bank on Minted.", "next_id": "5a" },
+	  { "text": "I see your hair is doing well.", "next_id": "5b" }
+	]
+  },
+  {
+	"id": "5a",
+	"speaker": "landlord",
+	"face": "smug",
+	"text": "Seriously Margaret, Minted? Like the second hand app?",
+	"type": "line",
+	"next_id": "6a"
+  },
+  {
+	"id": "6a",
+	"speaker": "margaret",
+	"face": "concern",
+	"text": "… It could work.",
+	"type": "line",
+	"next_id": "7a"
+  },
+  {
+	"id": "7a",
+	"speaker": "landlord",
+	"face": "smug",
+	"text": "Well, good luck! (;",
+	"type": "line",
+	"next_id": "8"
+  },
+  {
+	"id": "5b",
+	"speaker": "landlord",
+	"face": "mad",
+	"text": "I could kick you out at any moment, you know!",
+	"type": "line",
+	"next_id": "6b"
+  },
+  {
+	"id": "6b",
+	"speaker": "margaret",
+	"face": "neutral",
+	"text": "Well, off to make money on minted.",
+	"type": "line",
+	"next_id": "7b"
+  },
+  {
+	"id": "7b",
+	"speaker": "landlord",
+	"face": "smug",
+	"text": "Minted? Well, good luck with that.",
+	"type": "line",
+	"next_id": "8"
+  },
+  {
+	"id": "8",
+	"speaker": "none",
+	"face": "none",
+	"text": "The landlord hung up.",
+	"type": "end",
+	"next_id": "end"
+  }
+]
