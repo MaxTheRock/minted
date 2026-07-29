@@ -78,7 +78,7 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"football": $TextureButton/football,
 }
 
-@onready var details_ui = get_node_or_null("/root/MainUI/Market/VBoxContainer/Sections/Product_Details")
+@onready var details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
 @onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
 @onready var frame_timer = $FrameTimer
 

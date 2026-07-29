@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://e4k1pjv1n7b0"]
+
+[ext_resource type="Script" uid="uid://yqokvcnnu8ue" path="res://scripts/background_box.gd" id="1_wkdxd"]
+
+[node name="BackgroundBox" type="Node2D" unique_id=1257211255]
+script = ExtResource("1_wkdxd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1911233568]
