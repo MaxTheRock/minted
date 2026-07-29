@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://tkwio75ov5xs"]
 
 [ext_resource type="Script" uid="uid://ccjfyofdq3qt3" path="res://scripts/room.gd" id="1_jn645"]
+[ext_resource type="PackedScene" uid="uid://bodpjb7jmc7i6" path="res://scenes/roomBackground.tscn" id="2_14vil"]
 [ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_qtoah"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85yof"]
-bg_color = Color(0.8474744, 0.84747446, 0.84747446, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -23,12 +21,8 @@ corner_detail = 10
 [node name="Room" type="Node2D" unique_id=1370404577]
 script = ExtResource("1_jn645")
 
-[node name="Background" type="PanelContainer" parent="." unique_id=1697421304]
-offset_left = -641.0
-offset_top = -361.0
-offset_right = 641.0
-offset_bottom = 361.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_85yof")
+[node name="RoomBackground" parent="." unique_id=1702459445 instance=ExtResource("2_14vil")]
+position = Vector2(-640, -360)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_qtoah")]
 

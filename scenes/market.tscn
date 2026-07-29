@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://cxbgcv0xjeqmn"]
 
 [ext_resource type="Script" uid="uid://bjdovmv78p4t1" path="res://scripts/market.gd" id="1_4msli"]
-[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="2_4msli"]
 [ext_resource type="Script" uid="uid://b6xai0ehay28i" path="res://scripts/product_details.gd" id="2_7bpo7"]
 [ext_resource type="Shader" uid="uid://dgyfoabj7wwmy" path="res://shaders/color_swap_sock.gdshader" id="2_d6tgm"]
 [ext_resource type="Texture2D" uid="uid://urkty7oiwiqn" path="res://assets/items/tshirt/tshirt_1.png" id="3_d6tgm"]
-[ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="4_7bpo7"]
 [ext_resource type="Texture2D" uid="uid://bvhxsqvq3nc70" path="res://assets/brand_icons/elemental/minimalistic_black.png" id="4_ennqm"]
 [ext_resource type="Texture2D" uid="uid://buf1wsry626bq" path="res://assets/brand_icons/elemental/minimalistic_white.png" id="5_hvm52"]
 [ext_resource type="Texture2D" uid="uid://cxh8vpp801mv5" path="res://assets/brand_icons/elemental/regular.png" id="6_4msli"]
@@ -190,9 +188,6 @@ script = ExtResource("1_4msli")
 layout_mode = 0
 offset_right = 1285.0
 offset_bottom = 722.0
-
-[node name="PanelContainer" parent="VBoxContainer" unique_id=1234875554 instance=ExtResource("2_4msli")]
-layout_mode = 2
 
 [node name="Sections" type="HBoxContainer" parent="VBoxContainer" unique_id=187412644]
 custom_minimum_size = Vector2(0, 560)
@@ -535,18 +530,13 @@ theme_override_constants/shadow_outline_size = 1
 theme_override_font_sizes/font_size = 25
 text = "Shipping"
 
-[node name="PanelContainer2" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("4_7bpo7")]
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -18)
-
 [node name="Button" type="Button" parent="." unique_id=878027279]
 custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = 799.00006
-offset_top = 82.00001
-offset_right = 899.00006
-offset_bottom = 182.0
+offset_left = 806.0
+offset_top = 39.00002
+offset_right = 906.0
+offset_bottom = 139.0
 scale = Vector2(0.66573346, 0.66573346)
 icon = ExtResource("11_wa5cj")
 expand_icon = true

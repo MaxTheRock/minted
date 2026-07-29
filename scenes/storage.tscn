@@ -117,8 +117,8 @@ grow_vertical = 2
 script = ExtResource("1_nnb4j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=694884619]
-position = Vector2(716.00006, 535)
-scale = Vector2(20, 20)
+position = Vector2(976, 978.0001)
+scale = Vector2(39.109375, 39.109375)
 sprite_frames = SubResource("SpriteFrames_cexes")
 
 [node name="Close" type="Button" parent="." unique_id=508683557]

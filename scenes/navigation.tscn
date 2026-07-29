@@ -45,30 +45,16 @@ text = "Home"
 icon_alignment = 1
 expand_icon = true
 
-[node name="Market" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1964714242]
+[node name="Mintora" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=326729100]
 layout_mode = 2
 
-[node name="Market" type="Button" parent="MarginContainer/HBoxContainer/Market" unique_id=1899883534]
+[node name="Mintora" type="Button" parent="MarginContainer/HBoxContainer/Mintora" unique_id=1390485396]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
-text = "Market"
-icon_alignment = 1
-expand_icon = true
-
-[node name="Mail" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=432849123]
-layout_mode = 2
-offset_transform_enabled = true
-
-[node name="Mail" type="Button" parent="MarginContainer/HBoxContainer/Mail" unique_id=212384988]
-custom_minimum_size = Vector2(100, 48)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
-text = "Mail"
+text = "Mintora"
 icon_alignment = 1
 expand_icon = true
 
@@ -82,33 +68,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
 text = "Newspaper"
-icon_alignment = 1
-expand_icon = true
-
-[node name="Bidding" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1921936018]
-layout_mode = 2
-
-[node name="Trading" type="Button" parent="MarginContainer/HBoxContainer/Bidding" unique_id=219293714]
-custom_minimum_size = Vector2(100, 48)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
-text = "Bidding
-"
-icon_alignment = 1
-expand_icon = true
-
-[node name="Selling" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=41074520]
-layout_mode = 2
-
-[node name="Selling" type="Button" parent="MarginContainer/HBoxContainer/Selling" unique_id=883584612]
-custom_minimum_size = Vector2(100, 48)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_46p8p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_reixx")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uhids")
-text = "Selling"
 icon_alignment = 1
 expand_icon = true
 
@@ -146,10 +105,7 @@ icon_alignment = 1
 expand_icon = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Home/Home" to="." method="_on_home_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Market/Market" to="." method="_on_market_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Mail/Mail" to="." method="_on_mail_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Mintora/Mintora" to="." method="_on_mintora_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Newspaper/Newspaper" to="." method="_on_newspaper_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Bidding/Trading" to="." method="_on_trading_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Selling/Selling" to="." method="_on_selling_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Options/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Power/PanelContainer6/Exit" to="." method="_on_exit_pressed"]

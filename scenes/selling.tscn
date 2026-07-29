@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://sb8cwtgdt6rd"]
 
 [ext_resource type="Script" uid="uid://ro5g3sj2lshk" path="res://scripts/selling.gd" id="1_3jkmn"]
-[ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_hdcek"]
 [ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="2_cm14b"]
 [ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="3_d3n2a"]
-[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="4_vplqk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm14b"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -24,10 +22,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = -3.0
-offset_right = 9.0
-offset_bottom = -3.0
+offset_left = 8.0
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3jkmn")
@@ -35,10 +33,10 @@ script = ExtResource("1_3jkmn")
 [node name="Sections" type="HBoxContainer" parent="." unique_id=1432721250]
 custom_minimum_size = Vector2(1300, 560)
 layout_mode = 0
-offset_left = -6.0
-offset_top = 80.0
-offset_right = 1294.0
-offset_bottom = 671.0
+offset_left = -8.0
+offset_top = 4.0
+offset_right = 1292.0
+offset_bottom = 595.0
 
 [node name="Centre" type="VBoxContainer" parent="Sections" unique_id=1258116480]
 layout_mode = 2
@@ -328,29 +326,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/v_separation = 15
 columns = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=517744692]
-custom_minimum_size = Vector2(1280, 720)
-layout_mode = 0
-offset_left = 17.0
-offset_top = 1.0
-offset_right = 1297.0
-offset_bottom = 721.0
-mouse_filter = 2
-alignment = 2
-
-[node name="Control" type="Control" parent="VBoxContainer" unique_id=1435179552]
-layout_mode = 2
-
-[node name="PanelContainer2" parent="VBoxContainer/Control" unique_id=1234875554 instance=ExtResource("4_vplqk")]
-layout_mode = 0
-offset_left = -9.0
-offset_top = -645.0
-offset_right = 1276.0
-offset_bottom = -575.0
-
-[node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_hdcek")]
-layout_mode = 2
 
 [connection signal="item_selected" from="Sections/Centre/TabContainer/Sell Item/sell_item/Condition" to="." method="_on_condition_item_selected"]
 [connection signal="pressed" from="Sections/Centre/TabContainer/Sell Item/sell_item/sell_button" to="." method="_on_sell_button_pressed"]

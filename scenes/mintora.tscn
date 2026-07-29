@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://exx8ateuuuc0"]
+
+[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="1_y8p56"]
+[ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="2_cek5a"]
+[ext_resource type="PackedScene" uid="uid://cxbgcv0xjeqmn" path="res://scenes/market.tscn" id="2_vytop"]
+[ext_resource type="PackedScene" uid="uid://8w6oo4gmhwor" path="res://scenes/mail.tscn" id="3_vytop"]
+[ext_resource type="PackedScene" uid="uid://sb8cwtgdt6rd" path="res://scenes/selling.tscn" id="4_esrwv"]
+[ext_resource type="PackedScene" uid="uid://5fnes7u1us3e" path="res://scenes/trading.tscn" id="5_pvjfy"]
+
+[node name="Mintora" type="Control" unique_id=1932963451]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1791497820]
+top_level = true
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+alignment = 2
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=16520528]
+layout_mode = 2
+
+[node name="PanelContainer2" parent="VBoxContainer/Control" unique_id=1234875554 instance=ExtResource("1_y8p56")]
+layout_mode = 0
+offset_top = -712.0
+offset_right = 1285.0
+offset_bottom = -642.0
+
+[node name="Control3" type="Control" parent="VBoxContainer" unique_id=234152939]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/Control3" unique_id=1632207118]
+layout_mode = 0
+offset_top = -644.0
+offset_right = 1280.0
+offset_bottom = -73.0
+current_tab = 0
+
+[node name="Home" type="MarginContainer" parent="VBoxContainer/Control3/TabContainer" unique_id=121694614]
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Market" parent="VBoxContainer/Control3/TabContainer/Home" unique_id=2098111081 instance=ExtResource("2_vytop")]
+layout_mode = 2
+
+[node name="Mail" type="MarginContainer" parent="VBoxContainer/Control3/TabContainer" unique_id=1704560931]
+visible = false
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Mail" parent="VBoxContainer/Control3/TabContainer/Mail" unique_id=559621438 instance=ExtResource("3_vytop")]
+layout_mode = 2
+
+[node name="Selling" type="MarginContainer" parent="VBoxContainer/Control3/TabContainer" unique_id=1810649114]
+visible = false
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="selling" parent="VBoxContainer/Control3/TabContainer/Selling" unique_id=2079572264 instance=ExtResource("4_esrwv")]
+layout_mode = 2
+
+[node name="Bidding" type="MarginContainer" parent="VBoxContainer/Control3/TabContainer" unique_id=1729849500]
+visible = false
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Trading" parent="VBoxContainer/Control3/TabContainer/Bidding" unique_id=2081727713 instance=ExtResource("5_pvjfy")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=2021714799]
+layout_mode = 2
+
+[node name="PanelContainer" parent="VBoxContainer/Control2" unique_id=156462522 instance=ExtResource("2_cek5a")]
+z_index = 5
+layout_mode = 0
+offset_top = -68.0
+offset_right = 1280.0
+offset_bottom = 0.0

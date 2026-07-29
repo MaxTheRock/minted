@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpqadyh8ux6en"
-path="res://.godot/imported/cube.png-a05f13b1abb439756f0281fe7bffc6b6.ctex"
+uid="uid://cby1p15dip2xb"
+path="res://.godot/imported/med_box.png-c263d0c419adfe4e0f4cdda8f4fd8529.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cube.png"
-dest_files=["res://.godot/imported/cube.png-a05f13b1abb439756f0281fe7bffc6b6.ctex"]
+source_file="res://assets/background/med_box.png"
+dest_files=["res://.godot/imported/med_box.png-c263d0c419adfe4e0f4cdda8f4fd8529.ctex"]
 
 [params]
 
