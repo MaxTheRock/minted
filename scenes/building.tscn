@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bummubx5xkx6u" path="res://scripts/parcels.gd" id="5_7huw0"]
 [ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="6_blq7k"]
 [ext_resource type="Script" uid="uid://dkdv0h01l33ky" path="res://scripts/poster.gd" id="7_nm462"]
+[ext_resource type="Texture2D" uid="uid://b3gu6c41en0yb" path="res://assets/room/desk.png" id="8_g4d30"]
 [ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="8_jc16f"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="9_g4d30"]
 [ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="10_jrfpq"]
@@ -19,7 +20,7 @@
 size = Vector2(120.45455, 225.31253)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nge4r"]
-size = Vector2(237, 95.25)
+size = Vector2(241, 161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gur"]
 size = Vector2(155, 184.3125)
@@ -235,14 +236,15 @@ scale = Vector2(0.5, 0.5)
 text = "Collect [F]"
 
 [node name="Computer" type="Sprite2D" parent="." unique_id=1867859156]
+z_index = 1
 position = Vector2(-17, 302)
 script = ExtResource("6_blq7k")
 
 [node name="Label" type="Label" parent="Computer" unique_id=237188752]
 offset_left = -38.0
-offset_top = -200.0
+offset_top = -137.0
 offset_right = 63.0
-offset_bottom = -177.0
+offset_bottom = -114.0
 text = "Computer [F]"
 metadata/_edit_use_anchors_ = true
 
@@ -252,8 +254,13 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1852202949]
-position = Vector2(13.5, -125.375)
+position = Vector2(11.5, -158.5)
 shape = SubResource("RectangleShape2D_nge4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Computer" unique_id=101956253]
+position = Vector2(17, -154)
+scale = Vector2(2, 2)
+texture = ExtResource("8_g4d30")
 
 [node name="Poster" type="Sprite2D" parent="." unique_id=2064951654]
 position = Vector2(-17, 302)
