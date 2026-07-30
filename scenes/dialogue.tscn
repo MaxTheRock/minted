@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dasxcj57x3w1g"]
 
 [ext_resource type="Script" uid="uid://8ks4cyrn35kd" path="res://scripts/dialogue.gd" id="1_jwyou"]
+[ext_resource type="FontFile" uid="uid://ckeqknjiw1h7m" path="res://fonts/Aller_Rg.ttf" id="2_bfpow"]
+[ext_resource type="FontFile" uid="uid://dkvrhel3prpcm" path="res://fonts/Aller_Bd.ttf" id="3_fyky8"]
 
 [sub_resource type="CameraTexture" id="CameraTexture_ccrme"]
 
@@ -27,7 +29,12 @@ offset_left = 286.0
 offset_top = 32.0
 offset_right = 733.0
 offset_bottom = 220.0
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("2_bfpow")
+theme_override_fonts/bold_font = ExtResource("3_fyky8")
 theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
 
 [node name="choices" type="Control" parent="ColorRect" unique_id=1412240598]
 anchors_preset = 0

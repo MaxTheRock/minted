@@ -10,6 +10,10 @@ var timer = 0
 var active_tween: Tween = null
 var dialgoue_length = 0
 var tween_time = 0
+var raw_text_string = ""
+var text_timer = 0
+var pause_timer = 0
+var is_typing = false
 
 @onready var text_display = $ColorRect/RichTextLabel
 @onready var choiceA = $ColorRect/choices/choiceA
@@ -47,7 +51,9 @@ func _display_dialogue(data, id):
 	text_display.text = ""
 	option_selected = 0
 	current_dialgoue_type = type
+	
 	if type == "line":
+		raw_text_string = dict_display.get("text")
 		text_display.text = dict_display.get("text")
 		var next = dict_display.get("next_id")
 		if next != null:
@@ -57,6 +63,7 @@ func _display_dialogue(data, id):
 		dialgoue_length = len(dict_display.get("text"))
 		display_type_dialogue(dialgoue_length)
 	elif type == "end":
+		raw_text_string = dict_display.get("text")
 		current_dialgoue_type = "delete"
 		text_display.text = dict_display.get("text")
 		next_dialogue = "end"
@@ -73,11 +80,60 @@ func _display_dialogue(data, id):
 			choiceB.text = choices[1].get("text")
 
 func display_type_dialogue(length):
-	tween_time = length * dialgoue_speed
+	var regex = RegEx.new()
+	regex.compile("<p[0-9.]*>")
+	text_display.text = regex.sub(raw_text_string, "", true)
 	text_display.visible_characters = 0
-	active_tween = create_tween()
-	active_tween.tween_property(text_display, "visible_characters", length, tween_time)
+	text_timer = 0.0
+	pause_timer = 0.0
+	is_typing = true
+
+
+func process_dialogic(delta: float): #dialogue logic
+	if not is_typing:
+		return
 	
+	if pause_timer > 0:
+		pause_timer -= delta
+		return
+	
+	text_timer += delta
+	if text_timer >= dialgoue_speed:
+		var current_visible = text_display.visible_characters
+		var total_visible = text_display.get_parsed_text().length()
+		
+		if current_visible < total_visible:
+			
+			text_timer = 0
+			var index = get_text_pos(current_visible + 1)
+			if raw_text_string.substr(index,4) == "<p1>":
+				pause_timer = 1
+			elif raw_text_string.substr(index,6) == "<p0.5>":
+				pause_timer = 0.5
+			text_display.visible_characters += 1
+		else:
+			is_typing = false
+
+func get_text_pos(id):
+	var visible_count = 0
+	var i = 0
+	while i < raw_text_string.length() and visible_count < id:
+		if visible_count == id: 
+				break
+		if raw_text_string.substr(i,4) == "<p1>":
+			i += 4
+			continue
+		elif raw_text_string.substr(i,6) == "<p0.5>":
+			i += 6
+			continue
+		elif raw_text_string[i] == "[":
+			while i < raw_text_string.length() and raw_text_string[i] != "]":
+				i += 1
+				continue
+		else:
+			i += 1
+			visible_count += 1
+	return i
 func highlight_text():
 	if option_selected == 0:
 		choiceA.self_modulate = Color.MEDIUM_SPRING_GREEN
@@ -94,9 +150,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
-		if active_tween and active_tween.is_running():
-			active_tween.pause()
-			active_tween.custom_step(tween_time)
+		if is_typing:
+			is_typing = false
+			pause_timer = 0.0
+			text_display.visible_characters = text_display.get_parsed_text().length()
 			return
 		if current_dialgoue_type == "line" or current_dialgoue_type == "end": 
 			_display_dialogue(dialogue_data,next_dialogue)
@@ -126,3 +183,4 @@ func _process(delta: float) -> void:
 		pass
 		timer = 0
 	highlight_text()
+	process_dialogic(delta)

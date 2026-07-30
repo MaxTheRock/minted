@@ -45,7 +45,7 @@
 	"id": "5a",
 	"speaker": "landlord",
 	"face": "smug",
-	"text": "Seriously Margaret, Minted? Like the second hand app?",
+	"text": "[b]Seriously[/b] Margaret, Minted? Like the second hand app?",
 	"type": "line",
 	"next_id": "6a"
   },
@@ -53,7 +53,7 @@
 	"id": "6a",
 	"speaker": "margaret",
 	"face": "concern",
-	"text": "… It could work.",
+	"text": "<p1>.<p1>.<p1>. [shake rate=20.0 level=5.0]It could work.[/shake]",
 	"type": "line",
 	"next_id": "7a"
   },
@@ -61,7 +61,7 @@
 	"id": "7a",
 	"speaker": "landlord",
 	"face": "smug",
-	"text": "Well, good luck! (;",
+	"text": "Well, good luck! <p0.5>(;",
 	"type": "line",
 	"next_id": "8"
   },
