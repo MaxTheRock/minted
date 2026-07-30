@@ -8,7 +8,7 @@ func _ready() -> void:
 	Global.inWardrobe = false
 	label.hide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if label_shown == true and Input.is_action_pressed("interact"):
 		get_tree().change_scene_to_file("res://scenes/shelf.tscn")
 

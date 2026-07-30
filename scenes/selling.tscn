@@ -44,12 +44,11 @@ size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="Sections/Centre" unique_id=183984604]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 tab_1/title = "Sell List"
 tab_2/title = "Sold List"
 
 [node name="Sell Item" type="MarginContainer" parent="Sections/Centre/TabContainer" unique_id=2114098950]
-visible = false
 custom_minimum_size = Vector2(0, 560)
 layout_mode = 2
 theme_override_constants/margin_top = 0
@@ -271,6 +270,7 @@ theme_override_colors/font_color = Color(1.1004806, 0.17704102, 0.16845088, 1)
 theme_override_font_sizes/font_size = 25
 
 [node name="sell_list" type="MarginContainer" parent="Sections/Centre/TabContainer" unique_id=836322825]
+visible = false
 custom_minimum_size = Vector2(0, 560)
 layout_mode = 2
 theme_override_constants/margin_left = 47

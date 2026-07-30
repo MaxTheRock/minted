@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://h5yylvcpu4sy" path="res://assets/room/wardrobe_1_selected.png" id="12_g4d30"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l4d1"]
-size = Vector2(120.45455, 225.31253)
+size = Vector2(120.45455, 147.18752)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nge4r"]
-size = Vector2(241, 161)
+size = Vector2(241, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gur"]
 size = Vector2(155, 184.3125)
@@ -183,7 +183,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6gie"]
-size = Vector2(83.89392, 130.41333)
+size = Vector2(83.89392, 124.21567)
 
 [node name="Building" type="Node2D" unique_id=2101118295]
 
@@ -224,7 +224,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parcels/Area2D" unique_id=1242078354]
-position = Vector2(-31.4394, -32.96875)
+position = Vector2(-31.4394, -72.03126)
 shape = SubResource("RectangleShape2D_6l4d1")
 
 [node name="Label" type="Label" parent="Parcels" unique_id=224476471]
@@ -254,7 +254,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1852202949]
-position = Vector2(11.5, -158.5)
+position = Vector2(11.5, -122)
 shape = SubResource("RectangleShape2D_nge4r")
 
 [node name="Sprite2D" type="Sprite2D" parent="Computer" unique_id=101956253]
@@ -338,9 +338,9 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf/Area2D" unique_id=639157772]
-position = Vector2(251.99997, 112)
+position = Vector2(248.90115, 112.005615)
 rotation = 1.568984
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_n6gie")
 
 [connection signal="area_entered" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_entered"]

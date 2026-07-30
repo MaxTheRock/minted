@@ -2,11 +2,13 @@ extends Control
 
 @onready var money_ui_element = $Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/PanelContainer/Right/Money_Container/Money
 @onready var ui_element = preload("res://scenes/item_ui.tscn")
+@onready var tab_container = $Mintora/VBoxContainer/Control3/TabContainer
 
-func show_page(page_name):
-	for child in get_children():
-		child.visible = false
-	get_node(page_name).visible = true
+func show_page(page_name: String) -> void:
+	for i in range(tab_container.get_tab_count()):
+		if tab_container.get_tab_title(i) == page_name or tab_container.get_child(i).name == page_name:
+			tab_container.current_tab = i
+			return
 
 func _on_button_pressed() -> void:
 	show_page("Market")
