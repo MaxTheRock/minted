@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://b3gu6c41en0yb" path="res://assets/room/desk.png" id="8_g4d30"]
 [ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="8_jc16f"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="9_g4d30"]
+[ext_resource type="Texture2D" uid="uid://5xgbw04blkfq" path="res://assets/computer/level1/level1_computer.png" id="9_pjx8g"]
 [ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="10_jrfpq"]
+[ext_resource type="Texture2D" uid="uid://xoau0utf8gft" path="res://assets/computer/level1/level1_computer_light.png" id="10_nge4r"]
 [ext_resource type="Texture2D" uid="uid://84b8ppvivf6u" path="res://assets/room/wardrobe_1.png" id="11_jc16f"]
 [ext_resource type="Texture2D" uid="uid://hkt2a8dqeu28" path="res://assets/room/room_small_shelf.png" id="12_blq7k"]
 [ext_resource type="Texture2D" uid="uid://h5yylvcpu4sy" path="res://assets/room/wardrobe_1_selected.png" id="12_g4d30"]
@@ -21,6 +23,36 @@ size = Vector2(120.45455, 225.31253)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nge4r"]
 size = Vector2(241, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs87p"]
+atlas = ExtResource("9_pjx8g")
+region = Rect2(0, 0, 50, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pjmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs87p")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_860ve"]
+atlas = ExtResource("10_nge4r")
+region = Rect2(0, 0, 50, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ijljr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_860ve")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gur"]
 size = Vector2(155, 184.3125)
@@ -207,8 +239,17 @@ texture = ExtResource("4_7huw0")
 [node name="collisions" type="StaticBody2D" parent="." unique_id=1453865646]
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=1854077721]
+[node name="walls" type="CollisionPolygon2D" parent="collisions" unique_id=1854077721]
 polygon = PackedVector2Array(-307, -76, 279, -75, 348, 194, 347, 249, -377, 250, -379, 195, -309, -76, -306, -54, -375, 223, -376, 228, 346, 229, 345, 219, 276, -56, 274, -53, -305, -54)
+
+[node name="wardrobe" type="CollisionPolygon2D" parent="collisions" unique_id=2134267262]
+polygon = PackedVector2Array(118, -12, 251, -10, 250, -18, 273, -43, 264, -239, 141, -244, 107, -224, 117, -25)
+
+[node name="shelf" type="CollisionPolygon2D" parent="collisions" unique_id=1220126577]
+polygon = PackedVector2Array(-275, -54, -274, 35, -297, 132, -345, 133, -345, 23, -323, -40, -324, -53)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=84526984]
+polygon = PackedVector2Array(-1, 223, 96, 225, 94, 140, 56, 152, 57, 175, -57, 176, -58, 157, -95, 134, -95, 225)
 
 [node name="Parcels" parent="." unique_id=798899600 instance=ExtResource("4_iwd2d")]
 offset_left = -34.0
@@ -257,10 +298,21 @@ collision_mask = 2
 position = Vector2(11.5, -158.5)
 shape = SubResource("RectangleShape2D_nge4r")
 
-[node name="Sprite2D" type="Sprite2D" parent="Computer" unique_id=101956253]
+[node name="desk" type="Sprite2D" parent="Computer" unique_id=101956253]
 position = Vector2(17, -154)
 scale = Vector2(2, 2)
 texture = ExtResource("8_g4d30")
+
+[node name="computer" type="AnimatedSprite2D" parent="Computer" unique_id=507118116]
+position = Vector2(14, -180)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="computer_light" type="AnimatedSprite2D" parent="Computer" unique_id=1379918801]
+modulate = Color(1, 1, 1, 0.24313726)
+position = Vector2(14, -180)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ijljr")
 
 [node name="Poster" type="Sprite2D" parent="." unique_id=2064951654]
 position = Vector2(-17, 302)
