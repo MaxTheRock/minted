@@ -26,6 +26,7 @@ func generate_items(grid: GridContainer, category: String, amount: int):
 	else:
 		for data in Inventory.market_items[category]:
 			var item_ui = packed.instantiate()
+			item_ui.market_type = category
 			grid.add_child(item_ui)
 			item_ui.get_node("item").load_data(data)
 			

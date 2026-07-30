@@ -305,6 +305,9 @@ func _on_buy_button_mouse_exited() -> void:
 
 
 func _on_buy_button_pressed() -> void:
+	if not Inventory.market_items.has(market_type):
+		print("Invalid market_type:", market_type)
+		return
 	if Global.money < item.price:
 		return
 
