@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 		nodes[i].visible = (i == ShippingHandler.shipping_value)
 	if label_shown and Input.is_action_just_pressed("interact"):
 		if ShippingHandler.delivered_list.size() > 0:
+			Global.first_room = false
 			get_tree().change_scene_to_file("res://scenes/parcel.tscn")
 		else:
 			print("No delivered items to collect")

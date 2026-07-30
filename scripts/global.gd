@@ -12,6 +12,8 @@ var camera_quality = "Good"
 var refreshProgress = 100
 var player_saved_x = 0
 var player_saved_y = 0
+var first_room = true
+var dialogue_ongoing = false
 signal pause_toggled(is_paused: bool)
 signal eject
 signal create_mail
@@ -22,7 +24,6 @@ var hour = 0
 var day = 1
 var month = 7
 var year = 2026
-
 var time_mins = 0
 
 var clock_timer = 0.0

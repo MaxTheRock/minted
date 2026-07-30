@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bodpjb7jmc7i6" path="res://scenes/roomBackground.tscn" id="2_14vil"]
 [ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_qtoah"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
+[ext_resource type="PackedScene" uid="uid://dasxcj57x3w1g" path="res://scenes/dialogue.tscn" id="5_jxe34"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -60,3 +61,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
+
+[node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("5_jxe34")]
+visible = false
+z_index = 10
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -413.0
+offset_top = 105.0
+offset_right = -61.0
+offset_bottom = 305.0
+grow_horizontal = 1
+grow_vertical = 1

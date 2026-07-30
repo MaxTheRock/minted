@@ -16,6 +16,7 @@ func run_loop() -> void:
 
 func _process(delta: float) -> void:
 	if label_shown == true and Input.is_action_just_pressed("interact"):
+		Global.first_room = false
 		get_tree().change_scene_to_file("res://scenes/main_ui.tscn")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

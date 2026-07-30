@@ -7,6 +7,8 @@ func _ready() -> void:
 	Inventory.current_ui_type = "player"
 	player.global_position.x = Global.player_saved_x
 	player.global_position.y = Global.player_saved_y
+	if Global.first_room:
+		SignalBus.display_dialogue.emit("find",0)
 
 	for i in range(Inventory.player_inventory.size()):
 		var packed = preload("res://scenes/item_ui.tscn")

@@ -28,12 +28,18 @@ func load_json_file(file_path: String) -> Variant:
 
 func get_dialogue_by_id(data:Array, to_find):
 	for dialogue in data:
-		if dialogue.get("id") == to_find:
+		if dialogue.get("id") == str(to_find):
 			return dialogue
 	return null
 
 
-func display_dialogue(data, id):
+func _display_dialogue(data, id):
+	visible = true
+	Global.paused = true
+	Global.dialogue_ongoing = true
+	if data is not Array:
+		if data == "find":
+			data = dialogue_data
 	var dict_display = get_dialogue_by_id(data, id)
 	var type = dict_display.get("type")
 	choiceA.text = ""
@@ -82,8 +88,8 @@ func highlight_text():
 				
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.display_dialogue.connect(_display_dialogue)
 	dialogue_data = load_json_file("res://dialogue/test.json")
-	display_dialogue(dialogue_data,"0")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -93,15 +99,17 @@ func _process(delta: float) -> void:
 			active_tween.custom_step(tween_time)
 			return
 		if current_dialgoue_type == "line" or current_dialgoue_type == "end": 
-			display_dialogue(dialogue_data,next_dialogue)
+			_display_dialogue(dialogue_data,next_dialogue)
 		elif current_dialgoue_type == "choice":
 			if option_selected < current_choices.size():
 				next_dialogue = current_choices[option_selected]
-				display_dialogue(dialogue_data,next_dialogue)		
+				_display_dialogue(dialogue_data,next_dialogue)		
 			else:
 				next_dialogue = 0
 		elif next_dialogue == "end":
+			Global.dialogue_ongoing = false
 			visible = false
+			Global.paused = false
 	
 	#highlight stuff
 	if Input.is_action_just_pressed("up"):

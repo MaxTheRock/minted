@@ -25,6 +25,7 @@ Global="*uid://bx2lesv27p3gw"
 Inventory="*uid://dmgolie3fbs52"
 AudioManager="*uid://dm2w3brxvqgpm"
 ShippingHandler="*uid://4xcuwmqdjr78"
+SignalBus="*uid://cqa5kc3g7nk0k"
 
 [display]
 

@@ -10,21 +10,22 @@ func _physics_process(delta: float) -> void:
 	movement(delta)
 
 func movement(d):
-	if Input.is_action_pressed("right"):
-		moveDir.x = 1
-		sprite.play("right")
-	if Input.is_action_pressed("left"):
-		moveDir.x = -1
-		sprite.play("left")
-	if Input.is_action_pressed("up"):
-		moveDir.y = -1
-		sprite.play("up")
-	if Input.is_action_pressed("down"):
-		moveDir.y = 1
-		sprite.play("down")
-	if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
-		moveDir.x = 0
-	if !Input.is_action_pressed("up") and !Input.is_action_pressed("down"):
-		moveDir.y = 0
-	
-	move_and_collide(moveDir.normalized() * SPEED * d)
+	if not Global.dialogue_ongoing:
+		if Input.is_action_pressed("right"):
+			moveDir.x = 1
+			sprite.play("right")
+		if Input.is_action_pressed("left"):
+			moveDir.x = -1
+			sprite.play("left")
+		if Input.is_action_pressed("up"):
+			moveDir.y = -1
+			sprite.play("up")
+		if Input.is_action_pressed("down"):
+			moveDir.y = 1
+			sprite.play("down")
+		if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
+			moveDir.x = 0
+		if !Input.is_action_pressed("up") and !Input.is_action_pressed("down"):
+			moveDir.y = 0
+		
+		move_and_collide(moveDir.normalized() * SPEED * d)
