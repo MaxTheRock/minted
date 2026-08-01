@@ -187,15 +187,16 @@ script = ExtResource("1_4msli")
 
 [node name="SearchBar" parent="." unique_id=1070994751 instance=ExtResource("2_wa5cj")]
 layout_mode = 1
+url = "https://minted.io/home"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=819516122]
 layout_mode = 0
 offset_top = 47.0
 offset_right = 1285.0
-offset_bottom = 638.0
+offset_bottom = 714.0
 
 [node name="Sections" type="HBoxContainer" parent="VBoxContainer" unique_id=187412644]
-custom_minimum_size = Vector2(0, 560)
+custom_minimum_size = Vector2(0, 570)
 layout_mode = 2
 
 [node name="Centre" type="VBoxContainer" parent="VBoxContainer/Sections" unique_id=1179697940]
@@ -203,6 +204,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/Sections/Centre" unique_id=1364613776]
+custom_minimum_size = Vector2(0, 650)
 layout_mode = 2
 current_tab = 0
 
@@ -216,6 +218,7 @@ theme_override_constants/margin_bottom = 42
 metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Sections/Centre/TabContainer/All" unique_id=478810383]
+custom_maximum_size = Vector2(-1, 400)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -409,8 +412,9 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Product_Name" type="Label" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=844497543]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 15
 text = "Product Information"
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer" unique_id=969746779]
 layout_mode = 2
@@ -478,7 +482,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Brand"
 
 [node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=397042773]
@@ -496,7 +500,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Condition"
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=341406100]
@@ -514,7 +518,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Color"
 
 [node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/Sections/Product_Details/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1381000896]
@@ -532,7 +536,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/outline_size = 3
 theme_override_constants/shadow_outline_size = 1
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Shipping"
 
 [node name="Button" type="Button" parent="." unique_id=878027279]

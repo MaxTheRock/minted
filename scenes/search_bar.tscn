@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bl2hjfsjnp4kq"]
 
+[ext_resource type="Script" uid="uid://dnqtap8uoiv3e" path="res://scenes/search_bar.gd" id="1_de5vt"]
 [ext_resource type="Texture2D" uid="uid://fn1si2qsl1pg" path="res://assets/safe.png" id="1_xxajr"]
 [ext_resource type="Texture2D" uid="uid://c3wsjjsitasps" path="res://assets/puzzle.png" id="2_de5vt"]
 [ext_resource type="Texture2D" uid="uid://dqwp4vq1gcisi" path="res://assets/menu.png" id="3_2yp4w"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_de5vt")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1140796848]
 layout_mode = 0
