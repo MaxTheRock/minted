@@ -252,6 +252,9 @@ polygon = PackedVector2Array(-275, -54, -274, 35, -297, 132, -345, 133, -345, 23
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=84526984]
 polygon = PackedVector2Array(-1, 223, 96, 225, 94, 140, 56, 152, 57, 175, -57, 176, -58, 157, -95, 134, -95, 225)
 
+[node name="bed" type="CollisionPolygon2D" parent="collisions" unique_id=1911099304]
+polygon = PackedVector2Array(189, 225, 327, 219, 289, 21, 276, 11, 164, 37, 160, 47)
+
 [node name="Parcels" parent="." unique_id=798899600 instance=ExtResource("4_iwd2d")]
 offset_left = -34.0
 offset_top = -85.0
