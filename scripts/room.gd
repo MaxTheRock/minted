@@ -8,6 +8,8 @@ func _ready() -> void:
 	player.global_position.x = Global.player_saved_x
 	player.global_position.y = Global.player_saved_y
 	if Global.first_room:
+		Global.dialogue_ongoing = true
+		await get_tree().create_timer(1.0).timeout
 		SignalBus.display_dialogue.emit("find",0)
 
 	for i in range(Inventory.player_inventory.size()):
