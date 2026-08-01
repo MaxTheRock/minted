@@ -18,12 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://hkt2a8dqeu28" path="res://assets/room/room_small_shelf.png" id="12_blq7k"]
 [ext_resource type="Texture2D" uid="uid://h5yylvcpu4sy" path="res://assets/room/wardrobe_1_selected.png" id="12_g4d30"]
 [ext_resource type="Texture2D" uid="uid://db7cokbwiqbxj" path="res://assets/room/bed_lv1.png" id="18_nge4r"]
+[ext_resource type="Script" uid="uid://dxnui01tx87ym" path="res://scripts/bed.gd" id="18_s0gur"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l4d1"]
 size = Vector2(120.45455, 147.18752)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nge4r"]
-size = Vector2(241, 88)
+size = Vector2(241, 145)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hs87p"]
 atlas = ExtResource("9_pjx8g")
@@ -218,6 +219,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6gie"]
 size = Vector2(83.89392, 124.21567)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijljr"]
+atlas = ExtResource("18_nge4r")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2gq3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijljr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwfoe"]
+size = Vector2(125.97222, 195.04973)
+
 [node name="Building" type="Node2D" unique_id=2101118295]
 
 [node name="template" type="Sprite2D" parent="." unique_id=1317997496]
@@ -249,7 +268,7 @@ polygon = PackedVector2Array(118, -12, 251, -10, 250, -18, 273, -43, 264, -239, 
 [node name="shelf" type="CollisionPolygon2D" parent="collisions" unique_id=1220126577]
 polygon = PackedVector2Array(-275, -54, -274, 35, -297, 132, -345, 133, -345, 23, -323, -40, -324, -53)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=84526984]
+[node name="desk" type="CollisionPolygon2D" parent="collisions" unique_id=84526984]
 polygon = PackedVector2Array(-1, 223, 96, 225, 94, 140, 56, 152, 57, 175, -57, 176, -58, 157, -95, 134, -95, 225)
 
 [node name="bed" type="CollisionPolygon2D" parent="collisions" unique_id=1911099304]
@@ -299,7 +318,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1852202949]
-position = Vector2(11.5, -122)
+position = Vector2(11.5, -150.5)
 shape = SubResource("RectangleShape2D_nge4r")
 
 [node name="desk" type="Sprite2D" parent="Computer" unique_id=101956253]
@@ -399,11 +418,34 @@ rotation = 1.568984
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_n6gie")
 
-[node name="bed" type="Sprite2D" parent="." unique_id=1416314610]
+[node name="Bed" type="Sprite2D" parent="." unique_id=1416314610]
 position = Vector2(244, 114)
+script = ExtResource("18_s0gur")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bed" unique_id=705103917]
+position = Vector2(1, -1)
 scale = Vector2(2, 2)
-texture = ExtResource("18_nge4r")
+sprite_frames = SubResource("SpriteFrames_t2gq3")
 flip_h = true
+
+[node name="Label" type="Label" parent="Bed" unique_id=1815296376]
+offset_left = -25.0
+offset_top = 25.0
+offset_right = 76.0
+offset_bottom = 48.0
+text = "Bed [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Bed" unique_id=1179102836]
+position = Vector2(-532, -29)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed/Area2D" unique_id=204589895]
+position = Vector2(517.5449, 71.02507)
+rotation = 1.568984
+scale = Vector2(0.99999946, 0.99999946)
+shape = SubResource("RectangleShape2D_gwfoe")
 
 [connection signal="area_entered" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_exited"]
@@ -415,3 +457,5 @@ flip_h = true
 [connection signal="area_exited" from="Storage/Area2D" to="Storage" method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Shelf/Area2D" to="Shelf" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Bed/Area2D" to="Bed" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Bed/Area2D" to="Bed" method="_on_area_2d_area_exited"]

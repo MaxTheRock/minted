@@ -29,8 +29,8 @@ var time_mins = 0
 var clock_timer = 0.0
 var paused = false
 
-const CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
-const SPEED_MULT = 10 # just makes time even faster, default to 1.
+var CLOCK_SPEED = 0.5 # ---> The lower, the faster jsuk rohan for testing
+const SPEED_MULT = 1  # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
