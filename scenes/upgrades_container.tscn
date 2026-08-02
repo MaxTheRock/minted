@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cs0lhhsrw5dnd"]
 
-[ext_resource type="Script" uid="uid://d82s7h51th4r" path="res://scenes/upgrades_container.gd" id="1_suk7y"]
+[ext_resource type="Script" uid="uid://d82s7h51th4r" path="res://scripts/upgrades_container.gd" id="1_suk7y"]
 [ext_resource type="Texture2D" uid="uid://ew4u63jv7ddl" path="res://assets/upgrade_frame.png" id="2_scib6"]
 [ext_resource type="Texture2D" uid="uid://cbes1ho28vab3" path="res://assets/room/bed_lv2.png" id="3_v34ah"]
 [ext_resource type="Texture2D" uid="uid://ppr1omihdu8v" path="res://assets/computer/level2/level2_computer.png" id="4_scib6"]

@@ -1,0 +1,11 @@
+[gd_resource type="GradientTexture2D" format=3 uid="uid://btk20fumf6ry2"]
+
+[sub_resource type="Gradient" id="Gradient_cihho"]
+offsets = PackedFloat32Array(0.39617488, 0.40163934)
+colors = PackedColorArray(0, 0.6455197, 0.23712179, 1, 0.101960786, 0.627451, 0.29411766, 0)
+
+[resource]
+gradient = SubResource("Gradient_cihho")
+fill = 1
+fill_from = Vector2(0.4761092, 0.48976108)
+fill_to = Vector2(0.96520144, 0.071428575)

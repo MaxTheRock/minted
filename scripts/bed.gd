@@ -9,10 +9,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if label_shown == true and Input.is_action_pressed("interact"):
 		Global.first_room = false
-		if Global.hour >= 21 or Global.hour <= 7:
-			get_tree().change_scene_to_file("res://scenes/sleep.tscn")
-		else:
-			print("Not bed time yet...")
+		get_tree().change_scene_to_file("res://scenes/sleep.tscn")
+
 			
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

@@ -24,7 +24,7 @@
 size = Vector2(120.45455, 147.18752)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nge4r"]
-size = Vector2(241, 145)
+size = Vector2(187, 145)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hs87p"]
 atlas = ExtResource("9_pjx8g")
@@ -318,7 +318,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Computer/Area2D" unique_id=1852202949]
-position = Vector2(11.5, -150.5)
+position = Vector2(-15.5, -150.5)
 shape = SubResource("RectangleShape2D_nge4r")
 
 [node name="desk" type="Sprite2D" parent="Computer" unique_id=101956253]

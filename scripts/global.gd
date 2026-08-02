@@ -20,7 +20,7 @@ signal create_mail
 
 # --- CLOCK --- #
 var min = 0
-var hour = 0
+var hour = 6
 var day = 1
 var month = 7
 var year = 2026
@@ -29,7 +29,8 @@ var time_mins = 0
 var clock_timer = 0.0
 var paused = false
 
-var CLOCK_SPEED = 0.5 # ---> The lower, the faster jsuk rohan for testing
+var sleep = 90
+var CLOCK_SPEED = 0.1 # ---> The lower, the faster jsuk rohan for testing
 const SPEED_MULT = 1  # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
@@ -37,14 +38,22 @@ const REFRESHTIME: float = 6*60 # 6 in game hours
 
 func _process(delta):
 	clock_timer += delta
-	if clock_timer >= CLOCK_SPEED and not paused:
+	if clock_timer >= CLOCK_SPEED and not paused and not dialogue_ongoing:
 		refreshProgress += 100/REFRESHTIME
 		clock_timer -= CLOCK_SPEED
 		new_time_calc(SPEED_MULT)
+	elif dialogue_ongoing or paused:
+		clock_timer = 0
 		
 func new_time_calc(min_added: int) -> void:
 	min += min_added 
 	time_mins += min_added 
+	sleep -= float(min_added) / 28
+	if sleep <= 10:
+		sleep += float(min_added) / 60 # 50% slower
+	elif sleep <= 40:
+		sleep += float(min_added) / 120 # 25% slower
+		
 	if min >= 60:
 		min -= 60
 		hour += 1

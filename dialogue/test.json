@@ -96,5 +96,21 @@
 	"text": "The landlord hung up.",
 	"type": "end",
 	"next_id": "end"
-  }
+  },
+{
+	"id": "9",
+	"speaker": "none",
+	"face": "none",
+	"text": "You closed your eyes<p0.5>.<p0.5>.<p0.5>.",
+	"type": "line",
+	"next_id": "10"
+  },
+{
+	"id": "10",
+	"speaker": "none",
+	"face": "none",
+	"text": "And went to sleep.",
+	"type": "end",
+	"next_id": "end"
+  },
 ]

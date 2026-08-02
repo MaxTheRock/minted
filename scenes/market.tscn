@@ -169,12 +169,12 @@ border_width_right = 5
 border_width_bottom = 5
 border_blend = true
 
-[sub_resource type="Gradient" id="Gradient_1syoy"]
+[sub_resource type="Gradient" id="Gradient_wa5cj"]
 offsets = PackedFloat32Array(0, 0.56772906, 0.59960157, 0.79083663, 0.99800795)
 colors = PackedColorArray(0, 0.6732479, 0.3207137, 1, 0.08235294, 0.654902, 0.3137255, 1, 0.54519236, 0.54519236, 0.54519236, 0, 0.45, 0.45, 0.45, 0, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4okcq"]
-gradient = SubResource("Gradient_1syoy")
+gradient = SubResource("Gradient_wa5cj")
 fill = 1
 fill_from = Vector2(0.4761092, 0.48976108)
 

@@ -71,7 +71,6 @@ func _display_dialogue(data, id):
 		display_type_dialogue(dialgoue_length)
 	elif type == "choice":
 		var choices = dict_display.get("choices")
-		print(choices)
 		current_choices = []
 		for i in choices:
 			current_choices.append(i.get("next_id"))
@@ -167,6 +166,7 @@ func _process(delta: float) -> void:
 			Global.dialogue_ongoing = false
 			visible = false
 			Global.paused = false
+			SignalBus.dialogue_finished.emit()
 	
 	#highlight stuff
 	if Input.is_action_just_pressed("up"):

@@ -100,11 +100,13 @@ offset_bottom = 64.0
 script = ExtResource("2_xjijs")
 
 [node name="spud_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=573951217 groups=["clothes"]]
+visible = false
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_4c3da")
 frame_progress = 0.63871384
 
 [node name="potion_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=1550037590 groups=["clothes"]]
+visible = false
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sowbf")
 frame_progress = 0.40995625
