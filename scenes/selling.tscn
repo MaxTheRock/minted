@@ -67,70 +67,145 @@ metadata/_tab_index = 0
 layout_mode = 2
 offset_transform_position = Vector2(0, -99.97)
 
-[node name="photo_label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=1229980567]
+[node name="ScrollContainer" type="ScrollContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=990887552]
 layout_mode = 0
-offset_left = 862.0
-offset_top = 62.0
-offset_right = 1003.0
-offset_bottom = 125.0
-theme_override_font_sizes/font_size = 40
-text = "Photo:"
+offset_left = 19.0
+offset_right = 1300.0
+offset_bottom = 469.0
 
-[node name="ItemTexture" type="ColorRect" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=105893288]
+[node name="Sections" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer" unique_id=387823112]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="1" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=1073420113]
+layout_mode = 2
+
+[node name="title_label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1" unique_id=1229980567]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Photos"
+
+[node name="inventory" type="MarginContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1" unique_id=690765484]
+custom_minimum_size = Vector2(200, 100)
+custom_maximum_size = Vector2(600, -1)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="ColorRect" type="Panel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory" unique_id=991274284]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, -10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_cm14b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory" unique_id=1394893930]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory/ScrollContainer" unique_id=469360293]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="Control" type="Control" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1" unique_id=929434070]
+layout_mode = 2
+
+[node name="ItemTexture" type="ColorRect" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/Control" unique_id=105893288]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 29.999996
-offset_right = 1158.0
-offset_bottom = 150.0
+offset_left = 1061.0
+offset_top = -227.0
+offset_right = 1251.0
+offset_bottom = -45.0
 color = Color(0.7391589, 0.6686526, 0.8565493, 1)
 
-[node name="Name" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=1442158482]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 61.0
-offset_right = 697.0
-offset_bottom = 108.0
+[node name="2" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=2124198756]
+layout_mode = 2
+
+[node name="title_label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2" unique_id=1357768708]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "About your item"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2" unique_id=2065879419]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer" unique_id=1605171470]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/HBoxContainer" unique_id=642530069]
+layout_mode = 2
+text = "Title"
+
+[node name="Name" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/HBoxContainer" unique_id=1442158482]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 icon_expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/Name" unique_id=697580088]
-layout_mode = 0
-offset_right = 146.0
-offset_bottom = 47.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -40)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Name:"
+[node name="HBoxContainer2" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer" unique_id=1402157610]
+layout_mode = 2
 
-[node name="Type" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=2080409203]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 157.0
-offset_right = 329.0
-offset_bottom = 204.0
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/HBoxContainer2" unique_id=2054954030]
+layout_mode = 2
+text = "Description"
+
+[node name="3" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=1473114667]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=30358873]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Item details"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=563453893]
+layout_mode = 2
+theme_override_constants/separation = 165
+
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer" unique_id=847053008]
+layout_mode = 2
+text = "Category"
+
+[node name="Type" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer" unique_id=2080409203]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 max_length = 20
-right_icon = ExtResource("2_cm14b")
-icon_expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/Type" unique_id=1520835356]
-layout_mode = 0
-offset_right = 146.0
-offset_bottom = 47.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -40)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Type:"
+[node name="HBoxContainer2" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=79522976]
+layout_mode = 2
+theme_override_constants/separation = 188
 
-[node name="Condition" type="OptionButton" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=934868590]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 157.0
-offset_right = 694.0
-offset_bottom = 204.0
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer2" unique_id=715423757]
+layout_mode = 2
+text = "Brand"
+
+[node name="Brand" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer2" unique_id=713754711]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+max_length = 15
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=322993809]
+layout_mode = 2
+theme_override_constants/separation = 160
+
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3" unique_id=541023850]
+layout_mode = 2
+text = "Condition"
+
+[node name="Condition" type="OptionButton" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3" unique_id=934868590]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 allow_reselect = true
 item_count = 6
@@ -147,64 +222,40 @@ popup/item_4/id = 4
 popup/item_5/text = "Minted"
 popup/item_5/id = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/Condition" unique_id=464506469]
-layout_mode = 0
-offset_right = 264.0
-offset_bottom = 47.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -40)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Condition:"
+[node name="HBoxContainer4" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=347129395]
+layout_mode = 2
+theme_override_constants/separation = 176
 
-[node name="Color" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=1190792838]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 265.0
-offset_right = 343.0
-offset_bottom = 312.0
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4" unique_id=1409658075]
+layout_mode = 2
+text = "Colours"
+
+[node name="Color" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4" unique_id=1190792838]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 max_length = 20
 right_icon = ExtResource("2_cm14b")
 icon_expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/Color" unique_id=238900649]
-layout_mode = 0
-offset_right = 146.0
-offset_bottom = 47.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -40)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Color:"
+[node name="4" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=796601733]
+layout_mode = 2
 
-[node name="Brand" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=713754711]
-layout_mode = 0
-offset_left = 390.0
-offset_top = 271.0
-offset_right = 697.0
-offset_bottom = 318.0
-theme_override_font_sizes/font_size = 20
-max_length = 15
-right_icon = ExtResource("2_cm14b")
-icon_expand_mode = 1
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4" unique_id=1981160395]
+layout_mode = 2
+text = "Pricing"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/Brand" unique_id=1827732966]
-layout_mode = 0
-offset_right = 146.0
-offset_bottom = 47.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -40)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Brand:"
+[node name="HBoxContainer" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4" unique_id=1686287433]
+layout_mode = 2
+theme_override_constants/separation = 195
 
-[node name="Price" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=995151250]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 370.0
-offset_right = 357.0
-offset_bottom = 417.0
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer" unique_id=80759897]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer" unique_id=995151250]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
 theme_override_font_sizes/font_size = 20
 placeholder_text = "X.XX"
@@ -212,67 +263,16 @@ max_length = 15
 right_icon = ExtResource("3_d3n2a")
 icon_expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/Price" unique_id=1831067901]
-layout_mode = 0
-offset_right = 146.0
-offset_bottom = 47.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -40)
-mouse_filter = 2
-theme_override_colors/default_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/normal_font_size = 30
-text = "Price:"
-
-[node name="sell_button" type="Button" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=515806981]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 350.0
-offset_right = 528.0
-offset_bottom = 423.0
+[node name="sell_button" type="Button" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=515806981]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.6880813, 0.37404057, 0.8417459, 1)
 theme_override_colors/font_focus_color = Color(0.85994095, 0.5478075, 0.91201293, 1)
 theme_override_font_sizes/font_size = 30
 text = "Sell
 "
 
-[node name="inventory" type="MarginContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=690765484]
-custom_minimum_size = Vector2(0, 300)
-layout_mode = 0
-offset_left = 833.0
-offset_top = 169.0
-offset_right = 1205.0
-offset_bottom = 469.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 0
-
-[node name="ColorRect" type="Panel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/inventory" unique_id=991274284]
-custom_minimum_size = Vector2(0, 200)
+[node name="display_error" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=1336974508]
 layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-10, -10)
-theme_override_styles/panel = SubResource("StyleBoxFlat_cm14b")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/inventory" unique_id=1394893930]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
-
-[node name="GridContainer" type="GridContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/inventory/ScrollContainer" unique_id=469360293]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 2
-
-[node name="display_error" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item" unique_id=1336974508]
-layout_mode = 0
-offset_left = 268.0
-offset_top = 192.0
-offset_right = 348.0
-offset_bottom = 227.0
 theme_override_colors/font_color = Color(1.1004806, 0.17704102, 0.16845088, 1)
 theme_override_font_sizes/font_size = 25
 
@@ -334,5 +334,5 @@ size_flags_vertical = 3
 theme_override_constants/v_separation = 15
 columns = 5
 
-[connection signal="item_selected" from="Sections/Centre/TabContainer/Sell Item/sell_item/Condition" to="." method="_on_condition_item_selected"]
-[connection signal="pressed" from="Sections/Centre/TabContainer/Sell Item/sell_item/sell_button" to="." method="_on_sell_button_pressed"]
+[connection signal="item_selected" from="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3/Condition" to="." method="_on_condition_item_selected"]
+[connection signal="pressed" from="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/sell_button" to="." method="_on_sell_button_pressed"]

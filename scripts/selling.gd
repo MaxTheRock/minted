@@ -3,17 +3,16 @@ extends Control
 signal page_requested(page_name: String)
 
 var current_text = ""
-@onready var inventory_grid = $"Sections/Centre/TabContainer/Sell Item/sell_item/inventory/ScrollContainer/GridContainer"
-@onready var item_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ItemTexture"
+@onready var inventory_grid = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory/ScrollContainer/GridContainer"
+@onready var item_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/Control/ItemTexture"
 @onready var selling_display = $Sections/Centre/TabContainer/sell_list/ScrollContainer/GridContainer
-
-@onready var name_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Name"
-@onready var type_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Type"
-@onready var condition_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Condition"
-@onready var color_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Color"
-@onready var brand_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Brand"
-@onready var price_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/Price"
-@onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/display_error"
+@onready var name_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/HBoxContainer/Name"
+@onready var type_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer/Type"
+@onready var condition_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3/Condition"
+@onready var color_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4/Color"
+@onready var brand_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer2/Brand"
+@onready var price_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer/Price"
+@onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/display_error"
 @onready var item_count = $Sections/Centre/TabContainer/sell_list/Label
 var template = "Items: {items}/{storage}"
 	
@@ -64,6 +63,7 @@ func _build_page() -> void:
 	
 func _on_item_page_requested(page_name: String) -> void:
 	_build_page()
+	load_uploaded_item_info()
 	page_requested.emit(page_name)
 
 
@@ -135,5 +135,19 @@ func _on_condition_item_selected(index: int) -> void:
 	current_text = condition_display.get_item_text(index)
 
 func _process(delta: float) -> void:
-
 	item_count.text = template.format({"items":Inventory.player_selling.size(),"storage":10})
+
+func load_uploaded_item_info() -> void:
+	if Inventory.display_item.is_empty():
+		return
+
+	var item_data: Dictionary = Inventory.display_item[0]
+
+	name_display.text = item_data.get("type", "").replace("_", " ").capitalize()
+	type_display.text = item_data.get("type", "").replace("_", " ").capitalize()
+	color_display.text = item_data.get("color", "")
+
+	if item_data.get("selected_brand", "none") != "none":
+		brand_display.text = item_data.get("selected_brand", "")
+	else:
+		brand_display.text = item_data.get("brand", "")
