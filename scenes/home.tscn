@@ -100,11 +100,20 @@ custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer/ScrollContainer" unique_id=290767008]
+custom_minimum_size = Vector2(300, 110)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 75
+columns = 6
 
 [node name="UpgradesContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer/ScrollContainer/GridContainer" unique_id=1742191462 instance=ExtResource("6_yxilm")]
 layout_mode = 2
 upgrade = "lv2_bed"
+
+[node name="UpgradesContainer2" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer/ScrollContainer/GridContainer" unique_id=892609266 instance=ExtResource("6_yxilm")]
+layout_mode = 2
+upgrade = "lv2_computer"
 
 [node name="UpgradeContainer2" type="VBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer" unique_id=1007312055]
 layout_mode = 2

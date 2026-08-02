@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="9_g4d30"]
 [ext_resource type="Texture2D" uid="uid://5xgbw04blkfq" path="res://assets/computer/level1/level1_computer.png" id="9_pjx8g"]
 [ext_resource type="Script" uid="uid://xdmw7txw5r07" path="res://scripts/shelf.gd" id="10_jrfpq"]
-[ext_resource type="Texture2D" uid="uid://xoau0utf8gft" path="res://assets/computer/level1/level1_computer_light.png" id="10_nge4r"]
+[ext_resource type="Texture2D" uid="uid://xoau0utf8gft" path="res://assets/computer/level1/level1_computer_effect.png" id="10_nge4r"]
 [ext_resource type="Texture2D" uid="uid://84b8ppvivf6u" path="res://assets/room/wardrobe_1.png" id="11_jc16f"]
 [ext_resource type="Texture2D" uid="uid://hkt2a8dqeu28" path="res://assets/room/room_small_shelf.png" id="12_blq7k"]
 [ext_resource type="Texture2D" uid="uid://h5yylvcpu4sy" path="res://assets/room/wardrobe_1_selected.png" id="12_g4d30"]

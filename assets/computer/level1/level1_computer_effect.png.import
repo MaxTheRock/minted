@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xoau0utf8gft"
-path="res://.godot/imported/level1_computer_light.png-b701f69930694ec39400c1519d7b9e7e.ctex"
+path="res://.godot/imported/level1_computer_effect.png-22a53342fab214f5a8b0b052e89021b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/computer/level1/level1_computer_light.png"
-dest_files=["res://.godot/imported/level1_computer_light.png-b701f69930694ec39400c1519d7b9e7e.ctex"]
+source_file="res://assets/computer/level1/level1_computer_effect.png"
+dest_files=["res://.godot/imported/level1_computer_effect.png-22a53342fab214f5a8b0b052e89021b3.ctex"]
 
 [params]
 
