@@ -1,6 +1,7 @@
 To-do list (add as we go and delete when completed):
 - Bidding
 - Sellers information
+- Users buying the items you are selling
 - Reputation
 - Day/night cycle
 - Rent system
