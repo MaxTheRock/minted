@@ -16,3 +16,5 @@ To-do list (add as we go and delete when completed):
 - More rooms
 - Tutorial level
 - Outside
+- Margaret animations
+- Face sprites
