@@ -9,7 +9,7 @@ func _ready() -> void:
 	Inventory.current_ui_type = "player"
 	player.global_position.x = Global.player_saved_x
 	player.global_position.y = Global.player_saved_y
-	if Global.first_room:
+	if Global.first_room and not Global.skip_dialogue:
 		Global.dialogue_ongoing = true
 		await get_tree().create_timer(1.0).timeout
 		SignalBus.display_dialogue.emit("find",0)

@@ -242,7 +242,29 @@ func _ready() -> void:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.actual_selling.size():
 				item.load_data(Inventory.actual_selling[inventory_index])
+	
+	elif Inventory.current_ui_type == "display_sold":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.hide()
+		eject_button.hide()
+		grid_container.hide()
+		upload_button.hide()
+		panel_container.custom_maximum_size = Vector2(150, 160)
+		$TextureRect.custom_maximum_size = Vector2(150, 158)
 
+		if Inventory.actual_sold:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.actual_sold.size():
+				item.load_data(Inventory.actual_sold[inventory_index])
+		else:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.actual_sold.size():
+				item.load_data(Inventory.actual_sold[inventory_index])
+				
 	elif Inventory.current_ui_type == "display":
 		$TextureRect.hide()
 		$PanelContainer2.hide()
@@ -310,106 +332,105 @@ func _on_buy_button_pressed() -> void:
 		return
 	if Global.money < item.price:
 		return
-
+	
 	Global.money -= item.price
 	ShippingHandler.shipping_list.append([item.get_data(), Global.time_mins])
 	Global.create_mail.emit()
 
 	var current_item_data = item.get_data()
+	print(current_item_data)
 	var inventory_index = Inventory.market_items[market_type].find(current_item_data)
 	Inventory.market_items[market_type].pop_at(inventory_index)
 
 	queue_free()
 
 
+
 func _on_take_button_mouse_entered() -> void:
 	item.button_enter()
-
-
+ 
+ 
 func _on_take_button_mouse_exited() -> void:
 	item.button_exit()
-
-
+ 
+ 
 func _on_take_button_pressed() -> void:
 	if is_parcel:
 		if Inventory.player_inventory.size() <= 1:
+			if inventory_index < 0 or inventory_index >= ShippingHandler.delivered_list.size():
+				print("Could not find parcel item to take!")
+				return
+ 
 			ShippingHandler.shipping_value -= item.shippingValue
-			var current_item_data = item.get_data()
-			var trimmed_list = []
-
-			for item in ShippingHandler.delivered_list:
-				trimmed_list.append(item[0])
-
-			inventory_index = trimmed_list.find(current_item_data)
-
-			Inventory.transfer_item(
-				trimmed_list,
-				Inventory.player_inventory,
-				inventory_index
-			)
-
+ 
+			Inventory.player_inventory.append(ShippingHandler.delivered_list[inventory_index][0])
 			ShippingHandler.delivered_list.remove_at(inventory_index)
-
+			Inventory.inventories_changed.emit()
+ 
 			if ShippingHandler.delivered_list.size() == 0:
 				ShippingHandler.shipping_value = 0
-
+ 
 			get_tree().reload_current_scene()
 		else:
 			print("Cannot carry any more items!")
 	else:
 		if Inventory.player_inventory.size() <= 1:
-			var current_item_data = item.get_data()
-			inventory_index = Inventory.wardrobe_inventory.find(current_item_data)
-
+			if inventory_index < 0 or inventory_index >= Inventory.wardrobe_inventory.size():
+				print("Could not find wardrobe item to take!")
+				return
+ 
 			Inventory.transfer_item(
 				Inventory.wardrobe_inventory,
 				Inventory.player_inventory,
 				inventory_index
 			)
-
+ 
 			get_tree().reload_current_scene()
 		else:
 			print("Cannot carry any more items!")
-
-
+ 
+ 
 func _on_put_button_button_down() -> void:
 	item.button_enter()
-
-
+ 
+ 
 func _on_put_button_button_up() -> void:
 	item.button_exit()
-
-
+ 
+ 
 func _on_put_button_pressed() -> void:
 	if Inventory.wardrobe_inventory.size() <= Global.storage_capacity:
-		var current_item_data = item.get_data()
-		inventory_index = Inventory.player_inventory.find(current_item_data)
-
+		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
+			print("Could not find item to put away!")
+			return
+ 
 		Inventory.transfer_item(
 			Inventory.player_inventory,
 			Inventory.wardrobe_inventory,
 			inventory_index
 		)
-
+ 
 		queue_free()
 		get_tree().reload_current_scene()
 	else:
 		print("Wardrobe cannot annot carry any more items!")
-
-
+ 
+ 
 func _on_place_button_button_down() -> void:
 	item.button_enter()
-
-
+ 
+ 
 func _on_place_button_button_up() -> void:
 	item.button_exit()
-
-
+ 
+ 
 func _on_place_button_pressed() -> void:
 	print(Inventory.current_ui_type)
 	if Inventory.current_ui_type == "poster":
-		var current_item_data = item.get_data()
-		inventory_index = Inventory.player_inventory.find(current_item_data)
+		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
+			print("Could not find item to place!")
+			return
+ 
 		Inventory.transfer_item(
 				Inventory.player_inventory,
 				Inventory.display_poster,
@@ -417,68 +438,70 @@ func _on_place_button_pressed() -> void:
 			)
 		poster_selected.emit(item.get_data())
 		return
-
+ 
 	if Inventory.shelf_inventory.size() <= 5:
 		if Inventory.shelf_inventory.any(func(d): return d.has("type") and d["type"] == "cd_player") and item.type == "cd_player":
 			print("cannot place duplacate items on shelf!")
 		else:
-			var current_item_data = item.get_data()
-			inventory_index = Inventory.player_inventory.find(current_item_data)
-
+			if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
+				print("Could not find item to place!")
+				return
+ 
 			Inventory.transfer_item(
 				Inventory.player_inventory,
 				Inventory.shelf_inventory,
 				inventory_index
 			)
-
+ 
 			queue_free()
 			get_tree().reload_current_scene()
 	else:
 		print("Shelf cannot annot carry any more items!")
-
-
+ 
+ 
 func _on_remove_button_down() -> void:
 	item.button_enter()
-
-
+ 
+ 
 func _on_remove_button_up() -> void:
 	item.button_exit()
-
-
+ 
+ 
 func _on_remove_pressed() -> void:
 	if Inventory.player_inventory.size() <= 1:
-		var current_item_data = item.get_data()
-		inventory_index = Inventory.shelf_inventory.find(current_item_data)
-
+		if inventory_index < 0 or inventory_index >= Inventory.shelf_inventory.size():
+			print("Could not find shelf item to remove!")
+			return
+ 
 		Inventory.transfer_item(
 			Inventory.shelf_inventory,
 			Inventory.player_inventory,
 			inventory_index
 		)
-
+ 
 		queue_free()
 		get_tree().reload_current_scene()
 	else:
 		print("Cannot carry any more items!")
-
-
+ 
+ 
 func _on_use_pressed() -> void:
 	if item.type == "cd_player":
 		get_tree().change_scene_to_file("res://scenes/cd_player.tscn")
 	elif item.type == "camera":
 		Global.camera_quality = item.condition
 		get_tree().change_scene_to_file("res://scenes/camera.tscn")
-
-
+ 
+ 
 func _on_use_button_pressed() -> void:
 	if Inventory.cd_inventory.size() < 1:
 		Global.now_playing = str(item.type)
-
+ 
 		if item.condition == "Poor":
 			AudioManager.music_player.bus = "LowQuality"
 		else:
 			AudioManager.music_player.bus = "Master"
-
+ 
 		if item.type == "the_big_mint":
 			AudioManager.play_music(AudioManager.the_big_mint)
 		elif item.type == "smooth_jazz_1":
@@ -489,56 +512,57 @@ func _on_use_button_pressed() -> void:
 			AudioManager.play_music(AudioManager.jungle)
 		elif item.type == "three_jelly":
 			AudioManager.play_music(AudioManager.three_jelly)
-
-		var current_item_data = item.get_data()
-		inventory_index = Inventory.player_inventory.find(current_item_data)
-
+ 
+		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
+			print("Could not find CD to play!")
+			return
+ 
 		Inventory.transfer_item(
 			Inventory.player_inventory,
 			Inventory.cd_inventory,
 			inventory_index
 		)
-
+ 
 		queue_free()
 		get_tree().reload_current_scene()
 	else:
 		print("there is a cd in use!")
-
-
+ 
+ 
 func _on_eject_pressed() -> void:
 	if Inventory.player_inventory.size() < 2:
 		AudioManager.music_player.bus = "Master"
 		AudioManager.eject()
-
+ 
 		Inventory.transfer_item(
 			Inventory.cd_inventory,
 			Inventory.player_inventory,
 			0
 		)
-
+ 
 		get_tree().reload_current_scene()
 		Global.now_playing = ""
 	else:
 		print("Player Inventory full!")
-
-
+ 
+ 
 func _on_upload_button_button_down() -> void:
 	item.button_enter()
-
-
+ 
+ 
 func _on_upload_button_button_up() -> void:
 	item.button_exit()
-
-
+ 
+ 
 func _on_upload_button_pressed() -> void:
 	Inventory.display_item = []
 	Inventory.display_item.append(item.get_data())
 	page_requested.emit("Selling")
-
-
+ 
+ 
 func load_data(data):
 	item.load_data(data)
-
-
+ 
+ 
 func get_data():
 	return item.get_data()

@@ -1,6 +1,5 @@
 extends Control
 
-@onready var money_ui_element = $Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/PanelContainer/Right/Money_Container/Money
 @onready var ui_element = preload("res://scenes/item_ui.tscn")
 @onready var tab_container = $Mintora/VBoxContainer/Control3/TabContainer
 

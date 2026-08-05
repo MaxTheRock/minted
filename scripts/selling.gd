@@ -14,6 +14,8 @@ var current_text = ""
 @onready var price_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer/Price"
 @onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/display_error"
 @onready var item_count = $Sections/Centre/TabContainer/sell_list/Label
+@onready var sold_display = $Sections/Centre/TabContainer/sold_list/ScrollContainer/GridContainer
+
 var template = "Items: {items}/{storage}"
 	
 func _ready() -> void:
@@ -28,6 +30,8 @@ func clear_contents() -> void:
 	price_display.clear()
 	for child in item_display.get_children():
 		child.queue_free()
+	for child in sold_display.get_children():
+		child.queue_free()
 	exeption_message.text = ""
 	current_text = ""
 	
@@ -36,7 +40,10 @@ func _build_page() -> void:
 		child.queue_free()
 	for child in item_display.get_children():
 		child.queue_free()
-
+	for child in sold_display.get_children():
+		child.queue_free()
+	for child in selling_display.get_children():
+		child.queue_free()	
 	Inventory.current_ui_type = "selling"
 	for i in range(Inventory.player_inventory.size()):
 		var packed = preload("res://scenes/item_ui.tscn")
@@ -59,13 +66,20 @@ func _build_page() -> void:
 		var storage_ui = packed.instantiate()
 		storage_ui.item_index = i
 		selling_display.add_child(storage_ui)
-		
+	
+	Inventory.current_ui_type = "display_sold"
+	for i in range(Inventory.actual_sold.size()):
+		var packed = preload("res://scenes/sold_ui.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.item_index = i
+		sold_display.add_child(storage_ui)
+	
 	
 func _on_item_page_requested(page_name: String) -> void:
 	_build_page()
 	load_uploaded_item_info()
 	page_requested.emit(page_name)
-
+	Inventory.item_sold.connect(_build_page)
 
 
 func _on_sell_button_pressed() -> void:
@@ -90,8 +104,14 @@ func _on_sell_button_pressed() -> void:
 	else:
 		if current_text == "":
 			current_text = condition_display.get_item_text(condition_display.selected)
-			
-		Inventory.transfer_item(Inventory.display_item,
+		
+		
+		var listing = Inventory.display_item[0].duplicate()
+		Inventory.sell_id += 1
+		listing["listing_sell_id"] = Inventory.sell_id
+		var list_thing = [] #omg this is so dumb
+		list_thing.append(listing)
+		Inventory.transfer_item(list_thing,
 		Inventory.actual_selling, 0)
 		
 		var color = color_display.text
@@ -128,7 +148,8 @@ func _on_sell_button_pressed() -> void:
 		var storage_ui = packed.instantiate()
 		storage_ui.item_index = Inventory.player_selling.size() - 1
 		selling_display.add_child(storage_ui)
-		
+		print(Inventory.actual_selling[-1])
+		Inventory.create_buyers(10, Inventory.actual_selling[-1]["ID"],Inventory.sell_id)
 
 
 func _on_condition_item_selected(index: int) -> void:

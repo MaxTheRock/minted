@@ -30,6 +30,7 @@ var conditions = ["Poor", "Satisfactory", "Good", "Great", "Excellent", "Minted"
 var condition = ""
 var condition_price_mult = 1
 var price = 0
+var default_price:float = 0
 var type = ""
 var last_frame: int = 0
 var chosen_frame: int = 0
@@ -323,6 +324,7 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		logo_calculator(color1)
 		price = snapped(2.5 * condition_price_mult * rng.randf_range(0.8,1.2) * brandmult,0.01)
+		default_price = 2.5
 	elif type == "socks":
 		number = rng.randi_range(0, colours.size()-1)
 		color1 = colours[number]
@@ -331,7 +333,7 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(1.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-	
+		default_price = 1.5
 	elif type == "trousers":
 		number = rng.randi_range(0, trouser_colours.size()-1)
 		color1 = trouser_colours[number]
@@ -340,7 +342,7 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(4.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-		
+		default_price = 4.5
 	elif type == "shorts":
 		number = rng.randi_range(0, trouser_colours.size()-1)
 		color1 = trouser_colours[number]
@@ -348,7 +350,8 @@ func generate_parameters(type):
 		shippingValue = 1
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		price = snapped(3 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		price = snapped(3.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 3.5
 	elif type == "shoes":
 		number = rng.randi_range(0, colours.size()-1)
 		color1 = colours[number]
@@ -357,36 +360,42 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(15 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 3
 	elif type == "cd_player":
 		shippingTime = rng.randi_range(2, 6.0)
 		shippingValue = 2
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(10 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 10
 	elif type == "puzzle_cube":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 7
 	elif type == "spud_poster":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 7
 	elif type == "beh_enclosed_shirt":
 		shippingTime = rng.randi_range(3, 10.0)
 		shippingValue = 5
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(23 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 23
 	elif type == "potion_poster":
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 8
 	elif type == "boxers":
 		number = rng.randi_range(0, colours.size()-1)
 		color1 = colours[number]
@@ -395,6 +404,7 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(2 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 2
 	elif type == "the_big_mint":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
@@ -402,12 +412,14 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		genre = "phonk"
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 9
 	elif type == "smooth_jazz_1":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 7
 		genre = "jazz"
 	elif type == "camera":
 		shippingTime = rng.randi_range(1, 6.0)
@@ -415,6 +427,7 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 7
 	elif type == "three_jelly":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
@@ -422,6 +435,7 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		genre = "rage"
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 9
 	elif type == "evil_pulsation":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
@@ -429,6 +443,7 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		genre = "noise"
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 9
 	elif type == "jungle":
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
@@ -436,12 +451,14 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		genre = "jungle"
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 9
 	elif type == "football":
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 2
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 8
 	
 	# minimum price is £1
 	if price < 1:
@@ -527,6 +544,7 @@ func get_data() -> Dictionary:
 		"cd": cd,
 		"rarity": rarity,
 		"logo_animation": tshirt_logo.animation if tshirt_logo else "none",
+		"default_price": default_price
 	}
 
 func load_data(data: Dictionary) -> void:
@@ -545,6 +563,7 @@ func load_data(data: Dictionary) -> void:
 	genre = data.get("genre", "none")
 	cd = data.get("cd", false)
 	rarity = data.get("rarity", "common")
+	default_price = data.get("default_price",1.00)
 
 	set_item_type(type)
 

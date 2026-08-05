@@ -9,17 +9,21 @@ var cd_inventory: Array = []
 var display_item: Array = []
 var actual_selling: Array = []
 var player_selling: Array = []
+var sold_items: Array = []
+var actual_sold: Array = []
 var display_poster: Array = []
+var buyers: Array = []
+var ids_on_sale = []
 
 var item_id: int = 0
+var sell_id: int = 0
 var market_items: Dictionary = {}
-
+var buyer_types = ["cheap","normal","stingy"]
 # global signal
 signal inventories_changed
-
+signal item_sold
 
 func transfer_item(from_array: Array, to_array: Array, from_index: int) -> bool:
-	
 	if from_index < 0 or from_index >= from_array.size() or from_array[from_index] == null:
 		return false
 		
@@ -29,3 +33,151 @@ func transfer_item(from_array: Array, to_array: Array, from_index: int) -> bool:
 	
 	inventories_changed.emit()
 	return true
+
+func create_buyers(amount,id,listing_sell_id):
+	for i in (amount-1):
+		var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+		rng.randomize()
+		var current_minute = Global.time_mins
+		var buyer_type = buyer_types.pick_random()
+		var minutes_after = rng.randi_range(0,1440)
+		var min_to_buy = current_minute + minutes_after
+		var buyer_dict: Dictionary = {
+			"id": id,
+			"buyer_type":buyer_type,
+			"min_to_buy":min_to_buy,
+			"listing_sell_id": listing_sell_id
+		}
+		buyers.append(buyer_dict)
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	var current_minute = Global.time_mins
+	var buyer_type = buyer_types.pick_random()
+	var min_to_buy = current_minute + 1440
+	var buyer_dict: Dictionary = {
+			"id": id,
+			"buyer_type":buyer_type,
+			"min_to_buy":min_to_buy,
+			"listing_sell_id": listing_sell_id
+		}
+	buyers.append(buyer_dict)
+	ids_on_sale.append(listing_sell_id)
+		
+func _ready() -> void:
+	player_inventory.append({ "ID": 0, "type": "shoes", "number": 9, "color1": "grey", "color2": "black", "price": 11.05, "shippingTime": 2.0, "shippingValue": 2, "condition": "Great", "condition_price_mult": 0.9, "brand": "ele_shoes", "selected_brand": "elemental", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"ele_minimalistic_black", "default_price": 15})
+
+func _process(_delta) -> void:
+	var buyers_to_remove: Array = []
+
+	for i in actual_selling:
+		var listing_sell_id = i["listing_sell_id"]
+		var item_id = i["ID"]
+		var buyer_count = 0
+
+		for j in buyers:
+			if j["listing_sell_id"] == listing_sell_id:
+				buyer_count += 1
+				if Global.time_mins >= int(j["min_to_buy"]):
+					check_buy_items(j, item_id)
+					buyers_to_remove.append(j)
+
+		if buyer_count == 0:
+			create_buyers(10, item_id, listing_sell_id)
+
+	for j in buyers_to_remove:
+		buyers.erase(j)
+
+
+	
+func get_buy_probability_sigmoid(price: float, base_price: float) -> float:
+	if base_price <= 0.0:
+		return 1.0
+	print(base_price)	
+	var x: float = price - base_price
+	var scale_factor: float = base_price / 4.0
+	var exponent: float = x / scale_factor
+	return clamp(2.0 / (1.0 + exp(exponent)),10**(-log(price)/log(10)),10) # caps at 10x more likely to buy, min is dependent on the price you give, using logorithms.
+					
+func check_buy_items(buyer,id):
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var odds: float = 0.15 # can change
+	var trust: float = 1.0
+	var found_index = -1
+	for i in range(actual_selling.size()):
+		if actual_selling[i].get("ID") == id:
+			found_index = i	
+			break
+	
+	var actual_dict = actual_selling[found_index]
+	var player_dict = player_selling[found_index]
+	#print(actual_dict,player_dict)
+	var worn_words = ["worn","used","damaged","poor condition"]
+	var new_words = ["new","mint","minted","clean","good condition","great condition","excellent","like new"]
+	if player_dict["type"].to_lower() != actual_dict["type"].to_lower():
+		trust -= 0.3
+	if player_dict["color1"].to_lower() != actual_dict["color1"].to_lower() and player_dict["color1"].to_lower() != actual_dict["color2"].to_lower():
+		trust -= 0.15
+	if player_dict["color2"].to_lower() == actual_dict["color2"].to_lower() or  player_dict["color2"].to_lower() != actual_dict["color1"].to_lower():
+		trust += 0.15
+	if player_dict["brand"].to_lower() != actual_dict["brand"].to_lower():
+		trust -= 0.15
+	if player_dict["name"].to_lower().contains(actual_dict["type"].to_lower()):
+		trust += 0.1
+	for word in worn_words:
+		if player_dict["name"].to_lower().contains(word):
+			if player_dict["condition"].to_lower() == "poor" or player_dict["condition"].to_lower() == "okay":	
+				trust += 0.1
+				break
+	for word in new_words:
+		if player_dict["name"].to_lower().contains(word):
+			if player_dict["condition"].to_lower() == "excellent" or player_dict["condition"].to_lower() == "minted":	
+				trust += 0.1
+				break
+	
+	var price_mult = 1
+	var price_affect_odds = 1
+	var price_given = player_dict["price"]
+	var default_price = actual_dict["default_price"]
+	var condition = player_dict["condition"]
+	if condition == "Poor":
+		price_mult = 0.4
+	elif condition == "Satisfactory":
+		price_mult = 0.6
+	elif condition == "Good":
+		price_mult = 0.8
+	elif condition == "Great":
+		price_mult = 0.9
+	elif condition == "Minted":
+		price_mult = 1.05
+	else:
+		price_mult = 1.0
+	
+	default_price = default_price* price_mult
+	if buyer["buyer_type"] == "stingy":
+		default_price *= 0.8
+	elif buyer["buyer_type"] == "leniant":
+		default_price *= 1.2
+	price_affect_odds = get_buy_probability_sigmoid(price_given,default_price)
+	odds = 0.15 * trust * price_affect_odds	
+	var numbar = rng.randf()
+	print(odds, " ", numbar)
+	if odds >= numbar:
+		for j in buyers:
+			if buyer["listing_sell_id"] == j["listing_sell_id"]:
+				buyers.erase(j)
+		
+		
+		found_index = -1
+		for i in range(actual_selling.size()):
+			if actual_selling[i].get("ID") == id:
+				found_index = i	
+				break
+		Global.money += player_selling[found_index]["price"]
+		transfer_item(actual_selling,actual_sold,found_index)	
+		transfer_item(player_selling,sold_items,found_index)
+		#print(found_index, actual_selling,actual_sold)
+		#print(found_index, player_selling,sold_items)
+		item_sold.emit()
+	

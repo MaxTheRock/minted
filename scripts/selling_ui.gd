@@ -15,7 +15,6 @@ func _ready() -> void:
 	storage_ui.inventory_index = item_index
 	item_container.add_child(storage_ui)
 	
-	print(Inventory.player_selling[item_index])
 	if Inventory.player_selling[item_index]["price"]:
 		$price/name/price.text = "$" + str(Inventory.player_selling[item_index]["price"])
 	if Inventory.player_selling[item_index]["name"]:
