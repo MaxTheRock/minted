@@ -1,8 +1,9 @@
 To-do list (add as we go and delete when completed):
 - Bidding
 - Sellers information
+- Users buying the items you are selling
 - Reputation
-- Day/night cycle
+- Dream minigames
 - Rent system
 - Achievments
 - Saving mechanic
@@ -14,3 +15,6 @@ To-do list (add as we go and delete when completed):
 - Trading items
 - More rooms
 - Tutorial level
+- Outside
+- Margaret animations
+- Face sprites
