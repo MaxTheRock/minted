@@ -1,16 +1,14 @@
 To-do list (add as we go and delete when completed):
 - Bidding
 - Sellers information
-- Users buying the items you are selling
 - Reputation
 - Dream minigames
 - Rent system
 - Achievments
-- Saving mechanic
+- Postage
 - More items
 - Endings
 - Scamming
-- Upgradable things in room
 - Newspaper
 - Trading items
 - More rooms

@@ -316,7 +316,9 @@ func _rarity_ui(item_rarity) -> void:
 	elif item_rarity == "epic":
 		panel_container.self_modulate = Color8(153, 51, 255)
 		background.self_modulate = Color("89377cff")
-
+	elif item_rarity == "legendary":
+		panel_container.self_modulate = Color8(223, 231, 25)
+		background.self_modulate = Color("b6a022ff")
 
 func _on_buy_button_mouse_entered() -> void:
 	item.button_enter()

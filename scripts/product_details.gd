@@ -17,7 +17,7 @@ var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
-
+var conceal_texture = preload("res://shaders/conceal_colours.png")
 func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 	preview_image.visible = true
 	if sprite:
@@ -52,7 +52,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material = ShaderMaterial.new()
 	
 	if data["type"] == "socks":
-		preview_image.material.shader = socks_shader
+		preview_image.material.shader = tshirt_shader
 		
 		preview_image.material.set_shader_parameter("palette_texture", socks_texture)
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
@@ -92,12 +92,21 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("color_count", 6)
 		preview_image.material.set_shader_parameter("palette_count", 10)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
+	
+	elif data["type"] == "conceal_shoes":
+		preview_image.material.shader = tshirt_shader
+		
+		preview_image.material.set_shader_parameter("palette_texture", conceal_texture)
+		preview_image.material.set_shader_parameter("tolerance", 0.02)
+		preview_image.material.set_shader_parameter("color_count", 11)
+		preview_image.material.set_shader_parameter("palette_count", 6)
+		preview_image.set_instance_shader_parameter("palette_index", color_index)
 		
 	else:
 		preview_image.material.shader = null
 		
 func display_logo(sprite: AnimatedSprite2D, brand, frame):
-	if brand == "ele_shoes":
+	if brand == "ele_shoes" or "conceal":
 		logo.animation = "none"
 		logo.frame = 0
 	else:
@@ -153,7 +162,11 @@ func name_generator(data) -> String:
 	elif type == "jungle":
 		display_type = "Jungle CD"
 		display_color = ""
-	
+	elif type == "conceal_shoes":
+		display_type = "shoes"
+	elif type == "gold_ring":
+		display_color = ""
+		display_type = "Gold Ring"
 	if display_color2 != "" and display_color != "":
 		return brand_print + display_color + " & " + display_color2 + " " + display_type + "."
 	else:

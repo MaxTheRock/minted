@@ -2,21 +2,23 @@ extends Node2D
 
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
+var conceal_colours: Array = ["white","red","green","pink","black","blue"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle"]
 var epic_items: Array = ["beh_enclosed_shirt"]
+var legendary_items: Array = ["gold_ring"]
 var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera"]
 var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
 var cds = items_that_spin
 var brands: Array = ["none", "elemental"]
 # Categories
-var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers"]
+var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes"]
 var toys: Array = ["puzzle_cube", "football"]
 var home: Array = ["spud_poster","potion_poster"]
 var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle"]
 var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
-var collectables: Array = ["spud_poster", "beh_enclosed_shirt"]
+var collectables: Array = ["spud_poster", "beh_enclosed_shirt","gold_ring"]
 var sports: Array = ["beh_enclosed_shirt", "football"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -43,10 +45,11 @@ var selected_brand = "none"
 var counter: int = 0
 var hovering = false
 var rarities = {
-	"common": 1000,
+	"common": 900,
 	"uncommon": 300,
 	"rare": 100,
 	"epic": 20,
+	"legendary": 4
 }
 var rarity = "common"
 signal rarity_ui(item_rarity: String)
@@ -57,6 +60,7 @@ var tshirt_texture = preload("res://shaders/tshirt_colours.png")
 var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
+var conceal_texture = preload("res://shaders/conceal_colours.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
@@ -77,6 +81,8 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 	"evil_pulsation": $TextureButton/evil_pulsation,
 	"jungle": $TextureButton/jungle,
 	"football": $TextureButton/football,
+	"gold_ring": $TextureButton/gold_ring,
+	"conceal_shoes": $TextureButton/conceal_shoes
 }
 
 @onready var details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
@@ -135,7 +141,9 @@ func initialize_item(category := "All"):
 		rarity = "rare"
 	elif type in epic_items:
 		rarity = "epic"
-	
+	elif type in legendary_items:
+		rarity = "legendary"
+		
 	if sprites.has(type):
 		var sprite = sprites[type]
 		set_node_palette(sprite, number)
@@ -178,7 +186,12 @@ func initialize_item(category := "All"):
 	elif type == "football":
 		color1 = "black"
 		color2 = "white"
-		
+	elif type == "conceal_shoes":
+		color2 = ""
+		brand = "conceal"	
+	elif type == "gold_ring":
+		color2 = ""
+		color1 = "yellow"
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -192,7 +205,9 @@ func get_random_item() -> String:
 		total_weight += rarities["rare"]
 	if epic_items.size() > 0:
 		total_weight += rarities["epic"]
-
+	if legendary_items.size() > 0:
+		total_weight += rarities["legendary"]
+		
 	var roll := rng.randi_range(1, total_weight)
 
 	if common_items.size() > 0:
@@ -209,8 +224,13 @@ func get_random_item() -> String:
 		if roll <= rarities["rare"]:
 			return rare_items.pick_random()
 		roll -= rarities["rare"]
-
-	return epic_items.pick_random()
+	
+	if epic_items.size() > 0:
+		if roll <= rarities["rare"]:
+			return epic_items.pick_random()
+		roll -= rarities["epic"]
+		
+	return legendary_items.pick_random()
 	
 func get_rarity():
 	rng.randomize()
@@ -359,7 +379,7 @@ func generate_parameters(type):
 		shippingValue = 2
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
-		price = snapped(15 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		price = snapped(14 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 3
 	elif type == "cd_player":
 		shippingTime = rng.randi_range(2, 6.0)
@@ -459,7 +479,23 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 8
-	
+	elif type == "gold_ring":
+		shippingTime = rng.randi_range(3, 8.0)
+		shippingValue = 1
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(120 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 120
+	elif type == "conceal_shoes":
+		number = rng.randi_range(0, conceal_colours.size()-1)
+		color1 = conceal_colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 2
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(19 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 19
+		
 	# minimum price is £1
 	if price < 1:
 		price = 1.00
@@ -482,10 +518,10 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 	if target_sprite.material == null:
 		target_sprite.material = ShaderMaterial.new()
 	if type == "socks":
-		target_sprite.material.shader = socks_shader
+		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", socks_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("tolerance", 0.15)
 		target_sprite.material.set_shader_parameter("color1_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
@@ -522,6 +558,15 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("color1_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
+	elif type == "conceal_shoes":
+		target_sprite.material.shader = tshirt_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", conceal_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color1_count", 11)
+		target_sprite.material.set_shader_parameter("palette_count", 6)
+		target_sprite.set_instance_shader_parameter("palette_index", num)
+		
 	else:
 		target_sprite.material.shader = null
 

@@ -110,6 +110,7 @@ offset_bottom = 219.0
 texture = SubResource("GradientTexture2D_6snss")
 
 [node name="item" parent="." unique_id=720823212 instance=ExtResource("2_v7xym")]
+z_index = 1000
 position = Vector2(5, 25)
 scale = Vector2(2, 2)
 

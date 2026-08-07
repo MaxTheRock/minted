@@ -23,7 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://ctnurbdwvvxkv" path="res://assets/cds/3_jelly.png" id="21_rkinn"]
 [ext_resource type="Texture2D" uid="uid://chnlv8left1xc" path="res://assets/cds/evil_pulsation.png" id="22_a0ks6"]
 [ext_resource type="Texture2D" uid="uid://cdjj4smabnxee" path="res://assets/cds/jungle.png" id="23_dxgow"]
-[ext_resource type="Texture2D" uid="uid://cvyfd2xdf7un0" path="res://assets/items/football/football.png" id="24_rf8yr"]
+[ext_resource type="Texture2D" uid="uid://cvyfd2xdf7un0" path="res://assets/items/football/football.png" id="24_3tic0"]
+[ext_resource type="Texture2D" uid="uid://bpdybj0nx4uxs" path="res://assets/items/gold_ring.png" id="24_rf8yr"]
+[ext_resource type="Texture2D" uid="uid://dmxtndiu75jpo" path="res://assets/items/conceal/conceal.png" id="25_qekll"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m13t4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34t5m"]
 load_path = "res://.godot/imported/socks.png-35deec6bfe146b9ee338775648b09581.ctex"
@@ -1218,6 +1222,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbtql"]
+atlas = ExtResource("24_3tic0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbs6n"]
+atlas = ExtResource("24_3tic0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dism5"]
+atlas = ExtResource("24_3tic0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0cln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbtql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbs6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dism5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_skoww"]
 atlas = ExtResource("24_rf8yr")
 region = Rect2(0, 0, 64, 64)
@@ -1230,7 +1263,27 @@ region = Rect2(64, 0, 64, 64)
 atlas = ExtResource("24_rf8yr")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_k0cln"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lilav"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd2a7"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfvsi"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmgvx"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwdy4"]
+atlas = ExtResource("24_rf8yr")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qbtql"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -1241,6 +1294,64 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0ouyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lilav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd2a7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfvsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmgvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwdy4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3sf3"]
+atlas = ExtResource("25_qekll")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78t3b"]
+atlas = ExtResource("25_qekll")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gcg4"]
+atlas = ExtResource("25_qekll")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d78fn"]
+atlas = ExtResource("25_qekll")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iij4"]
+atlas = ExtResource("25_qekll")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jc3i3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3sf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78t3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gcg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d78fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iij4")
 }],
 "loop": 1,
 "name": &"default",
@@ -1256,6 +1367,7 @@ offset_bottom = 64.0
 script = ExtResource("2_ro5b8")
 
 [node name="socks" type="AnimatedSprite2D" parent="TextureButton" unique_id=1203222321 groups=["clothes"]]
+material = SubResource("ShaderMaterial_m13t4")
 position = Vector2(32, 32)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_6snss")
@@ -1341,6 +1453,14 @@ sprite_frames = SubResource("SpriteFrames_skoww")
 [node name="football" type="AnimatedSprite2D" parent="TextureButton" unique_id=1526951585 groups=["clothes"]]
 position = Vector2(34, 32)
 sprite_frames = SubResource("SpriteFrames_k0cln")
+
+[node name="gold_ring" type="AnimatedSprite2D" parent="TextureButton" unique_id=1432718562 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_qbtql")
+
+[node name="conceal_shoes" type="AnimatedSprite2D" parent="TextureButton" unique_id=1934988730 groups=["clothes"]]
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_jc3i3")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2
