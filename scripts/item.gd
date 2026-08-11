@@ -3,23 +3,24 @@ extends Node2D
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var conceal_colours: Array = ["white","red","green","pink","black","blue"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle"]
 var epic_items: Array = ["beh_enclosed_shirt"]
 var legendary_items: Array = ["gold_ring"]
-var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera"]
+var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera","gold_ring"]
 var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
 var cds = items_that_spin
-var brands: Array = ["none", "elemental"]
+var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
 # Categories
-var clothes: Array = ["tshirt", "socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes"]
+var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes"]
+#var clothes = ["tshirt"]
 var toys: Array = ["puzzle_cube", "football"]
 var home: Array = ["spud_poster","potion_poster"]
 var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle"]
 var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
 var collectables: Array = ["spud_poster", "beh_enclosed_shirt","gold_ring"]
-var sports: Array = ["beh_enclosed_shirt", "football"]
+var sports: Array = ["beh_enclosed_shirt", "football","basketball"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var ID = -1
@@ -28,6 +29,7 @@ var color1: String = ""
 var color2: String = ""
 var shippingTime: float = 0
 var shippingValue: int = 0
+var seller_name = ""
 var conditions = ["Poor", "Satisfactory", "Good", "Great", "Excellent", "Minted"]
 var condition = ""
 var condition_price_mult = 1
@@ -44,6 +46,7 @@ var cd: bool
 var selected_brand = "none"
 var counter: int = 0
 var hovering = false
+var overlay_animation = "none"
 var rarities = {
 	"common": 900,
 	"uncommon": 300,
@@ -52,6 +55,11 @@ var rarities = {
 	"legendary": 4
 }
 var rarity = "common"
+var pattern_type = "none"
+var patterns: Dictionary = {"stripes":200,"checker":100,"polka-dot":80,"wavy":40,"zig-zag":30,"geometric":20,"hearts":20,"smiley":20}
+var pattern_mult = 1
+var pattern_colours: Array = ["blue","yellow", "red", "green", "white", "black", "purple", "pink", "cyan", "orange"]
+var pattern_index: int = 0
 signal rarity_ui(item_rarity: String)
 var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
 var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
@@ -61,6 +69,7 @@ var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
 var conceal_texture = preload("res://shaders/conceal_colours.png")
+var pattern_texture = preload("res://shaders/pattern_colors.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
@@ -82,12 +91,14 @@ var conceal_texture = preload("res://shaders/conceal_colours.png")
 	"jungle": $TextureButton/jungle,
 	"football": $TextureButton/football,
 	"gold_ring": $TextureButton/gold_ring,
-	"conceal_shoes": $TextureButton/conceal_shoes
+	"conceal_shoes": $TextureButton/conceal_shoes,
+	"basketball": $TextureButton/basketball
 }
 
 @onready var details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
-@onready var tshirt_logo: AnimatedSprite2D = $TextureButton/tshirt/logo
+@onready var tshirt_logo: AnimatedSprite2D = $overlays/thsirt_logo
 @onready var frame_timer = $FrameTimer
+@onready var tshirt_pattern = $overlays/tshirt_pattern
 
 func _process(delta):
 	if !hovering:
@@ -112,6 +123,7 @@ func initialize_item(category := "All"):
 	brand = "none"
 	selected_brand = "none"
 	genre = "none"
+	seller_name = Global.name_generator()
 	rng.randomize()
 	match category:
 		"Clothes":
@@ -151,7 +163,7 @@ func initialize_item(category := "All"):
 	
 	if type == "shoes":
 		selected_brand = "elemental"
-		brand = "ele_shoes"
+		brand = "elemental"
 		color1 = "grey"
 	elif type == "cd_player":
 		selected_brand = "C.O.M.A"
@@ -192,6 +204,24 @@ func initialize_item(category := "All"):
 	elif type == "gold_ring":
 		color2 = ""
 		color1 = "yellow"
+	elif type == "basketball":
+		color2 = "black"
+		color1 = "orange"
+		
+	if type == "tshirt":
+		tshirt_logo.show()
+		if pattern_type != "none":
+			tshirt_pattern.animation = pattern_type
+			tshirt_pattern.frame = 0
+			tshirt_pattern.show()
+			set_node_palette(tshirt_pattern, pattern_index)
+		else:
+			tshirt_pattern.hide()
+	else:
+		pattern_type = "none"
+		tshirt_logo.hide()
+		tshirt_pattern.hide()
+		
 	emit_signal("rarity_ui", rarity)
 
 func get_random_item() -> String:
@@ -245,24 +275,55 @@ func get_rarity():
 		else:
 			rarity_selected -= rarities[n]
 			
-				
+
+func get_brand():
+	rng.randomize()
+	var weighted_sum = 0
+	for n in brands:
+		weighted_sum += brands[n]
+	
+	var brand_selected = rng.randi_range(0,weighted_sum)
+	for n in brands:
+		if brand_selected <= brands[n]:
+			return n
+		else:
+			brand_selected -= brands[n]
+			
+func get_pattern():
+	rng.randomize()
+	var weighted_sum = 0
+	for n in patterns:
+		weighted_sum += patterns[n]
+	
+	var brand_selected = rng.randi_range(0,weighted_sum)
+	for n in patterns:
+		if brand_selected <= patterns[n]:
+			return n
+		else:
+			brand_selected -= patterns[n]
+								
 func logo_calculator(color1_of_shirt: String) -> void:
-	selected_brand = brands.pick_random()
+	selected_brand = get_brand()
 	if selected_brand == "elemental":
+		brand = "elemental"
 		brandmult = 1.5
 		var rnd_outcome = [1,2].pick_random()
 		if color1_of_shirt == "black" and rnd_outcome == 1:
-			brand = "ele_minimalistic_black"
-			tshirt_logo.animation = "ele_minimalistic_white"
+			overlay_animation = "ele_minimalistic_white"
+			brandmult = 2
 		elif color1_of_shirt == "white" and rnd_outcome == 1:
-			tshirt_logo.animation = "ele_minimalistic_black"
-			brand = "ele_minimalistic_white"
+			overlay_animation = "ele_minimalistic_black"
+			brandmult = 2
 		else:
-			tshirt_logo.animation = "ele_regular"
-			brand = "ele_regular"
+			overlay_animation = "ele_regular"
 	else:
 		tshirt_logo.animation = "none"
-
+	
+	if selected_brand == "conceal":
+		brand = "conceal"
+		brandmult = 2.5
+		overlay_animation = "conceal_shirt"
+	tshirt_logo.animation = overlay_animation
 	tshirt_logo.frame = 0
 	tshirt_logo.stop()
 	if details_ui != null:
@@ -277,7 +338,8 @@ func set_item_type(item_type: String) -> void:
 func _on_texture_button_mouse_entered():
 	hovering = true
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_product_info(sprite_image, get_data())
+		details_ui.display_logo(tshirt_logo, get_data(),0)
 	
 	if type in items_with_regular_animation:
 		counter = 0
@@ -286,7 +348,7 @@ func _on_texture_button_mouse_entered():
 func _on_texture_button_mouse_exited():
 	hovering = false
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_logo(tshirt_logo, get_data(),0)
 		details_ui.display_product_info(sprite_image, get_data())
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
@@ -305,9 +367,23 @@ func _on_frame_timer_timeout():
 			while new_frame == child.frame and max_frames > 1:
 				new_frame = rng.randi_range(0, max_frames - 1)
 			child.frame = new_frame
-			tshirt_logo.frame = new_frame
+			if type == "tshirt":
+				if overlay_animation != "none":
+					tshirt_logo.show()
+					tshirt_logo.frame = new_frame
+				else:
+					tshirt_logo.hide()
+				if pattern_type != "none":
+					tshirt_pattern.animation = pattern_type
+					tshirt_pattern.show()
+					tshirt_pattern.frame = new_frame % tshirt_pattern.sprite_frames.get_frame_count(pattern_type)
+				else:
+					tshirt_pattern.hide()
+			else:
+				tshirt_logo.hide()
+				tshirt_pattern.hide()
 			if Global.inWardrobe == false and Global.inShelf == false:
-				details_ui.display_logo(tshirt_logo, brand,new_frame)
+				details_ui.display_logo(tshirt_logo, get_data(),new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
 			if not child.is_playing():
 				child.play("default")
@@ -316,19 +392,20 @@ func _on_frame_timer_timeout():
 
 func button_enter():
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_logo(tshirt_logo, get_data(),0)
 		details_ui.display_product_info(sprite_image, get_data())
 	frame_timer.start()
 	
 func button_exit():
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, brand,0)
+		details_ui.display_logo(tshirt_logo, get_data(),0)
 		details_ui.display_product_info(sprite_image, get_data())
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
 			child.frame = 0
 			tshirt_logo.frame = 0
+			tshirt_pattern.frame = 0
 	
 func generate_parameters(type):
 	if type in cds:
@@ -343,6 +420,11 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		logo_calculator(color1)
+		pattern_type = "none"
+		if brand == "none":
+			var roll = rng.randi_range(1,2)
+			if roll == 2:
+				pattern_type = get_pattern()
 		price = snapped(2.5 * condition_price_mult * rng.randf_range(0.8,1.2) * brandmult,0.01)
 		default_price = 2.5
 	elif type == "socks":
@@ -396,6 +478,7 @@ func generate_parameters(type):
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 7
 	elif type == "spud_poster":
+		@warning_ignore("narrowing_conversion")
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
@@ -495,6 +578,47 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(19 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 19
+	elif type == "football":
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 2
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 9
+	
+	if brand != "none":
+		pattern_type = "none"
+		color2 = ""
+	
+	if pattern_type != "none":
+		var new_pattern_colours = pattern_colours.duplicate()
+		new_pattern_colours.erase(color1)
+		pattern_index = rng.randi_range(0, new_pattern_colours.size()-1)
+		color2 = new_pattern_colours[pattern_index]
+		pattern_index = pattern_colours.find(color2)
+			
+		if pattern_type == "stripes":
+			pattern_mult = 1.2
+		elif pattern_type == "checker":
+			pattern_mult = 1.5
+		elif pattern_type == "polka-dot":
+			pattern_mult = 1.5
+		elif pattern_type == "wavy":
+			pattern_mult = 2
+		elif pattern_type == "zig-zag":
+			pattern_mult = 2
+		elif pattern_type == "geometric":
+			pattern_mult = 2.5
+		elif pattern_type == "hearts":
+			pattern_mult = 3
+		elif pattern_type == "smiley":
+			pattern_mult = 3.5
+		
+		price = snapped(price*pattern_mult,0.01)
+	
+	# bug fix (idk why this is happening lmao)
+	if overlay_animation != "none" and brand == "none":
+		overlay_animation = "none"
 		
 	# minimum price is £1
 	if price < 1:
@@ -517,12 +641,15 @@ func display_fps(fps):
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
 	if target_sprite.material == null:
 		target_sprite.material = ShaderMaterial.new()
+	if tshirt_pattern.material == null and pattern_type != "none":
+		tshirt_pattern.material = ShaderMaterial.new()
+		
 	if type == "socks":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", socks_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.15)
-		target_sprite.material.set_shader_parameter("color1_count", 6)
+		target_sprite.material.set_shader_parameter("tolerance", 0.05)
+		target_sprite.material.set_shader_parameter("color_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 		
@@ -531,44 +658,54 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		
 		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color1_count", 5)
+		target_sprite.material.set_shader_parameter("color_count", 5)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "shorts":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", shorts_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color1_count", 4)
+		target_sprite.material.set_shader_parameter("tolerance", 0.05)
+		target_sprite.material.set_shader_parameter("color_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "trousers":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", trousers_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color1_count", 4)
+		target_sprite.material.set_shader_parameter("tolerance", 0.05)
+		target_sprite.material.set_shader_parameter("color_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "boxers":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", boxers_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.2)
-		target_sprite.material.set_shader_parameter("color1_count", 6)
+		target_sprite.material.set_shader_parameter("tolerance", 0.02)
+		target_sprite.material.set_shader_parameter("color_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
 	elif type == "conceal_shoes":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", conceal_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color1_count", 11)
+		target_sprite.material.set_shader_parameter("tolerance", 0.02)
+		target_sprite.material.set_shader_parameter("color_count", 11)
 		target_sprite.material.set_shader_parameter("palette_count", 6)
 		target_sprite.set_instance_shader_parameter("palette_index", num)
-		
+	
 	else:
 		target_sprite.material.shader = null
+		
+	if pattern_type != "none":
+		tshirt_pattern.material.shader = tshirt_shader
+		
+		tshirt_pattern.material.set_shader_parameter("palette_texture", pattern_texture)
+		tshirt_pattern.material.set_shader_parameter("tolerance", 0.05)
+		tshirt_pattern.material.set_shader_parameter("color_count", 4)
+		tshirt_pattern.material.set_shader_parameter("palette_count", 10)
+		tshirt_pattern.set_instance_shader_parameter("palette_index", num)	
+	
 
 #------ for storage
 func get_data() -> Dictionary:
@@ -584,21 +721,30 @@ func get_data() -> Dictionary:
 		"condition": condition,
 		"condition_price_mult": condition_price_mult,
 		"brand": brand,
+		"brandmult": brandmult,
 		"selected_brand": selected_brand,
 		"genre": genre,
 		"cd": cd,
 		"rarity": rarity,
 		"logo_animation": tshirt_logo.animation if tshirt_logo else "none",
-		"default_price": default_price
+		"default_price": default_price,
+		"overlay_animation": overlay_animation,
+		"pattern_type": pattern_type,
+		"pattern_mult": pattern_mult,
+		"pattern_index": pattern_index,
+		"seller_name": seller_name
 	}
 
 func load_data(data: Dictionary) -> void:
+	print("--- LOADING ITEM DATA ---")
+	print(data)
 	ID = data.get("ID", -1)
 	type = data.get("type", "")
 	number = data.get("number", 0)
 	color1 = data.get("color1", "")
 	color2 = data.get("color2", "")
 	price = data.get("price", 0)
+	brandmult = data.get("brandmult",1) 
 	shippingTime = data.get("shippingTime", 0)
 	shippingValue = data.get("shippingValue",1)
 	condition = data.get("condition", "")
@@ -609,17 +755,31 @@ func load_data(data: Dictionary) -> void:
 	cd = data.get("cd", false)
 	rarity = data.get("rarity", "common")
 	default_price = data.get("default_price",1.00)
-
+	overlay_animation = data.get("overlay_animation","none")
+	pattern_type = data.get("pattern_type", "none")
+	pattern_mult = data.get("pattern_mult",1)
+	pattern_index = data.get("pattern_index",0)
+	seller_name = data.get("seller_name","Unknown Seller")
 	set_item_type(type)
 
 	if sprites.has(type):
 		var sprite = sprites[type]
 		set_node_palette(sprite, number)
 		sprite_image = sprite
-
+	
+		
 	if type == "tshirt" and tshirt_logo:
 		tshirt_logo.animation = data.get("logo_animation", "none")
 		tshirt_logo.frame = 0
 		tshirt_logo.stop()
+		
+	if type == "tshirt" and pattern_type != "none" and tshirt_pattern:
+		tshirt_pattern.animation = pattern_type
+		print(pattern_type)
+		tshirt_pattern.frame = 0
+		tshirt_pattern.show()
+		set_node_palette(tshirt_pattern, pattern_index)
+	else:
+		tshirt_pattern.hide()
 
 	emit_signal("rarity_ui", rarity)

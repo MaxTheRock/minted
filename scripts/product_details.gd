@@ -5,10 +5,11 @@ extends VBoxContainer
 @onready var shipping_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/Shipping
 @onready var condition_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/Condition
 @onready var preview_image = $MarginContainer/VBoxContainer/MarginContainer/TextureRect
-@onready var logo = $MarginContainer/VBoxContainer/MarginContainer/TextureRect/logo
+@onready var logo = $MarginContainer/VBoxContainer/MarginContainer/TextureRect/overlays/thsirt_logo
 @onready var brand_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer6/MarginContainer/Brand
 @onready var product_label_name = $MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Product_Name
-
+@onready var pattern = $MarginContainer/VBoxContainer/MarginContainer/TextureRect/overlays/tshirt_pattern
+@onready var seller_name = $"../../../seller_info/TextureRect/seller_name"
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
 var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
@@ -18,10 +19,22 @@ var trousers_texture = preload("res://shaders/trousers_colours.png")
 var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
 var conceal_texture = preload("res://shaders/conceal_colours.png")
+var pattern_texture = preload("res://shaders/pattern_colors.png")
+
 func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 	preview_image.visible = true
+	seller_name.text = data["seller_name"]
 	if sprite:
 		preview_image.texture = sprite.sprite_frames.get_frame_texture("default", sprite.frame)
+	
+	if data["pattern_type"] != "none" and data["pattern_type"] != null:
+		pattern.show()
+		pattern.play(data["pattern_type"])
+		pattern.pause()
+		pattern.frame = sprite.frame
+	else:
+		pattern.hide()
+			
 	product_label_name.text = name_generator(data)
 	
 	if data["color2"] == "":
@@ -51,6 +64,9 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 	if preview_image.material == null:
 		preview_image.material = ShaderMaterial.new()
 	
+	if not pattern.material is ShaderMaterial:
+		pattern.material = ShaderMaterial.new()
+		
 	if data["type"] == "socks":
 		preview_image.material.shader = tshirt_shader
 		
@@ -101,17 +117,27 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("color_count", 11)
 		preview_image.material.set_shader_parameter("palette_count", 6)
 		preview_image.set_instance_shader_parameter("palette_index", color_index)
-		
+	
 	else:
 		preview_image.material.shader = null
 		
-func display_logo(sprite: AnimatedSprite2D, brand, frame):
-	if brand == "ele_shoes" or "conceal":
-		logo.animation = "none"
-		logo.frame = 0
+	if data["pattern_type"]:
+		if data["pattern_type"] != "none":
+			pattern.material.shader = tshirt_shader
+			
+			pattern.material.set_shader_parameter("palette_texture", pattern_texture)
+			pattern.material.set_shader_parameter("tolerance", 0.05)
+			pattern.material.set_shader_parameter("color_count", 4)
+			pattern.material.set_shader_parameter("palette_count", 10)
+			pattern.set_instance_shader_parameter("palette_index", data["pattern_index"])
 	else:
-		logo.animation = brand
-		logo.frame = frame
+		pattern.material.shader = null
+		
+		
+func display_logo(sprite: AnimatedSprite2D, data:Dictionary, frame):
+	logo.animation = data["overlay_animation"]
+	logo.frame = frame
+	
 		
 	
 func stop_logo() -> void:
@@ -167,7 +193,13 @@ func name_generator(data) -> String:
 	elif type == "gold_ring":
 		display_color = ""
 		display_type = "Gold Ring"
-	if display_color2 != "" and display_color != "":
-		return brand_print + display_color + " & " + display_color2 + " " + display_type + "."
+	
+	if data["overlay_animation"] == "ele_minimalistic_white" or data["overlay_animation"] == "ele_minimalistic_black":
+		brand_print = "elemental minimalistic "
+	
+	if display_color2 != "" and display_color != "" and data["pattern_type"] != "none":
+		return brand_print + display_color + " & " + display_color2.capitalize() + " " +  data["pattern_type"] + " " + display_type + "."
+	elif display_color2 != "" and display_color != "":
+		return brand_print + display_color + " & " + display_color2.capitalize() + " " + display_type + "."
 	else:
 		return brand_print + display_color + " " + display_type + "."

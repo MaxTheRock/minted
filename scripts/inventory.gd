@@ -64,7 +64,7 @@ func create_buyers(amount,id,listing_sell_id):
 	ids_on_sale.append(listing_sell_id)
 		
 func _ready() -> void:
-	player_inventory.append({ "ID": 0, "type": "shoes", "number": 9, "color1": "grey", "color2": "black", "price": 11.05, "shippingTime": 2.0, "shippingValue": 2, "condition": "Great", "condition_price_mult": 0.9, "brand": "ele_shoes", "selected_brand": "elemental", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"ele_minimalistic_black", "default_price": 15})
+	player_inventory.append({ "ID": -1, "type": "tshirt", "number": 8, "color1": "cyan", "color2": "orange", "price": 1.5, "shippingTime": 1.0, "shippingValue": 1, "condition": "Poor", "condition_price_mult": 0.4, "brand": "none", "brandmult": 1, "selected_brand": "none", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"none", "default_price": 2.5, "overlay_animation": "none", "pattern_type": "polka-dot", "pattern_mult": 1.5, "pattern_index": 9 })
 
 func _process(_delta) -> void:
 	var buyers_to_remove: Array = []
@@ -154,7 +154,7 @@ func check_buy_items(buyer,id):
 	else:
 		price_mult = 1.0
 	
-	default_price = default_price* price_mult
+	default_price = default_price* price_mult * player_dict["brandmult"]
 	if buyer["buyer_type"] == "stingy":
 		default_price *= 0.8
 	elif buyer["buyer_type"] == "leniant":

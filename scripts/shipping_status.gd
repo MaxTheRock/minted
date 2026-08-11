@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		timer -= delta
 		estimate.text = "Parcel has delivered."
 	else:
-		print("PARCEL DELIVERED (MOVE TO BOTTOM LATER...)")
+		pass
 
 func show_only(node_to_show: Control):
 	for child in $Container.get_children():

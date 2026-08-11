@@ -1,13 +1,13 @@
 shader_type canvas_item;
 // used a tutorial here i can't lie.
-uniform sampler2D palette_texture : filter_nearest;
+uniform sampler2D palette_texture : filter_nearest_mipmap;
 uniform int color_count = 5;     // How many colors per palette (columns)
 uniform int palette_count = 10;   // Total number of palettes (rows)
 instance uniform int palette_index = 0;
 uniform float tolerance = 0.15;
 
 void fragment() {
-    vec4 current_color = texture(TEXTURE, UV);
+    vec4 current_color = textureLod(TEXTURE, UV, 0.0);
     vec4 final_color = current_color;
 
     // row index 0 contains the original reference colors.

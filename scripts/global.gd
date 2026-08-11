@@ -102,3 +102,16 @@ func format_time(time) -> String:
 	return t
 
 # --- END Clock --- #
+
+func name_generator():
+	var first_names_m = ["oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris"]
+	var first_names_f = ["olivia","liz","tal","sophie","maya","margaret","eileen","noelle","susie","lois"]
+	
+	var prefixes = ["green","awesome","webbed","death","crazy","pink","wizardy","lucky","spiky"]
+	var gender= randi_range(1,2)
+	if gender == 1:
+		return prefixes.pick_random() + first_names_m.pick_random() + str(randi_range(1,100))
+	if gender == 2:
+		return prefixes.pick_random() + first_names_f.pick_random() + str(randi_range(1,100))
+	
+	
