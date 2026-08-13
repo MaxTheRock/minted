@@ -1,10 +1,9 @@
 To-do list (add as we go and delete when completed):
 - Bidding
-- Sellers information
 - Reputation
 - Dream minigames
 - Rent system
-- Achievments
+- Achievments (in full game)
 - Postage
 - More items
 - Endings
