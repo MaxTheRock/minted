@@ -45,18 +45,17 @@ offset_right = 1292.0
 offset_bottom = 636.0
 
 [node name="Centre" type="VBoxContainer" parent="Sections" unique_id=1258116480]
+custom_maximum_size = Vector2(-1, 500)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="Sections/Centre" unique_id=183984604]
-custom_maximum_size = Vector2(-1, 500)
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 tab_1/title = "Sell List"
 tab_2/title = "Sold List"
 
 [node name="Sell Item" type="MarginContainer" parent="Sections/Centre/TabContainer" unique_id=2114098950]
-visible = false
 custom_minimum_size = Vector2(0, 560)
 layout_mode = 2
 theme_override_constants/margin_top = 0
@@ -72,7 +71,8 @@ offset_transform_position = Vector2(0, -99.97)
 layout_mode = 0
 offset_left = 19.0
 offset_right = 1300.0
-offset_bottom = 469.0
+offset_bottom = 480.0
+draw_focus_border = true
 
 [node name="Sections" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer" unique_id=387823112]
 layout_mode = 2
@@ -122,11 +122,11 @@ layout_mode = 2
 [node name="ItemTexture" type="ColorRect" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/Control" unique_id=105893288]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 1061.0
-offset_top = -227.0
-offset_right = 1251.0
-offset_bottom = -45.0
-color = Color(0.7391589, 0.6686526, 0.8565493, 1)
+offset_left = 642.0
+offset_top = -217.0
+offset_right = 832.0
+offset_bottom = -35.0
+color = Color(0.38718653, 0.76865387, 0.52331686, 1)
 
 [node name="2" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=2124198756]
 layout_mode = 2
@@ -148,9 +148,12 @@ layout_mode = 2
 text = "Title"
 
 [node name="Name" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/HBoxContainer" unique_id=1442158482]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+placeholder_text = "Input Title Here:"
+max_length = 100
+clear_button_enabled = true
 icon_expand_mode = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer" unique_id=1402157610]
@@ -160,6 +163,13 @@ layout_mode = 2
 layout_mode = 2
 text = "Description"
 
+[node name="decription" type="TextEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer" unique_id=1740866198]
+custom_minimum_size = Vector2(0, 100)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+placeholder_text = "Input Desciption Here"
+wrap_mode = 1
+
 [node name="3" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=1473114667]
 layout_mode = 2
 
@@ -167,6 +177,33 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Item details"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=322993809]
+layout_mode = 2
+theme_override_constants/separation = 160
+
+[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3" unique_id=541023850]
+layout_mode = 2
+text = "Condition"
+
+[node name="Condition" type="OptionButton" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3" unique_id=934868590]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+allow_reselect = true
+item_count = 6
+popup/item_0/text = "Poor"
+popup/item_0/id = 0
+popup/item_1/text = "Satisfactory"
+popup/item_1/id = 1
+popup/item_2/text = "Good"
+popup/item_2/id = 2
+popup/item_3/text = "Great"
+popup/item_3/id = 3
+popup/item_4/text = "Excellent"
+popup/item_4/id = 4
+popup/item_5/text = "Minted"
+popup/item_5/id = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=563453893]
 layout_mode = 2
@@ -196,33 +233,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 max_length = 15
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=322993809]
-layout_mode = 2
-theme_override_constants/separation = 160
-
-[node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3" unique_id=541023850]
-layout_mode = 2
-text = "Condition"
-
-[node name="Condition" type="OptionButton" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3" unique_id=934868590]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-allow_reselect = true
-item_count = 6
-popup/item_0/text = "Poor"
-popup/item_0/id = 0
-popup/item_1/text = "Satisfactory"
-popup/item_1/id = 1
-popup/item_2/text = "Good"
-popup/item_2/id = 2
-popup/item_3/text = "Great"
-popup/item_3/id = 3
-popup/item_4/text = "Excellent"
-popup/item_4/id = 4
-popup/item_5/text = "Minted"
-popup/item_5/id = 5
-
 [node name="HBoxContainer4" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3" unique_id=347129395]
 layout_mode = 2
 theme_override_constants/separation = 176
@@ -244,6 +254,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4" unique_id=1981160395]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Pricing"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4" unique_id=1686287433]
@@ -278,6 +289,7 @@ theme_override_colors/font_color = Color(1.1004806, 0.17704102, 0.16845088, 1)
 theme_override_font_sizes/font_size = 25
 
 [node name="sell_list" type="MarginContainer" parent="Sections/Centre/TabContainer" unique_id=836322825]
+visible = false
 custom_minimum_size = Vector2(0, 560)
 layout_mode = 2
 theme_override_constants/margin_left = 47

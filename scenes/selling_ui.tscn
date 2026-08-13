@@ -78,12 +78,15 @@ offset_right = 390.61325
 offset_bottom = 81.08949
 theme_override_styles/panel = SubResource("StyleBoxFlat_ccrme")
 
-[node name="name" type="Label" parent="item_name/name" unique_id=1903330605]
+[node name="ScrollContainer" type="ScrollContainer" parent="item_name/name" unique_id=132751085]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 52.0
-offset_bottom = 27.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 210.0
+offset_bottom = 45.0
+
+[node name="name" type="Label" parent="item_name/name/ScrollContainer" unique_id=1485889533]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "price"
 

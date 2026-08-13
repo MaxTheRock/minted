@@ -19,7 +19,7 @@ func _ready() -> void:
 	if Inventory.sold_items[item_index]["price"]:
 		$price/name/price.text = "$" + str(Inventory.sold_items[item_index]["price"])
 	if Inventory.sold_items[item_index]["name"]:
-		$item_name/name/name.text = Inventory.sold_items[item_index]["name"]
+		$item_name/name/ScrollContainer/name.text = Inventory.sold_items[item_index]["name"]
 	if Inventory.sold_items[item_index]["brand"]:
 		$info/brand/brand_label.text = Inventory.sold_items[item_index]["brand"]
 	if Inventory.sold_items[item_index]["color"]:
@@ -28,7 +28,10 @@ func _ready() -> void:
 		$info/condition/condition_label.text = Inventory.sold_items[item_index]["condition"]
 	if Inventory.sold_items[item_index]["type"]:
 		$info/type/type_label.text = Inventory.sold_items[item_index]["type"]
-
+	if Inventory.sold_items[item_index]["buyer_name"]:
+		$user_info/username/username_label.text = Inventory.sold_items[item_index]["buyer_name"]
+	else:
+		$user_info/username/username_label.text = "Unknown Buyer"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

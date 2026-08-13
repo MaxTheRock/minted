@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform sampler2D palette_texture : filter_nearest_mipmap;
 uniform int color_count = 5;     // How many colors per palette (columns)
 uniform int palette_count = 10;   // Total number of palettes (rows)
-instance uniform int palette_index = 0;
+uniform int palette_index = 0;
 uniform float tolerance = 0.15;
 
 void fragment() {

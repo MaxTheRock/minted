@@ -651,7 +651,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.05)
 		target_sprite.material.set_shader_parameter("color_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
-		target_sprite.set_instance_shader_parameter("palette_index", num)
+		target_sprite.material.set_shader_parameter("palette_index", num)
 		
 	elif type == "tshirt":
 		target_sprite.material.shader = tshirt_shader
@@ -660,7 +660,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
 		target_sprite.material.set_shader_parameter("color_count", 5)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
-		target_sprite.set_instance_shader_parameter("palette_index", num)
+		target_sprite.material.set_shader_parameter("palette_index", num)
 	elif type == "shorts":
 		target_sprite.material.shader = tshirt_shader
 		
@@ -668,7 +668,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.05)
 		target_sprite.material.set_shader_parameter("color_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
-		target_sprite.set_instance_shader_parameter("palette_index", num)
+		target_sprite.material.set_shader_parameter("palette_index", num)
 	elif type == "trousers":
 		target_sprite.material.shader = tshirt_shader
 		
@@ -676,7 +676,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.05)
 		target_sprite.material.set_shader_parameter("color_count", 4)
 		target_sprite.material.set_shader_parameter("palette_count", 5)
-		target_sprite.set_instance_shader_parameter("palette_index", num)
+		target_sprite.material.set_shader_parameter("palette_index", num)
 	elif type == "boxers":
 		target_sprite.material.shader = tshirt_shader
 		
@@ -684,7 +684,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.02)
 		target_sprite.material.set_shader_parameter("color_count", 6)
 		target_sprite.material.set_shader_parameter("palette_count", 10)
-		target_sprite.set_instance_shader_parameter("palette_index", num)
+		target_sprite.material.set_shader_parameter("palette_index", num)
 	elif type == "conceal_shoes":
 		target_sprite.material.shader = tshirt_shader
 		
@@ -692,7 +692,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.02)
 		target_sprite.material.set_shader_parameter("color_count", 11)
 		target_sprite.material.set_shader_parameter("palette_count", 6)
-		target_sprite.set_instance_shader_parameter("palette_index", num)
+		target_sprite.material.set_shader_parameter("palette_index", num)
 	
 	else:
 		target_sprite.material.shader = null
@@ -704,7 +704,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		tshirt_pattern.material.set_shader_parameter("tolerance", 0.05)
 		tshirt_pattern.material.set_shader_parameter("color_count", 4)
 		tshirt_pattern.material.set_shader_parameter("palette_count", 10)
-		tshirt_pattern.set_instance_shader_parameter("palette_index", num)	
+		tshirt_pattern.material.set_shader_parameter("palette_index", num)	
 	
 
 #------ for storage
@@ -736,8 +736,6 @@ func get_data() -> Dictionary:
 	}
 
 func load_data(data: Dictionary) -> void:
-	print("--- LOADING ITEM DATA ---")
-	print(data)
 	ID = data.get("ID", -1)
 	type = data.get("type", "")
 	number = data.get("number", 0)

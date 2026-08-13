@@ -74,7 +74,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
 		preview_image.material.set_shader_parameter("color_count", 6)
 		preview_image.material.set_shader_parameter("palette_count", 10)
-		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 		
 	elif data["type"] == "tshirt":
 		preview_image.material.shader = tshirt_shader
@@ -82,7 +82,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
 		preview_image.material.set_shader_parameter("color_count", 5)
 		preview_image.material.set_shader_parameter("palette_count", 10)
-		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 	elif data["type"] == "shorts":
 		preview_image.material.shader = tshirt_shader
 		
@@ -90,7 +90,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
 		preview_image.material.set_shader_parameter("color_count", 4)
 		preview_image.material.set_shader_parameter("palette_count", 5)
-		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 	elif data["type"] == "trousers":
 		preview_image.material.shader = tshirt_shader
 		
@@ -98,7 +98,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("tolerance", 0.1)
 		preview_image.material.set_shader_parameter("color_count", 4)
 		preview_image.material.set_shader_parameter("palette_count", 5)
-		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 	
 	elif data["type"] == "boxers":
 		preview_image.material.shader = tshirt_shader
@@ -107,7 +107,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("tolerance", 0.2)
 		preview_image.material.set_shader_parameter("color_count", 6)
 		preview_image.material.set_shader_parameter("palette_count", 10)
-		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 	
 	elif data["type"] == "conceal_shoes":
 		preview_image.material.shader = tshirt_shader
@@ -116,7 +116,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("tolerance", 0.02)
 		preview_image.material.set_shader_parameter("color_count", 11)
 		preview_image.material.set_shader_parameter("palette_count", 6)
-		preview_image.set_instance_shader_parameter("palette_index", color_index)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 	
 	else:
 		preview_image.material.shader = null
@@ -129,7 +129,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 			pattern.material.set_shader_parameter("tolerance", 0.05)
 			pattern.material.set_shader_parameter("color_count", 4)
 			pattern.material.set_shader_parameter("palette_count", 10)
-			pattern.set_instance_shader_parameter("palette_index", data["pattern_index"])
+			pattern.material.set_shader_parameter("palette_index", data["pattern_index"])
 	else:
 		pattern.material.shader = null
 		

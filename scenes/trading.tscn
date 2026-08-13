@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://5fnes7u1us3e"]
 
+[ext_resource type="Script" uid="uid://dotp6mu2e368" path="res://scripts/bidding.gd" id="1_25nfe"]
 [ext_resource type="PackedScene" uid="uid://bl2hjfsjnp4kq" path="res://scenes/search_bar.tscn" id="1_xkksn"]
 
 [node name="Trading" type="Control" unique_id=2081727713]
@@ -7,6 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_25nfe")
 
 [node name="SearchBar" parent="." unique_id=1070994751 instance=ExtResource("1_xkksn")]
 layout_mode = 1
@@ -26,3 +28,28 @@ layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 719.0
 alignment = 2
+
+[node name="Bidding" type="MarginContainer" parent="." unique_id=265939793]
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 66.0
+offset_right = 824.0
+offset_bottom = 866.0
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_right = 46
+metadata/_tab_index = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Bidding" unique_id=411179926]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Bidding/ScrollContainer" unique_id=1611250182]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 15
+columns = 3
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

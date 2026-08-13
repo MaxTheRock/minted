@@ -113,5 +113,6 @@ func name_generator():
 		return prefixes.pick_random() + first_names_m.pick_random() + str(randi_range(1,100))
 	if gender == 2:
 		return prefixes.pick_random() + first_names_f.pick_random() + str(randi_range(1,100))
-	
-	
+
+func begin():
+	pass	

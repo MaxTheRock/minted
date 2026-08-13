@@ -1906,7 +1906,8 @@ animation = &"none"
 [node name="thsirt_logo" type="AnimatedSprite2D" parent="overlays" unique_id=490882688]
 position = Vector2(38, 24)
 sprite_frames = SubResource("SpriteFrames_4pjmv")
-animation = &"conceal_shirt"
+animation = &"none"
+autoplay = "none"
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2

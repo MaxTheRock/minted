@@ -53,7 +53,7 @@
 	"id": "6a",
 	"speaker": "margaret",
 	"face": "concern",
-	"text": "<p1>.<p1>.<p1>. [shake rate=20.0 level=5.0]It could work.[/shake]",
+	"text": "<af><p1>.<p1>.<p1>.<at> [shake rate=20.0 level=5.0]It could work.[/shake]",
 	"type": "line",
 	"next_id": "7a"
   },
@@ -61,7 +61,7 @@
 	"id": "7a",
 	"speaker": "landlord",
 	"face": "smug",
-	"text": "Well, good luck! <p0.5>(;",
+	"text": "Well, good luck!<p0.5> (;",
 	"type": "line",
 	"next_id": "8"
   },

@@ -13,7 +13,10 @@ var sold_items: Array = []
 var actual_sold: Array = []
 var display_poster: Array = []
 var buyers: Array = []
-var ids_on_sale = []
+
+# bidding lists
+var bidding_items = []
+var bidding_details = []
 
 var item_id: int = 0
 var sell_id: int = 0
@@ -42,11 +45,13 @@ func create_buyers(amount,id,listing_sell_id):
 		var buyer_type = buyer_types.pick_random()
 		var minutes_after = rng.randi_range(0,1440)
 		var min_to_buy = current_minute + minutes_after
+		var buyer_name = Global.name_generator()
 		var buyer_dict: Dictionary = {
 			"id": id,
 			"buyer_type":buyer_type,
 			"min_to_buy":min_to_buy,
-			"listing_sell_id": listing_sell_id
+			"listing_sell_id": listing_sell_id,
+			"buyer_name": buyer_name
 		}
 		buyers.append(buyer_dict)
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -54,18 +59,19 @@ func create_buyers(amount,id,listing_sell_id):
 	var current_minute = Global.time_mins
 	var buyer_type = buyer_types.pick_random()
 	var min_to_buy = current_minute + 1440
+	var buyer_name = Global.name_generator()
 	var buyer_dict: Dictionary = {
 			"id": id,
 			"buyer_type":buyer_type,
 			"min_to_buy":min_to_buy,
-			"listing_sell_id": listing_sell_id
+			"listing_sell_id": listing_sell_id,
+			"buyer_name": buyer_name
 		}
 	buyers.append(buyer_dict)
-	ids_on_sale.append(listing_sell_id)
 		
 func _ready() -> void:
 	player_inventory.append({ "ID": -1, "type": "tshirt", "number": 8, "color1": "cyan", "color2": "orange", "price": 1.5, "shippingTime": 1.0, "shippingValue": 1, "condition": "Poor", "condition_price_mult": 0.4, "brand": "none", "brandmult": 1, "selected_brand": "none", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"none", "default_price": 2.5, "overlay_animation": "none", "pattern_type": "polka-dot", "pattern_mult": 1.5, "pattern_index": 9 })
-
+	
 func _process(_delta) -> void:
 	var buyers_to_remove: Array = []
 
@@ -125,9 +131,19 @@ func check_buy_items(buyer,id):
 		trust -= 0.15
 	if player_dict["name"].to_lower().contains(actual_dict["type"].to_lower()):
 		trust += 0.1
+	if player_dict["name"].to_lower().contains(actual_dict["pattern_type"].to_lower()) and actual_dict["pattern_type"].to_lower() != "none":
+		trust += 0.1
+	
+	var dupes = 0
+	for i in range(actual_selling.size()):
+		if actual_dict == actual_selling[i]:
+			dupes += 1
+	
+	if dupes > 1:
+		trust /= (dupes ** 0.7)
 	for word in worn_words:
 		if player_dict["name"].to_lower().contains(word):
-			if player_dict["condition"].to_lower() == "poor" or player_dict["condition"].to_lower() == "okay":	
+			if player_dict["condition"].to_lower() == "poor" or player_dict["condition"].to_lower() == "satisfactory":	
 				trust += 0.1
 				break
 	for word in new_words:
@@ -154,7 +170,14 @@ func check_buy_items(buyer,id):
 	else:
 		price_mult = 1.0
 	
-	default_price = default_price* price_mult * player_dict["brandmult"]
+	var brandmult =1 
+	var pattern_mult = 1
+	if actual_dict["brandmult"]:
+		brandmult = actual_dict["brandmult"]
+	if actual_dict["pattern_mult"]:
+		pattern_mult = actual_dict["pattern_mult"]
+
+	default_price = default_price* price_mult * brandmult * pattern_mult
 	if buyer["buyer_type"] == "stingy":
 		default_price *= 0.8
 	elif buyer["buyer_type"] == "leniant":
@@ -175,7 +198,8 @@ func check_buy_items(buyer,id):
 				found_index = i	
 				break
 		Global.money += player_selling[found_index]["price"]
-		transfer_item(actual_selling,actual_sold,found_index)	
+		transfer_item(actual_selling,actual_sold,found_index)
+		player_selling[found_index]["buyer_name"] = buyer["buyer_name"]	
 		transfer_item(player_selling,sold_items,found_index)
 		#print(found_index, actual_selling,actual_sold)
 		#print(found_index, player_selling,sold_items)

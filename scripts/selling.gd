@@ -15,6 +15,7 @@ var current_text = ""
 @onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/display_error"
 @onready var item_count = $Sections/Centre/TabContainer/sell_list/Label
 @onready var sold_display = $Sections/Centre/TabContainer/sold_list/ScrollContainer/GridContainer
+@onready var description = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/decription"
 
 var template = "Items: {items}/{storage}"
 	
@@ -139,6 +140,7 @@ func _on_sell_button_pressed() -> void:
 			"color2": color2,
 			"price": price_written,
 			"brand": brand_display.text,
+			"description": description.text
 		}
 		Inventory.player_selling.append(display_dict)
 		clear_contents()

@@ -14,7 +14,10 @@ var raw_text_string = ""
 var text_timer = 0
 var pause_timer = 0
 var is_typing = false
+var play_animation = true
+var animation_playing = ""
 
+@onready var portrait = $portrait
 @onready var text_display = $ColorRect/RichTextLabel
 @onready var choiceA = $ColorRect/choices/choiceA
 @onready var choiceB = $ColorRect/choices/choiceB
@@ -36,7 +39,12 @@ func get_dialogue_by_id(data:Array, to_find):
 			return dialogue
 	return null
 
-
+func display_portrait(speaker, face):
+	if speaker == "margaret":
+		var animation_name = speaker + "_" + face
+		portrait.play(animation_name)
+	else:
+		portrait.play("none")
 func _display_dialogue(data, id):
 	visible = true
 	Global.paused = true
@@ -46,11 +54,15 @@ func _display_dialogue(data, id):
 			data = dialogue_data
 	var dict_display = get_dialogue_by_id(data, id)
 	var type = dict_display.get("type")
+	var speaker = dict_display.get("speaker")
+	var face = dict_display.get("face")
+	display_portrait(speaker,face)
 	choiceA.text = ""
 	choiceB.text = ""
 	text_display.text = ""
 	option_selected = 0
 	current_dialgoue_type = type
+	play_animation = true
 	
 	if type == "line":
 		raw_text_string = dict_display.get("text")
@@ -80,7 +92,7 @@ func _display_dialogue(data, id):
 
 func display_type_dialogue(length):
 	var regex = RegEx.new()
-	regex.compile("<p[0-9.]*>")
+	regex.compile("<p[0-9.]*>|<at>|<af>")
 	text_display.text = regex.sub(raw_text_string, "", true)
 	text_display.visible_characters = 0
 	text_timer = 0.0
@@ -88,7 +100,7 @@ func display_type_dialogue(length):
 	is_typing = true
 
 
-func process_dialogic(delta: float): #dialogue logic
+func process_dialogic(delta: float): #dialogue logic	
 	if not is_typing:
 		return
 	
@@ -104,11 +116,15 @@ func process_dialogic(delta: float): #dialogue logic
 		if current_visible < total_visible:
 			
 			text_timer = 0
-			var index = get_text_pos(current_visible + 1)
+			var index = get_text_pos(current_visible)
 			if raw_text_string.substr(index,4) == "<p1>":
 				pause_timer = 1
 			elif raw_text_string.substr(index,6) == "<p0.5>":
 				pause_timer = 0.5
+			elif raw_text_string.substr(index,4) == "<at>":
+				play_animation = true
+			elif raw_text_string.substr(index,4) == "<af>":
+				play_animation = false
 			text_display.visible_characters += 1
 		else:
 			is_typing = false
@@ -119,7 +135,7 @@ func get_text_pos(id):
 	while i < raw_text_string.length() and visible_count < id:
 		if visible_count == id: 
 				break
-		if raw_text_string.substr(i,4) == "<p1>":
+		if raw_text_string.substr(i,4) == "<p1>" or raw_text_string.substr(i,4) == "<at>" or raw_text_string.substr(i,4) == "<af>" :
 			i += 4
 			continue
 		elif raw_text_string.substr(i,6) == "<p0.5>":
@@ -148,6 +164,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if is_typing:
+		portrait.play() 
+	else:
+		portrait.stop() 
+		portrait.frame = 0
+	if not play_animation:
+		portrait.stop() 
+		portrait.frame = 0
 	if Input.is_action_just_pressed("interact"):
 		if is_typing:
 			is_typing = false

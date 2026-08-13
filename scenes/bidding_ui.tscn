@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://dis3kd8clem8g"]
+
+[ext_resource type="PackedScene" uid="uid://dccm2cqx7r3hk" path="res://scenes/item_ui.tscn" id="1_57saq"]
+[ext_resource type="Script" uid="uid://buw8ras7kn0om" path="res://scripts/bidding_ui.gd" id="1_bikrt"]
+[ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="2_mxbax"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_styi6"]
+bg_color = Color(0.17823571, 0.40951663, 0.36457154, 1)
+border_width_left = 2
+border_width_top = 5
+border_width_right = 2
+border_width_bottom = 5
+border_color = Color(0.91426766, 0.93909305, 0.9789037, 1)
+
+[node name="bidding_ui" type="Control" unique_id=1070779844]
+custom_minimum_size = Vector2(250, 503)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_bikrt")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1531880]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 254.0
+offset_bottom = 450.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_styi6")
+
+[node name="item_container" type="Control" parent="." unique_id=1574900452]
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 9.0
+offset_right = 225.0
+offset_bottom = 189.0
+
+[node name="item UI" parent="item_container" unique_id=2005130059 instance=ExtResource("1_57saq")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="price" type="Control" parent="." unique_id=1325519122]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 276.0
+offset_right = 5.0
+offset_bottom = 276.0
+
+[node name="Label" type="Label" parent="price" unique_id=1347174007]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 116.0
+offset_right = 50.0
+offset_bottom = 139.0
+text = "Price:"
+
+[node name="Label2" type="Label" parent="price" unique_id=1841927712]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 75.0
+offset_right = 139.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 25
+text = "Bid:"
+
+[node name="Price" type="LineEdit" parent="price" unique_id=305061304]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 109.0
+offset_right = 163.6875
+offset_bottom = 149.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 20
+placeholder_text = "X.XX"
+max_length = 15
+right_icon = ExtResource("2_mxbax")
+icon_expand_mode = 1
+
+[node name="last_bid_name" type="Control" parent="." unique_id=1538159342]
+visible = false
+anchors_preset = 0
+offset_left = -23.0
+offset_top = 382.0
+offset_right = 177.0
+offset_bottom = 432.0
+
+[node name="label" type="Label" parent="last_bid_name" unique_id=1145222482]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -85.0
+offset_right = 152.0
+offset_bottom = -62.0
+text = "Last Bidder:"
+
+[node name="last_bid" type="LineEdit" parent="last_bid_name" unique_id=2126293052]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -57.0
+offset_right = 151.0
+offset_bottom = -17.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 13
+placeholder_text = "Bidder name"
+alignment = 1
+editable = false
+icon_expand_mode = 1
+
+[node name="bid_time" type="LineEdit" parent="last_bid_name" unique_id=1267296655]
+layout_mode = 0
+offset_left = 153.0
+offset_top = -56.0
+offset_right = 273.0
+offset_bottom = -16.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "23/7/26 14:55"
+placeholder_text = "Bidder name"
+alignment = 1
+editable = false
+icon_expand_mode = 1
+
+[node name="last_bid" type="Control" parent="." unique_id=99210546]
+anchors_preset = 0
+offset_left = -21.0
+offset_top = 367.0
+offset_right = -21.0
+offset_bottom = 367.0
+
+[node name="label" type="Label" parent="last_bid" unique_id=1442300121]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -85.0
+offset_right = 152.0
+offset_bottom = -62.0
+text = "Last Bidder:"
+
+[node name="last_bid" type="LineEdit" parent="last_bid" unique_id=1903770983]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -57.0
+offset_right = 151.0
+offset_bottom = -17.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 13
+placeholder_text = "Bidder name"
+alignment = 1
+editable = false
+icon_expand_mode = 1
+
+[node name="bid_price" type="LineEdit" parent="last_bid" unique_id=649633999]
+layout_mode = 0
+offset_left = 159.0
+offset_top = -56.0
+offset_right = 264.6875
+offset_bottom = -16.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 20
+placeholder_text = "X.XX"
+max_length = 15
+editable = false
+right_icon = ExtResource("2_mxbax")
+icon_expand_mode = 1
+
+[node name="item_name" type="RichTextLabel" parent="." unique_id=607732880]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 182.0
+offset_right = 240.0
+offset_bottom = 252.0
+theme_override_font_sizes/normal_font_size = 22
+text = "Item NAME aaaaaaa aa a aaaa aaaaaa a aaaaaaaa aaaa"
+
+[node name="Button" type="Button" parent="." unique_id=1217787938]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 380.0
+offset_right = 246.0
+offset_bottom = 430.0
+text = "Bid"
+
+[node name="Time_left" type="Label" parent="." unique_id=1657973322]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 254.0
+offset_right = 256.0
+offset_bottom = 277.0
+theme_override_colors/font_color = Color(1, 0.5176471, 0.9137255, 1)
+text = "1D 23H 51M left (23/7 14:55)"

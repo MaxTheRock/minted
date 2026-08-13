@@ -297,7 +297,29 @@ func _ready() -> void:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
 				item.load_data(Inventory.player_inventory[inventory_index])
-
+	
+	elif Inventory.current_ui_type == "display_bidding":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.hide()
+		eject_button.hide()
+		grid_container.hide()
+		upload_button.hide()
+		panel_container.custom_maximum_size = Vector2(150, 160)
+		$TextureRect.custom_maximum_size = Vector2(150, 158)
+		
+		if Inventory.bidding_items:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.bidding_items.size():
+				item.load_data(Inventory.bidding_items[inventory_index])
+		else:
+			item.rarity_ui.connect(_rarity_ui)
+			if inventory_index >= 0 and inventory_index < Inventory.bidding_items.size():
+				item.load_data(Inventory.bidding_items[inventory_index])
+				
 	else:
 		$TextureRect.show()
 		$PanelContainer2.show()
@@ -568,3 +590,10 @@ func load_data(data):
  
 func get_data():
 	return item.get_data()
+
+func create_item():
+	item.initialize_item()
+	get_data()
+
+func initialize_item(catergory):
+	item.initialize_item(catergory)

@@ -18,7 +18,7 @@ func _ready() -> void:
 	if Inventory.player_selling[item_index]["price"]:
 		$price/name/price.text = "$" + str(Inventory.player_selling[item_index]["price"])
 	if Inventory.player_selling[item_index]["name"]:
-		$item_name/name/name.text = Inventory.player_selling[item_index]["name"]
+		$item_name/name/ScrollContainer/name.text = Inventory.player_selling[item_index]["name"]
 	if Inventory.player_selling[item_index]["brand"]:
 		$info/brand/brand_label.text = Inventory.player_selling[item_index]["brand"]
 	if Inventory.player_selling[item_index]["color"]:

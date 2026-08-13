@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://w5vi05v5cwoc" path="res://assets/os/icons/down.png" id="3_psnvu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
-bg_color = Color(0.17823571, 0.40951663, 0.36457154, 1)
+bg_color = Color(0.3647059, 0.654902, 0.31764707, 1)
 border_width_left = 2
 border_width_top = 5
 border_width_right = 2
@@ -27,7 +27,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m3l8"]
-bg_color = Color(0.44422385, 0.5877664, 0.6098973, 1)
+bg_color = Color(0.26734266, 0.65009564, 0.35358194, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -46,11 +46,23 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fih1l"]
+bg_color = Color(0.47559977, 0.6583741, 0.43475097, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.11220475, 0.21870086, 0.05532582, 1)
+
 [node name="sold UI" type="Control" unique_id=453926443]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 18.0
+offset_right = 5.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d3xb1")
@@ -78,12 +90,15 @@ offset_right = 390.61325
 offset_bottom = 81.08949
 theme_override_styles/panel = SubResource("StyleBoxFlat_ccrme")
 
-[node name="name" type="Label" parent="item_name/name" unique_id=1903330605]
+[node name="ScrollContainer" type="ScrollContainer" parent="item_name/name" unique_id=2015987320]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 52.0
-offset_bottom = 27.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 210.0
+offset_bottom = 45.0
+
+[node name="name" type="Label" parent="item_name/name/ScrollContainer" unique_id=1903330605]
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "price"
 
@@ -295,5 +310,61 @@ offset_right = 518.0
 offset_bottom = 212.0
 icon = ExtResource("3_psnvu")
 expand_icon = true
+
+[node name="user_info" type="Control" parent="." unique_id=587342984]
+anchors_preset = 0
+offset_left = 690.0
+offset_top = 53.0
+offset_right = 730.0
+offset_bottom = 93.0
+
+[node name="Buyer_details" type="PanelContainer" parent="user_info" unique_id=790848736]
+layout_mode = 0
+offset_left = -123.0
+offset_top = -57.0
+offset_right = 277.0
+offset_bottom = 143.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fih1l")
+
+[node name="title" type="Label" parent="user_info/Buyer_details" unique_id=1275292131]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Buyer Details:"
+
+[node name="username" type="Panel" parent="user_info" unique_id=365552302]
+custom_maximum_size = Vector2(200, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 205.0
+offset_bottom = 39.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwrc3")
+
+[node name="username_label" type="Label" parent="user_info/username" unique_id=2114545485]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 105.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.09571596, 0.10536637, 0.09733129, 1)
+theme_override_colors/font_shadow_color = Color(0.4045111, 0.40451115, 0.4045111, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 1
+text = "Item Listing:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="user_info/username" unique_id=1882256921]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -1.0
+offset_right = 104.0
+offset_bottom = 46.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-70, 0)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Username:
+"
 
 [connection signal="pressed" from="info_button" to="." method="_on_info_button_pressed"]
