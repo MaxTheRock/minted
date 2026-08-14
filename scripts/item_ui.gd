@@ -597,3 +597,6 @@ func create_item():
 
 func initialize_item(catergory):
 	item.initialize_item(catergory)
+
+func display_thing():
+	item.display_thing()

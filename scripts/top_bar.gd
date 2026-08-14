@@ -9,3 +9,7 @@ func _process(delta):
 
 	time_ui.text = Global.get_time_text()
 	date_ui.text = Global.get_date_text()
+
+
+func _on_tab_container_tab_selected(tab: int) -> void:
+	pass # Replace with function body.

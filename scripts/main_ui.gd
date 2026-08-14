@@ -51,6 +51,8 @@ func _ready():
 			var packed = preload("res://scenes/item_ui.tscn")
 			var item_ui = packed.instantiate()
 			$".".add_child(item_ui)
-			item_ui.get_node("item").initialize_item("All")
+			item_ui.get_node("item").initialize_item("Bidding")
 			Inventory.bidding_items.append(item_ui.get_data())
+			Inventory.create_bidding_details(Inventory.bidding_items.size()-1)
+				
 			item_ui.queue_free()

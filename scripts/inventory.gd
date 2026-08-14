@@ -16,7 +16,8 @@ var buyers: Array = []
 
 # bidding lists
 var bidding_items = []
-var bidding_details = []
+var bidding_details = [{},{},{}]
+var bidders: Array = []
 
 var item_id: int = 0
 var sell_id: int = 0
@@ -25,6 +26,7 @@ var buyer_types = ["cheap","normal","stingy"]
 # global signal
 signal inventories_changed
 signal item_sold
+signal bid_done
 
 func transfer_item(from_array: Array, to_array: Array, from_index: int) -> bool:
 	if from_index < 0 or from_index >= from_array.size() or from_array[from_index] == null:
@@ -92,13 +94,25 @@ func _process(_delta) -> void:
 
 	for j in buyers_to_remove:
 		buyers.erase(j)
+		
+	var bidders_to_remove: Array = []
+	var counter = 0
+	for i in bidders:
+		if Global.time_mins >= i["min_to_buy"]:
+			bidder_raise(i)
+			bidders_to_remove.append(i)
 
-
+	for k in bidders_to_remove:
+		bidders.erase(k)
 	
+	for i in range(bidding_details.size()):
+		var details = bidding_details[i]
+		if details.has("bid_end") and Global.time_mins >= int(details["bid_end"]):
+			resolve_bid(i)
+			
 func get_buy_probability_sigmoid(price: float, base_price: float) -> float:
 	if base_price <= 0.0:
 		return 1.0
-	print(base_price)	
 	var x: float = price - base_price
 	var scale_factor: float = base_price / 4.0
 	var exponent: float = x / scale_factor
@@ -134,13 +148,6 @@ func check_buy_items(buyer,id):
 	if player_dict["name"].to_lower().contains(actual_dict["pattern_type"].to_lower()) and actual_dict["pattern_type"].to_lower() != "none":
 		trust += 0.1
 	
-	var dupes = 0
-	for i in range(actual_selling.size()):
-		if actual_dict == actual_selling[i]:
-			dupes += 1
-	
-	if dupes > 1:
-		trust /= (dupes ** 0.7)
 	for word in worn_words:
 		if player_dict["name"].to_lower().contains(word):
 			if player_dict["condition"].to_lower() == "poor" or player_dict["condition"].to_lower() == "satisfactory":	
@@ -151,7 +158,15 @@ func check_buy_items(buyer,id):
 			if player_dict["condition"].to_lower() == "excellent" or player_dict["condition"].to_lower() == "minted":	
 				trust += 0.1
 				break
+				
+	var dupes = 0
+	for i in range(actual_selling.size()):
+		if actual_dict == actual_selling[i]:
+			dupes += 1
 	
+	if dupes > 1:
+		trust /= (dupes ** 0.7)
+		
 	var price_mult = 1
 	var price_affect_odds = 1
 	var price_given = player_dict["price"]
@@ -185,7 +200,7 @@ func check_buy_items(buyer,id):
 	price_affect_odds = get_buy_probability_sigmoid(price_given,default_price)
 	odds = 0.15 * trust * price_affect_odds	
 	var numbar = rng.randf()
-	print(odds, " ", numbar)
+	#print(odds, " ", numbar)
 	if odds >= numbar:
 		for j in buyers:
 			if buyer["listing_sell_id"] == j["listing_sell_id"]:
@@ -204,4 +219,176 @@ func check_buy_items(buyer,id):
 		#print(found_index, actual_selling,actual_sold)
 		#print(found_index, player_selling,sold_items)
 		item_sold.emit()
+
+func create_bidding_details(index):
+	var bidding = bidding_items[index]	
+	var rarity = bidding["rarity"]
+	var condition = bidding["condition"]
+	var price_mult = 1
+	if condition == "Poor":
+		price_mult = 0.4
+	elif condition == "Satisfactory":
+		price_mult = 0.6
+	elif condition == "Good":
+		price_mult = 0.8
+	elif condition == "Great":
+		price_mult = 0.9
+	elif condition == "Minted":
+		price_mult = 1.05
+	else:
+		price_mult = 1.0
 	
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var days_to_bid = rng.randf_range(1,2)
+	var raise_attempts = round(days_to_bid * 12)
+	if rarity == "uncommon":
+		days_to_bid += 1
+		raise_attempts = round(days_to_bid * 10 * 1.1)
+	elif rarity == "rare":
+		days_to_bid += 2
+		raise_attempts = round(days_to_bid * 10 * 1.2)
+	elif rarity == "epic":
+		days_to_bid += 3
+		raise_attempts = round(days_to_bid * 10 * 1.5)
+	elif rarity == "legendary":
+		days_to_bid += 4
+		raise_attempts = round(days_to_bid * 10 * 2)
+	
+	var brandmult = 1 
+	var pattern_mult = 1
+	if bidding["brandmult"]:
+		brandmult = bidding["brandmult"]
+	if bidding["pattern_mult"]:
+		pattern_mult = bidding["pattern_mult"]
+	
+	var default_price = bidding["default_price"]
+	default_price = default_price * price_mult * brandmult * pattern_mult
+	var initial_price = max(snapped(default_price / rng.randf_range(2,5),0.5),1.00)
+	var competition_num = randi_range(round(days_to_bid*1.2),round(days_to_bid*2))
+	var bidder_names = []
+	for i in competition_num:
+		var name = Global.name_generator()
+		bidder_names.append(name)
+		
+	var initial_bid = rng.randi_range(1,2)
+	if initial_bid == 1:
+		bidding_details[index] = {
+			"bidder_name": bidder_names.pick_random(),
+			"bid_time": Global.time_mins - rng.randi_range(1,600),
+			"bid_amount": initial_price + calculate_minimum_raise(initial_price),
+			"bid_end": Global.time_mins + round(days_to_bid*1440),
+			"bid_begin": Global.time_mins
+		}
+	else:
+		bidding_details[index] = {
+			"bidder_name": "No Bidder",
+			"bid_time": Global.time_mins,
+			"bid_amount": initial_price,
+			"bid_end": Global.time_mins + round(days_to_bid*1440),
+			"bid_begin": Global.time_mins
+		}
+	print(bidder_names)
+	generate_bidders(raise_attempts, bidder_names,Global.time_mins + round(days_to_bid*1440), index)
+
+func generate_bidders(num,names,end, index):
+	for i in (num):
+		var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+		rng.randomize()
+		var current_minute = Global.time_mins
+		var buyer_type = buyer_types.pick_random()
+		var minutes_after = rng.randi_range(0,end)
+		var min_to_buy = current_minute + minutes_after
+		var name = names.pick_random()
+		var buyer_dict: Dictionary = {
+			"id": index,
+			"min_to_buy":min_to_buy,
+			"buyer_name": name,
+			"bid_end": end
+		}
+		bidders.append(buyer_dict)
+	
+func bidder_raise(bidder):
+	var index = bidder["id"]
+	var details = bidding_details[bidder["id"]]
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	var odds: float = 0.25 # can change
+	var bidding = bidding_items[bidder["id"]]
+	var brandmult = 1 
+	var pattern_mult = 1
+	if bidding["brandmult"]:
+		brandmult = bidding["brandmult"]
+	if bidding["pattern_mult"]:
+		pattern_mult = bidding["pattern_mult"]
+	
+	var default_price = bidding["default_price"]
+	var condition = bidding["condition"]
+	
+	var price_mult = 1
+	if condition == "Poor":
+		price_mult = 0.4
+	elif condition == "Satisfactory":
+		price_mult = 0.6
+	elif condition == "Good":
+		price_mult = 0.8
+	elif condition == "Great":
+		price_mult = 0.9
+	elif condition == "Minted":
+		price_mult = 1.05
+	else:
+		price_mult = 1.0
+	
+	default_price = default_price * price_mult * brandmult * pattern_mult
+	var current_price = details["bid_amount"]
+	var price_affect_odds = get_buy_probability_sigmoid(current_price,default_price)
+	var total_time = details["bid_end"] - details["bid_begin"]
+	var time_in = Global.time_mins - details["bid_begin"]
+	var decimal_in = max(0.3,time_in/total_time)
+	odds = 0.2 * decimal_in*2 * price_affect_odds	
+	
+	var numbar = rng.randf()
+	#print(odds, " ", numbar)
+	if odds >= numbar:
+		var raise_amount = calculate_minimum_raise(current_price)
+		current_price += raise_amount * rng.randi_range(1,4)
+		details["bidder_name"] = bidder["buyer_name"]
+		details["bid_amount"] = current_price
+		details["bid_time"] = Global.time_mins
+		#print(details)
+		bid_done.emit()
+		
+func calculate_minimum_raise(price):
+	if price <= 5:
+		return 0.25
+	elif price <= 20:
+		return 0.5
+	elif price <= 50:
+		return 1
+	elif price <= 100:
+		return 2
+	else:
+		return 5
+
+func resolve_bid(index: int) -> void:
+	var details = bidding_details[index]
+
+	if details["bidder_name"] == "You":
+		Global.money -= details["bid_amount"]
+		ShippingHandler.shipping_list.append([bidding_items[index], Global.time_mins])
+		Global.create_mail.emit()
+	
+	for i in range(bidders.size() - 1, -1, -1):
+		if bidders[i]["id"] == index:
+			bidders.remove_at(i)
+
+	var packed = preload("res://scenes/item_ui.tscn")
+	var item_ui = packed.instantiate()
+	add_child(item_ui)
+	item_ui.get_node("item").initialize_item("Bidding")
+	bidding_items[index] = item_ui.get_data()
+	create_bidding_details(index)
+	item_ui.queue_free()
+
+	bid_done.emit()

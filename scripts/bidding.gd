@@ -15,3 +15,4 @@ func _build_page():
  
 func _on_tree_entered() -> void:
 	call_deferred("_build_page")
+	Inventory.bid_done.connect(_build_page)

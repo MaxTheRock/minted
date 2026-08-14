@@ -1786,108 +1786,110 @@ animations = [{
 script = ExtResource("1_vljjh")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=201067413]
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 72.0
+offset_bottom = 72.0
 script = ExtResource("2_ro5b8")
 
 [node name="trousers" type="AnimatedSprite2D" parent="TextureButton" unique_id=1100261359 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_ccrme")
 frame_progress = 0.0037963928
 
 [node name="shorts" type="AnimatedSprite2D" parent="TextureButton" unique_id=743636722 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_ngcwe")
 
 [node name="shoes" type="AnimatedSprite2D" parent="TextureButton" unique_id=1842506349 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_dwrc3")
 
 [node name="cd_player" type="AnimatedSprite2D" parent="TextureButton" unique_id=906608340 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_fih1l")
 frame_progress = 0.07507769
 
 [node name="spud_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=573951217 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_4c3da")
 frame_progress = 0.63871384
 
 [node name="beh_enclosed_shirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=118288681 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_jpt8c")
 
 [node name="potion_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=1550037590 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_sowbf")
 frame_progress = 0.40995625
 
 [node name="boxers" type="AnimatedSprite2D" parent="TextureButton" unique_id=193976886 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_lkluq")
 frame_progress = 0.58312744
 
 [node name="the_big_mint" type="AnimatedSprite2D" parent="TextureButton" unique_id=1277573031 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_xj5vb")
 
 [node name="smooth_jazz_1" type="AnimatedSprite2D" parent="TextureButton" unique_id=7081158 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_6vwip")
 
 [node name="three_jelly" type="AnimatedSprite2D" parent="TextureButton" unique_id=1634629574 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_lxa2n")
 
 [node name="evil_pulsation" type="AnimatedSprite2D" parent="TextureButton" unique_id=1666947527 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_xhpjx")
 
 [node name="jungle" type="AnimatedSprite2D" parent="TextureButton" unique_id=997423714 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_skoww")
 
 [node name="football" type="AnimatedSprite2D" parent="TextureButton" unique_id=1526951585 groups=["clothes"]]
-position = Vector2(34, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_k0cln")
 
 [node name="conceal_shoes" type="AnimatedSprite2D" parent="TextureButton" unique_id=1934988730 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_jc3i3")
 frame = 4
 frame_progress = 0.08746785
 
 [node name="gold_ring" type="AnimatedSprite2D" parent="TextureButton" unique_id=1432718562 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_qbtql")
 frame_progress = 0.43251434
 
 [node name="camera" type="AnimatedSprite2D" parent="TextureButton" unique_id=1614814084 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_n31g0")
 frame = 35
 frame_progress = 0.9449704
 
 [node name="puzzle_cube" type="AnimatedSprite2D" parent="TextureButton" unique_id=506931965 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_sqt0q")
 frame = 20
 frame_progress = 0.6205236
 
 [node name="socks" type="AnimatedSprite2D" parent="TextureButton" unique_id=1203222321 groups=["clothes"]]
 material = SubResource("ShaderMaterial_m13t4")
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_6snss")
 frame_progress = 0.037334353
 
 [node name="tshirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=659182065 groups=["clothes"]]
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_qnalp")
 
 [node name="basketball" type="AnimatedSprite2D" parent="TextureButton" unique_id=996990980 groups=["clothes"]]
 material = SubResource("ShaderMaterial_m13t4")
-position = Vector2(32, 32)
+position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_60br1")
 frame_progress = 0.71887624
 

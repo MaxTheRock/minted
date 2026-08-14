@@ -14,9 +14,13 @@ var player_saved_x = 0
 var player_saved_y = 0
 var first_room = true
 var dialogue_ongoing = false
+var bidding_index_selected = -1
+var buffer_text = ""
+var on_bidding = false
 signal pause_toggled(is_paused: bool)
 signal eject
 signal create_mail
+signal update_time
 
 # --- CLOCK --- #
 var min = 0
@@ -48,6 +52,7 @@ func _process(delta):
 		clock_timer = 0
 		
 func new_time_calc(min_added: int) -> void:
+	update_time.emit()
 	min += min_added 
 	time_mins += min_added 
 	if not no_sleep:

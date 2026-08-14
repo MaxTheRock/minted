@@ -95,7 +95,9 @@ var pattern_texture = preload("res://shaders/pattern_colors.png")
 	"basketball": $TextureButton/basketball
 }
 
-@onready var details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
+@onready var market_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
+@onready var bidding_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Bidding/Trading/Product_Details")
+
 @onready var tshirt_logo: AnimatedSprite2D = $overlays/thsirt_logo
 @onready var frame_timer = $FrameTimer
 @onready var tshirt_pattern = $overlays/tshirt_pattern
@@ -140,6 +142,22 @@ func initialize_item(category := "All"):
 			type = collectables.pick_random()
 		"Sports":
 			type = sports.pick_random()
+		"Bidding":
+			rarities = {
+				"common": 150,
+				"uncommon": 300,
+				"rare": 150,
+				"epic": 50,
+				"legendary": 20
+			}
+			type = get_random_item()
+			rarities = {
+				"common": 900,
+				"uncommon": 300,
+				"rare": 100,
+				"epic": 20,
+				"legendary": 4
+			}
 		_:
 			type = get_random_item()
 	generate_parameters(type)
@@ -326,8 +344,8 @@ func logo_calculator(color1_of_shirt: String) -> void:
 	tshirt_logo.animation = overlay_animation
 	tshirt_logo.frame = 0
 	tshirt_logo.stop()
-	if details_ui != null:
-		details_ui.stop_logo()
+	if get_details_ui() != null:
+		get_details_ui().stop_logo()
 
 func set_item_type(item_type: String) -> void:
 	for sprite in sprites.values():
@@ -338,8 +356,8 @@ func set_item_type(item_type: String) -> void:
 func _on_texture_button_mouse_entered():
 	hovering = true
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_product_info(sprite_image, get_data())
-		details_ui.display_logo(tshirt_logo, get_data(),0)
+		get_details_ui().display_product_info(sprite_image, get_data())
+		get_details_ui().display_logo(tshirt_logo, get_data(),0)
 	
 	if type in items_with_regular_animation:
 		counter = 0
@@ -348,8 +366,8 @@ func _on_texture_button_mouse_entered():
 func _on_texture_button_mouse_exited():
 	hovering = false
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, get_data(),0)
-		details_ui.display_product_info(sprite_image, get_data())
+		get_details_ui().display_logo(tshirt_logo, get_data(),0)
+		get_details_ui().display_product_info(sprite_image, get_data())
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		child.stop()
@@ -360,7 +378,7 @@ func _on_texture_button_mouse_exited():
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if Global.inWardrobe == false and Global.inShelf == false:
-			details_ui.display_product_info(sprite_image, get_data())
+			get_details_ui().display_product_info(sprite_image, get_data())
 		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
@@ -383,7 +401,7 @@ func _on_frame_timer_timeout():
 				tshirt_logo.hide()
 				tshirt_pattern.hide()
 			if Global.inWardrobe == false and Global.inShelf == false:
-				details_ui.display_logo(tshirt_logo, get_data(),new_frame)
+				get_details_ui().display_logo(tshirt_logo, get_data(),new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
 			if not child.is_playing():
 				child.play("default")
@@ -392,14 +410,14 @@ func _on_frame_timer_timeout():
 
 func button_enter():
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, get_data(),0)
-		details_ui.display_product_info(sprite_image, get_data())
+		get_details_ui().display_logo(tshirt_logo, get_data(),0)
+		get_details_ui().display_product_info(sprite_image, get_data())
 	frame_timer.start()
 	
 func button_exit():
 	if Global.inWardrobe == false and Global.inShelf == false:
-		details_ui.display_logo(tshirt_logo, get_data(),0)
-		details_ui.display_product_info(sprite_image, get_data())
+		get_details_ui().display_logo(tshirt_logo, get_data(),0)
+		get_details_ui().display_product_info(sprite_image, get_data())
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:
@@ -412,6 +430,7 @@ func generate_parameters(type):
 		cd = true
 	else:
 		cd = false
+	@warning_ignore("narrowing_conversion")
 	if type == "tshirt":
 		number = rng.randi_range(0, colours.size()-1)
 		color1 = colours[number]
@@ -478,7 +497,6 @@ func generate_parameters(type):
 		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 7
 	elif type == "spud_poster":
-		@warning_ignore("narrowing_conversion")
 		shippingTime = rng.randi_range(1, 6.0)
 		shippingValue = 1
 		condition = conditions.pick_random()
@@ -773,7 +791,6 @@ func load_data(data: Dictionary) -> void:
 		
 	if type == "tshirt" and pattern_type != "none" and tshirt_pattern:
 		tshirt_pattern.animation = pattern_type
-		print(pattern_type)
 		tshirt_pattern.frame = 0
 		tshirt_pattern.show()
 		set_node_palette(tshirt_pattern, pattern_index)
@@ -781,3 +798,11 @@ func load_data(data: Dictionary) -> void:
 		tshirt_pattern.hide()
 
 	emit_signal("rarity_ui", rarity)
+
+func get_details_ui():
+	if Global.on_bidding:
+		return bidding_details_ui
+	return market_details_ui
+
+func display_thing():
+	get_details_ui().display_product_info(sprite_image, get_data())

@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 @onready var color_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/Color
-@onready var price_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/Price
 @onready var shipping_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/Shipping
 @onready var condition_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer5/MarginContainer/Condition
 @onready var preview_image = $MarginContainer/VBoxContainer/MarginContainer/TextureRect
@@ -9,7 +8,7 @@ extends VBoxContainer
 @onready var brand_label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PanelContainer6/MarginContainer/Brand
 @onready var product_label_name = $MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Product_Name
 @onready var pattern = $MarginContainer/VBoxContainer/MarginContainer/TextureRect/overlays/tshirt_pattern
-@onready var seller_name = $"../../../seller_info/TextureRect/seller_name"
+@onready var seller_name = $"../seller_info/TextureRect/seller_name"
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var socks_shader = preload("res://shaders/color_swap_sock.gdshader")
 var tshirt_shader = preload("res://shaders/color_swap_t_shirt.gdshader")
@@ -21,9 +20,6 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 var conceal_texture = preload("res://shaders/conceal_colours.png")
 var pattern_texture = preload("res://shaders/pattern_colors.png")
 
-func _ready():
-	print(get_tree().root)
-	
 func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 	preview_image.visible = true
 	seller_name.text = data["seller_name"]
@@ -46,10 +42,7 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		color_label.text = "Colour: " + data["color1"].capitalize() + " & " +  data["color2"].capitalize()
 	
 	var price_string = str(data["price"])
-	if price_string[-2] == ".":
-		price_label.text = "$" + str(data["price"]) + "0"
-	else:
-		price_label.text = "$" + str(data["price"])
+
 	shipping_label.text = "Shipping Time: " + str(data["shippingTime"]) + " days"
 	condition_label.text = "Condition: " + str(data["condition"])
 	brand_label.text = "Brand: " + data["brand"].capitalize()
