@@ -289,7 +289,7 @@ func create_bidding_details(index):
 			"bid_end": Global.time_mins + round(days_to_bid*1440),
 			"bid_begin": Global.time_mins
 		}
-	print(bidder_names)
+	#print(bidder_names)
 	generate_bidders(raise_attempts, bidder_names,Global.time_mins + round(days_to_bid*1440), index)
 
 func generate_bidders(num,names,end, index):

@@ -21,8 +21,6 @@ var boxers_texture = preload("res://shaders/boxers_colours.png")
 var conceal_texture = preload("res://shaders/conceal_colours.png")
 var pattern_texture = preload("res://shaders/pattern_colors.png")
 
-func _ready():
-	print(get_tree().root)
 	
 func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 	preview_image.visible = true

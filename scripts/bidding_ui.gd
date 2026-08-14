@@ -127,6 +127,8 @@ func _on_button_pressed() -> void:
 		details["bid_amount"] = price_written
 		details["bid_time"] = Global.time_mins
 		bid_contents.text = ""
+		Global.buffer_text = ""
+		Global.bidding_index_selected = -1
 		price_display.text = str(price_written)
 		var last_bidder_var = last_bidder.text
 		last_bidder.text = "You"
