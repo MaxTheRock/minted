@@ -32,7 +32,7 @@ var time_mins = 0
 
 var clock_timer = 0.0
 var paused = false
-var skip_dialogue = true
+var skip_dialogue = false
 var no_sleep = true
 
 var sleep = 90

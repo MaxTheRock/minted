@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="2_cek5a"]
 [ext_resource type="Texture2D" uid="uid://q5bampf5boes" path="res://assets/mintora_small.png" id="2_ckslc"]
 [ext_resource type="PackedScene" uid="uid://cxbgcv0xjeqmn" path="res://scenes/market.tscn" id="2_vytop"]
-[ext_resource type="Script" uid="uid://bmmfim110oj5e" path="res://scenes/tab_container.gd" id="3_f86in"]
+[ext_resource type="Script" uid="uid://bmmfim110oj5e" path="res://scripts/tab_container.gd" id="3_f86in"]
 [ext_resource type="PackedScene" uid="uid://8w6oo4gmhwor" path="res://scenes/mail.tscn" id="3_vytop"]
 [ext_resource type="PackedScene" uid="uid://sb8cwtgdt6rd" path="res://scenes/selling.tscn" id="4_esrwv"]
 [ext_resource type="PackedScene" uid="uid://5fnes7u1us3e" path="res://scenes/trading.tscn" id="5_pvjfy"]

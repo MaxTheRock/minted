@@ -27,10 +27,13 @@
 [ext_resource type="Texture2D" uid="uid://cdjj4smabnxee" path="res://assets/cds/jungle.png" id="23_dxgow"]
 [ext_resource type="Texture2D" uid="uid://ct2nt81ntjghf" path="res://assets/items/basketball.png" id="23_rrfqi"]
 [ext_resource type="Texture2D" uid="uid://cvyfd2xdf7un0" path="res://assets/items/football/football.png" id="24_3tic0"]
+[ext_resource type="Texture2D" uid="uid://bjg6sc1lnhetg" path="res://assets/items/christmas_lights.png" id="24_7pm74"]
 [ext_resource type="Texture2D" uid="uid://cq2bjk8d56i3a" path="res://assets/brand_icons/geometric.png" id="24_bn33c"]
+[ext_resource type="Texture2D" uid="uid://bt0ssl1gh3no2" path="res://assets/items/scuter_playing_cards.png" id="24_kytja"]
 [ext_resource type="Texture2D" uid="uid://bpdybj0nx4uxs" path="res://assets/items/gold_ring.png" id="24_rf8yr"]
 [ext_resource type="Texture2D" uid="uid://dhnav86xom70s" path="res://assets/brand_icons/hearts.png" id="25_cqjlv"]
 [ext_resource type="Texture2D" uid="uid://cwac6f7xv433n" path="res://assets/brand_icons/polka-dot.png" id="25_ierpy"]
+[ext_resource type="Texture2D" uid="uid://ckdgkp4bevkh7" path="res://assets/items/flip-flops.png" id="25_ii35d"]
 [ext_resource type="Texture2D" uid="uid://dmxtndiu75jpo" path="res://assets/items/conceal/conceal.png" id="25_qekll"]
 [ext_resource type="Texture2D" uid="uid://dw5d1m4uivmnt" path="res://assets/brand_icons/stripes.png" id="26_bn33c"]
 [ext_resource type="Texture2D" uid="uid://g3eacglqk6yw" path="res://assets/brand_icons/wavy.png" id="27_cqjlv"]
@@ -1280,6 +1283,96 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_or6sp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_kytja")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dbd7"]
+atlas = ExtResource("25_ii35d")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8bn8"]
+atlas = ExtResource("25_ii35d")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q45et"]
+atlas = ExtResource("25_ii35d")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek7ht"]
+atlas = ExtResource("25_ii35d")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssk8d"]
+atlas = ExtResource("25_ii35d")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kytja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dbd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8bn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q45et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek7ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssk8d")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60br1"]
+atlas = ExtResource("24_7pm74")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srpag"]
+atlas = ExtResource("24_7pm74")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k883w"]
+atlas = ExtResource("24_7pm74")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paimf"]
+atlas = ExtResource("24_7pm74")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dbd7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60br1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srpag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k883w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paimf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 4.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxq6w"]
 atlas = ExtResource("23_6rcit")
 region = Rect2(0, 0, 64, 64)
@@ -1892,6 +1985,22 @@ material = SubResource("ShaderMaterial_m13t4")
 position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_60br1")
 frame_progress = 0.71887624
+
+[node name="playing_cards" type="AnimatedSprite2D" parent="TextureButton" unique_id=1221878831 groups=["clothes"]]
+material = SubResource("ShaderMaterial_m13t4")
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_or6sp")
+
+[node name="flip_flops" type="AnimatedSprite2D" parent="TextureButton" unique_id=818515364 groups=["clothes"]]
+material = SubResource("ShaderMaterial_m13t4")
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_kytja")
+
+[node name="christmas_lights" type="AnimatedSprite2D" parent="TextureButton" unique_id=1227142359 groups=["clothes"]]
+material = SubResource("ShaderMaterial_m13t4")
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_7dbd7")
+frame_progress = 0.19524218
 
 [node name="overlays" type="Control" parent="." unique_id=1252589936]
 layout_mode = 3

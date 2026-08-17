@@ -3,21 +3,22 @@ extends Node2D
 var colours: Array = ["white","yellow", "red", "green", "blue", "black", "purple", "pink", "cyan", "orange"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var conceal_colours: Array = ["white","red","green","pink","black","blue"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes"]
-var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes","flip_flops"]
+var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle","christmas_lights"]
 var epic_items: Array = ["beh_enclosed_shirt"]
 var legendary_items: Array = ["gold_ring"]
+var all_items: Array = common_items + uncommon_items + rare_items + epic_items + legendary_items
 var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera","gold_ring"]
 var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
 var cds = items_that_spin
 var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
 # Categories
-var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes"]
+var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes","flip_flops"]
 #var clothes = ["tshirt"]
-var toys: Array = ["puzzle_cube", "football"]
-var home: Array = ["spud_poster","potion_poster"]
-var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle"]
+var toys: Array = ["puzzle_cube", "football","playing_cards"]
+var home: Array = ["spud_poster","potion_poster","christmas_lights"]
+var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle","christmas_lights"]
 var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
 var collectables: Array = ["spud_poster", "beh_enclosed_shirt","gold_ring"]
 var sports: Array = ["beh_enclosed_shirt", "football","basketball"]
@@ -48,11 +49,11 @@ var counter: int = 0
 var hovering = false
 var overlay_animation = "none"
 var rarities = {
-	"common": 900,
+	"common": 600,
 	"uncommon": 300,
 	"rare": 100,
-	"epic": 20,
-	"legendary": 4
+	"epic": 25,
+	"legendary": 5
 }
 var rarity = "common"
 var pattern_type = "none"
@@ -92,7 +93,10 @@ var pattern_texture = preload("res://shaders/pattern_colors.png")
 	"football": $TextureButton/football,
 	"gold_ring": $TextureButton/gold_ring,
 	"conceal_shoes": $TextureButton/conceal_shoes,
-	"basketball": $TextureButton/basketball
+	"basketball": $TextureButton/basketball,
+	"playing_cards": $TextureButton/playing_cards,
+	"flip_flops": $TextureButton/flip_flops,
+	"christmas_lights": $TextureButton/christmas_lights,
 }
 
 @onready var market_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
@@ -129,28 +133,28 @@ func initialize_item(category := "All"):
 	rng.randomize()
 	match category:
 		"Clothes":
-			type = clothes.pick_random()
+			type = get_random_item(clothes)
 		"Toys":
-			type = toys.pick_random()
+			type = get_random_item(toys)
 		"Home":
-			type = home.pick_random()
+			type = get_random_item(home)
 		"Electronics":
-			type = electronics.pick_random()
+			type = get_random_item(electronics)
 		"BooksMedia":
-			type = books_and_media.pick_random()
+			type = get_random_item(books_and_media)
 		"Collectables":
-			type = collectables.pick_random()
+			type = get_random_item(collectables)
 		"Sports":
-			type = sports.pick_random()
+			type =  get_random_item(sports)
 		"Bidding":
 			rarities = {
 				"common": 150,
 				"uncommon": 300,
 				"rare": 150,
 				"epic": 50,
-				"legendary": 20
+				"legendary": 25
 			}
-			type = get_random_item()
+			type = get_random_item(all_items)
 			rarities = {
 				"common": 900,
 				"uncommon": 300,
@@ -159,7 +163,7 @@ func initialize_item(category := "All"):
 				"legendary": 4
 			}
 		_:
-			type = get_random_item()
+			type = get_random_item(all_items)
 	generate_parameters(type)
 	set_item_type(type)
 	
@@ -225,6 +229,11 @@ func initialize_item(category := "All"):
 	elif type == "basketball":
 		color2 = "black"
 		color1 = "orange"
+	elif type == "christmas_lights":
+		color1 = "multi"
+	elif type == "playing_cards":
+		color1 = "white"
+	
 		
 	if type == "tshirt":
 		tshirt_logo.show()
@@ -242,43 +251,61 @@ func initialize_item(category := "All"):
 		
 	emit_signal("rarity_ui", rarity)
 
-func get_random_item() -> String:
-	var total_weight := 0
+func get_random_item(pool) -> String:
+	var common_items_buffer = []
+	var uncommon_items_buffer = []
+	var rare_items_buffer = []
+	var epic_items_buffer = []
+	var legendary_items_buffer = []
+	
+	for item in pool:
+		if item in common_items:
+			common_items_buffer.append(item)
+		elif item in uncommon_items:
+			uncommon_items_buffer.append(item)
+		elif item in rare_items:
+			rare_items_buffer.append(item)
+		elif item in epic_items:
+			epic_items_buffer.append(item)
+		elif item in legendary_items:
+			legendary_items_buffer.append(item)	
+			
+	var total_weight = 0
 
-	if common_items.size() > 0:
+	if common_items_buffer.size() > 0:
 		total_weight += rarities["common"]
-	if uncommon_items.size() > 0:
+	if uncommon_items_buffer.size() > 0:
 		total_weight += rarities["uncommon"]
-	if rare_items.size() > 0:
+	if rare_items_buffer.size() > 0:
 		total_weight += rarities["rare"]
-	if epic_items.size() > 0:
+	if epic_items_buffer.size() > 0:
 		total_weight += rarities["epic"]
-	if legendary_items.size() > 0:
+	if legendary_items_buffer.size() > 0:
 		total_weight += rarities["legendary"]
 		
-	var roll := rng.randi_range(1, total_weight)
+	var roll = rng.randi_range(1, total_weight)
 
-	if common_items.size() > 0:
+	if common_items_buffer.size() > 0:
 		if roll <= rarities["common"]:
-			return common_items.pick_random()
+			return common_items_buffer.pick_random()
 		roll -= rarities["common"]
 
-	if uncommon_items.size() > 0:
+	if uncommon_items_buffer.size() > 0:
 		if roll <= rarities["uncommon"]:
-			return uncommon_items.pick_random()
+			return uncommon_items_buffer.pick_random()
 		roll -= rarities["uncommon"]
 
-	if rare_items.size() > 0:
+	if rare_items_buffer.size() > 0:
 		if roll <= rarities["rare"]:
-			return rare_items.pick_random()
+			return rare_items_buffer.pick_random()
 		roll -= rarities["rare"]
 	
-	if epic_items.size() > 0:
-		if roll <= rarities["rare"]:
-			return epic_items.pick_random()
+	if epic_items_buffer.size() > 0:
+		if roll <= rarities["epic"]:
+			return epic_items_buffer.pick_random()
 		roll -= rarities["epic"]
 		
-	return legendary_items.pick_random()
+	return legendary_items_buffer.pick_random()
 	
 func get_rarity():
 	rng.randomize()
@@ -596,13 +623,36 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(19 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 19
-	elif type == "football":
+	elif type == "basketball":
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 2
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(9 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 9
+	elif type == "christmas_lights":
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 2
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 8
+	elif type == "flip_flops":
+		number = rng.randi_range(0, colours.size()-1)
+		color1 = colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 2
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 8
+	elif type == "playing_cards":
+		shippingValue = 1
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(4 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 4
+		
 	
 	if brand != "none":
 		pattern_type = "none"
@@ -710,6 +760,15 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("tolerance", 0.02)
 		target_sprite.material.set_shader_parameter("color_count", 11)
 		target_sprite.material.set_shader_parameter("palette_count", 6)
+		target_sprite.material.set_shader_parameter("palette_index", num)
+		
+	elif type == "flip_flops":
+		target_sprite.material.shader = tshirt_shader
+		
+		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
+		target_sprite.material.set_shader_parameter("tolerance", 0.1)
+		target_sprite.material.set_shader_parameter("color_count", 5)
+		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.material.set_shader_parameter("palette_index", num)
 	
 	else:

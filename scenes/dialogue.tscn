@@ -4,7 +4,68 @@
 [ext_resource type="FontFile" uid="uid://ckeqknjiw1h7m" path="res://fonts/Aller_Rg.ttf" id="2_bfpow"]
 [ext_resource type="FontFile" uid="uid://dkvrhel3prpcm" path="res://fonts/Aller_Bd.ttf" id="3_fyky8"]
 [ext_resource type="Texture2D" uid="uid://l2l113rwynal" path="res://assets/face_sprites/margaret.png" id="4_fyky8"]
+[ext_resource type="Texture2D" uid="uid://cs3vixntdy0vx" path="res://assets/face_sprites/john.png" id="4_vogiq"]
 [ext_resource type="Texture2D" uid="uid://b61a4kspoqbgb" path="res://assets/brand_icons/none.png" id="5_led2e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl8xs"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sae4c"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_161w7"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1vap"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h83qv"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i40sc"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o5fw"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eg0tx"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r6d2"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqtr1"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv3ow"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4umv2"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnuf8"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6vdr"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(128, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc0pl"]
+atlas = ExtResource("4_vogiq")
+region = Rect2(256, 384, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_led2e"]
 atlas = ExtResource("4_fyky8")
@@ -104,6 +165,76 @@ region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6snss"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl8xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sae4c")
+}],
+"loop": 1,
+"name": &"landlord_concern",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_161w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1vap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h83qv")
+}],
+"loop": 1,
+"name": &"landlord_mad",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i40sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o5fw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eg0tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r6d2")
+}],
+"loop": 1,
+"name": &"landlord_neutral",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqtr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv3ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4umv2")
+}],
+"loop": 1,
+"name": &"landlord_smug",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnuf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6vdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc0pl")
+}],
+"loop": 1,
+"name": &"landlord_tired",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_led2e")
@@ -293,5 +424,5 @@ text = "[F]"
 position = Vector2(108, 121)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6snss")
-animation = &"none"
+animation = &"landlord_mad"
 autoplay = "none"

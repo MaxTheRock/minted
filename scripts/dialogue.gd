@@ -43,6 +43,9 @@ func display_portrait(speaker, face):
 	if speaker == "margaret":
 		var animation_name = speaker + "_" + face
 		portrait.play(animation_name)
+	elif speaker == "landlord":
+		var animation_name = speaker + "_" + face
+		portrait.play(animation_name)		
 	else:
 		portrait.play("none")
 func _display_dialogue(data, id):

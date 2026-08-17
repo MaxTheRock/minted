@@ -1,5 +1,4 @@
 To-do list (add as we go and delete when completed):
-- Bidding
 - Reputation
 - Dream minigames
 - Rent system
@@ -9,9 +8,8 @@ To-do list (add as we go and delete when completed):
 - Endings
 - Scamming
 - Newspaper
-- Trading items
 - More rooms
 - Tutorial level
 - Outside
 - Margaret animations
-- Face sprites
+- Face sprites (50% done)

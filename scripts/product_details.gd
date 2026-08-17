@@ -118,7 +118,14 @@ func display_product_info(sprite: AnimatedSprite2D, data: Dictionary) -> void:
 		preview_image.material.set_shader_parameter("color_count", 11)
 		preview_image.material.set_shader_parameter("palette_count", 6)
 		preview_image.material.set_shader_parameter("palette_index", color_index)
-	
+		
+	elif data["type"] == "flip_flops":
+		preview_image.material.shader = tshirt_shader
+		preview_image.material.set_shader_parameter("palette_texture", tshirt_texture)
+		preview_image.material.set_shader_parameter("tolerance", 0.1)
+		preview_image.material.set_shader_parameter("color_count", 5)
+		preview_image.material.set_shader_parameter("palette_count", 10)
+		preview_image.material.set_shader_parameter("palette_index", color_index)
 	else:
 		preview_image.material.shader = null
 		

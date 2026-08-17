@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://cxh8vpp801mv5" path="res://assets/brand_icons/elemental/regular.png" id="18_8rdla"]
 [ext_resource type="FontFile" uid="uid://dkvrhel3prpcm" path="res://fonts/Aller_Bd.ttf" id="19_nuohf"]
 [ext_resource type="Texture2D" uid="uid://cr76a08qcm786" path="res://assets/mintora.png" id="20_ueuqt"]
+[ext_resource type="Texture2D" uid="uid://desj2yykwoxb7" path="res://assets/os/icons/refresh.png" id="21_td24l"]
+[ext_resource type="Texture2D" uid="uid://b5otyytahqibf" path="res://themes/progress.tres" id="22_8gtqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2bl5"]
 shader = ExtResource("4_ueuqt")
@@ -548,6 +550,15 @@ fill = 2
 fill_from = Vector2(0, 0.544964)
 fill_to = Vector2(1, 0.51978415)
 
+[sub_resource type="Gradient" id="Gradient_wa5cj"]
+offsets = PackedFloat32Array(0, 0.56772906, 0.59960157, 0.79083663, 0.99800795)
+colors = PackedColorArray(0, 0.6732479, 0.3207137, 1, 0.08235294, 0.654902, 0.3137255, 1, 0.54519236, 0.54519236, 0.54519236, 0, 0.45, 0.45, 0.45, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4yeek"]
+gradient = SubResource("Gradient_wa5cj")
+fill = 1
+fill_from = Vector2(0.4761092, 0.48976108)
+
 [node name="Trading" type="Control" unique_id=2081727713]
 layout_mode = 3
 anchors_preset = 0
@@ -784,5 +795,30 @@ offset_bottom = 47.0
 theme_override_fonts/font = ExtResource("19_nuohf")
 theme_override_font_sizes/font_size = 25
 
+[node name="Button" type="Button" parent="." unique_id=1741050459]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 806.00006
+offset_top = 110.00002
+offset_right = 906.00006
+offset_bottom = 210.0
+scale = Vector2(0.66573346, 0.66573346)
+icon = ExtResource("21_td24l")
+expand_icon = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Button" unique_id=1432971355]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0042
+offset_right = 104.0
+offset_bottom = 103.004196
+scale = Vector2(1.5, 1.5)
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("22_8gtqe")
+texture_progress = SubResource("GradientTexture2D_4yeek")
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="ready" from="Product_Details/MarginContainer/VBoxContainer/MarginContainer/TextureRect" to="Product_Details" method="_on_texture_rect_ready"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
