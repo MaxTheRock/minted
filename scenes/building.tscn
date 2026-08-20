@@ -238,6 +238,7 @@ animations = [{
 size = Vector2(125.97222, 195.04973)
 
 [node name="Building" type="Node2D" unique_id=2101118295]
+position = Vector2(0, -13)
 
 [node name="template" type="Sprite2D" parent="." unique_id=1317997496]
 scale = Vector2(2, 2)
@@ -280,6 +281,7 @@ offset_top = -85.0
 offset_right = -34.0
 offset_bottom = -85.0
 script = ExtResource("5_7huw0")
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="Parcels" unique_id=1694951760]
 position = Vector2(38.5, 13.5)
@@ -298,6 +300,7 @@ offset_top = -23.0
 offset_right = 75.0
 scale = Vector2(0.5, 0.5)
 text = "Collect [F]"
+metadata/_edit_use_anchors_ = true
 
 [node name="Computer" type="Sprite2D" parent="." unique_id=1867859156]
 z_index = 1

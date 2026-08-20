@@ -25,6 +25,7 @@ corner_radius_bottom_left = 20
 corner_detail = 10
 
 [node name="Room" type="Node2D" unique_id=1370404577]
+position = Vector2(0, -45)
 script = ExtResource("1_jn645")
 
 [node name="RoomBackground" parent="." unique_id=1702459445 instance=ExtResource("2_14vil")]

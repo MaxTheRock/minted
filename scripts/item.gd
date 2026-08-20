@@ -71,7 +71,7 @@ var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
 var conceal_texture = preload("res://shaders/conceal_colours.png")
 var pattern_texture = preload("res://shaders/pattern_colors.png")
-var flip_flop_texture = preload("res://shaders/flip_flop-colors.png")
+var flip_flop_texture = preload("res://shaders/tshirt_colours.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
