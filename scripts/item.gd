@@ -71,6 +71,7 @@ var shorts_texture = preload("res://shaders/shorts_colours.png")
 var boxers_texture = preload("res://shaders/boxers_colours.png")
 var conceal_texture = preload("res://shaders/conceal_colours.png")
 var pattern_texture = preload("res://shaders/pattern_colors.png")
+var flip_flop_texture = preload("res://shaders/flip_flop-colors.png")
 
 @onready var sprites := {
 	"tshirt": $TextureButton/tshirt,
@@ -216,7 +217,8 @@ func initialize_item(category := "All"):
 	elif type == "evil_pulsation":
 		color1 = "grey"
 	elif type == "jungle":
-		color1 = "green & black"
+		color1 = "green"
+		color2 = "black"
 	elif type == "football":
 		color1 = "black"
 		color2 = "white"
@@ -708,9 +710,15 @@ func display_fps(fps):
 	
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
 	if target_sprite.material == null:
-		target_sprite.material = ShaderMaterial.new()
+		var new_mat = ShaderMaterial.new()
+		target_sprite.material = new_mat
+	else:
+		target_sprite.material = target_sprite.material.duplicate()
+
 	if tshirt_pattern.material == null and pattern_type != "none":
 		tshirt_pattern.material = ShaderMaterial.new()
+	elif tshirt_pattern.material != null:
+		tshirt_pattern.material = tshirt_pattern.material.duplicate()
 		
 	if type == "socks":
 		target_sprite.material.shader = tshirt_shader
@@ -765,7 +773,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 	elif type == "flip_flops":
 		target_sprite.material.shader = tshirt_shader
 		
-		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
+		target_sprite.material.set_shader_parameter("palette_texture", flip_flop_texture)
 		target_sprite.material.set_shader_parameter("tolerance", 0.1)
 		target_sprite.material.set_shader_parameter("color_count", 5)
 		target_sprite.material.set_shader_parameter("palette_count", 10)

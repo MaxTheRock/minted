@@ -148,7 +148,6 @@ func _on_price_text_changed(new_text: String) -> void:
 	Global.bidding_index_selected = item_index
 	
 
-func _on_panel_container_mouse_entered() -> void:
-	if item_container.get_child_count() == 1:
-		var item_ui = item_container.get_child(0)
-		item_ui.display_thing()
+func _on_panel_container_mouse_entered() -> void: # this doesn't work for some reason.
+	if $"item_container/item UI":
+		$"item_container/item UI".display_thing()

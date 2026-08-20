@@ -32,7 +32,7 @@ var time_mins = 0
 
 var clock_timer = 0.0
 var paused = false
-var skip_dialogue = false
+var skip_dialogue = true
 var no_sleep = true
 
 var sleep = 90
@@ -109,10 +109,10 @@ func format_time(time) -> String:
 # --- END Clock --- #
 
 func name_generator():
-	var first_names_m = ["oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris"]
-	var first_names_f = ["olivia","liz","tal","sophie","maya","margaret","eileen","noelle","susie","lois"]
+	var first_names_m = ["oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris","daniel","jack","james","morty","kasper"]
+	var first_names_f = ["olivia","liz","tal","sophie","maya","margaret","eileen","noelle","susie","lois","linda","vic"]
 	
-	var prefixes = ["green","awesome","webbed","death","crazy","pink","wizardy","lucky","spiky"]
+	var prefixes = ["green","awesome","webbed","death","crazy","pink","wizardy","lucky","spiky","jungle","massive"]
 	var gender= randi_range(1,2)
 	if gender == 1:
 		return prefixes.pick_random() + first_names_m.pick_random() + str(randi_range(1,100))
