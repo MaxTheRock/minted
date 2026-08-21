@@ -10,18 +10,20 @@ func _ready() -> void:
 	ani_sprite.frame = 0
 
 func _process(delta: float) -> void:
-	if label_shown == true and Input.is_action_pressed("interact"):
+	if Global.current_interactable == self and Input.is_action_pressed("interact"):
 		Global.first_room = false
 		get_tree().change_scene_to_file("res://scenes/storage.tscn")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "Player_Detector":
-		ani_sprite.play()
 		label_shown = true
+		Global.current_interactable = self
 		label.show()
+		ani_sprite.play()
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.name == "Player_Detector":
-		label_shown = false
-		label.hide()
+		if Global.current_interactable == self:
+			Global.current_interactable = null
+			label.hide()
 		ani_sprite.play_backwards()

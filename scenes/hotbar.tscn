@@ -12,8 +12,8 @@ grow_vertical = 2
 
 [node name="inventory" type="NinePatchRect" parent="." unique_id=716269392]
 layout_mode = 0
-offset_right = 93.75
-offset_bottom = 45.399998
+offset_right = 100.0
+offset_bottom = 50.0
 scale = Vector2(4, 4)
 texture = ExtResource("1_yj1xu")
 region_rect = Rect2(11, 3, 41, 56)

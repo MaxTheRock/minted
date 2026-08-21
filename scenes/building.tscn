@@ -339,6 +339,7 @@ modulate = Color(1, 1, 1, 0.24313726)
 position = Vector2(14, -180)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ijljr")
+frame_progress = 0.38663486
 
 [node name="Poster" type="Sprite2D" parent="." unique_id=2064951654]
 position = Vector2(-17, 302)

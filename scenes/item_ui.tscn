@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_v7xym"]
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="3_6tkj6"]
 [ext_resource type="Texture2D" uid="uid://b6a3ka1r4sery" path="res://assets/hotbar/common_frame.png" id="4_t0011"]
+[ext_resource type="Texture2D" uid="uid://bsiaki31c280a" path="res://assets/hotbar/epic_frame.png" id="5_xlygj"]
 [ext_resource type="Texture2D" uid="uid://1krbosncl2u8" path="res://assets/hotbar/legendary_frame.png" id="5_yw7qx"]
 [ext_resource type="Texture2D" uid="uid://bqkoe8p2ailee" path="res://assets/hotbar/rare_frame.png" id="6_6no7o"]
 [ext_resource type="Texture2D" uid="uid://chft043pax8t6" path="res://assets/hotbar/uncommon_frame.png" id="7_oh613"]
@@ -114,6 +115,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"common",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xlygj")
+}],
+"loop": 1,
+"name": &"epic",
 "speed": 5.0
 }, {
 "frames": [{
@@ -244,15 +253,15 @@ texture = SubResource("GradientTexture2D_6snss")
 
 [node name="item" parent="." unique_id=720823212 instance=ExtResource("2_v7xym")]
 z_index = 1000
-position = Vector2(21, 17)
-scale = Vector2(1.5, 1.5)
+position = Vector2(6, 22)
+scale = Vector2(2, 2)
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=209778367]
 layout_mode = 0
-offset_left = 5.0
-offset_top = -16.0
-offset_right = 151.0
-offset_bottom = 208.00002
+offset_left = 3.0
+offset_top = 8.0
+offset_right = 149.0
+offset_bottom = 222.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t0011")
 
@@ -364,10 +373,8 @@ text = "Eject
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=952239220]
 layout_mode = 0
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 34.75
-offset_bottom = 32.75
+offset_right = 36.0
+offset_bottom = 40.0
 scale = Vector2(4, 4)
 texture = ExtResource("3_6tkj6")
 region_rect = Rect2(15, 7, 33, 43)
@@ -378,16 +385,18 @@ patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 
 [node name="rarety_mark" type="AnimatedSprite2D" parent="." unique_id=214658075]
-position = Vector2(33, 31)
+z_index = 1000
+position = Vector2(29, 27)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qnalp")
-animation = &"legendary"
+animation = &"epic"
 
 [node name="condition_mark" type="AnimatedSprite2D" parent="." unique_id=2133675473]
-position = Vector2(33, 31)
+z_index = 1001
+position = Vector2(34, 31)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4c3da")
-animation = &"minted"
+animation = &"satisfactory"
 
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_entered"]

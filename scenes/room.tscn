@@ -28,10 +28,10 @@ position = Vector2(0, -69)
 position = Vector2(8, -103)
 
 [node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("5_eom3m")]
-offset_left = -182.0
-offset_top = 174.0
-offset_right = -182.0
-offset_bottom = 174.0
+offset_left = -196.0
+offset_top = 158.0
+offset_right = -196.0
+offset_bottom = 158.0
 
 [node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("5_jxe34")]
 visible = false
