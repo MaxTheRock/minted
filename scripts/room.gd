@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var grid = $inventory/ScrollContainer/GridContainer
+@onready var grid = $Hotbar/inventory/ScrollContainer/GridContainer
 @onready var player = $player/Player
 @onready var sleep_bar = $sleep/sleep_bar
 @onready var time_ui = $sleep/timer/Time

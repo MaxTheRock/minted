@@ -4,25 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bodpjb7jmc7i6" path="res://scenes/roomBackground.tscn" id="2_14vil"]
 [ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_qtoah"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_14vil"]
+[ext_resource type="PackedScene" uid="uid://bc74kfvt7nm5p" path="res://scenes/hotbar.tscn" id="5_eom3m"]
 [ext_resource type="PackedScene" uid="uid://dasxcj57x3w1g" path="res://scenes/dialogue.tscn" id="5_jxe34"]
 [ext_resource type="FontFile" uid="uid://d27f0kxbi0qvo" path="res://fonts/Daydream.otf" id="6_qtoah"]
 [ext_resource type="Texture2D" uid="uid://b5otyytahqibf" path="res://themes/progress.tres" id="6_qvc4m"]
 [ext_resource type="Texture2D" uid="uid://dog20d6b2p7oq" path="res://assets/os/icons/sleep.png" id="7_7dqbv"]
 [ext_resource type="Texture2D" uid="uid://cdp4tmf5gv8qc" path="res://assets/alarm.png" id="9_qtoah"]
 [ext_resource type="FontFile" uid="uid://cmwpv1y0o15oi" path="res://fonts/digital-7 (mono).ttf" id="10_eom3m"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
-bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
-border_width_left = 5
-border_width_top = 7
-border_width_right = 5
-border_width_bottom = 7
-border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 10
 
 [node name="Room" type="Node2D" unique_id=1370404577]
 position = Vector2(0, -45)
@@ -32,41 +20,18 @@ script = ExtResource("1_jn645")
 position = Vector2(-640, -360)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_qtoah")]
+position = Vector2(0, -69)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1938782641]
 
 [node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_14vil")]
-position = Vector2(47, 109)
+position = Vector2(8, -103)
 
-[node name="inventory" type="MarginContainer" parent="." unique_id=1100900620]
-offset_left = -621.0
-offset_top = -347.0
-offset_right = -249.0
-offset_bottom = -127.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 0
-
-[node name="ColorRect" type="Panel" parent="inventory" unique_id=2139248076]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-10, -10)
-theme_override_styles/panel = SubResource("StyleBoxFlat_6snss")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=1010322587]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
-
-[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=1015543522]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 2
+[node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("5_eom3m")]
+offset_left = -182.0
+offset_top = 174.0
+offset_right = -182.0
+offset_bottom = 174.0
 
 [node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("5_jxe34")]
 visible = false

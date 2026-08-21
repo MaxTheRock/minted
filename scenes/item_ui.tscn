@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bstavajvi5kim" path="res://scripts/item_ui.gd" id="1_6tkj6"]
 [ext_resource type="PackedScene" uid="uid://di6we0plbswek" path="res://scenes/item.tscn" id="2_v7xym"]
+[ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="3_6tkj6"]
 
 [sub_resource type="Gradient" id="Gradient_6tkj6"]
 colors = PackedColorArray(0.42042565, 0.44699717, 0.48742068, 1, 0.3113863, 0.1358085, 0.61206234, 1)
@@ -13,16 +14,7 @@ height = 8
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0011"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0011"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tkj6"]
 content_margin_left = 10.0
@@ -95,12 +87,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_6tkj6")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=929768543]
+visible = false
 self_modulate = Color(0.5019608, 0.37254903, 0.48235294, 1)
 layout_mode = 0
 offset_left = 3.0
@@ -111,15 +108,17 @@ texture = SubResource("GradientTexture2D_6snss")
 
 [node name="item" parent="." unique_id=720823212 instance=ExtResource("2_v7xym")]
 z_index = 1000
-position = Vector2(5, 25)
-scale = Vector2(2, 2)
+position = Vector2(21, 17)
+scale = Vector2(1.5, 1.5)
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=209778367]
 layout_mode = 0
-offset_right = 146.0
-offset_bottom = 224.0
+offset_left = 5.0
+offset_top = -16.0
+offset_right = 151.0
+offset_bottom = 208.00002
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t0011")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t0011")
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer2" unique_id=1351385291]
 layout_mode = 2
@@ -226,6 +225,21 @@ offset_transform_position = Vector2(-80, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_6no7o")
 text = "Eject
 "
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=952239220]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 34.75
+offset_bottom = 32.75
+scale = Vector2(4, 4)
+texture = ExtResource("3_6tkj6")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
 
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Buy_Button" to="." method="_on_buy_button_mouse_entered"]

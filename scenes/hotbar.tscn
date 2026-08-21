@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bc74kfvt7nm5p"]
+
+[ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="1_yj1xu"]
+
+[node name="Hotbar" type="Control" unique_id=1365132077]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventory" type="NinePatchRect" parent="." unique_id=716269392]
+layout_mode = 0
+offset_right = 93.75
+offset_bottom = 45.399998
+scale = Vector2(4, 4)
+texture = ExtResource("1_yj1xu")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=817293994]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 358.0
+offset_bottom = 204.0
+scale = Vector2(0.25, 0.25)
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=126231991]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 35
+columns = 2
