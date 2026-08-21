@@ -12,6 +12,8 @@ extends Control
 @onready var put_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Put_Button
 @onready var use_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button
 @onready var upload_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button
+@onready var rarety_mark = $rarety_mark
+@onready var condition_mark = $condition_mark
 
 signal page_requested(page_name: String)
 signal poster_selected(item_data: Dictionary)
@@ -326,21 +328,9 @@ func _ready() -> void:
 
 
 func _rarity_ui(item_rarity) -> void:
-	if item_rarity == "common":
-		background.self_modulate = Color("616161ff")
-		panel_container.self_modulate = Color8(245, 255, 255)
-	elif item_rarity == "uncommon":
-		panel_container.self_modulate = Color8(20, 235, 30)
-		background.self_modulate = Color("346634ff")
-	elif item_rarity == "rare":
-		panel_container.self_modulate = Color8(54, 136, 177)
-		background.self_modulate = Color("a31847ff")
-	elif item_rarity == "epic":
-		panel_container.self_modulate = Color8(153, 51, 255)
-		background.self_modulate = Color("89377cff")
-	elif item_rarity == "legendary":
-		panel_container.self_modulate = Color8(223, 231, 25)
-		background.self_modulate = Color("b6a022ff")
+	rarety_mark.play(item_rarity)
+	# also added the condition but didnt really know where else to put it, so i put it here...
+	condition_mark.play(item.condition.to_lower())
 
 func _on_buy_button_mouse_entered() -> void:
 	item.button_enter()
