@@ -122,7 +122,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$TextureRect.custom_maximum_size = Vector2(150, 158)
-
+		$PanelContainer2.hide()
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
