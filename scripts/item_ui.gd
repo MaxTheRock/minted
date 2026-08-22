@@ -202,7 +202,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$TextureRect.custom_maximum_size = Vector2(150, 158)
-
+		$PanelContainer2.hide()
 	elif Inventory.current_ui_type == "parcel":
 		buy_button.hide()
 		take_button.show()
@@ -233,6 +233,7 @@ func _ready() -> void:
 		eject_button.hide()
 		grid_container.hide()
 		upload_button.hide()
+		$PanelContainer2.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$TextureRect.custom_maximum_size = Vector2(150, 158)
 
@@ -257,6 +258,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$TextureRect.custom_maximum_size = Vector2(150, 158)
+		$PanelContainer2.hide()
 
 		if Inventory.actual_sold:
 			item.rarity_ui.connect(_rarity_ui)
@@ -312,6 +314,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$TextureRect.custom_maximum_size = Vector2(150, 158)
+		$PanelContainer2.hide()
 		
 		if Inventory.bidding_items:
 			item.rarity_ui.connect(_rarity_ui)
@@ -334,13 +337,14 @@ func _rarity_ui(item_rarity) -> void:
 
 func _on_buy_button_mouse_entered() -> void:
 	item.button_enter()
-
+	buy_button.modulate = Color(0.7, 0.7, 0.7, 1)
 
 func _on_buy_button_mouse_exited() -> void:
 	item.button_exit()
-
+	buy_button.modulate = Color(1, 1, 1, 1)
 
 func _on_buy_button_pressed() -> void:
+	buy_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if not Inventory.market_items.has(market_type):
 		print("Invalid market_type:", market_type)
 		return
@@ -508,6 +512,7 @@ func _on_use_pressed() -> void:
  
  
 func _on_use_button_pressed() -> void:
+	use_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if Inventory.cd_inventory.size() < 1:
 		Global.now_playing = str(item.type)
  
@@ -590,3 +595,19 @@ func initialize_item(catergory):
 
 func display_thing():
 	item.display_thing()
+
+
+func _on_use_button_mouse_entered() -> void:
+	use_button.modulate = Color(0.7, 0.7, 0.7, 1)
+
+
+func _on_use_button_mouse_exited() -> void:
+	use_button.modulate = Color(1, 1, 1, 1)
+
+
+func _on_put_button_mouse_entered() -> void:
+	put_button.modulate = Color(0.7, 0.7, 0.7, 1)
+
+
+func _on_put_button_mouse_exited() -> void:
+	put_button.modulate = Color(1, 1, 1, 1)
