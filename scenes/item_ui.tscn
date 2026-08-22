@@ -20,6 +20,14 @@
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="16_eu0tx"]
 [ext_resource type="Texture2D" uid="uid://msqt2kk1lk8h" path="res://assets/delte_button.png" id="18_ry7r3"]
 [ext_resource type="Texture2D" uid="uid://d0gfmu5iqpyy" path="res://assets/secondary_action_button.png" id="19_0l2t5"]
+[ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="21_nuws3"]
+[ext_resource type="Texture2D" uid="uid://blk5qfmfwn88t" path="res://assets/colour_tag.png" id="22_ogmw6"]
+[ext_resource type="Texture2D" uid="uid://c07y8poot88eh" path="res://assets/condition_bar.png" id="23_iwdhb"]
+[ext_resource type="Texture2D" uid="uid://cuno2fkd407tp" path="res://assets/tooltip/brand_icons/coma.png" id="24_8hfwo"]
+[ext_resource type="Texture2D" uid="uid://0qemhesxeo3" path="res://assets/tooltip/brand_icons/conceal.png" id="25_7k0wg"]
+[ext_resource type="Texture2D" uid="uid://bbnsy0ryca18r" path="res://assets/tooltip/brand_icons/elemental.png" id="26_xd58v"]
+[ext_resource type="Texture2D" uid="uid://b62rcjugr6jxa" path="res://assets/tooltip/brand_icons/none.png" id="27_5ljns"]
+[ext_resource type="Texture2D" uid="uid://7gtwtpducc41" path="res://assets/tooltip/brand_icons/scuter.png" id="28_ndt32"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_my6qv"]
 atlas = ExtResource("4_t0011")
@@ -155,16 +163,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_6tkj6"]
-colors = PackedColorArray(0.42042565, 0.44699717, 0.48742068, 1, 0.3113863, 0.1358085, 0.61206234, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6snss"]
-gradient = SubResource("Gradient_6tkj6")
-width = 8
-height = 8
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0011"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnalp"]
@@ -227,6 +225,267 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kekig"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cklv5"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fou0e"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hfwo"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k0wg"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd58v"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ljns"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndt32"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8sni"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71pa8"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lltkw"]
+atlas = ExtResource("22_ogmw6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pjmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cklv5")
+}],
+"loop": 1,
+"name": &"darkblue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fou0e")
+}],
+"loop": 1,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hfwo")
+}],
+"loop": 1,
+"name": &"lightblue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k0wg")
+}],
+"loop": 1,
+"name": &"multi",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd58v")
+}],
+"loop": 1,
+"name": &"orange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ljns")
+}],
+"loop": 1,
+"name": &"pink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndt32")
+}],
+"loop": 1,
+"name": &"purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8sni")
+}],
+"loop": 1,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71pa8")
+}],
+"loop": 1,
+"name": &"turquoise",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lltkw")
+}],
+"loop": 1,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv5ow"]
+atlas = ExtResource("23_iwdhb")
+region = Rect2(256, 0, 64, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuwoo"]
+atlas = ExtResource("23_iwdhb")
+region = Rect2(128, 0, 64, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ddk"]
+atlas = ExtResource("23_iwdhb")
+region = Rect2(192, 0, 64, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eahhg"]
+atlas = ExtResource("23_iwdhb")
+region = Rect2(320, 0, 64, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p28hc"]
+atlas = ExtResource("23_iwdhb")
+region = Rect2(0, 0, 64, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5lms"]
+atlas = ExtResource("23_iwdhb")
+region = Rect2(64, 0, 64, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jpt8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv5ow")
+}],
+"loop": 1,
+"name": &"excellent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuwoo")
+}],
+"loop": 1,
+"name": &"good",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3ddk")
+}],
+"loop": 1,
+"name": &"great",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eahhg")
+}],
+"loop": 1,
+"name": &"minted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p28hc")
+}],
+"loop": 1,
+"name": &"poor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5lms")
+}],
+"loop": 1,
+"name": &"satisfactory",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkank"]
+atlas = ExtResource("24_8hfwo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55nhu"]
+atlas = ExtResource("25_7k0wg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efcm5"]
+atlas = ExtResource("26_xd58v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nm8p"]
+atlas = ExtResource("27_5ljns")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfpkg"]
+atlas = ExtResource("28_ndt32")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xj5vb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkank")
+}],
+"loop": 1,
+"name": &"coma",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55nhu")
+}],
+"loop": 1,
+"name": &"conceal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efcm5")
+}],
+"loop": 1,
+"name": &"elemental",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nm8p")
+}],
+"loop": 1,
+"name": &"none",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfpkg")
+}],
+"loop": 1,
+"name": &"scuter",
+"speed": 5.0
+}]
+
 [node name="item UI" type="Control" unique_id=2005130059]
 custom_minimum_size = Vector2(150, 220)
 propagate_maximum_size = true
@@ -244,7 +503,7 @@ mouse_filter = 1
 script = ExtResource("1_6tkj6")
 
 [node name="rarety_mark" type="AnimatedSprite2D" parent="." unique_id=214658075]
-z_index = 1000
+z_index = 1001
 position = Vector2(34, 31)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qnalp")
@@ -257,22 +516,13 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4c3da")
 animation = &"satisfactory"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=929768543]
-visible = false
-self_modulate = Color(0.5019608, 0.37254903, 0.48235294, 1)
-layout_mode = 0
-offset_left = 3.0
-offset_top = 5.0
-offset_right = 143.0
-offset_bottom = 219.0
-texture = SubResource("GradientTexture2D_6snss")
-
 [node name="item" parent="." unique_id=720823212 instance=ExtResource("2_v7xym")]
-z_index = 1000
+z_index = 1002
 position = Vector2(6, 22)
 scale = Vector2(2, 2)
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=209778367]
+z_index = 1000
 layout_mode = 0
 offset_left = 3.0
 offset_top = 8.0
@@ -587,7 +837,6 @@ theme_override_font_sizes/font_size = 8
 text = "REMOVE"
 
 [node name="cd_playing" type="HBoxContainer" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=550442928]
-visible = false
 layout_mode = 2
 
 [node name="Use" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing" unique_id=654698979]
@@ -659,6 +908,7 @@ theme_override_font_sizes/font_size = 10
 text = "EJECT"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=952239220]
+z_index = 1000
 layout_mode = 0
 offset_right = 36.0
 offset_bottom = 40.0
@@ -670,6 +920,90 @@ patch_margin_top = 5
 patch_margin_right = 4
 patch_margin_bottom = 5
 axis_stretch_horizontal = 2
+
+[node name="Tooltip" type="Control" parent="." unique_id=1357393714]
+z_index = 999
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="background" type="NinePatchRect" parent="Tooltip" unique_id=1953140692]
+z_index = -1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 104.75
+offset_bottom = 36.5
+scale = Vector2(4, 4)
+texture = ExtResource("21_nuws3")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="item_name" type="Label" parent="Tooltip" unique_id=10777319]
+layout_mode = 0
+offset_left = 158.0
+offset_top = -20.0
+offset_right = 322.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.38566467, 0.30204922, 0.1903567, 1)
+theme_override_fonts/font = ExtResource("16_eu0tx")
+theme_override_font_sizes/font_size = 20
+text = "Item Name"
+
+[node name="colour_tag" type="AnimatedSprite2D" parent="Tooltip" unique_id=985143892]
+position = Vector2(433, 18)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+animation = &"multi"
+
+[node name="condition_bar" type="AnimatedSprite2D" parent="Tooltip" unique_id=1989788113]
+position = Vector2(278, 38)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_jpt8c")
+animation = &"minted"
+
+[node name="condition_text" type="Label" parent="Tooltip" unique_id=618555425]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 36.0
+offset_right = 438.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.38566467, 0.30204922, 0.1903567, 1)
+theme_override_fonts/font = ExtResource("16_eu0tx")
+theme_override_font_sizes/font_size = 10
+text = "Condition: Minted"
+
+[node name="brand_icon" type="AnimatedSprite2D" parent="Tooltip" unique_id=1700537661]
+position = Vector2(170, 87)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_xj5vb")
+animation = &"none"
+
+[node name="brand_text" type="Label" parent="Tooltip" unique_id=1171138513]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 61.0
+offset_right = 245.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0.38566467, 0.30204922, 0.1903567, 1)
+theme_override_fonts/font = ExtResource("16_eu0tx")
+theme_override_font_sizes/font_size = 10
+text = "Brand:"
+
+[node name="brand_name" type="Label" parent="Tooltip" unique_id=1405451514]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 79.0
+offset_right = 271.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0.38566467, 0.30204922, 0.1903567, 1)
+theme_override_fonts/font = ExtResource("16_eu0tx")
+theme_override_font_sizes/font_size = 10
+text = "----------"
 
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_exited"]

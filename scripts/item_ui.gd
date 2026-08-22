@@ -18,6 +18,7 @@ extends Control
 @onready var hbox_remove = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove
 @onready var cd_use = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use
 @onready var cd_eject = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject
+@onready var tooltip = $Tooltip
 
 signal page_requested(page_name: String)
 signal poster_selected(item_data: Dictionary)
@@ -30,6 +31,7 @@ var is_parcel = false
 
 
 func _ready() -> void:
+	tooltip.hide()
 	var custom_minumum_size = Vector2(150, 220)
 
 	if Inventory.current_ui_type == "market":
@@ -125,7 +127,6 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 		$PanelContainer2.hide()
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -205,7 +206,6 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 		$PanelContainer2.hide()
 	elif Inventory.current_ui_type == "parcel":
 		buy_button.hide()
@@ -317,7 +317,6 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 		$PanelContainer2.hide()
 		
 		if Inventory.bidding_items:
@@ -340,10 +339,12 @@ func _rarity_ui(item_rarity) -> void:
 	condition_mark.play(item.condition.to_lower())
 
 func _on_buy_button_mouse_entered() -> void:
+	tooltip_show()
 	item.button_enter()
 	buy_button.modulate = Color(0.7, 0.7, 0.7, 1)
 
 func _on_buy_button_mouse_exited() -> void:
+	tooltip_hide()
 	item.button_exit()
 	buy_button.modulate = Color(1, 1, 1, 1)
 
@@ -612,61 +613,84 @@ func display_thing():
 
 func _on_use_button_mouse_entered() -> void:
 	use_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 
 func _on_use_button_mouse_exited() -> void:
 	use_button.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
 
 
 func _on_put_button_mouse_entered() -> void:
 	put_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 
 func _on_put_button_mouse_exited() -> void:
 	put_button.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
 
 
 func _on_place_button_mouse_entered() -> void:
 	place_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 func _on_upload_button_mouse_entered() -> void:
 	upload_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 func _on_upload_button_mouse_exited() -> void:
 	upload_button.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
 
 
 func _on_place_button_mouse_exited() -> void:
 	place_button.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
 
 
 func _on_use_mouse_entered() -> void:
 	hbox_use.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 
 func _on_use_mouse_exited() -> void:
 	hbox_use.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
 
 
 func _on_remove_mouse_entered() -> void:
 	hbox_remove.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 
 func _on_remove_mouse_exited() -> void:
 	hbox_remove.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
 
 
 func _on_cd_use_mouse_entered() -> void:
 	cd_use.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 
 func _on_cd_use_mouse_exited() -> void:
 	cd_use.modulate = Color(1, 1, 1, 1)
-
+	tooltip_hide()
 
 func _on_eject_mouse_entered() -> void:
 	cd_eject.modulate = Color(0.7, 0.7, 0.7, 1)
+	tooltip_show()
 
 
 func _on_eject_mouse_exited() -> void:
 	cd_eject.modulate = Color(1, 1, 1, 1)
+	tooltip_hide()
+
+func tooltip_show():
+	tooltip.show()
+	self.z_index = 5
+	
+func tooltip_hide():
+	tooltip.hide()
+	self.z_index = 0
