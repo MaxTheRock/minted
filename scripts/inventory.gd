@@ -72,7 +72,8 @@ func create_buyers(amount,id,listing_sell_id):
 	buyers.append(buyer_dict)
 		
 func _ready() -> void:
-	player_inventory.append({ "ID": -1, "type": "tshirt", "number": 8, "color1": "cyan", "color2": "orange", "price": 1.5, "shippingTime": 1.0, "shippingValue": 1, "condition": "Poor", "condition_price_mult": 0.4, "brand": "none", "brandmult": 1, "selected_brand": "none", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"none", "default_price": 2.5, "overlay_animation": "none", "pattern_type": "polka-dot", "pattern_mult": 1.5, "pattern_index": 9 })
+	#player_inventory.append({ "ID": -1, "type": "tshirt", "number": 8, "color1": "cyan", "color2": "orange", "price": 1.5, "shippingTime": 1.0, "shippingValue": 1, "condition": "Poor", "condition_price_mult": 0.4, "brand": "none", "brandmult": 1, "selected_brand": "none", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"none", "default_price": 2.5, "overlay_animation": "none", "pattern_type": "polka-dot", "pattern_mult": 1.5, "pattern_index": 9 })
+	pass
 	
 func _process(_delta) -> void:
 	var buyers_to_remove: Array = []

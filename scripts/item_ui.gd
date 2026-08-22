@@ -14,6 +14,10 @@ extends Control
 @onready var upload_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button
 @onready var rarety_mark = $rarety_mark
 @onready var condition_mark = $condition_mark
+@onready var hbox_use = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Use
+@onready var hbox_remove = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove
+@onready var cd_use = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use
+@onready var cd_eject = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject
 
 signal page_requested(page_name: String)
 signal poster_selected(item_data: Dictionary)
@@ -366,13 +370,16 @@ func _on_buy_button_pressed() -> void:
 
 func _on_take_button_mouse_entered() -> void:
 	item.button_enter()
+	take_button.modulate = Color(0.7, 0.7, 0.7, 1)
  
  
 func _on_take_button_mouse_exited() -> void:
 	item.button_exit()
+	take_button.modulate = Color(1, 1, 1, 1)
  
  
 func _on_take_button_pressed() -> void:
+	take_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if is_parcel:
 		if Inventory.player_inventory.size() <= 1:
 			if inventory_index < 0 or inventory_index >= ShippingHandler.delivered_list.size():
@@ -417,6 +424,7 @@ func _on_put_button_button_up() -> void:
  
  
 func _on_put_button_pressed() -> void:
+	put_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if Inventory.wardrobe_inventory.size() <= Global.storage_capacity:
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
 			print("Could not find item to put away!")
@@ -443,6 +451,7 @@ func _on_place_button_button_up() -> void:
  
  
 func _on_place_button_pressed() -> void:
+	place_button.modulate = Color(1, 1, 1, 1)
 	print(Inventory.current_ui_type)
 	if Inventory.current_ui_type == "poster":
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
@@ -486,6 +495,7 @@ func _on_remove_button_up() -> void:
  
  
 func _on_remove_pressed() -> void:
+	hbox_remove.modulate = Color(0.5, 0.5, 0.5, 1)
 	if Inventory.player_inventory.size() <= 1:
 		if inventory_index < 0 or inventory_index >= Inventory.shelf_inventory.size():
 			print("Could not find shelf item to remove!")
@@ -504,6 +514,7 @@ func _on_remove_pressed() -> void:
  
  
 func _on_use_pressed() -> void:
+	hbox_use.modulate = Color(0.5, 0.5, 0.5, 1)
 	if item.type == "cd_player":
 		get_tree().change_scene_to_file("res://scenes/cd_player.tscn")
 	elif item.type == "camera":
@@ -549,6 +560,7 @@ func _on_use_button_pressed() -> void:
  
  
 func _on_eject_pressed() -> void:
+	cd_eject.modulate = Color(0.5, 0.5, 0.5, 1)
 	if Inventory.player_inventory.size() < 2:
 		AudioManager.music_player.bus = "Master"
 		AudioManager.eject()
@@ -574,6 +586,7 @@ func _on_upload_button_button_up() -> void:
  
  
 func _on_upload_button_pressed() -> void:
+	upload_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	Inventory.display_item = []
 	Inventory.display_item.append(item.get_data())
 	page_requested.emit("Selling")
@@ -611,3 +624,49 @@ func _on_put_button_mouse_entered() -> void:
 
 func _on_put_button_mouse_exited() -> void:
 	put_button.modulate = Color(1, 1, 1, 1)
+
+
+func _on_place_button_mouse_entered() -> void:
+	place_button.modulate = Color(0.7, 0.7, 0.7, 1)
+
+func _on_upload_button_mouse_entered() -> void:
+	upload_button.modulate = Color(0.7, 0.7, 0.7, 1)
+
+func _on_upload_button_mouse_exited() -> void:
+	upload_button.modulate = Color(1, 1, 1, 1)
+
+
+func _on_place_button_mouse_exited() -> void:
+	place_button.modulate = Color(1, 1, 1, 1)
+
+
+func _on_use_mouse_entered() -> void:
+	hbox_use.modulate = Color(0.7, 0.7, 0.7, 1)
+
+
+func _on_use_mouse_exited() -> void:
+	hbox_use.modulate = Color(1, 1, 1, 1)
+
+
+func _on_remove_mouse_entered() -> void:
+	hbox_remove.modulate = Color(0.7, 0.7, 0.7, 1)
+
+
+func _on_remove_mouse_exited() -> void:
+	hbox_remove.modulate = Color(1, 1, 1, 1)
+
+
+func _on_cd_use_mouse_entered() -> void:
+	cd_use.modulate = Color(0.7, 0.7, 0.7, 1)
+
+
+func _on_cd_use_mouse_exited() -> void:
+	cd_use.modulate = Color(1, 1, 1, 1)
+
+
+func _on_eject_mouse_entered() -> void:
+	cd_eject.modulate = Color(0.7, 0.7, 0.7, 1)
+
+
+func _on_eject_mouse_exited() -> void:
+	cd_eject.modulate = Color(1, 1, 1, 1)

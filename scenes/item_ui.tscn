@@ -384,7 +384,6 @@ theme_override_font_sizes/font_size = 20
 text = "BUY"
 
 [node name="Put_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=1037921673]
-visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 offset_transform_enabled = true
@@ -418,7 +417,6 @@ theme_override_font_sizes/font_size = 10
 text = "RETURN"
 
 [node name="Take_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=117231962]
-visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 offset_transform_enabled = true
@@ -452,7 +450,6 @@ theme_override_font_sizes/font_size = 20
 text = "TAKE"
 
 [node name="Place_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=688631302]
-visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 offset_transform_enabled = true
@@ -486,7 +483,6 @@ theme_override_font_sizes/font_size = 10
 text = "PLACE"
 
 [node name="Upload_Button" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=1078435909]
-visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 offset_transform_enabled = true
@@ -520,7 +516,6 @@ theme_override_font_sizes/font_size = 10
 text = "UPLOAD"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer" unique_id=832685599]
-visible = false
 layout_mode = 2
 
 [node name="Use" type="Button" parent="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=711326120]
@@ -692,13 +687,25 @@ axis_stretch_horizontal = 2
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Take_Button" to="." method="_on_take_button_pressed"]
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_button_up"]
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Place_Button" to="." method="_on_place_button_pressed"]
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_button_up"]
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button" to="." method="_on_upload_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Use" to="." method="_on_use_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Use" to="." method="_on_use_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Use" to="." method="_on_use_pressed"]
 [connection signal="button_down" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_down"]
 [connection signal="button_up" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_button_up"]
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove" to="." method="_on_remove_pressed"]
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use" to="." method="_on_cd_use_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use" to="." method="_on_cd_use_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use" to="." method="_on_use_pressed"]
+[connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_pressed"]
