@@ -11,6 +11,7 @@ signal visibility_toggled(is_visible, target)
 @onready var brand_label = $TooltipPanel/brand_name
 @onready var color1_tag = $TooltipPanel/color1_tag
 @onready var color2_tag = $TooltipPanel/color2_tag
+@onready var colour_tag = $TooltipPanel/tags/colour_tag
 @onready var money_label = $TooltipPanel/money_text
 
 var current_target = null
