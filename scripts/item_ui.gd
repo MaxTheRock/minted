@@ -238,8 +238,6 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		$PanelContainer2.hide()
-		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 
 		if Inventory.actual_selling:
 			item.rarity_ui.connect(_rarity_ui)
@@ -260,8 +258,6 @@ func _ready() -> void:
 		eject_button.hide()
 		grid_container.hide()
 		upload_button.hide()
-		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 		$PanelContainer2.hide()
 
 		if Inventory.actual_sold:
@@ -274,7 +270,6 @@ func _ready() -> void:
 				item.load_data(Inventory.actual_sold[inventory_index])
 				
 	elif Inventory.current_ui_type == "display":
-		$TextureRect.hide()
 		$PanelContainer2.hide()
 
 		if Inventory.display_item:
