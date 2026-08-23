@@ -16,7 +16,6 @@ func generate_items(grid: GridContainer, category: String, amount: int):
 	Inventory.current_ui_type = "market"
 	var packed = preload("res://scenes/item_ui.tscn")
 	
-	# Clear out any existing UI nodes left over in the grid
 	for child in grid.get_children():
 		child.queue_free()
 	

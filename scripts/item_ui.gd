@@ -18,7 +18,6 @@ extends Control
 @onready var hbox_remove = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove
 @onready var cd_use = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use
 @onready var cd_eject = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject
-@onready var tooltip = $Tooltip
 
 signal page_requested(page_name: String)
 signal poster_selected(item_data: Dictionary)
@@ -31,7 +30,8 @@ var is_parcel = false
 
 
 func _ready() -> void:
-	tooltip.hide()
+	Tooltip.visibility_toggled.connect(_on_tooltip_visibility_toggled)
+	Tooltip.hide_tooltip(self)
 	var custom_minumum_size = Vector2(150, 220)
 
 	if Inventory.current_ui_type == "market":
@@ -334,12 +334,12 @@ func _rarity_ui(item_rarity) -> void:
 	condition_mark.play(item.condition.to_lower())
 
 func _on_buy_button_mouse_entered() -> void:
-	tooltip_show()
+	Tooltip.show_tooltip(self)
 	item.button_enter()
 	buy_button.modulate = Color(0.7, 0.7, 0.7, 1)
 
 func _on_buy_button_mouse_exited() -> void:
-	tooltip_hide()
+	Tooltip.hide_tooltip(self)
 	item.button_exit()
 	buy_button.modulate = Color(1, 1, 1, 1)
 
@@ -362,17 +362,15 @@ func _on_buy_button_pressed() -> void:
 
 	queue_free()
 
-
-
 func _on_take_button_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	item.button_enter()
 	take_button.modulate = Color(0.7, 0.7, 0.7, 1)
- 
- 
+
 func _on_take_button_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	item.button_exit()
 	take_button.modulate = Color(1, 1, 1, 1)
- 
  
 func _on_take_button_pressed() -> void:
 	take_button.modulate = Color(0.5, 0.5, 0.5, 1)
@@ -607,85 +605,85 @@ func display_thing():
 
 
 func _on_use_button_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	use_button.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 
 func _on_use_button_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	use_button.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 
 func _on_put_button_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	put_button.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 
 func _on_put_button_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	put_button.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 
 func _on_place_button_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	place_button.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 func _on_upload_button_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	upload_button.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 func _on_upload_button_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	upload_button.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 
 func _on_place_button_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	place_button.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 
 func _on_use_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	hbox_use.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 
 func _on_use_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	hbox_use.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 
 func _on_remove_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	hbox_remove.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 
 func _on_remove_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	hbox_remove.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 
 func _on_cd_use_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	cd_use.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 
 func _on_cd_use_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	cd_use.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
 
 func _on_eject_mouse_entered() -> void:
+	Tooltip.show_tooltip(self)
 	cd_eject.modulate = Color(0.7, 0.7, 0.7, 1)
-	tooltip_show()
 
 
 func _on_eject_mouse_exited() -> void:
+	Tooltip.hide_tooltip(self)
 	cd_eject.modulate = Color(1, 1, 1, 1)
-	tooltip_hide()
-
-func tooltip_show():
-	tooltip.show()
-	self.z_index = 5
 	
-func tooltip_hide():
-	tooltip.hide()
-	self.z_index = 0
+func _on_tooltip_visibility_toggled(is_visible: bool, target: Control) -> void:
+	if target != self:
+		return
+	if is_visible:
+		z_index = 10
+	else:
+		z_index = 0

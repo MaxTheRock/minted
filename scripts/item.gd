@@ -235,6 +235,7 @@ func initialize_item(category := "All"):
 		color1 = "multi"
 	elif type == "playing_cards":
 		color1 = "white"
+		brand = "Scuter"
 	
 		
 	if type == "tshirt":
@@ -384,9 +385,6 @@ func set_item_type(item_type: String) -> void:
 	
 func _on_texture_button_mouse_entered():
 	hovering = true
-	if Global.inWardrobe == false and Global.inShelf == false:
-		get_details_ui().display_product_info(sprite_image, get_data())
-		get_details_ui().display_logo(tshirt_logo, get_data(),0)
 	
 	if type in items_with_regular_animation:
 		counter = 0
@@ -394,9 +392,6 @@ func _on_texture_button_mouse_entered():
 
 func _on_texture_button_mouse_exited():
 	hovering = false
-	if Global.inWardrobe == false and Global.inShelf == false:
-		get_details_ui().display_logo(tshirt_logo, get_data(),0)
-		get_details_ui().display_product_info(sprite_image, get_data())
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		child.stop()
@@ -406,8 +401,6 @@ func _on_texture_button_mouse_exited():
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if Global.inWardrobe == false and Global.inShelf == false:
-			get_details_ui().display_product_info(sprite_image, get_data())
 		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
@@ -429,8 +422,6 @@ func _on_frame_timer_timeout():
 			else:
 				tshirt_logo.hide()
 				tshirt_pattern.hide()
-			if Global.inWardrobe == false and Global.inShelf == false:
-				get_details_ui().display_logo(tshirt_logo, get_data(),new_frame)
 		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
 			if not child.is_playing():
 				child.play("default")
@@ -438,15 +429,9 @@ func _on_frame_timer_timeout():
 			
 
 func button_enter():
-	if Global.inWardrobe == false and Global.inShelf == false:
-		get_details_ui().display_logo(tshirt_logo, get_data(),0)
-		get_details_ui().display_product_info(sprite_image, get_data())
 	frame_timer.start()
 	
 func button_exit():
-	if Global.inWardrobe == false and Global.inShelf == false:
-		get_details_ui().display_logo(tshirt_logo, get_data(),0)
-		get_details_ui().display_product_info(sprite_image, get_data())
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
 		if child.owner == self:

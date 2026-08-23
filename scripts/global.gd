@@ -17,6 +17,7 @@ var dialogue_ongoing = false
 var bidding_index_selected = -1
 var buffer_text = ""
 var on_bidding = false
+var Tooltip
 signal pause_toggled(is_paused: bool)
 signal eject
 signal create_mail
