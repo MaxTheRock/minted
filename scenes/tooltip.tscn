@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="11_eeh2b"]
 [ext_resource type="Texture2D" uid="uid://cyrwo11mfyhl7" path="res://assets/pixel_dolar.png" id="12_wstpj"]
 
-<<<<<<< Updated upstream
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmaqn"]
 load_path = "res://.godot/imported/colour_tag_1.png-664c9cbe93db1012573e81ecdb7583f3.ctex"
 
@@ -720,8 +719,6 @@ animations = [{
 "speed": 5.0
 }]
 
-=======
->>>>>>> Stashed changes
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv5ow"]
 atlas = ExtResource("4_eeh2b")
 region = Rect2(256, 0, 64, 3)
@@ -860,129 +857,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cklv5"]
-atlas = ExtResource("3_375lt")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fou0e"]
-atlas = ExtResource("3_375lt")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8hfwo"]
-atlas = ExtResource("3_375lt")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7k0wg"]
-atlas = ExtResource("3_375lt")
-region = Rect2(144, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xd58v"]
-atlas = ExtResource("3_375lt")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ljns"]
-atlas = ExtResource("3_375lt")
-region = Rect2(128, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ndt32"]
-atlas = ExtResource("3_375lt")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8sni"]
-atlas = ExtResource("3_375lt")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_71pa8"]
-atlas = ExtResource("3_375lt")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lltkw"]
-atlas = ExtResource("3_375lt")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4pjmv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cklv5")
-}],
-"loop": 1,
-"name": &"darkblue",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fou0e")
-}],
-"loop": 1,
-"name": &"green",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8hfwo")
-}],
-"loop": 1,
-"name": &"lightblue",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7k0wg")
-}],
-"loop": 1,
-"name": &"multi",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xd58v")
-}],
-"loop": 1,
-"name": &"orange",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ljns")
-}],
-"loop": 1,
-"name": &"pink",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ndt32")
-}],
-"loop": 1,
-"name": &"purple",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a8sni")
-}],
-"loop": 1,
-"name": &"red",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_71pa8")
-}],
-"loop": 1,
-"name": &"turquoise",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lltkw")
-}],
-"loop": 1,
-"name": &"yellow",
-"speed": 5.0
-}]
-
 [node name="Tooltip" type="Control" unique_id=1854001114]
 top_level = true
 layout_mode = 3
@@ -1021,7 +895,6 @@ theme_override_fonts/font = ExtResource("2_miqp6")
 theme_override_font_sizes/font_size = 12
 text = "Item Name"
 
-<<<<<<< Updated upstream
 [node name="color1_tag" type="AnimatedSprite2D" parent="TooltipPanel" unique_id=382509585]
 position = Vector2(441, 16)
 scale = Vector2(2, 2)
@@ -1034,8 +907,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6ybku")
 animation = &"silver"
 
-=======
->>>>>>> Stashed changes
 [node name="condition_bar" type="AnimatedSprite2D" parent="TooltipPanel" unique_id=1291920702]
 position = Vector2(278, 38)
 scale = Vector2(4, 4)
@@ -1087,12 +958,6 @@ offset_left = 425.0
 offset_top = 42.0
 offset_right = 465.0
 offset_bottom = 148.0
-
-[node name="colour_tag" type="AnimatedSprite2D" parent="TooltipPanel/tags" unique_id=382509585]
-position = Vector2(16, -26)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-animation = &"multi"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="TooltipPanel" unique_id=1207222286]
 layout_mode = 0
