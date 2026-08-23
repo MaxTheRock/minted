@@ -119,5 +119,63 @@ func name_generator():
 	if gender == 2:
 		return prefixes.pick_random() + first_names_f.pick_random() + str(randi_range(1,100))
 
+func item_name_generator(data) -> String:
+	var brand_print = ""
+	var display_color = data["color1"]
+	var display_color2 = data["color2"]
+	
+	var display_type = data["type"]
+	var brand = data["brand"]
+	var type = data["type"]
+	
+	if brand != "none":
+		brand_print = brand.capitalize() + " "
+	elif brand == "none":
+		display_color = display_color.capitalize()
+	if type == "cd_player":
+		display_type = "CD Player"
+	elif type == "puzzle_cube":
+		display_type = "Puzzle Cube"
+		display_color = ""
+	elif type == "spud_poster":
+		display_type = "Spud Poster"
+		display_color = ""
+	elif type == "potion_poster":
+		display_type = "Potion Poster"
+		display_color = ""
+	elif type == "beh_enclosed_shirt":
+		display_type = "BEH Enclosed shirt"
+		display_color = ""
+	elif type == "the_big_mint":
+		display_type = "The Big Mint CD"
+		display_color = ""
+	elif type == "smooth_jazz_1":
+		display_type = "Smooth Jazz Vol.1 CD"
+		display_color = ""
+	elif type == "three_jelly":
+		display_type = "Three Jelly CD"
+		display_color = ""
+	elif type == "evil_pulsation":
+		display_type = "Evil Pulsation CD"
+		display_color = ""
+	elif type == "jungle":
+		display_type = "Jungle CD"
+		display_color = ""
+	elif type == "conceal_shoes":
+		display_type = "shoes"
+	elif type == "gold_ring":
+		display_color = ""
+		display_type = "Gold Ring"
+	
+	if data["overlay_animation"] == "ele_minimalistic_white" or data["overlay_animation"] == "ele_minimalistic_black":
+		brand_print = "elemental minimalistic "
+	
+	if display_color2 != "" and display_color != "" and data["pattern_type"] != "none":
+		return brand_print + display_color + " & " + display_color2.capitalize() + " " +  data["pattern_type"] + " " + display_type + "."
+	elif display_color2 != "" and display_color != "":
+		return brand_print + display_color + " & " + display_color2.capitalize() + " " + display_type + "."
+	else:
+		return brand_print + display_color + " " + display_type + "."
+		
 func begin():
 	pass	

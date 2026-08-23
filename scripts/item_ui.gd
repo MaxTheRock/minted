@@ -8,7 +8,6 @@ extends Control
 @onready var shelf_ui_buttons = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer
 @onready var grid_container = $PanelContainer2/GridContainer
 @onready var eject_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing
-@onready var background = $TextureRect
 @onready var put_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Put_Button
 @onready var use_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button
 @onready var upload_button = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Upload_Button
@@ -47,6 +46,7 @@ func _ready() -> void:
 		item.rarity_ui.connect(_rarity_ui)
 		if item.type == "":
 			item.initialize_item()
+		
 
 	elif Inventory.current_ui_type == "wardrobe":
 		buy_button.hide()
@@ -238,8 +238,6 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		$PanelContainer2.hide()
-		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 
 		if Inventory.actual_selling:
 			item.rarity_ui.connect(_rarity_ui)
@@ -260,8 +258,6 @@ func _ready() -> void:
 		eject_button.hide()
 		grid_container.hide()
 		upload_button.hide()
-		panel_container.custom_maximum_size = Vector2(150, 160)
-		$TextureRect.custom_maximum_size = Vector2(150, 158)
 		$PanelContainer2.hide()
 
 		if Inventory.actual_sold:
@@ -274,7 +270,6 @@ func _ready() -> void:
 				item.load_data(Inventory.actual_sold[inventory_index])
 				
 	elif Inventory.current_ui_type == "display":
-		$TextureRect.hide()
 		$PanelContainer2.hide()
 
 		if Inventory.display_item:
@@ -341,6 +336,7 @@ func _rarity_ui(item_rarity) -> void:
 func _on_buy_button_mouse_entered() -> void:
 	tooltip_show()
 	item.button_enter()
+	$Tooltip/item_name.text = Global.item_name_generator(item.get_data()) 
 	buy_button.modulate = Color(0.7, 0.7, 0.7, 1)
 
 func _on_buy_button_mouse_exited() -> void:
