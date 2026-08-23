@@ -336,7 +336,6 @@ func _rarity_ui(item_rarity) -> void:
 func _on_buy_button_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	item.button_enter()
-	$Tooltip/item_name.text = Global.item_name_generator(item.get_data()) 
 	buy_button.modulate = Color(0.7, 0.7, 0.7, 1)
 
 func _on_buy_button_mouse_exited() -> void:
