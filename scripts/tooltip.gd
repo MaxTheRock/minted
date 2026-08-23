@@ -9,7 +9,8 @@ signal visibility_toggled(is_visible, target)
 @onready var condition_label = $TooltipPanel/condition_text
 @onready var brand_icon = $TooltipPanel/brand_icon
 @onready var brand_label = $TooltipPanel/brand_name
-@onready var colour_tag = $TooltipPanel/colour_tag
+@onready var color1_tag = $TooltipPanel/color1_tag
+@onready var color2_tag = $TooltipPanel/color2_tag
 @onready var money_label = $TooltipPanel/money_text
 
 var current_target = null
@@ -39,7 +40,12 @@ func show_tooltip(target):
 	condition_label.text = "Condition: " + str(item.condition)
 	brand_icon.play(str(item.brand).to_lower())
 	brand_label.text = str(item.brand)
-	colour_tag.play(str(item.color1).to_lower())
+	color1_tag.play(str(item.color1).to_lower())
+	if str(item.color2).to_lower() == "":
+		color2_tag.hide()
+	else:
+		color2_tag.play(str(item.color2).to_lower())
+		color2_tag.show()
 	money_label.text = str(item.price)
 	
 
