@@ -49,6 +49,7 @@ var selected_brand = "none"
 var counter: int = 0
 var hovering = false
 var overlay_animation = "none"
+var item_category = []
 var rarities = {
 	"common": 600,
 	"uncommon": 300,
@@ -123,6 +124,9 @@ func _process(delta):
 			child.rotation_degrees += 160 * delta
 
 func initialize_item(category := "All"):
+	item_category.clear()
+	color1 = ""
+	color2 = ""
 	if ID == -1: #has not been assigned an ID
 		ID = Inventory.item_id
 		Inventory.item_id += 1
@@ -239,7 +243,8 @@ func initialize_item(category := "All"):
 		color1 = "white"
 		brand = "Scuter"
 	
-		
+	
+			
 	if type == "tshirt":
 		tshirt_logo.show()
 		if pattern_type != "none":
@@ -676,7 +681,22 @@ func generate_parameters(type):
 	# bug fix (idk why this is happening lmao)
 	if overlay_animation != "none" and brand == "none":
 		overlay_animation = "none"
-		
+	
+	if type in clothes:
+		item_category.append("clothes")
+	if type in toys:
+		item_category.append("toys")
+	if type in home:
+		item_category.append("home")
+	if type in electronics:
+		item_category.append("electronics")
+	if type in books_and_media:
+		item_category.append("books_and_media")
+	if type in collectables:
+		item_category.append("collectables")
+	if type in sports:
+		item_category.append("sports")
+			
 	# minimum price is £1
 	if price < 1:
 		price = 1.00
@@ -805,7 +825,7 @@ func get_data() -> Dictionary:
 		"pattern_mult": pattern_mult,
 		"pattern_index": pattern_index,
 		"seller_name": seller_name,
-		"seller_rating": seller_rating
+		"item_category": item_category
 	}
 
 func load_data(data: Dictionary) -> void:
@@ -831,7 +851,6 @@ func load_data(data: Dictionary) -> void:
 	pattern_mult = data.get("pattern_mult",1)
 	pattern_index = data.get("pattern_index",0)
 	seller_name = data.get("seller_name","Unknown Seller")
-	seller_rating = data.get("seller_rating", null)
 	set_item_type(type)
 
 	if sprites.has(type):

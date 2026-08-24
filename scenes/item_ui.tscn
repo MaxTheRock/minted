@@ -217,6 +217,16 @@ animations = [{
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kekig"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jc3i3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1j1t4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_er7ca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfqyr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfkka"]
+
 [node name="item UI" type="Control" unique_id=2005130059]
 visibility_layer = 2
 z_index = 5
@@ -227,9 +237,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
-offset_top = 1.0
 offset_right = 1.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -260,7 +268,7 @@ offset_left = 3.0
 offset_top = 8.0
 offset_right = 149.0
 offset_bottom = 222.0
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t0011")
 
 [node name="Control" type="Control" parent="PanelContainer2" unique_id=801595432]
@@ -652,6 +660,19 @@ patch_margin_right = 4
 patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 
+[node name="hitbox" type="Button" parent="." unique_id=1950537254]
+visible = false
+z_index = 1000
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jc3i3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1j1t4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_er7ca")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xfqyr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mfkka")
+
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_pressed"]
@@ -690,4 +711,3 @@ axis_stretch_horizontal = 2
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject" to="." method="_on_eject_pressed"]
-[connection signal="mouse_exited" from="Tooltip/background" to="." method="_on_background_mouse_exited"]
