@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="1_bfmi0"]
 [ext_resource type="Script" uid="uid://ybit7lm8qapo" path="res://scripts/tooltip.gd" id="1_miqp6"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_miqp6"]
+[ext_resource type="PackedScene" uid="uid://bk6xu7dvbhxas" path="res://scenes/stars.tscn" id="3_5byrc"]
 [ext_resource type="Texture2D" uid="uid://c07y8poot88eh" path="res://assets/condition_bar.png" id="4_eeh2b"]
 [ext_resource type="Texture2D" uid="uid://c1u0hw3e4dctl" path="res://assets/tooltip/colors/colour_tag_1.png" id="4_wstpj"]
 [ext_resource type="Texture2D" uid="uid://bopwkfna13uld" path="res://assets/tooltip/colors/colour_tag_2.png" id="5_5byrc"]
@@ -13,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://7gtwtpducc41" path="res://assets/tooltip/brand_icons/scuter.png" id="9_5t6wk"]
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="11_eeh2b"]
 [ext_resource type="Texture2D" uid="uid://cyrwo11mfyhl7" path="res://assets/pixel_dolar.png" id="12_wstpj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wstpj"]
+load_path = "res://.godot/imported/item_template_extension.png-9d54d6aa0164fee790ac6468fc2e8de9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cmaqn"]
 load_path = "res://.godot/imported/colour_tag_1.png-664c9cbe93db1012573e81ecdb7583f3.ctex"
@@ -868,6 +872,38 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="seller_container" type="NinePatchRect" parent="TooltipPanel" unique_id=302946490]
+z_index = -1
+layout_mode = 0
+offset_left = 199.0
+offset_top = -46.0
+offset_right = 263.5
+offset_bottom = -26.25
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_wstpj")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="sellerName_text" type="Label" parent="TooltipPanel" unique_id=1334819946]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -43.0
+offset_right = 748.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.69803923, 0.74509805, 0.8509804, 1)
+theme_override_fonts/font = ExtResource("2_miqp6")
+theme_override_font_sizes/font_size = 10
+text = "seller_name"
+
+[node name="Stars" parent="TooltipPanel" unique_id=2013305115 instance=ExtResource("3_5byrc")]
+layout_mode = 1
+offset_left = 364.0
+offset_top = -27.0
+offset_right = 364.0
+offset_bottom = -27.0
+
 [node name="background" type="NinePatchRect" parent="TooltipPanel" unique_id=954282358]
 z_index = -1
 layout_mode = 0
@@ -913,7 +949,7 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_jpt8c")
 animation = &"minted"
 
-[node name="condition_text" type="Label" parent="TooltipPanel" unique_id=1334819946]
+[node name="condition_text" type="Label" parent="TooltipPanel" unique_id=556317996]
 layout_mode = 0
 offset_left = 154.0
 offset_top = 36.0

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://sb8cwtgdt6rd"]
 
 [ext_resource type="Script" uid="uid://ro5g3sj2lshk" path="res://scripts/selling.gd" id="1_3jkmn"]
-[ext_resource type="Texture2D" uid="uid://cdpyv2mf6xoc8" path="res://assets/os/icons/icon.png" id="2_cm14b"]
 [ext_resource type="PackedScene" uid="uid://bl2hjfsjnp4kq" path="res://scenes/search_bar.tscn" id="2_d3n2a"]
 [ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="3_d3n2a"]
 
@@ -71,7 +70,7 @@ offset_transform_position = Vector2(0, -99.97)
 layout_mode = 0
 offset_left = 19.0
 offset_right = 1300.0
-offset_bottom = 480.0
+offset_bottom = 470.0
 draw_focus_border = true
 
 [node name="Sections" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer" unique_id=387823112]
@@ -241,13 +240,69 @@ theme_override_constants/separation = 176
 layout_mode = 2
 text = "Colours"
 
-[node name="Color" type="LineEdit" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4" unique_id=1190792838]
+[node name="Color" type="OptionButton" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4" unique_id=594677170]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-max_length = 20
-right_icon = ExtResource("2_cm14b")
-icon_expand_mode = 1
+item_count = 29
+popup/item_0/text = "Black"
+popup/item_0/id = 0
+popup/item_1/text = "Grey"
+popup/item_1/id = 1
+popup/item_2/text = "White"
+popup/item_2/id = 2
+popup/item_3/text = "Cream"
+popup/item_3/id = 3
+popup/item_4/text = "Beige"
+popup/item_4/id = 4
+popup/item_5/text = "Apricot"
+popup/item_5/id = 5
+popup/item_6/text = "Orange"
+popup/item_6/id = 6
+popup/item_7/text = "Coral"
+popup/item_7/id = 7
+popup/item_8/text = "Red"
+popup/item_8/id = 8
+popup/item_9/text = "Burgundy"
+popup/item_9/id = 9
+popup/item_10/text = "Pink"
+popup/item_10/id = 10
+popup/item_11/text = "Rose"
+popup/item_11/id = 11
+popup/item_12/text = "Purple"
+popup/item_12/id = 12
+popup/item_13/text = "Lilac"
+popup/item_13/id = 13
+popup/item_14/text = "Light blue"
+popup/item_14/id = 14
+popup/item_15/text = "Blue"
+popup/item_15/id = 15
+popup/item_16/text = "Navy"
+popup/item_16/id = 16
+popup/item_17/text = "Turquoise"
+popup/item_17/id = 17
+popup/item_18/text = "Mint"
+popup/item_18/id = 18
+popup/item_19/text = "Green"
+popup/item_19/id = 19
+popup/item_20/text = "Dark green"
+popup/item_20/id = 20
+popup/item_21/text = "Khaki"
+popup/item_21/id = 21
+popup/item_22/text = "Brown"
+popup/item_22/id = 22
+popup/item_23/text = "Mustard"
+popup/item_23/id = 23
+popup/item_24/text = "Yellow"
+popup/item_24/id = 24
+popup/item_25/text = "Silver"
+popup/item_25/id = 25
+popup/item_26/text = "Gold"
+popup/item_26/id = 26
+popup/item_27/text = "Multi"
+popup/item_27/id = 27
+popup/item_28/text = "Clear"
+popup/item_28/id = 28
 
 [node name="4" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=796601733]
 layout_mode = 2

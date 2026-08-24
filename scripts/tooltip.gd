@@ -12,6 +12,8 @@ signal visibility_toggled(is_visible, target)
 @onready var color1_tag = $TooltipPanel/color1_tag
 @onready var color2_tag = $TooltipPanel/color2_tag
 @onready var money_label = $TooltipPanel/money_text
+@onready var stars = $TooltipPanel/Stars
+@onready var seller_label = $TooltipPanel/sellerName_text
 
 var current_target = null
 
@@ -47,7 +49,8 @@ func show_tooltip(target):
 		color2_tag.play(str(item.color2).to_lower())
 		color2_tag.show()
 	money_label.text = str(item.price)
-	
+	stars.set_item(target)
+	seller_label.text = str(item.seller_name)
 
 func hide_tooltip(target: Control):
 	panel.hide()

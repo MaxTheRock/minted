@@ -168,7 +168,7 @@ func load_uploaded_item_info() -> void:
 
 	name_display.text = item_data.get("type", "").replace("_", " ").capitalize()
 	type_display.text = item_data.get("type", "").replace("_", " ").capitalize()
-	color_display.text = item_data.get("color", "")
+	#color_display.text = item_data.get("color", "")
 
 	if item_data.get("selected_brand", "none") != "none":
 		brand_display.text = item_data.get("selected_brand", "")

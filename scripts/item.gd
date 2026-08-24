@@ -31,6 +31,7 @@ var color2: String = ""
 var shippingTime: float = 0
 var shippingValue: int = 0
 var seller_name = ""
+var seller_rating
 var conditions = ["Poor", "Satisfactory", "Good", "Great", "Excellent", "Minted"]
 var condition = ""
 var condition_price_mult = 1
@@ -131,6 +132,7 @@ func initialize_item(category := "All"):
 	selected_brand = "none"
 	genre = "none"
 	seller_name = Global.name_generator()
+	seller_rating = star_rating_bell_curve()
 	rng.randomize()
 	match category:
 		"Clothes":
@@ -802,7 +804,8 @@ func get_data() -> Dictionary:
 		"pattern_type": pattern_type,
 		"pattern_mult": pattern_mult,
 		"pattern_index": pattern_index,
-		"seller_name": seller_name
+		"seller_name": seller_name,
+		"seller_rating": seller_rating
 	}
 
 func load_data(data: Dictionary) -> void:
@@ -828,6 +831,7 @@ func load_data(data: Dictionary) -> void:
 	pattern_mult = data.get("pattern_mult",1)
 	pattern_index = data.get("pattern_index",0)
 	seller_name = data.get("seller_name","Unknown Seller")
+	seller_rating = data.get("seller_rating", null)
 	set_item_type(type)
 
 	if sprites.has(type):
@@ -858,3 +862,11 @@ func get_details_ui():
 
 func display_thing():
 	get_details_ui().display_product_info(sprite_image, get_data())
+	
+func star_rating_bell_curve() -> float:
+	var value: float
+	while true:
+		value = randfn(4.0, 0.8)
+		if value >= 0.5 and value <= 5.0:
+			break
+	return round(value * 2) / 2

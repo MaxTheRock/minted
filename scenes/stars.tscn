@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bk6xu7dvbhxas"]
+
+[ext_resource type="Script" uid="uid://dbvsqejwdt0px" path="res://scripts/stars.gd" id="1_rs5ub"]
+[ext_resource type="Texture2D" uid="uid://d1ic3cehlcx7r" path="res://assets/tooltip/stars.png" id="1_ucpii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs5ub"]
+atlas = ExtResource("1_ucpii")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkm7s"]
+atlas = ExtResource("1_ucpii")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_784ub"]
+atlas = ExtResource("1_ucpii")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs5ub")
+}],
+"loop": 1,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkm7s")
+}],
+"loop": 1,
+"name": &"none",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_784ub")
+}],
+"loop": 1,
+"name": &"partial",
+"speed": 5.0
+}]
+
+[node name="Stars" type="Control" unique_id=2013305115]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rs5ub")
+
+[node name="1" type="AnimatedSprite2D" parent="." unique_id=29187192]
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"full"
+
+[node name="2" type="AnimatedSprite2D" parent="." unique_id=74781279]
+position = Vector2(17, 0)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"full"
+
+[node name="3" type="AnimatedSprite2D" parent="." unique_id=411363274]
+position = Vector2(34, 0)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"full"
+
+[node name="4" type="AnimatedSprite2D" parent="." unique_id=1268677005]
+position = Vector2(51, 0)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"full"
+
+[node name="5" type="AnimatedSprite2D" parent="." unique_id=1996904497]
+position = Vector2(68, 0)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"full"
