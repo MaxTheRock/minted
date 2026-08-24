@@ -12,6 +12,9 @@ extends Control
 @onready var collectables = $VBoxContainer/Sections/Centre/TabContainer/Collectables/ScrollContainer/GridContainer
 @onready var sports = $VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer
 
+@onready var all_scroll = $VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer
+@onready var clothes_scroll = $VBoxContainer/Sections/Centre/TabContainer/Clothes/ScrollContainer
+
 
 func _ready() -> void:
 	Global.inShelf = false

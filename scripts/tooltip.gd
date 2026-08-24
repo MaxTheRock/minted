@@ -3,27 +3,47 @@ extends Control
 signal visibility_toggled(is_visible, target)
 
 @export var tooltip_offset := Vector2(-150, 0)
-@onready var panel = $TooltipPanel
-@onready var name_label = $TooltipPanel/item_name
-@onready var condition_bar = $TooltipPanel/condition_bar
-@onready var condition_label = $TooltipPanel/condition_text
-@onready var brand_icon = $TooltipPanel/brand_icon
-@onready var brand_label = $TooltipPanel/brand_name
-@onready var color1_tag = $TooltipPanel/tags2/color_tag/color1_tag
-@onready var color2_tag = $TooltipPanel/tags2/color_tag/color2_tag
-@onready var money_label = $TooltipPanel/money_text
-@onready var stars = $TooltipPanel/Stars
-@onready var seller_label = $TooltipPanel/sellerName_text
+@onready var area = $mouse_hitbox
+@onready var panel = $mouse_hitbox/TooltipPanel
+@onready var name_label = $mouse_hitbox/TooltipPanel/item_name
+@onready var condition_bar = $mouse_hitbox/TooltipPanel/condition_bar
+@onready var condition_label = $mouse_hitbox/TooltipPanel/condition_text
+@onready var brand_icon = $mouse_hitbox/TooltipPanel/brand_icon
+@onready var brand_label = $mouse_hitbox/TooltipPanel/brand_name
+@onready var color1_tag = $mouse_hitbox/TooltipPanel/tags2/color_tag/color1_tag
+@onready var color2_tag = $mouse_hitbox/TooltipPanel/tags2/color_tag/color2_tag
+@onready var money_label = $mouse_hitbox/TooltipPanel/money_text
+@onready var stars = $mouse_hitbox/TooltipPanel/Stars
+@onready var seller_label = $mouse_hitbox/TooltipPanel/sellerName_text
+@onready var tag_info = $mouse_hitbox/TooltipPanel/tag_info
+@onready var tag_text = $mouse_hitbox/TooltipPanel/tag_info/Label
+
 
 var current_target = null
+var initial_y = 0
 
+var weight = ""
+var extra_tag = ""
+var info = ""
 func _ready():
 	panel.hide()
 	panel.z_index = 5
 
+
+
+func _process(delta: float) -> void:
+	update_position()
+
+func update_position():
+	if current_target == null:
+		return
+
+	panel.global_position.y = current_target.global_position.y
+	
 func show_tooltip(target):
-	$TooltipPanel/tags2/extra_info.show()
-	$TooltipPanel/tags2/extra_info/extra_tag.play("default")
+	tag_info.hide()
+	$mouse_hitbox/TooltipPanel/tags2/extra_info.show()
+	$mouse_hitbox/TooltipPanel/tags2/extra_info/extra_tag.play("default")
 	current_target = target
 	panel.show()
 	visibility_toggled.emit(true, target)
@@ -31,15 +51,17 @@ func show_tooltip(target):
 	var vp_size = get_viewport().get_visible_rect().size
 	var tooltip_size = panel.size
 	var pos = target.global_position + Vector2(target.size.x + tooltip_offset.x, tooltip_offset.y)
-	print(pos)
+	#print(pos)
 	if pos.x + tooltip_size.x > vp_size.x:
 		pos.x = target.global_position.x - tooltip_size.x - tooltip_offset.x
 	if pos.y + tooltip_size.y > vp_size.y:
 		pos.y = target.global_position.y - tooltip_size.y - tooltip_offset.y
+		initial_y = target.global_position.y - tooltip_size.y - tooltip_offset.y 
 	panel.position = pos
 	
 	# Item fill
 	var item = target.get_data()
+	info = item
 	name_label.text = str(name_generator(item))
 	condition_bar.play(str(item.condition).to_lower())
 	condition_label.text = "Condition: " + str(item.condition)
@@ -56,25 +78,29 @@ func show_tooltip(target):
 	stars.set_item(target)
 	seller_label.text = str(item.seller_name)
 	if item.item_category[0]:
-		$TooltipPanel/tags2/item_type/type_tag.play(item.item_category[0].to_lower())
+		$mouse_hitbox/TooltipPanel/tags2/item_type/type_tag.play(item.item_category[0].to_lower())
 	if item.cd:
-		$TooltipPanel/tags2/extra_info/extra_tag.play("music")
-	elif item.type == "potion_poster" or item.type == "spud_poster":
-		$TooltipPanel/tags2/extra_info/extra_tag.play("poster")
-	elif item.type == "camera" or item.type == "cd_player":
-		$TooltipPanel/tags2/extra_info/extra_tag.play("placeable")
+		$mouse_hitbox/TooltipPanel/tags2/extra_info/extra_tag.play("music")
+		extra_tag ="cd"
+	elif item.poster:
+		$mouse_hitbox/TooltipPanel/tags2/extra_info/extra_tag.play("poster")
+		extra_tag = "poster"
+	elif item.placeable:
+		$mouse_hitbox/TooltipPanel/tags2/extra_info/extra_tag.play("placeable")
+		extra_tag = "placeable"
 	elif item.item_category.size() == 2:
-		$TooltipPanel/tags2/item_type/type_tag.play(item.item_category[1].to_lower())
+		$mouse_hitbox/TooltipPanel/tags2/extra_info/extra_tag.play(item.item_category[1].to_lower())
+		extra_tag = item.item_category[1].to_lower()
 	else:
-		$TooltipPanel/tags2/extra_info.hide()
+		$mouse_hitbox/TooltipPanel/tags2/extra_info.hide()
 	if item.shippingValue == 1:
-		$TooltipPanel/tags2/item_weight/weight_tag.play("light")
+		$mouse_hitbox/TooltipPanel/tags2/item_weight/weight_tag.play("light")
 	elif item.shippingValue == 2:
-		$TooltipPanel/tags2/item_weight/weight_tag.play("medium")
+		$mouse_hitbox/TooltipPanel/tags2/item_weight/weight_tag.play("medium")
 	elif item.shippingValue == 3:
-		$TooltipPanel/tags2/item_weight/weight_tag.play("heavy")
+		$mouse_hitbox/TooltipPanel/tags2/item_weight/weight_tag.play("heavy")
 	elif item.shippingValue >= 4:
-		$TooltipPanel/tags2/item_weight/weight_tag.play("xl")
+		$mouse_hitbox/TooltipPanel/tags2/item_weight/weight_tag.play("xl")
 		
 
 func hide_tooltip(target: Control):
@@ -143,3 +169,30 @@ func name_generator(data) -> String:
 
 func _on_hitbox_focus_exited() -> void:
 	hide_tooltip(self)
+
+
+func _on_mouse_entered() -> void:
+	print("hello")
+	tag_info.show()
+	if info.color2 != "":
+		tag_text.text = "This item is " + info.color1 + "and " + info.color2 + "."
+	else:
+		tag_text.text = "This item is " + info.color1 + "."
+
+
+func _on_mouse_exited() -> void:
+	tag_info.hide()
+
+
+func _on_color_area_mouse_entered() -> void:
+	print("hello")
+	tag_info.show()
+	if info.color2 != "":
+		tag_text.text = "This item is " + info.color1 + " and " + info.color2 + "."
+	else:
+		tag_text.text = "This item is " + info.color1 + "."
+
+
+
+func _on_color_area_mouse_exited() -> void:
+	pass # Replace with function body.
