@@ -10,6 +10,6 @@ To-do list (add as we go and delete when completed):
 - Newspaper
 - More rooms
 - Tutorial level
-- Outside
+- Upgrade outside
 - Margaret animations
 - Face sprites (50% done)

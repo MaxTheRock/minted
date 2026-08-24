@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://gecfymnbrhpx"]
+
+[ext_resource type="Texture2D" uid="uid://dkoecjxvwmw5u" path="res://assets/outside/outside_road.png" id="1_p61qw"]
+[ext_resource type="Script" uid="uid://c1r2wyc40p38v" path="res://scripts/outside.gd" id="1_udpx5"]
+[ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_nsm10"]
+[ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_8lkp2"]
+[ext_resource type="PackedScene" uid="uid://srrkw1j4nlaa" path="res://scenes/parcels.tscn" id="5_bkgx0"]
+[ext_resource type="Script" uid="uid://bummubx5xkx6u" path="res://scripts/parcels.gd" id="6_uaw8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
+size = Vector2(26.89616, 31.325016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
+size = Vector2(230, 187.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt5my"]
+size = Vector2(120.45455, 147.18752)
+
+[node name="Outside" type="Control" unique_id=1576444141]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_udpx5")
+
+[node name="road" type="TextureRect" parent="." unique_id=803390381]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 202.0
+offset_right = 636.0
+offset_bottom = 351.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_p61qw")
+stretch_mode = 1
+
+[node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_8lkp2")]
+position = Vector2(703, 379)
+
+[node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_nsm10")]
+modulate = Color(1, 1, 1, 0.08627451)
+position = Vector2(682, 545)
+
+[node name="building_area" type="Area2D" parent="." unique_id=958558554]
+position = Vector2(58, -8)
+collision_layer = 8
+collision_mask = 2
+
+[node name="building_collision_shape" type="CollisionShape2D" parent="building_area" unique_id=1201566750]
+position = Vector2(609.36475, 420.248)
+scale = Vector2(22.727058, 9.050404)
+shape = SubResource("RectangleShape2D_4c3da")
+
+[node name="Control" type="Control" parent="." unique_id=104545168]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control" unique_id=1713237395]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.78515625
+anchor_top = 0.53333336
+anchor_right = 0.78515625
+anchor_bottom = 0.53333336
+offset_left = 621.59375
+offset_top = 334.6667
+offset_right = 722.59375
+offset_bottom = 357.6667
+text = "Room [F]"
+metadata/_edit_use_anchors_ = true
+
+[node name="door_area" type="Area2D" parent="Control" unique_id=1615298691]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/door_area" unique_id=27538041]
+position = Vector2(684, 395.75)
+shape = SubResource("RectangleShape2D_qnalp")
+debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
+
+[node name="Parcels" parent="." unique_id=798899600 instance=ExtResource("5_bkgx0")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.484375
+anchor_top = 0.39722222
+anchor_right = 1.484375
+anchor_bottom = 1.3972223
+offset_left = -34.0
+offset_top = -85.0
+offset_right = -34.0
+offset_bottom = -85.0
+script = ExtResource("6_uaw8k")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Parcels" unique_id=1071974129]
+position = Vector2(38.5, 13.5)
+scale = Vector2(0.65999997, 0.32)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parcels/Area2D" unique_id=527333655]
+position = Vector2(-31.4394, -72.03126)
+shape = SubResource("RectangleShape2D_lt5my")
+
+[node name="Label" type="Label" parent="Parcels" unique_id=1882537623]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -23.0
+offset_right = 75.0
+scale = Vector2(0.5, 0.5)
+text = "Collect [F]"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="building_area" to="." method="_on_building_area_area_entered"]
+[connection signal="area_exited" from="building_area" to="." method="_on_building_area_area_exited"]
+[connection signal="area_entered" from="Control/door_area" to="." method="_on_door_area_area_entered"]
+[connection signal="area_exited" from="Control/door_area" to="." method="_on_door_area_area_exited"]
+[connection signal="area_entered" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Parcels/Area2D" to="Parcels" method="_on_area_2d_area_exited"]
