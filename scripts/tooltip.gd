@@ -9,8 +9,8 @@ signal visibility_toggled(is_visible, target)
 @onready var condition_label = $TooltipPanel/condition_text
 @onready var brand_icon = $TooltipPanel/brand_icon
 @onready var brand_label = $TooltipPanel/brand_name
-@onready var color1_tag = $TooltipPanel/color1_tag
-@onready var color2_tag = $TooltipPanel/color2_tag
+@onready var color1_tag = $TooltipPanel/tags2/color_tag/color1_tag
+@onready var color2_tag = $TooltipPanel/tags2/color_tag/color2_tag
 @onready var money_label = $TooltipPanel/money_text
 
 var current_target = null
@@ -20,6 +20,8 @@ func _ready():
 	panel.z_index = 5
 
 func show_tooltip(target):
+	$TooltipPanel/tags2/extra_info.show()
+	$TooltipPanel/tags2/extra_info/extra_tag.play("default")
 	current_target = target
 	panel.show()
 	visibility_toggled.emit(true, target)
@@ -27,6 +29,7 @@ func show_tooltip(target):
 	var vp_size = get_viewport().get_visible_rect().size
 	var tooltip_size = panel.size
 	var pos = target.global_position + Vector2(target.size.x + tooltip_offset.x, tooltip_offset.y)
+	print(pos)
 	if pos.x + tooltip_size.x > vp_size.x:
 		pos.x = target.global_position.x - tooltip_size.x - tooltip_offset.x
 	if pos.y + tooltip_size.y > vp_size.y:
@@ -46,9 +49,30 @@ func show_tooltip(target):
 	else:
 		color2_tag.play(str(item.color2).to_lower())
 		color2_tag.show()
+
 	money_label.text = str(item.price)
 	
-
+	if item.item_category[0]:
+		$TooltipPanel/tags2/item_type/type_tag.play(item.item_category[0].to_lower())
+	if item.cd:
+		$TooltipPanel/tags2/extra_info/extra_tag.play("music")
+	elif item.type == "potion_poster" or item.type == "spud_poster":
+		$TooltipPanel/tags2/extra_info/extra_tag.play("poster")
+	elif item.type == "camera" or item.type == "cd_player":
+		$TooltipPanel/tags2/extra_info/extra_tag.play("placeable")
+	elif item.item_category.size() == 2:
+		$TooltipPanel/tags2/item_type/type_tag.play(item.item_category[1].to_lower())
+	else:
+		$TooltipPanel/tags2/extra_info.hide()
+	if item.shippingValue == 1:
+		$TooltipPanel/tags2/item_weight/weight_tag.play("light")
+	elif item.shippingValue == 2:
+		$TooltipPanel/tags2/item_weight/weight_tag.play("medium")
+	elif item.shippingValue == 3:
+		$TooltipPanel/tags2/item_weight/weight_tag.play("heavy")
+	elif item.shippingValue >= 4:
+		$TooltipPanel/tags2/item_weight/weight_tag.play("xl")
+		
 func hide_tooltip(target: Control):
 	panel.hide()
 	visibility_toggled.emit(false, target)
@@ -111,3 +135,7 @@ func name_generator(data) -> String:
 		return brand_print + display_color + " & " + display_color2.capitalize() + " " + display_type + "."
 	else:
 		return brand_print + display_color + " " + display_type + "."
+
+
+func _on_hitbox_focus_exited() -> void:
+	hide_tooltip(self)

@@ -27,6 +27,8 @@ var market_type = ""
 var inventory_index = 0
 var is_parcel = false
 
+var watching_hover = false
+
 
 func _ready() -> void:
 	Tooltip.visibility_toggled.connect(_on_tooltip_visibility_toggled)
@@ -328,6 +330,23 @@ func _ready() -> void:
 		$PanelContainer2.show()
 
 
+func _process(_delta) -> void:
+	if not watching_hover:
+		return
+
+	var mouse_pos = get_global_mouse_position()
+	var over_self = get_global_rect().has_point(mouse_pos)
+	var over_tooltip = false
+	if Tooltip.current_target == self and Tooltip.panel.visible:
+		over_tooltip = Tooltip.panel.get_global_rect().has_point(mouse_pos)
+
+	if not over_self and not over_tooltip:
+		watching_hover = false
+		Tooltip.hide_tooltip(self)
+		item.button_exit()
+		buy_button.modulate = Color(1, 1, 1, 1)
+		$hitbox.hide()
+
 func _rarity_ui(item_rarity) -> void:
 	rarety_mark.play(item_rarity)
 	# also added the condition but didnt really know where else to put it, so i put it here...
@@ -336,10 +355,11 @@ func _rarity_ui(item_rarity) -> void:
 func _on_buy_button_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	item.button_enter()
+	$hitbox.show()
+	watching_hover = true
 	buy_button.modulate = Color(0.7, 0.7, 0.7, 1)
 
 func _on_buy_button_mouse_exited() -> void:
-	Tooltip.hide_tooltip(self)
 	item.button_exit()
 	buy_button.modulate = Color(1, 1, 1, 1)
 
@@ -681,9 +701,10 @@ func _on_eject_mouse_exited() -> void:
 	cd_eject.modulate = Color(1, 1, 1, 1)
 	
 func _on_tooltip_visibility_toggled(is_visible: bool, target: Control) -> void:
+	$hitbox.hide()
 	if target != self:
 		return
 	if is_visible:
-		z_index = 10
+		z_index = 7
 	else:
 		z_index = 0
