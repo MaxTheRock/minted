@@ -825,6 +825,7 @@ func get_data() -> Dictionary:
 		"pattern_mult": pattern_mult,
 		"pattern_index": pattern_index,
 		"seller_name": seller_name,
+		"seller_rating": seller_rating,
 		"item_category": item_category
 	}
 
