@@ -132,6 +132,7 @@ func _on_button_pressed() -> void:
 		price_display.text = str(price_written)
 		var last_bidder_var = last_bidder.text
 		last_bidder.text = "You"
+		Global.xp += 150
 
 		var bidders = Inventory.bidders
 		if last_bidder_var != "You":

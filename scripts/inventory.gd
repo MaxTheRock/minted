@@ -220,6 +220,7 @@ func check_buy_items(buyer,id):
 		#print(found_index, actual_selling,actual_sold)
 		#print(found_index, player_selling,sold_items)
 		item_sold.emit()
+		Global.xp += 200
 
 func create_bidding_details(index):
 	var bidding = bidding_items[index]	
@@ -393,3 +394,4 @@ func resolve_bid(index: int) -> void:
 	item_ui.queue_free()
 
 	bid_done.emit()
+	Global.xp += 100

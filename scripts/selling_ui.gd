@@ -28,8 +28,6 @@ func _ready() -> void:
 	if Inventory.player_selling[item_index]["type"]:
 		$info/type/type_label.text = Inventory.player_selling[item_index]["type"]
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if show_info:
 		info_container.size = Vector2(500,150)
@@ -38,10 +36,8 @@ func _process(delta: float) -> void:
 		info_container.size = Vector2(500,60)
 		info.hide()
 
-
 func _on_info_button_pressed() -> void:
 	show_info = !show_info
-
 
 func _on_clear_pressed() -> void:
 	Inventory.player_selling.pop_at(item_index)

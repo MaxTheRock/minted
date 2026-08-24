@@ -372,6 +372,7 @@ func _on_buy_button_pressed() -> void:
 		return
 	
 	Global.money -= item.price
+	Global.xp += 50
 	ShippingHandler.shipping_list.append([item.get_data(), Global.time_mins])
 	Global.create_mail.emit()
 

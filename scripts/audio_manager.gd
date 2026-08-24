@@ -2,6 +2,7 @@ extends Node
 
 @onready var music_player := AudioStreamPlayer.new()
 @onready var sfx_player := AudioStreamPlayer.new()
+@onready var click_player := AudioStreamPlayer.new()
 
 const background_menu_music = preload("res://audio/background_menu.mp3")
 const the_big_mint = preload("res://audio/the_big_mint.mp3")
@@ -13,10 +14,12 @@ const three_jelly = preload("res://audio/three_jelly.mp3")
 func _ready() -> void:
 	add_child(music_player)
 	add_child(sfx_player)
+	add_child(click_player)
 
 	music_player.volume_db = Global.music_volume
 	sfx_player.volume_db = Global.sfx_volume
-
+	click_player.stream = preload("res://audio/SFX/click.wav")
+	get_tree().node_added.connect(_on_node_added)
 
 func play_music(music: AudioStream) -> void:
 	if music_player.stream == music and music_player.playing:
@@ -37,3 +40,11 @@ func eject():
 	AudioManager.music_player.bus = "Master"
 	music_player.stream = background_menu_music
 	music_player.play()
+	
+func play_click() -> void:
+	click_player.stop()
+	click_player.play()
+	
+func _on_node_added(node: Node) -> void:
+	if node is BaseButton:
+		node.pressed.connect(play_click)
