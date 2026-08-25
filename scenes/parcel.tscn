@@ -1,14 +1,7 @@
 [gd_scene format=3 uid="uid://c3jaeqh4gycfo"]
 
 [ext_resource type="Script" uid="uid://dca7nmf1xgssp" path="res://scripts/box.gd" id="1_40veq"]
-[ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_3o1h4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40veq"]
-content_margin_left = 10.0
-content_margin_top = 5.0
-content_margin_right = 10.0
-content_margin_bottom = 5.0
-bg_color = Color(0, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://gecfymnbrhpx" path="res://scenes/outside.tscn" id="2_fve4f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fve4f"]
 bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
@@ -23,6 +16,13 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40veq"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
 [node name="Parcel" type="Control" unique_id=38182497]
 layout_mode = 3
 anchors_preset = 15
@@ -32,25 +32,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_40veq")
 
-[node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_3o1h4")]
-position = Vector2(364.00003, 643)
+[node name="Outside" parent="." unique_id=1576444141 instance=ExtResource("2_fve4f")]
+layout_mode = 1
+offset_left = -2400.0
+offset_top = -89.0
+offset_right = -2400.0
+offset_bottom = -89.0
 scale = Vector2(3, 3)
-
-[node name="Close" type="Button" parent="." unique_id=281439670]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 23.0
-offset_right = 72.0
-offset_bottom = 102.0
-theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_40veq")
-text = "X"
 
 [node name="items" type="MarginContainer" parent="." unique_id=1275630380]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 0
-offset_left = 614.0
+offset_left = 729.0
 offset_top = 17.0
 offset_right = 1266.0
 offset_bottom = 384.0
@@ -102,5 +95,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
+
+[node name="Close" type="Button" parent="." unique_id=281439670]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 72.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_40veq")
+text = "X"
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

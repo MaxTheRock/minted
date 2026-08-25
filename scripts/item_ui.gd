@@ -133,11 +133,11 @@ func _ready() -> void:
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
-				item.load_data(Inventory.player_inventory[inventory_index])
+				item.load_data(Inventory.player_inventory[inventory_index][0])
 		else:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
-				item.load_data(Inventory.player_inventory[inventory_index])
+				item.load_data(Inventory.player_inventory[inventory_index][0])
 
 	elif Inventory.current_ui_type == "inventory_wardrobe":
 		buy_button.hide()
@@ -223,7 +223,7 @@ func _ready() -> void:
 		if ShippingHandler.delivered_list:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
-				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
+				item.load_data(ShippingHandler.delivered_list[inventory_index][0][0])
 		else:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
@@ -377,7 +377,6 @@ func _on_buy_button_pressed() -> void:
 	Global.create_mail.emit()
 
 	var current_item_data = item.get_data()
-	print(current_item_data)
 	var inventory_index = Inventory.market_items[market_type].find(current_item_data)
 	Inventory.market_items[market_type].pop_at(inventory_index)
 
@@ -467,7 +466,6 @@ func _on_place_button_button_up() -> void:
  
 func _on_place_button_pressed() -> void:
 	place_button.modulate = Color(1, 1, 1, 1)
-	print(Inventory.current_ui_type)
 	if Inventory.current_ui_type == "poster":
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
 			print("Could not find item to place!")

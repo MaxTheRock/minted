@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 
 func _on_close_pressed() -> void:
 	Global.inWardrobe = false
-	get_tree().change_scene_to_file("res://scenes/room.tscn")
+	get_tree().change_scene_to_file("res://scenes/outside.tscn")
 
 
 func load_list_objects() -> void:

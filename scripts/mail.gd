@@ -25,4 +25,3 @@ func _on_create_mail(entry = null):
 	message.shipping_entry = entry
 	message_container.add_child(message)
 	ShippingHandler.mail_user_list.append([mail, message])
-	print(ShippingHandler.mail_user_list)

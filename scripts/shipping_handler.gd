@@ -4,6 +4,7 @@ var shipping_list: Array = []
 var shipping_value: int = 0
 var delivered_list: Array = []
 var mail_user_list: Array = []
+var locker_list: Array = []
 
 func _process(delta: float) -> void:
 	#Inventory.current_ui_type = "shipping"
@@ -12,8 +13,7 @@ func _process(delta: float) -> void:
 		var progress = get_progress(entry)
 		if progress["percentage"] >= 100.0:
 			shipping_list.erase(i)
-			delivered_list.append(entry)
-			shipping_value += i[0]["shippingValue"]
+			delivered_list.append([entry,i[0]["shippingValue"]])
 
 func get_progress(entry: Array) -> Dictionary:
 	var total_time = entry[0]["shippingTime"]

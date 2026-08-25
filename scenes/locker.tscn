@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://kjbeye4v6bjr"]
 
+[ext_resource type="Script" uid="uid://n5xcppc2gpab" path="res://scenes/locker.gd" id="1_2nsk5"]
 [ext_resource type="Texture2D" uid="uid://cis43ffv2qmp4" path="res://assets/outside/locker/locker.png" id="1_46kxn"]
 [ext_resource type="Texture2D" uid="uid://cfn88q0x56xc6" path="res://assets/outside/locker/locker_door1.png" id="2_nuct8"]
 [ext_resource type="Texture2D" uid="uid://cb5viced8nmbv" path="res://assets/outside/locker/locker_door5.png" id="3_2nsk5"]
+[ext_resource type="Script" uid="uid://bi18asxnt023v" path="res://scripts/parcel.gd" id="3_j3rq7"]
 [ext_resource type="Texture2D" uid="uid://cc3rje1iuui17" path="res://assets/outside/locker/locker_door2.png" id="4_1kxxu"]
 [ext_resource type="Texture2D" uid="uid://b58rrua4crog6" path="res://assets/outside/locker/locker_door6.png" id="5_wmayq"]
 [ext_resource type="Texture2D" uid="uid://jqqhbethbaie" path="res://assets/outside/locker/locker_door7.png" id="6_j3rq7"]
+[ext_resource type="PackedScene" uid="uid://srrkw1j4nlaa" path="res://scenes/parcels.tscn" id="6_wmayq"]
 [ext_resource type="Texture2D" uid="uid://b7v5nu12kj1yc" path="res://assets/outside/locker/locker_door8.png" id="7_r7vbb"]
 [ext_resource type="Texture2D" uid="uid://bf60time2j3vy" path="res://assets/outside/locker/locker_door3.png" id="8_8rse4"]
 [ext_resource type="Texture2D" uid="uid://4dny0wvhf4x5" path="res://assets/outside/locker/locker_door4.png" id="9_f7ox2"]
@@ -55,7 +58,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5niif")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
@@ -105,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jul4l")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
@@ -255,7 +258,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hqlss")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
@@ -355,7 +358,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oenjr")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
@@ -405,10 +408,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_30feq")
 }],
-"loop": 2,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nsk5"]
+size = Vector2(215.15152, 348.5938)
 
 [node name="Locker" type="Control" unique_id=1962350185]
 layout_mode = 3
@@ -417,135 +423,528 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2nsk5")
+
+[node name="parcels" type="Control" parent="." unique_id=807289616]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="parcel_1" parent="parcels" unique_id=798899600 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 4.0
+offset_bottom = 5.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_2" parent="parcels" unique_id=1638632725 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 5.0
+offset_right = 27.0
+offset_bottom = 5.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_3" parent="parcels" unique_id=1939437269 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 51.0
+offset_top = 5.0
+offset_right = 51.0
+offset_bottom = 5.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_4" parent="parcels" unique_id=961129046 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 74.0
+offset_top = 5.0
+offset_right = 74.0
+offset_bottom = 5.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_5" parent="parcels" unique_id=2127003445 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_top = 15.0
+offset_right = 4.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_6" parent="parcels" unique_id=925665898 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 15.0
+offset_right = 27.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_7" parent="parcels" unique_id=335676431 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 51.0
+offset_top = 15.0
+offset_right = 51.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_8" parent="parcels" unique_id=1204352264 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 75.0
+offset_top = 15.0
+offset_right = 75.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_9" parent="parcels" unique_id=488650515 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_top = 25.0
+offset_right = 4.0
+offset_bottom = 25.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_10" parent="parcels" unique_id=1881137105 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 25.0
+offset_right = 27.0
+offset_bottom = 25.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_11" parent="parcels" unique_id=950545037 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 51.0
+offset_top = 25.0
+offset_right = 51.0
+offset_bottom = 25.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_12" parent="parcels" unique_id=2131230775 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 75.0
+offset_top = 25.0
+offset_right = 75.0
+offset_bottom = 25.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_13" parent="parcels" unique_id=702240880 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 3.0
+offset_bottom = 35.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_14" parent="parcels" unique_id=1620511580 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 35.0
+offset_right = 27.0
+offset_bottom = 35.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_15" parent="parcels" unique_id=933010691 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 75.0
+offset_top = 35.0
+offset_right = 75.0
+offset_bottom = 35.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_16" parent="parcels" unique_id=1308423839 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_top = 45.0
+offset_right = 4.0
+offset_bottom = 45.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_17" parent="parcels" unique_id=269323947 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 28.0
+offset_top = 45.0
+offset_right = 28.0
+offset_bottom = 45.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_18" parent="parcels" unique_id=75377990 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 74.0
+offset_top = 45.0
+offset_right = 74.0
+offset_bottom = 45.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_19" parent="parcels" unique_id=1763716076 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 7.0
+offset_top = 55.0
+offset_right = 7.0
+offset_bottom = 55.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_20" parent="parcels" unique_id=224007323 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 55.0
+offset_right = 27.0
+offset_bottom = 55.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_21" parent="parcels" unique_id=627962054 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 74.0
+offset_top = 55.0
+offset_right = 74.0
+offset_bottom = 55.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_22" parent="parcels" unique_id=483096434 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_top = 65.0
+offset_right = 4.0
+offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_23" parent="parcels" unique_id=1798287437 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 65.0
+offset_right = 27.0
+offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_24" parent="parcels" unique_id=1139164455 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 52.0
+offset_top = 71.0
+offset_right = 52.0
+offset_bottom = 71.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_25" parent="parcels" unique_id=575278912 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 74.0
+offset_top = 65.0
+offset_right = 74.0
+offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_26" parent="parcels" unique_id=193640017 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 5.0
+offset_top = 77.0
+offset_right = 5.0
+offset_bottom = 77.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_27" parent="parcels" unique_id=1708924641 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 27.0
+offset_top = 77.0
+offset_right = 27.0
+offset_bottom = 77.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_28" parent="parcels" unique_id=44964924 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 75.0
+offset_top = 77.0
+offset_right = 75.0
+offset_bottom = 77.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_29" parent="parcels" unique_id=1062125739 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_top = 97.0
+offset_right = 4.0
+offset_bottom = 97.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_30" parent="parcels" unique_id=1849410712 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 28.0
+offset_top = 97.0
+offset_right = 28.0
+offset_bottom = 97.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_31" parent="parcels" unique_id=975416130 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 51.0
+offset_top = 97.0
+offset_right = 51.0
+offset_bottom = 97.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="parcel_32" parent="parcels" unique_id=2016654953 instance=ExtResource("6_wmayq")]
+z_index = 1
+layout_mode = 1
+offset_left = 75.0
+offset_top = 97.0
+offset_right = 75.0
+offset_bottom = 97.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("3_j3rq7")
+
+[node name="doors" type="Control" parent="." unique_id=1127059201]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="1" type="AnimatedSprite2D" parent="doors" unique_id=2059425089]
+z_index = 2
+position = Vector2(12, 11)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+
+[node name="2" type="AnimatedSprite2D" parent="doors" unique_id=1102472747]
+z_index = 2
+position = Vector2(35, 11)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+
+[node name="3" type="AnimatedSprite2D" parent="doors" unique_id=320108369]
+z_index = 2
+position = Vector2(58.50207, 11.001648)
+sprite_frames = SubResource("SpriteFrames_4c3da")
+
+[node name="4" type="AnimatedSprite2D" parent="doors" unique_id=2138527403]
+z_index = 2
+position = Vector2(82, 11)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+
+[node name="5" type="AnimatedSprite2D" parent="doors" unique_id=1885113538]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(12, 23)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="6" type="AnimatedSprite2D" parent="doors" unique_id=442783821]
+z_index = 2
+position = Vector2(35, 23)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="7" type="AnimatedSprite2D" parent="doors" unique_id=1140511781]
+z_index = 2
+position = Vector2(58.50216, 23)
+sprite_frames = SubResource("SpriteFrames_jpt8c")
+
+[node name="8" type="AnimatedSprite2D" parent="doors" unique_id=876724521]
+z_index = 2
+position = Vector2(82, 23)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="9" type="AnimatedSprite2D" parent="doors" unique_id=1029759639]
+z_index = 2
+position = Vector2(12, 33)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="10" type="AnimatedSprite2D" parent="doors" unique_id=741144152]
+z_index = 2
+position = Vector2(35, 33)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="11" type="AnimatedSprite2D" parent="doors" unique_id=1074082963]
+z_index = 2
+position = Vector2(58.50216, 33)
+sprite_frames = SubResource("SpriteFrames_jpt8c")
+
+[node name="12" type="AnimatedSprite2D" parent="doors" unique_id=1460244412]
+z_index = 2
+position = Vector2(82, 33)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="13" type="AnimatedSprite2D" parent="doors" unique_id=1936739384]
+z_index = 2
+position = Vector2(12, 43)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="14" type="AnimatedSprite2D" parent="doors" unique_id=818230243]
+z_index = 2
+position = Vector2(35, 43)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="15" type="AnimatedSprite2D" parent="doors" unique_id=16096637]
+z_index = 2
+position = Vector2(82, 43)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="16" type="AnimatedSprite2D" parent="doors" unique_id=1034257780]
+z_index = 2
+position = Vector2(12, 53)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="17" type="AnimatedSprite2D" parent="doors" unique_id=346375976]
+z_index = 2
+position = Vector2(35, 53)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="18" type="AnimatedSprite2D" parent="doors" unique_id=723795422]
+z_index = 2
+position = Vector2(82, 53)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="19" type="AnimatedSprite2D" parent="doors" unique_id=1203955570]
+z_index = 2
+position = Vector2(12, 63)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="20" type="AnimatedSprite2D" parent="doors" unique_id=20595259]
+z_index = 2
+position = Vector2(35, 63)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="21" type="AnimatedSprite2D" parent="doors" unique_id=762834509]
+z_index = 2
+position = Vector2(82, 63)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="22" type="AnimatedSprite2D" parent="doors" unique_id=306799979]
+z_index = 2
+position = Vector2(12, 73)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="23" type="AnimatedSprite2D" parent="doors" unique_id=418976920]
+z_index = 2
+position = Vector2(35, 73)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="24" type="AnimatedSprite2D" parent="doors" unique_id=196590267]
+z_index = 2
+position = Vector2(58.5, 77.5)
+sprite_frames = SubResource("SpriteFrames_xj5vb")
+
+[node name="25" type="AnimatedSprite2D" parent="doors" unique_id=2049376603]
+z_index = 2
+position = Vector2(82, 73)
+sprite_frames = SubResource("SpriteFrames_4pjmv")
+
+[node name="26" type="AnimatedSprite2D" parent="doors" unique_id=165039327]
+z_index = 2
+position = Vector2(12, 84)
+sprite_frames = SubResource("SpriteFrames_6vwip")
+
+[node name="27" type="AnimatedSprite2D" parent="doors" unique_id=1880191921]
+z_index = 2
+position = Vector2(35, 84)
+sprite_frames = SubResource("SpriteFrames_6vwip")
+
+[node name="28" type="AnimatedSprite2D" parent="doors" unique_id=1735340582]
+z_index = 2
+position = Vector2(82, 84)
+sprite_frames = SubResource("SpriteFrames_6vwip")
+
+[node name="29" type="AnimatedSprite2D" parent="doors" unique_id=814053957]
+z_index = 2
+position = Vector2(12, 101)
+sprite_frames = SubResource("SpriteFrames_n31g0")
+
+[node name="30" type="AnimatedSprite2D" parent="doors" unique_id=964506443]
+z_index = 2
+position = Vector2(35, 101)
+sprite_frames = SubResource("SpriteFrames_n31g0")
+
+[node name="31" type="AnimatedSprite2D" parent="doors" unique_id=320051741]
+z_index = 2
+position = Vector2(58.5, 98.5)
+sprite_frames = SubResource("SpriteFrames_lxa2n")
+
+[node name="32" type="AnimatedSprite2D" parent="doors" unique_id=1969180459]
+z_index = 2
+position = Vector2(82, 101)
+sprite_frames = SubResource("SpriteFrames_n31g0")
 
 [node name="locker_background" type="Sprite2D" parent="." unique_id=204194583]
 position = Vector2(48.498177, 56.501823)
 texture = ExtResource("1_46kxn")
 
-[node name="1" type="AnimatedSprite2D" parent="." unique_id=2059425089]
-position = Vector2(12, 11)
-sprite_frames = SubResource("SpriteFrames_qnalp")
+[node name="Area2D" type="Area2D" parent="." unique_id=1025274510]
+z_index = -1
+position = Vector2(38.5, 13.5)
+scale = Vector2(0.65999997, 0.32)
+collision_layer = 8
+collision_mask = 2
 
-[node name="2" type="AnimatedSprite2D" parent="." unique_id=1102472747]
-position = Vector2(35, 11)
-sprite_frames = SubResource("SpriteFrames_qnalp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1718518641]
+position = Vector2(15.909096, 135.23444)
+shape = SubResource("RectangleShape2D_2nsk5")
+debug_color = Color(0.7877274, 0.43154255, 0, 0.41960785)
 
-[node name="3" type="AnimatedSprite2D" parent="." unique_id=320108369]
-position = Vector2(58.50207, 11.001648)
-sprite_frames = SubResource("SpriteFrames_4c3da")
+[node name="Label" type="Label" parent="." unique_id=1722360755]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.078125
+anchor_top = 0.03888889
+anchor_right = 0.078125
+anchor_bottom = 0.03888889
+offset_left = -1.0
+offset_top = -23.0
+offset_right = 75.0
+scale = Vector2(0.5, 0.5)
+text = "Collect [F]"
+metadata/_edit_use_anchors_ = true
 
-[node name="4" type="AnimatedSprite2D" parent="." unique_id=2138527403]
-position = Vector2(82, 11)
-sprite_frames = SubResource("SpriteFrames_qnalp")
-
-[node name="5" type="AnimatedSprite2D" parent="." unique_id=1885113538]
-position = Vector2(12, 23)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="6" type="AnimatedSprite2D" parent="." unique_id=442783821]
-position = Vector2(35, 23)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="7" type="AnimatedSprite2D" parent="." unique_id=1140511781]
-position = Vector2(58.50216, 23)
-sprite_frames = SubResource("SpriteFrames_jpt8c")
-
-[node name="8" type="AnimatedSprite2D" parent="." unique_id=876724521]
-position = Vector2(82, 23)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="9" type="AnimatedSprite2D" parent="." unique_id=1029759639]
-position = Vector2(12, 33)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="10" type="AnimatedSprite2D" parent="." unique_id=741144152]
-position = Vector2(35, 33)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="11" type="AnimatedSprite2D" parent="." unique_id=1074082963]
-position = Vector2(58.50216, 33)
-sprite_frames = SubResource("SpriteFrames_jpt8c")
-
-[node name="12" type="AnimatedSprite2D" parent="." unique_id=1460244412]
-position = Vector2(82, 33)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="13" type="AnimatedSprite2D" parent="." unique_id=1936739384]
-position = Vector2(12, 43)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="14" type="AnimatedSprite2D" parent="." unique_id=818230243]
-position = Vector2(35, 43)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="15" type="AnimatedSprite2D" parent="." unique_id=16096637]
-position = Vector2(82, 43)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="16" type="AnimatedSprite2D" parent="." unique_id=1034257780]
-position = Vector2(12, 53)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="17" type="AnimatedSprite2D" parent="." unique_id=346375976]
-position = Vector2(35, 53)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="18" type="AnimatedSprite2D" parent="." unique_id=723795422]
-position = Vector2(82, 53)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="19" type="AnimatedSprite2D" parent="." unique_id=1203955570]
-position = Vector2(12, 63)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="20" type="AnimatedSprite2D" parent="." unique_id=20595259]
-position = Vector2(35, 63)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="21" type="AnimatedSprite2D" parent="." unique_id=762834509]
-position = Vector2(82, 63)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="22" type="AnimatedSprite2D" parent="." unique_id=306799979]
-position = Vector2(12, 73)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="23" type="AnimatedSprite2D" parent="." unique_id=418976920]
-position = Vector2(35, 73)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="24" type="AnimatedSprite2D" parent="." unique_id=196590267]
-position = Vector2(58.5, 77.5)
-sprite_frames = SubResource("SpriteFrames_xj5vb")
-
-[node name="25" type="AnimatedSprite2D" parent="." unique_id=2049376603]
-position = Vector2(82, 73)
-sprite_frames = SubResource("SpriteFrames_4pjmv")
-
-[node name="26" type="AnimatedSprite2D" parent="." unique_id=165039327]
-position = Vector2(12, 84)
-sprite_frames = SubResource("SpriteFrames_6vwip")
-
-[node name="27" type="AnimatedSprite2D" parent="." unique_id=1880191921]
-position = Vector2(35, 84)
-sprite_frames = SubResource("SpriteFrames_6vwip")
-
-[node name="28" type="AnimatedSprite2D" parent="." unique_id=1735340582]
-position = Vector2(82, 84)
-sprite_frames = SubResource("SpriteFrames_6vwip")
-
-[node name="29" type="AnimatedSprite2D" parent="." unique_id=814053957]
-position = Vector2(12, 101)
-sprite_frames = SubResource("SpriteFrames_n31g0")
-
-[node name="30" type="AnimatedSprite2D" parent="." unique_id=964506443]
-position = Vector2(35, 101)
-sprite_frames = SubResource("SpriteFrames_n31g0")
-
-[node name="31" type="AnimatedSprite2D" parent="." unique_id=320051741]
-position = Vector2(58.5, 98.5)
-sprite_frames = SubResource("SpriteFrames_lxa2n")
-
-[node name="32" type="AnimatedSprite2D" parent="." unique_id=1969180459]
-position = Vector2(82, 101)
-sprite_frames = SubResource("SpriteFrames_n31g0")
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
