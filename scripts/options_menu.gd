@@ -1,7 +1,7 @@
 extends Control
 
-@onready var resolution: OptionButton = $resolution
-@onready var window_mode: OptionButton = $window_mode
+@onready var resolution: OptionButton = $TabContainer/Video/window_settings/resolution
+@onready var window_mode: OptionButton = $TabContainer/Video/window_settings/window_mode
 
 func _ready() -> void:
 	window_mode.select(1)

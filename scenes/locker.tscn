@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kjbeye4v6bjr"]
 
-[ext_resource type="Script" uid="uid://n5xcppc2gpab" path="res://scenes/locker.gd" id="1_2nsk5"]
+[ext_resource type="Script" uid="uid://n5xcppc2gpab" path="res://scripts/locker.gd" id="1_2nsk5"]
 [ext_resource type="Texture2D" uid="uid://cis43ffv2qmp4" path="res://assets/outside/locker/locker.png" id="1_46kxn"]
 [ext_resource type="Texture2D" uid="uid://cfn88q0x56xc6" path="res://assets/outside/locker/locker_door1.png" id="2_nuct8"]
 [ext_resource type="Texture2D" uid="uid://cb5viced8nmbv" path="res://assets/outside/locker/locker_door5.png" id="3_2nsk5"]

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cgkn6sx0gwdy5"]
 
 [ext_resource type="Script" uid="uid://dkkpymqr0tn11" path="res://scripts/options_menu.gd" id="1_ijpji"]
-[ext_resource type="Texture2D" uid="uid://bav4r0yf67yy" path="res://assets/back.png" id="1_liyum"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_ijpji"]
+[ext_resource type="Script" uid="uid://65p0y65w0y2e" path="res://scripts/vsyncbutton.gd" id="3_hm4m4"]
+[ext_resource type="Script" uid="uid://d0oo4u85mi71a" path="res://scripts/anti_alias_button.gd" id="4_lfjc7"]
 
 [node name="options_menu" type="Control" unique_id=1583969960]
 layout_mode = 3
@@ -12,41 +14,47 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ijpji")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=70657767]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=172870464]
 layout_mode = 0
-offset_right = 1285.0
-offset_bottom = 722.0
+offset_right = 1279.0
+offset_bottom = 715.0
+current_tab = 2
 
-[node name="window_mode" type="OptionButton" parent="." unique_id=283362057]
-layout_mode = 0
-offset_left = 154.0
-offset_top = 170.0
-offset_right = 664.0
-offset_bottom = 206.0
-selected = 1
-item_count = 3
-popup/item_0/text = "Fullscreen"
-popup/item_0/id = 0
-popup/item_1/text = "Windowed"
-popup/item_1/id = 1
-popup/item_2/text = "Borderless"
-popup/item_2/id = 2
+[node name="Game" type="TabBar" parent="TabContainer" unique_id=863515563]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="Label" type="Label" parent="window_mode" unique_id=1182143411]
+[node name="Controls" type="TabBar" parent="TabContainer" unique_id=496899837]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Video" type="TabBar" parent="TabContainer" unique_id=126568020]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="window_settings" type="Control" parent="TabContainer/Video" unique_id=772487440]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="TabContainer/Video/window_settings" unique_id=1182143411]
 layout_mode = 0
-offset_left = -5.0
-offset_top = -46.0
-offset_right = 296.0
-offset_bottom = -11.0
+offset_left = 42.0
+offset_top = 38.0
+offset_right = 392.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("2_ijpji")
 theme_override_font_sizes/font_size = 25
-text = "Window mode:"
+text = "WINDOW SETTINGS"
 
-[node name="resolution" type="OptionButton" parent="." unique_id=1689128356]
+[node name="resolution" type="OptionButton" parent="TabContainer/Video/window_settings" unique_id=1689128356]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 279.0
-offset_right = 665.0
-offset_bottom = 315.0
+offset_left = 363.0
+offset_top = 117.0
+offset_right = 563.0
+offset_bottom = 153.0
 selected = 2
 item_count = 4
 popup/item_0/text = "3840x2160 (4K)"
@@ -58,25 +66,106 @@ popup/item_2/id = 2
 popup/item_3/text = "640x360"
 popup/item_3/id = 3
 
-[node name="Label" type="Label" parent="resolution" unique_id=1358480825]
+[node name="Label2" type="Label" parent="TabContainer/Video/window_settings/resolution" unique_id=2023654893]
 layout_mode = 0
-offset_left = -5.0
-offset_top = -46.0
-offset_right = 296.0
-offset_bottom = -11.0
-theme_override_font_sizes/font_size = 25
-text = "Resolution:"
+offset_left = -148.0
+offset_top = -10.0
+offset_right = -7.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Resolution"
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1665289900]
+[node name="window_mode" type="OptionButton" parent="TabContainer/Video/window_settings" unique_id=283362057]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 163.0
+offset_right = 563.0
+offset_bottom = 199.0
+selected = 1
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[node name="Label2" type="Label" parent="TabContainer/Video/window_settings/window_mode" unique_id=416448532]
+layout_mode = 0
+offset_left = -174.0
+offset_top = -10.0
+offset_right = -7.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Window Mode"
+
+[node name="CheckBox" type="CheckBox" parent="TabContainer/Video/window_settings" unique_id=1036306891]
+layout_mode = 0
+offset_left = 350.00003
+offset_top = 196.00003
+offset_right = 374.00003
+offset_bottom = 220.00003
+scale = Vector2(2.5, 2.5)
+script = ExtResource("3_hm4m4")
+
+[node name="Label2" type="Label" parent="TabContainer/Video/window_settings/CheckBox" unique_id=664809717]
+layout_mode = 0
+offset_left = -70.71295
+offset_top = 1.1999817
+offset_right = 111.28705
+offset_bottom = 47.19998
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Vertical Sync"
+
+[node name="basic_settings" type="Control" parent="TabContainer/Video" unique_id=1322048257]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="TabContainer/Video/basic_settings" unique_id=575186513]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 334.0
+offset_right = 392.0
+offset_bottom = 404.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+theme_override_font_sizes/font_size = 25
+text = "BASIC SETTINGS"
+
+[node name="anti_alias" type="OptionButton" parent="TabContainer/Video/basic_settings" unique_id=2041289651]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 414.0
+offset_right = 563.0
+offset_bottom = 450.0
+script = ExtResource("4_lfjc7")
+
+[node name="Label2" type="Label" parent="TabContainer/Video/basic_settings/anti_alias" unique_id=638998248]
+layout_mode = 0
+offset_left = -127.0
+offset_top = -10.0
+offset_right = 14.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Anti Alias"
+
+[node name="Audio" type="TabBar" parent="TabContainer" unique_id=1970920060]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="TextureButton" type="Button" parent="." unique_id=348819529]
 custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = 23.0
-offset_top = 28.0
-offset_right = 123.0
-offset_bottom = 128.0
-texture_normal = ExtResource("1_liyum")
-stretch_mode = 0
+offset_left = 19.0
+offset_top = 642.0
+offset_right = 119.0
+offset_bottom = 696.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "BACK"
 
-[connection signal="item_selected" from="window_mode" to="." method="_on_window_mode_item_selected"]
-[connection signal="item_selected" from="resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/window_settings/resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/window_settings/window_mode" to="." method="_on_window_mode_item_selected"]
+[connection signal="toggled" from="TabContainer/Video/window_settings/CheckBox" to="TabContainer/Video/window_settings/CheckBox" method="_on_toggled"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
