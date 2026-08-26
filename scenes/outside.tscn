@@ -40,6 +40,7 @@ offset_bottom = 35.0
 scale = Vector2(2, 2)
 
 [node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_8lkp2")]
+z_index = 5
 position = Vector2(703, 427)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_nsm10")]

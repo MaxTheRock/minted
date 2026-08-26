@@ -6,6 +6,7 @@ var player_pos: Vector2 = Vector2.ZERO
 func _process(delta: float) -> void:
 	if Global.current_interactable == self and Input.is_action_pressed("interact") and player_pos != player.position:
 		Global.first_room = false
+		Global.outside = true
 		get_tree().change_scene_to_file("res://scenes/outside.tscn")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

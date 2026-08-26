@@ -69,27 +69,28 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if label_shown and Input.is_action_just_pressed("interact"):
-		if ShippingHandler.delivered_list.size() > 0:
+		if ShippingHandler.locker_list.size() > 0:
 			Global.first_room = false
 			get_tree().change_scene_to_file("res://scenes/parcel.tscn")
 		else:
 			print("No delivered items to collect")
 
 func fill_lockers(list):
-	for i in range(list.size()):
-		if list[i][1] == 1 or list[i][1] == 2:
+	for i in range(list.size() - 1, -1, -1):
+		var item = list[i]
+		if item[1] == 1 or item[1] == 2:
 			chosen_locker = small_locker.pick_random()
-			ShippingHandler.locker_list.append([list[i],chosen_locker,list[i][1]])
-		elif list[i][1] == 3 or list[i][1] == 4:
+			ShippingHandler.locker_list.append([item, chosen_locker, item[1]])
+		elif item[1] == 3 or item[1] == 4:
 			chosen_locker = medium_locker.pick_random()
-			ShippingHandler.locker_list.append([list[i],chosen_locker,list[i][1]])
-		elif list[i][1] == 5 or list[i][1] == 6:
+			ShippingHandler.locker_list.append([item, chosen_locker, item[1]])
+		elif item[1] == 5 or item[1] == 6:
 			chosen_locker = large_locker.pick_random()
-			ShippingHandler.locker_list.append([list[i],chosen_locker,list[i][1]])
-		elif list[i][1] > 6:
+			ShippingHandler.locker_list.append([item, chosen_locker, item[1]])
+		elif item[1] > 6:
 			chosen_locker = extralarge_locker.pick_random()
-			ShippingHandler.locker_list.append([list[i],chosen_locker,list[i][1]]) 
-	print(ShippingHandler.locker_list)
+			ShippingHandler.locker_list.append([item, chosen_locker, item[1]])
+		list.remove_at(i)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
