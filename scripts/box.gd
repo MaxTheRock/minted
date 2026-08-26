@@ -10,6 +10,7 @@ var previous_inventory_size = 0
 func _ready() -> void:
 	Global.inShelf = false
 	Global.inWardrobe = true
+	Global.inLocker = true
 	load_list_objects()
 	previous_delivered_size = ShippingHandler.delivered_list.size()
 	previous_inventory_size = Inventory.player_inventory.size()
@@ -24,6 +25,7 @@ func _process(_delta: float) -> void:
 
 func _on_close_pressed() -> void:
 	Global.inWardrobe = false
+	Global.inLocker = false
 	get_tree().change_scene_to_file("res://scenes/outside.tscn")
 
 

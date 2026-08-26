@@ -880,6 +880,7 @@ func load_data(data: Dictionary) -> void:
 	pattern_mult = data.get("pattern_mult",1)
 	pattern_index = data.get("pattern_index",0)
 	seller_name = data.get("seller_name","Unknown Seller")
+	seller_rating = data.get("seller_rating", 0)
 	item_category = data.get("item_category","")
 	placeable = data.get("placeable",false)
 	poster = data.get("poster",false)

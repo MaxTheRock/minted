@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
-size = Vector2(26.89616, 31.325016)
+size = Vector2(26.89616, 18.6732)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
 size = Vector2(230, 187.5)
@@ -54,7 +54,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="building_collision_shape" type="CollisionShape2D" parent="building_area" unique_id=1201566750]
-position = Vector2(609.36475, 420.248)
+position = Vector2(609.36475, 477.5)
 scale = Vector2(22.727058, 9.050404)
 shape = SubResource("RectangleShape2D_4c3da")
 

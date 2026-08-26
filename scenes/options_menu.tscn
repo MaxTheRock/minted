@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_ijpji"]
 [ext_resource type="Script" uid="uid://65p0y65w0y2e" path="res://scripts/vsyncbutton.gd" id="3_hm4m4"]
 [ext_resource type="Script" uid="uid://d0oo4u85mi71a" path="res://scripts/anti_alias_button.gd" id="4_lfjc7"]
+[ext_resource type="Script" uid="uid://dqmuh5puohanv" path="res://scripts/audio_settings.gd" id="5_3xsyx"]
 
 [node name="options_menu" type="Control" unique_id=1583969960]
 layout_mode = 3
@@ -153,7 +154,75 @@ text = "Anti Alias"
 [node name="Audio" type="TabBar" parent="TabContainer" unique_id=1970920060]
 visible = false
 layout_mode = 2
+script = ExtResource("5_3xsyx")
 metadata/_tab_index = 3
+
+[node name="Label" type="Label" parent="TabContainer/Audio" unique_id=925883775]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 38.0
+offset_right = 392.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+theme_override_font_sizes/font_size = 25
+text = "AUDIO SETTINGS"
+
+[node name="master_volume" type="HSlider" parent="TabContainer/Audio" unique_id=65124477]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 143.0
+offset_right = 612.0
+offset_bottom = 159.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label2" type="Label" parent="TabContainer/Audio/master_volume" unique_id=104377237]
+layout_mode = 0
+offset_left = -207.0
+offset_top = -20.0
+offset_right = -9.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Master Volume"
+
+[node name="sfx_volume" type="HSlider" parent="TabContainer/Audio" unique_id=772685176]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 185.0
+offset_right = 612.0
+offset_bottom = 201.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label2" type="Label" parent="TabContainer/Audio/sfx_volume" unique_id=829504770]
+layout_mode = 0
+offset_left = -159.0
+offset_top = -20.0
+offset_right = 39.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "SFX Volume"
+
+[node name="music_volume" type="HSlider" parent="TabContainer/Audio" unique_id=975122001]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 228.0
+offset_right = 612.0
+offset_bottom = 244.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label2" type="Label" parent="TabContainer/Audio/music_volume" unique_id=10333455]
+layout_mode = 0
+offset_left = -182.0
+offset_top = -20.0
+offset_right = 16.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Music Volume"
 
 [node name="TextureButton" type="Button" parent="." unique_id=348819529]
 custom_maximum_size = Vector2(100, 100)
@@ -168,4 +237,7 @@ text = "BACK"
 [connection signal="item_selected" from="TabContainer/Video/window_settings/resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="item_selected" from="TabContainer/Video/window_settings/window_mode" to="." method="_on_window_mode_item_selected"]
 [connection signal="toggled" from="TabContainer/Video/window_settings/CheckBox" to="TabContainer/Video/window_settings/CheckBox" method="_on_toggled"]
+[connection signal="value_changed" from="TabContainer/Audio/master_volume" to="TabContainer/Audio" method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/sfx_volume" to="TabContainer/Audio" method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/music_volume" to="TabContainer/Audio" method="_on_music_volume_value_changed"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

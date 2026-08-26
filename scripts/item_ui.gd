@@ -545,7 +545,7 @@ func _on_use_button_pressed() -> void:
 		if item.condition == "Poor":
 			AudioManager.music_player.bus = "LowQuality"
 		else:
-			AudioManager.music_player.bus = "Master"
+			AudioManager.music_player.bus = "Music"
  
 		if item.type == "the_big_mint":
 			AudioManager.play_music(AudioManager.the_big_mint)

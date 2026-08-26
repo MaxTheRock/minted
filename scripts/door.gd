@@ -1,4 +1,5 @@
 extends Control
+
 @onready var label = $Label
 @onready var player = get_node("/root/" + get_tree().current_scene.name + "/player/Player")
 var player_pos: Vector2 = Vector2.ZERO
@@ -13,11 +14,12 @@ func _process(delta: float) -> void:
 		label.hide()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	Global.current_interactable = self
-	player_pos = player.position
-	label.show()
+	if not Global.inLocker:
+		Global.current_interactable = self
+		player_pos = player.position
+		label.show()
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if Global.current_interactable == self:
-			Global.current_interactable = null
-			label.hide()
+		Global.current_interactable = null
+		label.hide()
