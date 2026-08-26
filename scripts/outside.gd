@@ -8,7 +8,8 @@ func _ready() -> void:
 	room_label.hide()
 
 func _process(delta: float) -> void:
-	if Global.current_interactable == self and Input.is_action_pressed("interact"):
+	if Global.current_interactable == self and Input.is_action_pressed("interact") and not Global.action_just_pressed:
+		Global.action_just_pressed = true
 		Global.first_room = false
 		get_tree().change_scene_to_file("res://scenes/room.tscn")
 

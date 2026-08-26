@@ -7,9 +7,12 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
-	if Global.current_interactable == self and Input.is_action_pressed("interact"):
+	if Global.current_interactable == self and Input.is_action_pressed("interact") and not Global.action_just_pressed:
 		Global.first_room = false
+		Global.action_just_pressed = true
 		get_tree().change_scene_to_file("res://scenes/outside.tscn")
+	if Global.current_interactable != self:
+		label.hide()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

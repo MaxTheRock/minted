@@ -27,4 +27,13 @@ func movement(d):
 		if !Input.is_action_pressed("up") and !Input.is_action_pressed("down"):
 			moveDir.y = 0
 		
-		move_and_collide(moveDir.normalized() * SPEED * d)
+		var target_velocity = moveDir.normalized() * SPEED
+		var collision = move_and_collide(target_velocity * d)
+		
+		if collision:
+			var remainder = collision.get_remainder()
+			var slide_vector = remainder.slide(collision.get_normal())
+			if slide_vector != Vector2.ZERO:
+				slide_vector = slide_vector.normalized() * remainder.length() * 0.7
+			
+			move_and_collide(slide_vector)

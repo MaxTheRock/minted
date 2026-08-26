@@ -72,7 +72,7 @@ func create_buyers(amount,id,listing_sell_id):
 	buyers.append(buyer_dict)
 		
 func _ready() -> void:
-	#player_inventory.append({ "ID": -1, "type": "tshirt", "number": 8, "color1": "cyan", "color2": "orange", "price": 1.5, "shippingTime": 1.0, "shippingValue": 1, "condition": "Poor", "condition_price_mult": 0.4, "brand": "none", "brandmult": 1, "selected_brand": "none", "genre": "none", "cd": false, "rarity": "common", "logo_animation": &"none", "default_price": 2.5, "overlay_animation": "none", "pattern_type": "polka-dot", "pattern_mult": 1.5, "pattern_index": 9 })
+	player_inventory.append({ "ID": 72, "type": "radio", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 4.5, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
 	pass
 	
 func _process(_delta) -> void:

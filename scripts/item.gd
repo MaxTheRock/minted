@@ -49,6 +49,7 @@ var brandmult = 1
 var brand = "none"
 var genre = "none"
 var cd: bool
+var spice_factor = 0
 var selected_brand = "none"
 var counter: int = 0
 var hovering = false
@@ -225,19 +226,24 @@ func initialize_item(category := "All"):
 	elif type == "the_big_mint":
 		color1 = "black"
 		color2 = "green"
+		spice_factor = 3
 	elif type == "smooth_jazz_1":
 		color1 = "cream"
+		spice_factor = 1
 	elif type == "camera":
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
 		color1 = "grey"
 	elif type == "three_jelly":
 		color1 = "green"
+		spice_factor = 4
 	elif type == "evil_pulsation":
 		color1 = "grey"
+		spice_factor = 5
 	elif type == "jungle":
 		color1 = "green"
 		color2 = "black"
+		spice_factor = 2
 	elif type == "football":
 		color1 = "black"
 		color2 = "white"
@@ -836,6 +842,7 @@ func get_data() -> Dictionary:
 		"selected_brand": selected_brand,
 		"genre": genre,
 		"cd": cd,
+		"spice_factor": spice_factor,
 		"rarity": rarity,
 		"logo_animation": tshirt_logo.animation if tshirt_logo else "none",
 		"default_price": default_price,
@@ -876,6 +883,7 @@ func load_data(data: Dictionary) -> void:
 	item_category = data.get("item_category","")
 	placeable = data.get("placeable",false)
 	poster = data.get("poster",false)
+	spice_factor = data.get("spice_factor",1)
 	set_item_type(type)
 
 	if sprites.has(type):

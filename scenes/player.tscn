@@ -58,12 +58,15 @@ animations = [{
 size = Vector2(24, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pjmv"]
-size = Vector2(41, 122)
+size = Vector2(41, 99)
 
 [node name="player" type="Node2D" unique_id=1318553151]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=923979185]
+z_index = 3
 collision_layer = 2
+motion_mode = 1
+safe_margin = 1.0
 script = ExtResource("1_g2els")
 
 [node name="Player" type="AnimatedSprite2D" parent="Player" unique_id=1083422136]
@@ -83,6 +86,6 @@ debug_color = Color(0.381612, 0.11398546, 0.024642583, 0.41960785)
 collision_layer = 2
 
 [node name="detection" type="CollisionShape2D" parent="Player/Player_Detector" unique_id=1866695373]
-position = Vector2(-2.5, 17)
+position = Vector2(-2.5, 28.5)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(1, 1, 0, 0.41960785)

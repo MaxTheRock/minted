@@ -11,6 +11,23 @@
 [ext_resource type="Texture2D" uid="uid://dog20d6b2p7oq" path="res://assets/os/icons/sleep.png" id="7_7dqbv"]
 [ext_resource type="Texture2D" uid="uid://cdp4tmf5gv8qc" path="res://assets/alarm.png" id="9_qtoah"]
 [ext_resource type="FontFile" uid="uid://cmwpv1y0o15oi" path="res://fonts/digital-7 (mono).ttf" id="10_eom3m"]
+[ext_resource type="Texture2D" uid="uid://w5vi05v5cwoc" path="res://assets/os/icons/down.png" id="12_tk5fv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
+bg_color = Color(0, 0.1764706, 0, 1)
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Gradient" id="Gradient_w68ji"]
+colors = PackedColorArray(0.5058824, 1, 0.54509807, 1, 0.7058824, 1, 0.63529414, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccrme"]
+gradient = SubResource("Gradient_w68ji")
+fill_from = Vector2(0.48293516, 0)
+fill_to = Vector2(0.4010239, 1)
 
 [node name="Room" type="Node2D" unique_id=1370404577]
 position = Vector2(0, -45)
@@ -46,13 +63,34 @@ offset_bottom = 305.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="sleep" type="Control" parent="." unique_id=1165846722]
+[node name="left_bar" type="Control" parent="." unique_id=1109715397]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -407.0
+offset_top = 114.0
+offset_right = -367.0
+offset_bottom = 154.0
 
-[node name="sleep_label" type="Label" parent="sleep" unique_id=1157445545]
+[node name="PanelContainer" type="PanelContainer" parent="left_bar" unique_id=925895638]
+layout_mode = 0
+offset_left = 757.0
+offset_top = -481.0
+offset_right = 1057.0
+offset_bottom = 319.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6snss")
+
+[node name="ColorRect" type="TextureRect" parent="left_bar/PanelContainer" unique_id=1148005120]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ccrme")
+
+[node name="sleep" type="Control" parent="left_bar" unique_id=1165846722]
+anchors_preset = 0
+offset_left = 413.0
+offset_top = -105.0
+offset_right = 453.0
+offset_bottom = -65.0
+
+[node name="sleep_label" type="Label" parent="left_bar/sleep" unique_id=1157445545]
 layout_mode = 0
 offset_left = 390.0
 offset_top = -357.0
@@ -62,7 +100,7 @@ theme_override_fonts/font = ExtResource("6_qtoah")
 theme_override_font_sizes/font_size = 40
 text = "Sleep:"
 
-[node name="sleep_bar" type="TextureProgressBar" parent="sleep" unique_id=1101053757]
+[node name="sleep_bar" type="TextureProgressBar" parent="left_bar/sleep" unique_id=1101053757]
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 0
 offset_left = 359.0
@@ -77,14 +115,14 @@ nine_patch_stretch = true
 texture_under = ExtResource("6_qvc4m")
 texture_progress = ExtResource("7_7dqbv")
 
-[node name="timer" type="Control" parent="sleep" unique_id=1712251329]
+[node name="timer" type="Control" parent="left_bar/sleep" unique_id=1712251329]
 anchors_preset = 0
 offset_left = 569.0
 offset_top = -267.0
 offset_right = 569.0
 offset_bottom = -267.0
 
-[node name="TextureRect" type="TextureRect" parent="sleep/timer" unique_id=853162973]
+[node name="TextureRect" type="TextureRect" parent="left_bar/sleep/timer" unique_id=853162973]
 layout_mode = 0
 offset_left = -80.0
 offset_top = -31.0
@@ -92,7 +130,7 @@ offset_right = 31.0
 offset_bottom = 80.0
 texture = ExtResource("9_qtoah")
 
-[node name="Time" type="Label" parent="sleep/timer" unique_id=416062847]
+[node name="Time" type="Label" parent="left_bar/sleep/timer" unique_id=416062847]
 layout_mode = 0
 offset_left = -65.0
 offset_top = 11.0
@@ -102,3 +140,17 @@ theme_override_colors/font_color = Color(0.99454254, 0.27276024, 0.29930428, 1)
 theme_override_fonts/font = ExtResource("10_eom3m")
 theme_override_font_sizes/font_size = 35
 text = "15:52"
+
+[node name="slide" type="Button" parent="left_bar" unique_id=1228107173]
+layout_mode = 0
+offset_left = 686.0
+offset_top = -460.0
+offset_right = 750.0
+offset_bottom = -396.0
+rotation = 1.5707964
+pivot_offset = Vector2(32, 32)
+icon = ExtResource("12_tk5fv")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="left_bar/slide" to="." method="_on_slide_pressed"]

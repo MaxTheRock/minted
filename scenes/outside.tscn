@@ -43,6 +43,7 @@ scale = Vector2(2, 2)
 position = Vector2(703, 427)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_nsm10")]
+visible = false
 modulate = Color(1, 1, 1, 0.08627451)
 position = Vector2(682, 593)
 

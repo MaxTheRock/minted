@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://i0hx3h41ln6o"]
+
+[ext_resource type="Script" uid="uid://ccspo8e0u8u8d" path="res://scenes/radio.gd" id="1_3mpwk"]
+[ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="2_uf7ta"]
+[ext_resource type="Texture2D" uid="uid://d3uqf1m2u01pw" path="res://assets/room/small_shelf.png" id="3_144bg"]
+[ext_resource type="Texture2D" uid="uid://bxle0fixyd21v" path="res://assets/items/radio.png" id="4_3mpwk"]
+[ext_resource type="Texture2D" uid="uid://cr30fcedpmuut" path="res://assets/os/icons/pause.png" id="5_ppvrc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhhqh"]
+atlas = ExtResource("4_3mpwk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf7ta"]
+atlas = ExtResource("4_3mpwk")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhhqh")
+}],
+"loop": 1,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf7ta")
+}],
+"loop": 1,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="Radio" type="Control" unique_id=1467846975]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3mpwk")
+
+[node name="Wall" type="TextureRect" parent="." unique_id=231508726]
+layout_mode = 0
+offset_left = -2586.0
+offset_top = -721.0
+offset_right = -1946.0
+offset_bottom = -361.0
+scale = Vector2(10, 10)
+texture = ExtResource("2_uf7ta")
+
+[node name="Shelf" type="TextureRect" parent="." unique_id=41745123]
+layout_mode = 0
+offset_left = -1640.0
+offset_top = -445.99997
+offset_right = -1240.0
+offset_bottom = -245.99997
+scale = Vector2(10, 10)
+texture = ExtResource("3_144bg")
+
+[node name="Close" type="Button" parent="." unique_id=1793356023]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 72.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
+text = "X"
+
+[node name="radio" type="AnimatedSprite2D" parent="." unique_id=63191797]
+position = Vector2(419, 263)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"off"
+
+[node name="now_playing_text" type="Label" parent="." unique_id=1500167974]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 39.0
+offset_right = 525.0
+offset_bottom = 62.0
+text = "Now Playing: Main Theme"
+
+[node name="Pause" type="Button" parent="." unique_id=501074061]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 107.0
+offset_right = 75.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
+icon = ExtResource("5_ppvrc")
+expand_icon = true
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]

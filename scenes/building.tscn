@@ -302,17 +302,20 @@ position = Vector2(-15.5, -150.5)
 shape = SubResource("RectangleShape2D_nge4r")
 
 [node name="desk" type="Sprite2D" parent="Computer" unique_id=101956253]
+z_index = 4
 position = Vector2(17, -154)
 scale = Vector2(2, 2)
 texture = ExtResource("8_g4d30")
 
 [node name="computer" type="AnimatedSprite2D" parent="Computer" unique_id=507118116]
+z_index = 5
 position = Vector2(14, -180)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_4pjmv")
 
 [node name="computer_light" type="AnimatedSprite2D" parent="Computer" unique_id=1379918801]
 modulate = Color(1, 1, 1, 0.24313726)
+z_index = 5
 position = Vector2(14, -180)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ijljr")

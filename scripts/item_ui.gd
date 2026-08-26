@@ -21,7 +21,6 @@ extends Control
 signal page_requested(page_name: String)
 signal poster_selected(item_data: Dictionary)
 
-var placeable_items: Array = ["cd_player", "camera"]
 var market_type = ""
 
 var inventory_index = 0
@@ -115,7 +114,7 @@ func _ready() -> void:
 				item.load_data(Inventory.player_inventory[inventory_index])
 
 		var current_item_data = item.get_data()
-		if current_item_data.type not in placeable_items:
+		if not current_item_data.placeable:
 			place_button.hide()
 
 	elif Inventory.current_ui_type == "player":
@@ -133,11 +132,11 @@ func _ready() -> void:
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
-				item.load_data(Inventory.player_inventory[inventory_index][0])
+				item.load_data(Inventory.player_inventory[inventory_index])
 		else:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
-				item.load_data(Inventory.player_inventory[inventory_index][0])
+				item.load_data(Inventory.player_inventory[inventory_index])
 
 	elif Inventory.current_ui_type == "inventory_wardrobe":
 		buy_button.hide()
@@ -209,6 +208,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$PanelContainer2.hide()
+		item.rarity_ui.connect(_rarity_ui)
 	elif Inventory.current_ui_type == "parcel":
 		buy_button.hide()
 		take_button.show()
@@ -219,7 +219,8 @@ func _ready() -> void:
 		eject_button.hide()
 		upload_button.hide()
 		grid_container.show()
-
+		item.rarity_ui.connect(_rarity_ui)
+		
 		if ShippingHandler.delivered_list:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
@@ -379,7 +380,7 @@ func _on_buy_button_pressed() -> void:
 	var current_item_data = item.get_data()
 	var inventory_index = Inventory.market_items[market_type].find(current_item_data)
 	Inventory.market_items[market_type].pop_at(inventory_index)
-
+	print(item.get_data())
 	queue_free()
 
 func _on_take_button_mouse_entered() -> void:
@@ -533,7 +534,8 @@ func _on_use_pressed() -> void:
 	elif item.type == "camera":
 		Global.camera_quality = item.condition
 		get_tree().change_scene_to_file("res://scenes/camera.tscn")
- 
+	elif item.type == "radio":
+		get_tree().change_scene_to_file("res://scenes/radio.tscn")
  
 func _on_use_button_pressed() -> void:
 	use_button.modulate = Color(0.5, 0.5, 0.5, 1)
