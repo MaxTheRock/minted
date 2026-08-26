@@ -32,7 +32,6 @@ func _ready():
 	panel.z_index = 5
 
 
-
 func _process(delta: float) -> void:
 	update_position()
 
@@ -55,7 +54,6 @@ func show_tooltip(target):
 	var vp_size = get_viewport().get_visible_rect().size
 	var tooltip_size = panel.size
 	var pos = target.global_position + Vector2(target.size.x + tooltip_offset.x, tooltip_offset.y)
-	#print(pos)
 	if pos.x + tooltip_size.x > vp_size.x:
 		pos.x = target.global_position.x - tooltip_size.x - tooltip_offset.x + 20
 		tag_container.position = Vector2(17,16)

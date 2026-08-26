@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bs2geidmgyaeh"]
 
 [ext_resource type="Texture2D" uid="uid://bp1047q7r7k1h" path="res://assets/room/room_template.png" id="1_n8bkc"]
+[ext_resource type="Script" uid="uid://cr8wcg5dwprdf" path="res://scenes/building.gd" id="1_s0gur"]
 [ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="2_ejq8p"]
 [ext_resource type="Texture2D" uid="uid://1jctyxr0fxeh" path="res://assets/room/broke/broke_floor.png" id="3_rla3o"]
 [ext_resource type="Texture2D" uid="uid://cop04idyjaq6l" path="res://assets/room/broke/broke_door.png" id="4_7huw0"]
@@ -235,6 +236,7 @@ size = Vector2(125.97222, 195.04973)
 
 [node name="Building" type="Node2D" unique_id=2101118295]
 position = Vector2(0, -13)
+script = ExtResource("1_s0gur")
 
 [node name="template" type="Sprite2D" parent="." unique_id=1317997496]
 position = Vector2(0, 1)
