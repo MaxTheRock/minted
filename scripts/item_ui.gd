@@ -223,7 +223,7 @@ func _ready() -> void:
 		if ShippingHandler.delivered_list:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
-				item.load_data(ShippingHandler.delivered_list[inventory_index][0][0])
+				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
 		else:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
