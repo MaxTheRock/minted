@@ -1,7 +1,7 @@
 extends Control
 
 @onready var building = $Building
-@onready var room_label = $Control/Label
+@onready var room_label = $Control/InteractionPrompt
 @onready var player = $player/Player
 var moved: bool = false
 var starting_position: Vector2 = Vector2(0.0, -1.5)

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var label = $Label
+@onready var label = $InteractionPrompt
 @onready var player = get_node("/root/" + get_tree().current_scene.name + "/player/Player")
 var player_pos: Vector2 = Vector2.ZERO
 

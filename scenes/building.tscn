@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chx5ksg6uny8p" path="res://scenes/door.tscn" id="5_nge4r"]
 [ext_resource type="Script" uid="uid://c2wgcrisxmjr1" path="res://scripts/room_computer.gd" id="6_blq7k"]
 [ext_resource type="Script" uid="uid://dkdv0h01l33ky" path="res://scripts/poster.gd" id="7_nm462"]
+[ext_resource type="PackedScene" uid="uid://6l16dlxi4r81" path="res://scenes/interaction_prompt.tscn" id="8_fl114"]
 [ext_resource type="Texture2D" uid="uid://b3gu6c41en0yb" path="res://assets/room/desk.png" id="8_g4d30"]
 [ext_resource type="PackedScene" uid="uid://dpgwvowos1n7g" path="res://scenes/poster_item.tscn" id="8_jc16f"]
 [ext_resource type="Script" uid="uid://bnmbx5q07noiq" path="res://scripts/room_storage.gd" id="9_g4d30"]
@@ -196,7 +197,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yw3a"]
-size = Vector2(137.5, 262)
+size = Vector2(137.5, 163)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nm462"]
 atlas = ExtResource("12_blq7k")
@@ -232,7 +233,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwfoe"]
-size = Vector2(125.97222, 195.04973)
+size = Vector2(135.99579, 195.04973)
 
 [node name="Building" type="Node2D" unique_id=2101118295]
 position = Vector2(0, -13)
@@ -286,13 +287,12 @@ z_index = 1
 position = Vector2(-17, 302)
 script = ExtResource("6_blq7k")
 
-[node name="Label" type="Label" parent="Computer" unique_id=237188752]
-offset_left = -38.0
-offset_top = -137.0
-offset_right = 63.0
-offset_bottom = -114.0
-text = "Computer [F]"
-metadata/_edit_use_anchors_ = true
+[node name="InteractionPrompt" parent="Computer" unique_id=2068386220 instance=ExtResource("8_fl114")]
+offset_left = -69.0
+offset_top = -273.0
+offset_right = 26.0
+offset_bottom = -225.0
+detail_text = "COMPUTER"
 
 [node name="Area2D" type="Area2D" parent="Computer" unique_id=1176618904]
 position = Vector2(1, 0)
@@ -327,13 +327,12 @@ frame_progress = 0.38663486
 position = Vector2(-17, 302)
 script = ExtResource("7_nm462")
 
-[node name="Label" type="Label" parent="Poster" unique_id=25234462]
-offset_left = -213.0
-offset_top = -404.0
-offset_right = -112.0
-offset_bottom = -381.0
-text = "Poster [F]"
-metadata/_edit_use_anchors_ = true
+[node name="InteractionPrompt" parent="Poster" unique_id=1784692233 instance=ExtResource("8_fl114")]
+offset_left = -254.0
+offset_top = -423.0
+offset_right = -254.0
+offset_bottom = -423.0
+detail_text = "POSTER"
 
 [node name="Area2D" type="Area2D" parent="Poster" unique_id=1648176903]
 position = Vector2(1, 0)
@@ -359,20 +358,19 @@ sprite_frames = SubResource("SpriteFrames_4c3da")
 frame = 1
 frame_progress = 0.346404
 
-[node name="Label" type="Label" parent="Storage" unique_id=1602704653]
-offset_left = -352.0
-offset_top = -28.0
-offset_right = -251.0
-offset_bottom = -5.0
-text = "Storage [F]"
-metadata/_edit_use_anchors_ = true
+[node name="InteractionPrompt" parent="Storage" unique_id=9238395 instance=ExtResource("8_fl114")]
+offset_left = -395.0
+offset_top = 9.0
+offset_right = -395.0
+offset_bottom = 9.0
+detail_text = "Storage"
 
 [node name="Area2D" type="Area2D" parent="Storage" unique_id=571986441]
 collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Storage/Area2D" unique_id=1965242888]
-position = Vector2(-282.75, 111)
+position = Vector2(-282.75, 61.5)
 shape = SubResource("RectangleShape2D_4yw3a")
 
 [node name="Shelf" type="Sprite2D" parent="." unique_id=433187156]
@@ -385,13 +383,12 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qnalp")
 frame_progress = 0.6233422
 
-[node name="Label" type="Label" parent="Shelf" unique_id=1992749825]
-offset_left = -760.0
-offset_top = 251.0
-offset_right = -659.0
-offset_bottom = 274.0
-text = "Shelf [F]"
-metadata/_edit_use_anchors_ = true
+[node name="InteractionPrompt" parent="Shelf" unique_id=1140123667 instance=ExtResource("8_fl114")]
+offset_left = -857.0
+offset_top = 280.0
+offset_right = -857.0
+offset_bottom = 280.0
+detail_text = "SHELF"
 
 [node name="Area2D" type="Area2D" parent="Shelf" unique_id=1293250216]
 position = Vector2(-1025, 188)
@@ -414,13 +411,12 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_t2gq3")
 flip_h = true
 
-[node name="Label" type="Label" parent="Bed" unique_id=1815296376]
-offset_left = -25.0
-offset_top = 25.0
-offset_right = 76.0
-offset_bottom = 48.0
-text = "Bed [F]"
-metadata/_edit_use_anchors_ = true
+[node name="InteractionPrompt" parent="Bed" unique_id=1521363768 instance=ExtResource("8_fl114")]
+offset_left = -92.0
+offset_top = -142.0
+offset_right = -92.0
+offset_bottom = -142.0
+detail_text = "Bed"
 
 [node name="Area2D" type="Area2D" parent="Bed" unique_id=1179102836]
 position = Vector2(-532, -29)
@@ -428,9 +424,9 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bed/Area2D" unique_id=204589895]
-position = Vector2(517.5449, 71.02507)
+position = Vector2(517.5358, 66.013306)
 rotation = 1.568984
-scale = Vector2(0.99999946, 0.99999946)
+scale = Vector2(0.99999934, 0.99999934)
 shape = SubResource("RectangleShape2D_gwfoe")
 
 [connection signal="area_entered" from="Computer/Area2D" to="Computer" method="_on_area_2d_area_entered"]

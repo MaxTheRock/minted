@@ -56,7 +56,7 @@ extends Control
 	$"doors/32": $"parcels/parcel_32"
 }
 
-@onready var label = $Label
+@onready var label: Control = $InteractionPrompt
 var label_shown = false
 
 var chosen_locker

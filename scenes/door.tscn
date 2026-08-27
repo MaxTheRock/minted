@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chx5ksg6uny8p"]
 
 [ext_resource type="Script" uid="uid://drfg67cab1ibv" path="res://scripts/door.gd" id="1_hpvv5"]
+[ext_resource type="PackedScene" uid="uid://6l16dlxi4r81" path="res://scenes/interaction_prompt.tscn" id="2_uvdjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f452"]
 size = Vector2(120.45455, 147.18752)
@@ -24,17 +25,14 @@ collision_mask = 2
 position = Vector2(-31.4394, -72.03126)
 shape = SubResource("RectangleShape2D_5f452")
 
-[node name="Label" type="Label" parent="." unique_id=1491388418]
+[node name="InteractionPrompt" parent="." unique_id=2068386220 instance=ExtResource("2_uvdjg")]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.08611111
-anchor_bottom = -0.08611111
-offset_left = -1.0
-offset_top = -23.0
-offset_right = 75.0
+offset_left = -20.0
+offset_top = -63.0
+offset_right = -20.0
+offset_bottom = -63.0
 scale = Vector2(0.5, 0.5)
-text = "Leave [F]"
-metadata/_edit_use_anchors_ = true
+detail_text = "LEAVE"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

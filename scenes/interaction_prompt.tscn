@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://6l16dlxi4r81"]
+
+[ext_resource type="Script" uid="uid://l3cinigmnuk4" path="res://scripts/interaction_prompt.gd" id="1_lwyq1"]
+[ext_resource type="Texture2D" uid="uid://dib0cre0b2mo7" path="res://assets/key_button.png" id="2_3hm08"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="3_2mm7j"]
+
+[node name="InteractionPrompt" type="Control" unique_id=2068386220]
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lwyq1")
+
+[node name="keycap" type="TextureRect" parent="." unique_id=194947526]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_3hm08")
+
+[node name="letter" type="Label" parent="." unique_id=1863606917]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -4.0
+offset_right = 27.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.5330367, 0.5330367, 0.5330366, 1)
+theme_override_fonts/font = ExtResource("3_2mm7j")
+theme_override_font_sizes/font_size = 12
+text = "F"
+
+[node name="detail" type="Label" parent="." unique_id=2004924556]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -4.0
+offset_right = 165.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.89059, 0.89059, 0.8905901, 1)
+theme_override_fonts/font = ExtResource("3_2mm7j")
+theme_override_font_sizes/font_size = 15
+text = "INTERACT"

@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var label: Label = $Label
+@onready var label: Control = $InteractionPrompt
 var label_shown: bool = false
 
 func _ready() -> void:

@@ -196,19 +196,6 @@ func _ready() -> void:
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
 				item.load_data(Inventory.player_inventory[inventory_index])
 
-	elif Inventory.current_ui_type == "shipping":
-		buy_button.hide()
-		take_button.hide()
-		place_button.hide()
-		put_button.hide()
-		shelf_ui_buttons.hide()
-		use_button.hide()
-		eject_button.hide()
-		grid_container.hide()
-		upload_button.hide()
-		panel_container.custom_maximum_size = Vector2(150, 160)
-		$PanelContainer2.hide()
-		item.rarity_ui.connect(_rarity_ui)
 	elif Inventory.current_ui_type == "parcel":
 		buy_button.hide()
 		take_button.show()
@@ -220,15 +207,9 @@ func _ready() -> void:
 		upload_button.hide()
 		grid_container.show()
 		item.rarity_ui.connect(_rarity_ui)
-		
-		if ShippingHandler.delivered_list:
-			item.rarity_ui.connect(_rarity_ui)
-			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
-				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
-		else:
-			item.rarity_ui.connect(_rarity_ui)
-			if inventory_index >= 0 and inventory_index < ShippingHandler.delivered_list.size():
-				item.load_data(ShippingHandler.delivered_list[inventory_index][0])
+
+		if inventory_index >= 0 and inventory_index < ShippingHandler.locker_list.size():
+			item.load_data(ShippingHandler.locker_list[inventory_index][0][0][0])
 
 	elif Inventory.current_ui_type == "display_selling":
 		buy_button.hide()
@@ -327,7 +308,6 @@ func _ready() -> void:
 				item.load_data(Inventory.bidding_items[inventory_index])
 				
 	else:
-		$TextureRect.show()
 		$PanelContainer2.show()
 
 
@@ -397,18 +377,13 @@ func _on_take_button_pressed() -> void:
 	take_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if is_parcel:
 		if Inventory.player_inventory.size() <= 1:
-			if inventory_index < 0 or inventory_index >= ShippingHandler.delivered_list.size():
+			if inventory_index < 0 or inventory_index >= ShippingHandler.locker_list.size():
 				print("Could not find parcel item to take!")
 				return
  
-			ShippingHandler.shipping_value -= item.shippingValue
- 
-			Inventory.player_inventory.append(ShippingHandler.delivered_list[inventory_index][0])
-			ShippingHandler.delivered_list.remove_at(inventory_index)
+			Inventory.player_inventory.append(ShippingHandler.locker_list[inventory_index][0][0][0])
+			ShippingHandler.locker_list.remove_at(inventory_index)
 			Inventory.inventories_changed.emit()
- 
-			if ShippingHandler.delivered_list.size() == 0:
-				ShippingHandler.shipping_value = 0
  
 			get_tree().reload_current_scene()
 		else:

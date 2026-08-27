@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var label: Label = $Label
+@onready var label: Control = $InteractionPrompt
 @onready var computer_light = $computer_light
 var label_shown: bool = false
 

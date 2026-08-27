@@ -4,13 +4,14 @@
 [ext_resource type="Script" uid="uid://c1r2wyc40p38v" path="res://scripts/outside.gd" id="1_udpx5"]
 [ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_nsm10"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_8lkp2"]
+[ext_resource type="PackedScene" uid="uid://6l16dlxi4r81" path="res://scenes/interaction_prompt.tscn" id="6_bkgx0"]
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
 size = Vector2(26.89616, 18.6732)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
-size = Vector2(230, 187.5)
+size = Vector2(111, 187.5)
 
 [node name="Outside" type="Control" unique_id=1576444141]
 layout_mode = 3
@@ -64,26 +65,20 @@ offset_top = 48.0
 offset_right = 40.0
 offset_bottom = 88.0
 
-[node name="Label" type="Label" parent="Control" unique_id=1713237395]
+[node name="InteractionPrompt" parent="Control" unique_id=2068386220 instance=ExtResource("6_bkgx0")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.78515625
-anchor_top = 0.53333336
-anchor_right = 0.78515625
-anchor_bottom = 0.53333336
-offset_left = 621.59375
-offset_top = 334.6667
-offset_right = 722.59375
-offset_bottom = 357.6667
-text = "Room [F]"
-metadata/_edit_use_anchors_ = true
+offset_left = 635.0
+offset_top = 342.0
+offset_right = 635.0
+offset_bottom = 342.0
+detail_text = "ENTER"
 
 [node name="door_area" type="Area2D" parent="Control" unique_id=1615298691]
 collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/door_area" unique_id=27538041]
-position = Vector2(684, 395.75)
+position = Vector2(674.5, 395.75)
 shape = SubResource("RectangleShape2D_qnalp")
 debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
 
