@@ -5,7 +5,7 @@ extends Control
 @onready var now_playing_text = $now_playing_text
 
 var bounce_time = 0.0
-var paused = false
+
 
 
 func _ready() -> void:
@@ -21,16 +21,16 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Global.now_playing != "":
-		if paused:
-			now_playing_text.text = "Now Playing: " + Global.now_playing + " (Paused)"
+		if Global.cd_paused:
+			now_playing_text.text = "Now Playing: " + Global.now_playing + " (paused)"
 		else:
 			now_playing_text.text = "Now Playing: " + Global.now_playing
-		bounce_time += delta * 6.0
-		var bounce = sin(bounce_time) * 0.2
-		cd_player.scale = Vector2(
-			10.0 + bounce,
-			10.0 - bounce * 0.5
-		)
+			bounce_time += delta * 6.0
+			var bounce = sin(bounce_time) * 0.2
+			cd_player.scale = Vector2(
+				10.0 + bounce,
+				10.0 - bounce * 0.5
+			)
 		
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/shelf.tscn")
@@ -38,9 +38,24 @@ func _on_close_pressed() -> void:
 
 
 func _on_pause_pressed() -> void:
-	paused = not paused
-	Global.pause_toggled.emit(paused)
-
+	if not Global.radio_on:
+		Global.cd_paused = not Global.cd_paused
+		Global.pause_toggled.emit(Global.cd_paused)
+		const background_menu_music = preload("res://audio/background_menu.mp3")
+		if AudioManager.music_player.stream == background_menu_music and Inventory.cd_inventory.size() == 1:
+			var type = Inventory.cd_inventory[0]["type"]
+			if type == "the_big_mint":
+				AudioManager.play_music(AudioManager.the_big_mint)
+			elif type == "smooth_jazz_1":
+				AudioManager.play_music(AudioManager.smooth_jazz_1)
+			elif type == "evil_pulsation":
+				AudioManager.play_music(AudioManager.evil_pulsation)
+			elif type == "jungle":
+				AudioManager.play_music(AudioManager.jungle)
+			elif type == "three_jelly":
+				AudioManager.play_music(AudioManager.three_jelly)
+	else:
+		$radio_warning.show()
 
 
 func _on_eject_pressed() -> void:
