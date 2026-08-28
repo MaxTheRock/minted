@@ -236,6 +236,15 @@ icon = ExtResource("4_h2j5b")
 flat = true
 expand_icon = true
 
+[node name="radio_warning" type="Label" parent="." unique_id=271872422]
+visible = false
+layout_mode = 0
+offset_left = 320.0
+offset_top = 90.0
+offset_right = 500.0
+offset_bottom = 109.0
+text = "The radio is currently on!"
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="Eject" to="." method="_on_eject_pressed"]

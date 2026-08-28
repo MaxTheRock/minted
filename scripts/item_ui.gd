@@ -498,6 +498,10 @@ func _on_remove_pressed() -> void:
  
 		queue_free()
 		get_tree().reload_current_scene()
+		var data = item.get_data()
+		if data.type == "radio":
+			AudioManager.eject()
+			Global.radio_on = false
 	else:
 		print("Cannot carry any more items!")
  
@@ -516,7 +520,8 @@ func _on_use_button_pressed() -> void:
 	use_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if Inventory.cd_inventory.size() < 1:
 		Global.now_playing = str(item.type)
- 
+		Global.radio_on = false
+		Global.cd_paused = false
 		if item.condition == "Poor":
 			AudioManager.music_player.bus = "LowQuality"
 		else:
@@ -532,7 +537,7 @@ func _on_use_button_pressed() -> void:
 			AudioManager.play_music(AudioManager.jungle)
 		elif item.type == "three_jelly":
 			AudioManager.play_music(AudioManager.three_jelly)
- 
+ 		
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
 			print("Could not find CD to play!")
 			return

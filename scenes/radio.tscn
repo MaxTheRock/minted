@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="2_uf7ta"]
 [ext_resource type="Texture2D" uid="uid://d3uqf1m2u01pw" path="res://assets/room/small_shelf.png" id="3_144bg"]
 [ext_resource type="Texture2D" uid="uid://bxle0fixyd21v" path="res://assets/items/radio.png" id="4_3mpwk"]
-[ext_resource type="Texture2D" uid="uid://cr30fcedpmuut" path="res://assets/os/icons/pause.png" id="5_ppvrc"]
+[ext_resource type="Texture2D" uid="uid://c3nkuxwm24pws" path="res://assets/items/radio_no_text.png" id="5_3mpwk"]
+[ext_resource type="FontFile" uid="uid://cmwpv1y0o15oi" path="res://fonts/digital-7 (mono).ttf" id="6_hhhqh"]
+[ext_resource type="Script" uid="uid://u4htkiyp5yb3" path="res://scenes/frequency.gd" id="6_uf7ta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]
 content_margin_left = 10.0
@@ -12,14 +14,32 @@ content_margin_top = 5.0
 content_margin_right = 10.0
 content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhhqh"]
 atlas = ExtResource("4_3mpwk")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uf7ta"]
-atlas = ExtResource("4_3mpwk")
-region = Rect2(256, 192, 64, 64)
+atlas = ExtResource("5_3mpwk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_144bg"]
+atlas = ExtResource("5_3mpwk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvvpt"]
+atlas = ExtResource("5_3mpwk")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppvrc"]
+atlas = ExtResource("5_3mpwk")
+region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
 animations = [{
@@ -34,10 +54,19 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uf7ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_144bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvvpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppvrc")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"on",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [node name="Radio" type="Control" unique_id=1467846975]
@@ -79,30 +108,46 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
 text = "X"
 
 [node name="radio" type="AnimatedSprite2D" parent="." unique_id=63191797]
-position = Vector2(419, 263)
+position = Vector2(603.00006, 269.00003)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_qnalp")
-animation = &"off"
+animation = &"on"
+autoplay = "off"
 
-[node name="now_playing_text" type="Label" parent="." unique_id=1500167974]
+[node name="Power" type="Button" parent="." unique_id=501074061]
 layout_mode = 0
-offset_left = 325.0
-offset_top = 39.0
-offset_right = 525.0
-offset_bottom = 62.0
-text = "Now Playing: Main Theme"
-
-[node name="Pause" type="Button" parent="." unique_id=501074061]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 107.0
-offset_right = 75.0
-offset_bottom = 168.0
-theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+offset_left = 217.0
+offset_top = 142.0
+offset_right = 287.0
+offset_bottom = 219.0
+theme_override_colors/font_color = Color(0.26666668, 0.84705883, 0.34901962, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
-icon = ExtResource("5_ppvrc")
+text = "⏻"
 expand_icon = true
 
+[node name="frequency" type="HSlider" parent="." unique_id=623133727]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 529.0
+offset_right = 837.0
+offset_bottom = 559.0
+min_value = 100.0
+max_value = 200.0
+step = 0.1
+value = 150.0
+script = ExtResource("6_uf7ta")
+
+[node name="frequency_label" type="Label" parent="." unique_id=1522465734]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 281.0
+offset_right = 674.0
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("6_hhhqh")
+theme_override_font_sizes/font_size = 35
+text = "150 MHZ"
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Power" to="." method="_on_power_pressed"]
+[connection signal="value_changed" from="frequency" to="." method="_on_frequency_value_changed"]
