@@ -215,11 +215,10 @@ func check_buy_items(buyer,id):
 				found_index = i	
 				break
 		Global.money += player_selling[found_index]["price"]
+		remove_from_inventory(id)
 		transfer_item(actual_selling,actual_sold,found_index)
 		player_selling[found_index]["buyer_name"] = buyer["buyer_name"]	
 		transfer_item(player_selling,sold_items,found_index)
-		#print(found_index, actual_selling,actual_sold)
-		#print(found_index, player_selling,sold_items)
 		item_sold.emit()
 		Global.xp += 200
 
@@ -396,3 +395,13 @@ func resolve_bid(index: int) -> void:
 
 	bid_done.emit()
 	Global.xp += 100
+
+func remove_from_inventory(id: int) -> bool:
+	var inventories = [player_inventory, wardrobe_inventory, shelf_inventory, cd_inventory]
+	for inv in inventories:
+		for i in range(inv.size()):
+			if inv[i].get("ID") == id:
+				inv.pop_at(i)
+				inventories_changed.emit()
+				return true
+	return false

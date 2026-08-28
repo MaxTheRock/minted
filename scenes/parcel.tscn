@@ -62,7 +62,7 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 2
-columns = 4
+columns = 3
 
 [node name="inventory" type="MarginContainer" parent="." unique_id=981788832]
 custom_minimum_size = Vector2(0, 300)
