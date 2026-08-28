@@ -1499,7 +1499,12 @@ offset_right = 516.0
 offset_bottom = 246.0
 offset_transform_position = Vector2(0, 200)
 
-[node name="seller_container" type="NinePatchRect" parent="mouse_hitbox/TooltipPanel" unique_id=302946490]
+[node name="rating" type="Control" parent="mouse_hitbox/TooltipPanel" unique_id=127212351]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="seller_container" type="NinePatchRect" parent="mouse_hitbox/TooltipPanel/rating" unique_id=302946490]
 z_index = -1
 layout_mode = 0
 offset_left = 175.0
@@ -1513,7 +1518,7 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="sellerName_text" type="Label" parent="mouse_hitbox/TooltipPanel" unique_id=1334819946]
+[node name="sellerName_text" type="Label" parent="mouse_hitbox/TooltipPanel/rating" unique_id=1334819946]
 layout_mode = 0
 offset_left = 191.0
 offset_top = -42.0
@@ -1524,7 +1529,7 @@ theme_override_fonts/font = ExtResource("2_miqp6")
 theme_override_font_sizes/font_size = 10
 text = "seller_name"
 
-[node name="Stars" parent="mouse_hitbox/TooltipPanel" unique_id=2013305115 instance=ExtResource("3_5byrc")]
+[node name="Stars" parent="mouse_hitbox/TooltipPanel/rating" unique_id=2013305115 instance=ExtResource("3_5byrc")]
 layout_mode = 1
 offset_left = 364.0
 offset_top = -27.0
@@ -1680,7 +1685,7 @@ offset_bottom = 89.0
 [node name="brand_icon" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/container/brand" unique_id=531283423]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xj5vb")
-animation = &"5"
+animation = &"1"
 
 [node name="brand_text" type="Label" parent="mouse_hitbox/TooltipPanel/container/brand" unique_id=1569187037]
 layout_mode = 0

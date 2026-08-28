@@ -14,12 +14,14 @@ signal visibility_toggled(is_visible, target)
 @onready var color1_tag = $mouse_hitbox/TooltipPanel/tags2/color_tag/color1_tag
 @onready var color2_tag = $mouse_hitbox/TooltipPanel/tags2/color_tag/color2_tag
 @onready var money_label = $mouse_hitbox/TooltipPanel/container/money_text
-@onready var stars = $mouse_hitbox/TooltipPanel/Stars
-@onready var seller_label = $mouse_hitbox/TooltipPanel/sellerName_text
+@onready var stars = $mouse_hitbox/TooltipPanel/rating/Stars
+@onready var seller_label = $mouse_hitbox/TooltipPanel/rating/sellerName_text
+@onready var seller_container = $mouse_hitbox/TooltipPanel/rating/seller_container
 @onready var tag_info = $mouse_hitbox/TooltipPanel/tag_info
 @onready var tag_text = $mouse_hitbox/TooltipPanel/tag_info/Label
 @onready var tag_container = $mouse_hitbox/TooltipPanel/tags2
 @onready var info_container = $mouse_hitbox/TooltipPanel/container
+@onready var rating_container: Control = $mouse_hitbox/TooltipPanel/rating
 
 var current_target = null
 var initial_y = 0
@@ -30,7 +32,6 @@ var info = ""
 func _ready():
 	panel.hide()
 	panel.z_index = 5
-
 
 func _process(delta: float) -> void:
 	update_position()
@@ -83,6 +84,12 @@ func show_tooltip(target):
 	money_label.text = str(item.price)
 	stars.set_item(target)
 	seller_label.text = str(item.seller_name)
+	
+	if Inventory.current_ui_type == "Market" or Inventory.current_ui_type == "display_bidding":
+		rating_container.show()
+	else:
+		rating_container.hide()
+	
 	if item.item_category[0]:
 		$mouse_hitbox/TooltipPanel/tags2/item_type/type_tag.play(item.item_category[0].to_lower())
 	if item.cd:
