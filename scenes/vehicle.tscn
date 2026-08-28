@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ddllt5abm0be7"]
+
+[ext_resource type="Script" uid="uid://buwunijkps3vu" path="res://scripts/vehicle.gd" id="1_pu4i8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnalp"]
+radius = 41.0
+height = 174.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
+size = Vector2(91, 53)
+
+[node name="Vehicle" type="Node2D" unique_id=2137682358]
+script = ExtResource("1_pu4i8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1544352420]
+offset_right = 168.0
+offset_bottom = 62.0
+
+[node name="vehicle_hitbox" type="Area2D" parent="." unique_id=2101200868]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vehicle_hitbox" unique_id=1465511240]
+position = Vector2(84, 32)
+rotation = 1.5644274
+shape = SubResource("CapsuleShape2D_qnalp")
+
+[node name="front_detection" type="Area2D" parent="." unique_id=892294414]
+
+[node name="right" type="CollisionShape2D" parent="front_detection" unique_id=2132083411]
+position = Vector2(210, 32)
+shape = SubResource("RectangleShape2D_4c3da")
+debug_color = Color(0.68102884, 0.29883936, 1, 0.41960785)
+
+[node name="left" type="CollisionShape2D" parent="front_detection" unique_id=1291989279]
+position = Vector2(-41.5, 31.5)
+shape = SubResource("RectangleShape2D_4c3da")
+debug_color = Color(0.68102884, 0.29883936, 1, 0.41960785)
+
+[connection signal="area_entered" from="front_detection" to="." method="_on_front_detection_area_entered"]
+[connection signal="area_exited" from="front_detection" to="." method="_on_front_detection_area_exited"]

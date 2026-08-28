@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_nsm10"]
 [ext_resource type="PackedScene" uid="uid://d1vkhlmaysw67" path="res://scenes/player.tscn" id="3_8lkp2"]
 [ext_resource type="PackedScene" uid="uid://6l16dlxi4r81" path="res://scenes/interaction_prompt.tscn" id="6_bkgx0"]
+[ext_resource type="Script" uid="uid://tgenu28eqqe0" path="res://scripts/vehicle_container.gd" id="7_lt5my"]
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
@@ -12,6 +13,9 @@ size = Vector2(26.89616, 18.6732)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
 size = Vector2(111, 187.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pjmv"]
+size = Vector2(203, 47)
 
 [node name="Outside" type="Control" unique_id=1576444141]
 layout_mode = 3
@@ -82,7 +86,31 @@ position = Vector2(674.5, 395.75)
 shape = SubResource("RectangleShape2D_qnalp")
 debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
 
+[node name="vehicle_container" type="Control" parent="." unique_id=2065926026]
+anchors_preset = 0
+offset_left = -381.0
+offset_top = 290.0
+offset_right = 1663.0
+offset_bottom = 455.0
+script = ExtResource("7_lt5my")
+
+[node name="l_detector" type="Area2D" parent="vehicle_container" unique_id=1554712430]
+
+[node name="left_vehicle_detector" type="CollisionShape2D" parent="vehicle_container/l_detector" unique_id=408685547]
+position = Vector2(1913.5, 129)
+shape = SubResource("RectangleShape2D_4pjmv")
+debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
+
+[node name="r_detector" type="Area2D" parent="vehicle_container" unique_id=1693979169]
+
+[node name="right_vehicle_detector" type="CollisionShape2D" parent="vehicle_container/r_detector" unique_id=1067990905]
+position = Vector2(28, 36)
+shape = SubResource("RectangleShape2D_4pjmv")
+debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
+
 [connection signal="area_entered" from="building_area" to="." method="_on_building_area_area_entered"]
 [connection signal="area_exited" from="building_area" to="." method="_on_building_area_area_exited"]
 [connection signal="area_entered" from="Control/door_area" to="." method="_on_door_area_area_entered"]
 [connection signal="area_exited" from="Control/door_area" to="." method="_on_door_area_area_exited"]
+[connection signal="area_exited" from="vehicle_container/l_detector" to="vehicle_container" method="_on_l_detector_area_exited"]
+[connection signal="area_exited" from="vehicle_container/r_detector" to="vehicle_container" method="_on_r_detector_area_exited"]

@@ -12,6 +12,7 @@ func _ready() -> void:
 	Global.outside = true
 	moved = false
 	player.position = starting_position
+	
 
 func _process(delta: float) -> void:
 	if Global.current_interactable == self and Input.is_action_pressed("interact") and not Global.action_just_pressed and round_to_decimal(player.position) != starting_position:

@@ -20,6 +20,8 @@ var bidding_index_selected = -1
 var buffer_text = ""
 var on_bidding = false
 var scroll_value = 0
+var vehicle_queue_left: Array = []
+var vehicle_queue_right: Array = []
 var Tooltip
 signal pause_toggled(is_paused: bool)
 signal eject
