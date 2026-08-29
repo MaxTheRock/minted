@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://vqmdbs2bs2d3"]
+
+[ext_resource type="Texture2D" uid="uid://qeirgjdkw22k" path="res://assets/outside/traffic_light.png" id="1_uttgq"]
+[ext_resource type="Script" uid="uid://bfkoviwhw86de" path="res://scenes/traffic_light.gd" id="1_va7ut"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va7ut"]
+atlas = ExtResource("1_uttgq")
+region = Rect2(26, 0, 26, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfnwl"]
+atlas = ExtResource("1_uttgq")
+region = Rect2(52, 0, 26, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bbo6"]
+atlas = ExtResource("1_uttgq")
+region = Rect2(0, 0, 26, 91)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va7ut")
+}],
+"loop": 1,
+"name": &"amber",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfnwl")
+}],
+"loop": 1,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bbo6")
+}],
+"loop": 1,
+"name": &"red",
+"speed": 5.0
+}]
+
+[node name="TrafficLight" type="Node2D" unique_id=1641677231]
+script = ExtResource("1_va7ut")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=817227265]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"red"

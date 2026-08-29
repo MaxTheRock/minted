@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxle0fixyd21v" path="res://assets/items/radio.png" id="4_3mpwk"]
 [ext_resource type="Texture2D" uid="uid://c3nkuxwm24pws" path="res://assets/items/radio_no_text.png" id="5_3mpwk"]
 [ext_resource type="FontFile" uid="uid://cmwpv1y0o15oi" path="res://fonts/digital-7 (mono).ttf" id="6_hhhqh"]
-[ext_resource type="Script" uid="uid://u4htkiyp5yb3" path="res://scenes/frequency.gd" id="6_uf7ta"]
+[ext_resource type="Script" uid="uid://u4htkiyp5yb3" path="res://scripts/frequency.gd" id="6_uf7ta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]
 content_margin_left = 10.0

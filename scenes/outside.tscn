@@ -7,12 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://6l16dlxi4r81" path="res://scenes/interaction_prompt.tscn" id="6_bkgx0"]
 [ext_resource type="Script" uid="uid://tgenu28eqqe0" path="res://scripts/vehicle_container.gd" id="7_lt5my"]
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
+[ext_resource type="PackedScene" uid="uid://vqmdbs2bs2d3" path="res://scenes/traffic_light.tscn" id="8_lt5my"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
 size = Vector2(26.89616, 18.6732)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
 size = Vector2(111, 187.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt5my"]
+size = Vector2(136, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pjmv"]
 size = Vector2(203, 47)
@@ -93,6 +97,28 @@ offset_top = 290.0
 offset_right = 1663.0
 offset_bottom = 455.0
 script = ExtResource("7_lt5my")
+
+[node name="TrafficLight" parent="vehicle_container" unique_id=1641677231 instance=ExtResource("8_lt5my")]
+position = Vector2(587, 122)
+scale = Vector2(2, 2)
+
+[node name="traffic_light_area" type="Area2D" parent="vehicle_container/TrafficLight" unique_id=1614143430]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vehicle_container/TrafficLight/traffic_light_area" unique_id=1896786216]
+position = Vector2(88, 10)
+shape = SubResource("RectangleShape2D_lt5my")
+debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
+
+[node name="TrafficLight2" parent="vehicle_container" unique_id=1429295902 instance=ExtResource("8_lt5my")]
+position = Vector2(948, -108)
+scale = Vector2(2, 2)
+
+[node name="traffic_light_area" type="Area2D" parent="vehicle_container/TrafficLight2" unique_id=697511749]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vehicle_container/TrafficLight2/traffic_light_area" unique_id=274230957]
+position = Vector2(-92.5, 58)
+shape = SubResource("RectangleShape2D_lt5my")
+debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="l_detector" type="Area2D" parent="vehicle_container" unique_id=1554712430]
 
