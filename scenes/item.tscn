@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dw5d1m4uivmnt" path="res://assets/brand_icons/stripes.png" id="26_bn33c"]
 [ext_resource type="Texture2D" uid="uid://g3eacglqk6yw" path="res://assets/brand_icons/wavy.png" id="27_cqjlv"]
 [ext_resource type="Texture2D" uid="uid://bxle0fixyd21v" path="res://assets/items/radio.png" id="27_ii35d"]
+[ext_resource type="Texture2D" uid="uid://dglann2gjabqi" path="res://assets/cds/red_nose_pop.png" id="28_743hc"]
 [ext_resource type="Texture2D" uid="uid://clmqk8yi1qfjt" path="res://assets/brand_icons/smiley.png" id="28_cqjlv"]
 [ext_resource type="Texture2D" uid="uid://bgubyahs3dinr" path="res://assets/brand_icons/zig-zag.png" id="28_rrfqi"]
 
@@ -1522,6 +1523,21 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u8ug"]
+atlas = ExtResource("28_743hc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05yuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u8ug")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxq6w"]
 atlas = ExtResource("23_6rcit")
 region = Rect2(0, 0, 64, 64)
@@ -2155,6 +2171,10 @@ frame_progress = 0.19524218
 position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_3ibdx")
 frame_progress = 0.8647179
+
+[node name="red_nose_pop" type="AnimatedSprite2D" parent="TextureButton" unique_id=2062457832 groups=["clothes"]]
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_05yuf")
 
 [node name="overlays" type="Control" parent="." unique_id=1252589936]
 layout_mode = 3

@@ -165,7 +165,7 @@ func load_uploaded_item_info() -> void:
 		return
 
 	var item_data: Dictionary = Inventory.display_item[0]
-
+	price_display.text = ""
 	name_display.text = item_data.get("type", "").replace("_", " ").capitalize()
 	type_display.text = item_data.get("type", "").replace("_", " ").capitalize()
 	#color_display.text = item_data.get("color", "")
@@ -174,3 +174,38 @@ func load_uploaded_item_info() -> void:
 		brand_display.text = item_data.get("selected_brand", "")
 	else:
 		brand_display.text = item_data.get("brand", "")
+
+
+func _on_suggest_price_pressed() -> void:
+	price_display.text = ""
+	if Inventory.display_item.size() >= 1:
+		var default_price = Inventory.display_item[0]["default_price"]
+		var condition = ""
+		if condition_display.selected != -1:
+			condition = condition_display.text
+		else:
+			condition = Inventory.display_item[0]["condition"]
+		var brand_mult =  Inventory.display_item[0]["brandmult"]
+		var pattern_mult =  Inventory.display_item[0]["pattern_mult"]
+		
+		var price_mult = 1
+		
+		if condition == "Poor":
+			price_mult = 0.4
+		elif condition == "Satisfactory":
+			price_mult = 0.6
+		elif condition == "Good":
+			price_mult = 0.8
+		elif condition == "Great":
+			price_mult = 0.9
+		elif condition == "Minted":
+			price_mult = 1.05
+		else:
+			price_mult = 1.0
+
+		
+		var estimate_price = snapped(0.95 * brand_mult * pattern_mult * price_mult * default_price,0.01)
+		price_display.text = str(estimate_price)
+		
+	else:
+		exeption_message.text = "Please upload a picture."

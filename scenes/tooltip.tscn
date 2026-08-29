@@ -13,9 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://jdhj0mdghu0i" path="res://assets/tooltip/tags/placable_tag.png" id="6_cmaqn"]
 [ext_resource type="Texture2D" uid="uid://bwwnw0yfe03xo" path="res://assets/tooltip/tags/electronic_tag.png" id="7_5t6wk"]
 [ext_resource type="Texture2D" uid="uid://bbnsy0ryca18r" path="res://assets/tooltip/brand_icons/elemental.png" id="7_cmaqn"]
+[ext_resource type="Texture2D" uid="uid://b0pgdnkniyqds" path="res://assets/tooltip/tags/books_media_tag.png" id="7_mvtvv"]
 [ext_resource type="Texture2D" uid="uid://b62rcjugr6jxa" path="res://assets/tooltip/brand_icons/none.png" id="8_43qgd"]
 [ext_resource type="Texture2D" uid="uid://b7735c58jd41m" path="res://assets/tooltip/tags/home_tag.png" id="8_t375c"]
 [ext_resource type="Texture2D" uid="uid://dhifsvh5drk6n" path="res://assets/tooltip/tags/tag_shine.png" id="8_tngmq"]
+[ext_resource type="Texture2D" uid="uid://xilih5jhprry" path="res://assets/tooltip/tags/collectable_tag.png" id="9_4kajc"]
 [ext_resource type="Texture2D" uid="uid://7gtwtpducc41" path="res://assets/tooltip/brand_icons/scuter.png" id="9_5t6wk"]
 [ext_resource type="Texture2D" uid="uid://cvt37b2facamh" path="res://assets/tooltip/tags/sports_tag.png" id="9_wqdqd"]
 [ext_resource type="Texture2D" uid="uid://bgfukob0juq4i" path="res://assets/tooltip/tags/toys_tag.png" id="10_vnvf4"]
@@ -741,10 +743,26 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_mvtvv")
+}],
+"loop": 1,
+"name": &"booksmedia",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_43qgd")
 }],
 "loop": 1,
 "name": &"clothes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_4kajc")
+}],
+"loop": 1,
+"name": &"collectables",
 "speed": 5.0
 }, {
 "frames": [{
@@ -761,11 +779,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"home",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1056,10 +1069,26 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_mvtvv")
+}],
+"loop": 1,
+"name": &"booksmedia",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_43qgd")
 }],
 "loop": 1,
 "name": &"clothing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_4kajc")
+}],
+"loop": 1,
+"name": &"collectables",
 "speed": 5.0
 }, {
 "frames": [],
@@ -1489,14 +1518,14 @@ anchors_preset = 0
 offset_left = 2.0
 offset_top = -28.0
 offset_right = 502.0
-offset_bottom = 212.0
+offset_bottom = 272.0
 
 [node name="TooltipPanel" type="Control" parent="mouse_hitbox" unique_id=1678807597]
 anchors_preset = 0
 offset_left = 16.0
 offset_top = 46.0
 offset_right = 516.0
-offset_bottom = 246.0
+offset_bottom = 346.0
 offset_transform_position = Vector2(0, 200)
 
 [node name="rating" type="Control" parent="mouse_hitbox/TooltipPanel" unique_id=127212351]
@@ -1578,7 +1607,7 @@ layout_mode = 2
 [node name="type_tag" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/item_type" unique_id=754524256]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_2lxiw")
-animation = &"clothes"
+animation = &"booksmedia"
 
 [node name="tag_shine" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/item_type" unique_id=1904893203]
 scale = Vector2(2, 2)
@@ -1593,7 +1622,7 @@ layout_mode = 2
 [node name="extra_tag" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/extra_info" unique_id=1164530071]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_86gv0")
-animation = &"toys"
+animation = &"booksmedia"
 autoplay = "default"
 
 [node name="tag_shine" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/extra_info" unique_id=917486745]
@@ -1709,12 +1738,17 @@ theme_override_fonts/font = ExtResource("2_miqp6")
 theme_override_font_sizes/font_size = 10
 text = "----------"
 
-[node name="NinePatchRect" type="NinePatchRect" parent="mouse_hitbox/TooltipPanel/container" unique_id=1207222286]
-layout_mode = 0
+[node name="money" type="Control" parent="mouse_hitbox/TooltipPanel/container" unique_id=607461721]
+anchors_preset = 0
 offset_left = -128.0
 offset_top = 70.0
-offset_right = -60.75
-offset_bottom = 84.5
+offset_right = -88.0
+offset_bottom = 110.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="mouse_hitbox/TooltipPanel/container/money" unique_id=1207222286]
+layout_mode = 0
+offset_right = 67.25
+offset_bottom = 14.5
 scale = Vector2(4, 4)
 texture = ExtResource("11_eeh2b")
 region_rect = Rect2(15, 7, 33, 43)
@@ -1723,21 +1757,21 @@ patch_margin_top = 5
 patch_margin_right = 4
 patch_margin_bottom = 5
 
-[node name="dollar_symbol" type="TextureRect" parent="mouse_hitbox/TooltipPanel/container" unique_id=1484815193]
+[node name="dollar_symbol" type="TextureRect" parent="mouse_hitbox/TooltipPanel/container/money" unique_id=1484815193]
 modulate = Color(0.7647059, 0.94509804, 0, 1)
 layout_mode = 0
-offset_left = -111.0
-offset_top = 86.0
-offset_right = -86.0
-offset_bottom = 111.0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 42.0
+offset_bottom = 41.0
 texture = ExtResource("12_wstpj")
 
-[node name="money_text" type="Label" parent="mouse_hitbox/TooltipPanel/container" unique_id=1180928723]
+[node name="money_text" type="Label" parent="mouse_hitbox/TooltipPanel/container/money" unique_id=1180928723]
 layout_mode = 0
-offset_left = -79.0
-offset_top = 75.0
-offset_right = 109.0
-offset_bottom = 131.0
+offset_left = 49.0
+offset_top = 5.0
+offset_right = 237.0
+offset_bottom = 61.0
 theme_override_colors/font_color = Color(0.85490197, 0.7490196, 0.023529412, 1)
 theme_override_fonts/font = ExtResource("2_miqp6")
 theme_override_font_sizes/font_size = 15

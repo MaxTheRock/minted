@@ -11,9 +11,10 @@ const evil_pulsation = preload("res://audio/evil_pulsation.mp3")
 const jungle = preload("res://audio/jungle.mp3")
 const smooth_jazz_1 = preload("res://audio/smooth_jazz_1.mp3")
 const three_jelly = preload("res://audio/three_jelly.mp3")
+const red_nose_pop = preload("res://audio/red_nose_pop.mp3")
 const audio_static = preload("res://audio/static.mp3")
 
-var radio_a = [background_menu_music, smooth_jazz_1]
+var radio_a = [background_menu_music, smooth_jazz_1,red_nose_pop]
 var radio_b = [three_jelly, the_big_mint, jungle]
 
 var last_played_song: AudioStream = null

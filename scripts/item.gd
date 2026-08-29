@@ -5,14 +5,14 @@ var tshirt_colours: Array = ["white","yellow", "red", "green", "blue", "black", 
 "apricot","turquoise","forest","coral","navy","rose","brown","burgundy","mint","lilac"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var conceal_colours: Array = ["white","red","green","pink","black","blue"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards","red_nose_pop"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes","flip_flops","radio"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle","christmas_lights"]
 var epic_items: Array = ["beh_enclosed_shirt"]
 var legendary_items: Array = ["gold_ring"]
 var all_items: Array = common_items + uncommon_items + rare_items + epic_items + legendary_items
-var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera","gold_ring","radio"]
-var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
+var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera", "gold_ring", "radio", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle", "red_nose_pop"]
+var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop"]
 var cds = items_that_spin
 var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
 # Categories
@@ -20,8 +20,8 @@ var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts",
 #var clothes = ["tshirt"]
 var toys: Array = ["puzzle_cube", "football","playing_cards"]
 var home: Array = ["spud_poster","potion_poster","christmas_lights"]
-var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle","christmas_lights","radio"]
-var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle"]
+var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle","christmas_lights","radio","red_nose_pop"]
+var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop"]
 var collectables: Array = ["spud_poster", "beh_enclosed_shirt","gold_ring"]
 var sports: Array = ["beh_enclosed_shirt", "football","basketball"]
 var placeable_items = ["cd_player","camera","radio"]
@@ -109,7 +109,8 @@ var flip_flop_texture = preload("res://shaders/tshirt_colours.png")
 	"playing_cards": $TextureButton/playing_cards,
 	"flip_flops": $TextureButton/flip_flops,
 	"christmas_lights": $TextureButton/christmas_lights,
-	"radio": $TextureButton/radio
+	"radio": $TextureButton/radio,
+	"red_nose_pop": $TextureButton/red_nose_pop,
 }
 
 @onready var market_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
@@ -119,20 +120,16 @@ var flip_flop_texture = preload("res://shaders/tshirt_colours.png")
 @onready var frame_timer = $FrameTimer
 @onready var tshirt_pattern = $overlays/tshirt_pattern
 
+
 func _process(delta):
-	if !hovering:
-		for child in get_tree().get_nodes_in_group("clothes"):
-			if child.owner == self:
-				child.rotation_degrees = 0
+	if sprite_image == null:
 		return
 
-	if !(type in items_that_spin):
-		return
-
-	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.visible and child is AnimatedSprite2D and child.owner == self:
-			child.rotation_degrees += 160 * delta
-
+	if hovering and type in items_that_spin:
+		sprite_image.rotation_degrees += 160 * delta
+	else:
+		sprite_image.rotation_degrees = 0
+		
 func initialize_item(category := "All"):
 	item_category.clear()
 	color1 = ""
@@ -265,7 +262,11 @@ func initialize_item(category := "All"):
 		color1 = "grey"
 		selected_brand = "C.O.M.A"
 		brand = "C.O.M.A"
-	
+	elif type == "red_nose_pop":
+		spice_factor = 2
+		color1 = "red"
+		color2 = "white"
+		
 			
 	if type == "tshirt":
 		tshirt_logo.show()
@@ -413,6 +414,7 @@ func set_item_type(item_type: String) -> void:
 		sprites[item_type].show()
 	
 func _on_texture_button_mouse_entered():
+	print("ENTERED:", type)
 	hovering = true
 	
 	if type in items_with_regular_animation:
@@ -421,12 +423,15 @@ func _on_texture_button_mouse_entered():
 
 func _on_texture_button_mouse_exited():
 	hovering = false
+	print("exit")
 	frame_timer.stop()
-	for child in get_tree().get_nodes_in_group("clothes"):
-		child.stop()
-		if child.owner == self:
-			child.frame = 0
-			tshirt_logo.frame = 0
+
+	if sprite_image:
+		sprite_image.rotation_degrees = 0
+		sprite_image.frame = 0
+		sprite_image.stop()
+
+	tshirt_logo.frame = 0
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
@@ -459,6 +464,7 @@ func _on_frame_timer_timeout():
 
 func button_enter():
 	frame_timer.start()
+	hovering = true
 	
 func button_exit():
 	frame_timer.stop()
@@ -668,8 +674,21 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(4 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 4
+	elif type == "radio":
+		shippingValue = 3
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(15 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 15
+	elif type == "red_nose_pop":
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 1
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		genre = "pop"
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 7
 		
-	
 	if brand != "none":
 		pattern_type = "none"
 		color2 = ""

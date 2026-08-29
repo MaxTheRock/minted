@@ -307,6 +307,19 @@ func _ready() -> void:
 			if inventory_index >= 0 and inventory_index < Inventory.bidding_items.size():
 				item.load_data(Inventory.bidding_items[inventory_index])
 				
+	elif Inventory.current_ui_type == "shipping":
+		buy_button.hide()
+		take_button.hide()
+		place_button.hide()
+		put_button.hide()
+		shelf_ui_buttons.hide()
+		use_button.hide()
+		eject_button.hide()
+		upload_button.hide()
+		grid_container.hide()
+		$PanelContainer2.hide()
+		item.rarity_ui.connect(_rarity_ui)
+
 	else:
 		$PanelContainer2.show()
 
@@ -319,14 +332,18 @@ func _process(_delta) -> void:
 	var over_self = get_global_rect().has_point(mouse_pos)
 	var over_tooltip = false
 	if Tooltip.current_target == self and Tooltip.panel.visible:
-		over_tooltip = Tooltip.panel.get_global_rect().has_point(mouse_pos)
+		over_tooltip = Tooltip.panel.get_global_rect().has_point(mouse_pos) or Tooltip.area.get_global_rect().has_point(mouse_pos)
 
 	if not over_self and not over_tooltip:
 		watching_hover = false
+		item.hovering = false
 		Tooltip.hide_tooltip(self)
 		item.button_exit()
 		buy_button.modulate = Color(1, 1, 1, 1)
 		$hitbox.hide()
+	
+	if item.hovering:
+		Tooltip.show_tooltip(self)
 
 func _rarity_ui(item_rarity) -> void:
 	rarety_mark.play(item_rarity)
@@ -537,7 +554,9 @@ func _on_use_button_pressed() -> void:
 			AudioManager.play_music(AudioManager.jungle)
 		elif item.type == "three_jelly":
 			AudioManager.play_music(AudioManager.three_jelly)
- 		
+		elif item.type == "red_nose_pop":
+			AudioManager.play_music(AudioManager.red_nose_pop)
+			
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
 			print("Could not find CD to play!")
 			return
@@ -608,78 +627,94 @@ func display_thing():
 func _on_use_button_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	use_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 
 func _on_use_button_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	use_button.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 
 func _on_put_button_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	put_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 
 func _on_put_button_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	put_button.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 
 func _on_place_button_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	place_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 func _on_upload_button_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	upload_button.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 func _on_upload_button_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	upload_button.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 
 func _on_place_button_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	place_button.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 
 func _on_use_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	hbox_use.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 
 func _on_use_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	hbox_use.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 
 func _on_remove_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	hbox_remove.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 
 func _on_remove_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	hbox_remove.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 
 func _on_cd_use_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	cd_use.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 
 func _on_cd_use_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	cd_use.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 
 func _on_eject_mouse_entered() -> void:
 	Tooltip.show_tooltip(self)
 	cd_eject.modulate = Color(0.7, 0.7, 0.7, 1)
+	item.button_enter()
 
 
 func _on_eject_mouse_exited() -> void:
 	Tooltip.hide_tooltip(self)
 	cd_eject.modulate = Color(1, 1, 1, 1)
+	item.button_exit()
 	
 func _on_tooltip_visibility_toggled(is_visible: bool, target: Control) -> void:
 	$hitbox.hide()

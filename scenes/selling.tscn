@@ -330,6 +330,12 @@ max_length = 15
 right_icon = ExtResource("3_d3n2a")
 icon_expand_mode = 1
 
+[node name="suggest_price" type="Button" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer" unique_id=988363036]
+layout_mode = 2
+theme_override_colors/font_color = Color(7.797182e-06, 0.91265476, 0.638343, 1)
+theme_override_font_sizes/font_size = 25
+text = "Suggest Price"
+
 [node name="sell_button" type="Button" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=515806981]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6880813, 0.37404057, 0.8417459, 1)
@@ -402,4 +408,5 @@ theme_override_constants/v_separation = 15
 columns = 5
 
 [connection signal="item_selected" from="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3/Condition" to="." method="_on_condition_item_selected"]
+[connection signal="pressed" from="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer/suggest_price" to="." method="_on_suggest_price_pressed"]
 [connection signal="pressed" from="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/sell_button" to="." method="_on_sell_button_pressed"]

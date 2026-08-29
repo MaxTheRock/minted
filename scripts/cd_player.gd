@@ -54,6 +54,8 @@ func _on_pause_pressed() -> void:
 				AudioManager.play_music(AudioManager.jungle)
 			elif type == "three_jelly":
 				AudioManager.play_music(AudioManager.three_jelly)
+			elif type == "red_nose_pop":
+				AudioManager.play_music(AudioManager.red_nose_pop)
 	else:
 		$radio_warning.show()
 
