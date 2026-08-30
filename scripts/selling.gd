@@ -20,6 +20,7 @@ var current_text = ""
 var template = "Items: {items}/{storage}"
 	
 func _ready() -> void:
+	Inventory.item_sold.connect(_build_page)
 	_build_page()
 
 func clear_contents() -> void:
@@ -35,6 +36,7 @@ func clear_contents() -> void:
 		child.queue_free()
 	exeption_message.text = ""
 	current_text = ""
+	Inventory.display_item.clear()
 	
 func _build_page() -> void:
 	for child in inventory_grid.get_children():
@@ -80,11 +82,10 @@ func _on_item_page_requested(page_name: String) -> void:
 	_build_page()
 	load_uploaded_item_info()
 	page_requested.emit(page_name)
-	Inventory.item_sold.connect(_build_page)
-
 
 func _on_sell_button_pressed() -> void:
 	# mmmmm yes this is some clean input sanitation
+	# sure is - Max
 	var price_written:float = 0
 	if price_display.text.is_valid_float():
 		price_written = snapped(price_display.text.to_float(),0.01)
@@ -110,6 +111,7 @@ func _on_sell_button_pressed() -> void:
 		var listing = Inventory.display_item[0].duplicate()
 		Inventory.sell_id += 1
 		listing["listing_sell_id"] = Inventory.sell_id
+		Inventory.remove_from_inventory(listing["ID"])
 		var list_thing = [] #omg this is so dumb
 		list_thing.append(listing)
 		Inventory.transfer_item(list_thing,
@@ -144,6 +146,7 @@ func _on_sell_button_pressed() -> void:
 		}
 		Inventory.player_selling.append(display_dict)
 		clear_contents()
+		_refresh_inventory_grid()
 		
 		Inventory.current_ui_type = "display_selling"
 		var packed = preload("res://scenes/selling_ui.tscn")
@@ -209,3 +212,14 @@ func _on_suggest_price_pressed() -> void:
 		
 	else:
 		exeption_message.text = "Please upload a picture."
+
+func _refresh_inventory_grid() -> void:
+	for child in inventory_grid.get_children():
+		child.queue_free()
+	Inventory.current_ui_type = "selling"
+	for i in range(Inventory.player_inventory.size()):
+		var packed = preload("res://scenes/item_ui.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.inventory_index = i
+		storage_ui.page_requested.connect(_on_item_page_requested)
+		inventory_grid.add_child(storage_ui)

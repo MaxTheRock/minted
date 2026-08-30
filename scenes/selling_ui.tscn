@@ -308,6 +308,6 @@ offset_bottom = 212.0
 icon = ExtResource("2_cn1dw")
 expand_icon = true
 
-[connection signal="pressed" from="clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="clear" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="info_button" to="." method="_on_info_button_pressed"]

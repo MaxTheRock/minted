@@ -29,8 +29,6 @@ func _process(float) -> void:
 	Global.player_saved_x = player.global_position.x
 	Global.player_saved_y = player.global_position.y
 	
-	
-
 var tween: Tween
 @onready var start_position: Vector2 = left_bar.position
 

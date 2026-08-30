@@ -3,19 +3,7 @@
 [ext_resource type="Script" uid="uid://ro5g3sj2lshk" path="res://scripts/selling.gd" id="1_3jkmn"]
 [ext_resource type="PackedScene" uid="uid://bl2hjfsjnp4kq" path="res://scenes/search_bar.tscn" id="2_d3n2a"]
 [ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="3_d3n2a"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm14b"]
-bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
-border_width_left = 5
-border_width_top = 7
-border_width_right = 5
-border_width_bottom = 7
-border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 10
+[ext_resource type="Texture2D" uid="uid://dddh8b1fmhkvh" path="res://assets/hotbar/stone_box_template.png" id="3_vplqk"]
 
 [node name="selling" type="Control" unique_id=2079572264]
 layout_mode = 3
@@ -86,22 +74,32 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Photos"
 
+[node name="inv_background" type="Control" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1" unique_id=256155896]
+layout_mode = 2
+
+[node name="ninepatchrect" type="NinePatchRect" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inv_background" unique_id=164406851]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = 309.0
+offset_bottom = 57.25
+scale = Vector2(4, 4)
+texture = ExtResource("3_vplqk")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
 [node name="inventory" type="MarginContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1" unique_id=690765484]
-custom_minimum_size = Vector2(200, 100)
-custom_maximum_size = Vector2(600, -1)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
-
-[node name="ColorRect" type="Panel" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory" unique_id=991274284]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-10, -10)
-theme_override_styles/panel = SubResource("StyleBoxFlat_cm14b")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory" unique_id=1394893930]
 layout_mode = 2
@@ -121,11 +119,11 @@ layout_mode = 2
 [node name="ItemTexture" type="ColorRect" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/Control" unique_id=105893288]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
-offset_left = 642.0
-offset_top = -217.0
-offset_right = 832.0
-offset_bottom = -35.0
-color = Color(0.38718653, 0.76865387, 0.52331686, 1)
+offset_left = 680.0
+offset_top = 30.0
+offset_right = 870.0
+offset_bottom = 212.0
+color = Color(0.3882353, 0.76862746, 0.52156866, 0)
 
 [node name="2" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections" unique_id=2124198756]
 layout_mode = 2

@@ -216,7 +216,6 @@ func check_buy_items(buyer,id):
 				found_index = i	
 				break
 		Global.money += player_selling[found_index]["price"]
-		remove_from_inventory(id)
 		transfer_item(actual_selling,actual_sold,found_index)
 		player_selling[found_index]["buyer_name"] = buyer["buyer_name"]	
 		transfer_item(player_selling,sold_items,found_index)
@@ -406,3 +405,10 @@ func remove_from_inventory(id: int) -> bool:
 				inventories_changed.emit()
 				return true
 	return false
+
+func return_item_to_inventory(item: Dictionary) -> bool:
+	if player_inventory.size() >= 2:
+		return false
+	player_inventory.append(item)
+	inventories_changed.emit()
+	return true

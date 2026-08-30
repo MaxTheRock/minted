@@ -40,6 +40,18 @@ func _on_info_button_pressed() -> void:
 	show_info = !show_info
 
 func _on_clear_pressed() -> void:
+	var item_data: Dictionary = Inventory.actual_selling[item_index]
+	var listing_sell_id = item_data.get("listing_sell_id")
+	item_data = item_data.duplicate()
+	item_data.erase("listing_sell_id")
+	Inventory.return_item_to_inventory(item_data)
+
 	Inventory.player_selling.pop_at(item_index)
 	Inventory.actual_selling.pop_at(item_index)
+
+	if listing_sell_id != null:
+		for b in Inventory.buyers.duplicate():
+			if b["listing_sell_id"] == listing_sell_id:
+				Inventory.buyers.erase(b)
+
 	queue_free()
