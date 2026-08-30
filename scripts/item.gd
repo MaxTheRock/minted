@@ -5,7 +5,7 @@ var tshirt_colours: Array = ["white","yellow", "red", "green", "blue", "black", 
 "apricot","turquoise","forest","coral","navy","rose","brown","burgundy","mint","lilac"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var conceal_colours: Array = ["white","red","green","pink","black","blue"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards","brickies_family_house"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes","flip_flops","radio"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle","christmas_lights","encyclopedia"]
 var epic_items: Array = ["beh_enclosed_shirt","red_nose_pop"]
@@ -13,12 +13,13 @@ var legendary_items: Array = ["gold_ring"]
 var all_items: Array = common_items + uncommon_items + rare_items + epic_items + legendary_items
 var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera", "gold_ring", "radio", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle", "red_nose_pop","encyclopedia"]
 var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop"]
+var items_with_secondary = ["brickies_family_house"]
 var cds = items_that_spin
 var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
 # Categories
 var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes","flip_flops"]
 #var clothes = ["tshirt"]
-var toys: Array = ["puzzle_cube", "football","playing_cards"]
+var toys: Array = ["puzzle_cube", "football","playing_cards", "brickies_family_house"]
 var home: Array = ["spud_poster","potion_poster","christmas_lights"]
 var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle","christmas_lights","radio","red_nose_pop"]
 var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop","encyclopedia"]
@@ -111,7 +112,8 @@ var flip_flop_texture = preload("res://shaders/tshirt_colours.png")
 	"christmas_lights": $TextureButton/christmas_lights,
 	"radio": $TextureButton/radio,
 	"red_nose_pop": $TextureButton/red_nose_pop,
-	"encyclopedia": $TextureButton/encyclopedia
+	"encyclopedia": $TextureButton/encyclopedia,
+	"brickies_family_house": $TextureButton/brickies_family_house,
 }
 
 @onready var market_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
@@ -269,6 +271,12 @@ func initialize_item(category := "All"):
 		color2 = "white"
 	elif type == "encyclopedia":
 		color1 = "blue"
+	elif type == "brickies_family_house":
+		selected_brand = "Brickies"
+		brand = "Brickies"
+		color1 = "brown"
+		color2 = "red"
+		
 			
 	if type == "tshirt":
 		tshirt_logo.show()
@@ -426,6 +434,8 @@ func _on_texture_button_mouse_entered():
 		sprite_image.speed_scale = 1.0
 	elif type in items_with_regular_animation:
 		counter = 0
+	elif type in items_with_secondary and sprite_image:
+		sprite_image.play("secondary")
 
 	frame_timer.start()
 
@@ -437,7 +447,11 @@ func _on_texture_button_mouse_exited():
 	if type == "encyclopedia" and sprite_image:
 		sprite_image.play_backwards("default")
 		return
-
+	
+	if type in items_with_secondary and sprite_image:
+		sprite_image.play("default")
+		return
+	
 	if sprite_image:
 		sprite_image.rotation_degrees = 0
 		sprite_image.frame = 0
@@ -447,7 +461,7 @@ func _on_texture_button_mouse_exited():
 
 func _on_frame_timer_timeout():
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation):
+		if child.visible and child is AnimatedSprite2D and child.owner == self and !(type in items_with_regular_animation)and !(type in items_with_secondary):
 			var max_frames = child.sprite_frames.get_frame_count("default")
 			var new_frame = rng.randi_range(0, max_frames - 1)
 			while new_frame == child.frame and max_frames > 1:
@@ -468,11 +482,14 @@ func _on_frame_timer_timeout():
 			else:
 				tshirt_logo.hide()
 				tshirt_pattern.hide()
-		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation:
+		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_regular_animation and !(type in items_with_secondary):
 			if not child.is_playing():
 				child.play("default")
 			display_fps(child.sprite_frames.get_animation_speed(child.animation))
-			
+		elif child.visible and child is AnimatedSprite2D and child.owner == self and type in items_with_secondary:
+			if not child.is_playing():
+				child.play("secondary")
+			display_fps(child.sprite_frames.get_animation_speed(child.animation))
 
 func button_enter():
 	frame_timer.start()
@@ -481,12 +498,15 @@ func button_enter():
 func button_exit():
 	frame_timer.stop()
 	for child in get_tree().get_nodes_in_group("clothes"):
-		if child.owner == self and type != "encyclopedia":
+		if child.owner == self and type in items_with_secondary:
+			child.play("default")
+		elif child.owner == self and type != "encyclopedia":
 			child.frame = 0
 			tshirt_logo.frame = 0
 			tshirt_pattern.frame = 0
 		elif child.owner == self and type == "encyclopedia":
 			child.play_backwards("default")
+
 func generate_parameters(type):
 	if type in cds:
 		cd = true

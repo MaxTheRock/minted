@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://clmqk8yi1qfjt" path="res://assets/brand_icons/smiley.png" id="28_cqjlv"]
 [ext_resource type="Texture2D" uid="uid://bgubyahs3dinr" path="res://assets/brand_icons/zig-zag.png" id="28_rrfqi"]
 [ext_resource type="Texture2D" uid="uid://b6xqo5ap2mwn" path="res://assets/items/encyclopedia.png" id="29_m3bit"]
+[ext_resource type="Texture2D" uid="uid://btnux7ms6808l" path="res://assets/items/brickies_family_house/brickies_family_house.png" id="30_qthxh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
 animations = [{
@@ -1610,6 +1611,47 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7lug"]
+atlas = ExtResource("30_qthxh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuxpg"]
+atlas = ExtResource("30_qthxh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgss0"]
+atlas = ExtResource("30_qthxh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucf8w"]
+atlas = ExtResource("30_qthxh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_46mwd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7lug")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuxpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgss0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucf8w")
+}],
+"loop": 1,
+"name": &"secondary",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxq6w"]
 atlas = ExtResource("23_6rcit")
 region = Rect2(0, 0, 64, 64)
@@ -2253,6 +2295,10 @@ position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_v0dhe")
 frame = 8
 frame_progress = 1.0
+
+[node name="brickies_family_house" type="AnimatedSprite2D" parent="TextureButton" unique_id=1478535243 groups=["clothes"]]
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_46mwd")
 
 [node name="overlays" type="Control" parent="." unique_id=1252589936]
 layout_mode = 3

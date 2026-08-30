@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dmpuu72uqgb87" path="res://assets/tooltip/tags/med_item.png" id="17_g4sye"]
 [ext_resource type="Texture2D" uid="uid://2qashjy331ua" path="res://assets/tooltip/tags/xl_item.png" id="18_jfaob"]
 [ext_resource type="Texture2D" uid="uid://denre067x00av" path="res://assets/tooltip/tags/intensity_icons.png" id="21_vnvf4"]
+[ext_resource type="Texture2D" uid="uid://dgrj4flfceq2a" path="res://assets/tooltip/brand_icons/brickies.png" id="24_4kajc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wstpj"]
 load_path = "res://.godot/imported/item_template_extension.png-9d54d6aa0164fee790ac6468fc2e8de9.ctex"
@@ -1404,6 +1405,10 @@ region = Rect2(0, 16, 16, 16)
 atlas = ExtResource("21_vnvf4")
 region = Rect2(16, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkfvh"]
+atlas = ExtResource("24_4kajc")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkank"]
 atlas = ExtResource("5_wstpj")
 region = Rect2(0, 0, 16, 16)
@@ -1464,6 +1469,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkfvh")
+}],
+"loop": 1,
+"name": &"brickies",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1714,7 +1727,7 @@ offset_bottom = 89.0
 [node name="brand_icon" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/container/brand" unique_id=531283423]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xj5vb")
-animation = &"1"
+animation = &"brickies"
 
 [node name="brand_text" type="Label" parent="mouse_hitbox/TooltipPanel/container/brand" unique_id=1569187037]
 layout_mode = 0
