@@ -3,15 +3,97 @@
 [ext_resource type="PackedScene" uid="uid://bgaswxsmgb5f3" path="res://scenes/level_display.tscn" id="1_3yonj"]
 [ext_resource type="Script" uid="uid://s5350ap6lrhy" path="res://scripts/top_bar.gd" id="1_54r3s"]
 [ext_resource type="Texture2D" uid="uid://bvsqhiu6q4nn5" path="res://assets/top_background.png" id="2_nuq0q"]
-[ext_resource type="Texture2D" uid="uid://qnml05erfmui" path="res://assets/top_money_container.png" id="3_0uyao"]
 [ext_resource type="Texture2D" uid="uid://cdp4tmf5gv8qc" path="res://assets/alarm.png" id="3_ch1ap"]
+[ext_resource type="Texture2D" uid="uid://c34g5hslbdoc6" path="res://assets/collection_book.png" id="4_0uyao"]
 [ext_resource type="FontFile" uid="uid://cmwpv1y0o15oi" path="res://fonts/digital-7 (mono).ttf" id="4_ch1ap"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_nuq0q"]
+[ext_resource type="Texture2D" uid="uid://dvg2caoxq86o1" path="res://assets/pixel_dolar_topbar.png" id="5_ucwmf"]
+[ext_resource type="PackedScene" uid="uid://bk6xu7dvbhxas" path="res://scenes/stars.tscn" id="6_0uyao"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nuq0q"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nuq0q"]
-load_path = "res://.godot/imported/pixel_dolar2.png-9204385a420b4f6964d36d1cff5fabb8.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucwmf"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7xbi"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1jv6"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2exkg"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucwmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7xbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1jv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2exkg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucwmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j68vb"]
+atlas = ExtResource("5_ucwmf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvebp"]
+atlas = ExtResource("5_ucwmf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coqo5"]
+atlas = ExtResource("5_ucwmf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c3da"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j68vb")
+}],
+"loop": 1,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvebp")
+}],
+"loop": 1,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coqo5")
+}],
+"loop": 1,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uyao"]
+bg_color = Color(0.63529414, 0.5137255, 0.3529412, 0.15686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c3da"]
+bg_color = Color(0.63529414, 0.5137255, 0.3529412, 1)
 
 [node name="PanelContainer" type="PanelContainer" unique_id=1234875554]
 z_index = 1
@@ -34,35 +116,61 @@ axis_stretch_horizontal = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="back_nodes" unique_id=673506217]
 layout_mode = 0
-offset_top = -24.0
 offset_right = 1280.0
-offset_bottom = 104.0
+offset_bottom = 64.0
 
-[node name="TextureRect" type="TextureRect" parent="back_nodes/CenterContainer" unique_id=1198840728]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-texture = ExtResource("3_0uyao")
-
-[node name="Money" type="Label" parent="back_nodes/CenterContainer" unique_id=1794399770]
-layout_mode = 2
-offset_transform_enabled = true
-theme_override_colors/font_color = Color(0.3372549, 0.27450982, 0.19607843, 1)
-theme_override_colors/font_outline_color = Color(0.53088146, 0.44220287, 0.3318374, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("4_nuq0q")
-theme_override_font_sizes/font_size = 15
-text = "999.99  "
-
-[node name="money_icon" type="Control" parent="back_nodes/CenterContainer" unique_id=669189886]
+[node name="book_node" type="Control" parent="back_nodes/CenterContainer" unique_id=1011696312]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="back_nodes/CenterContainer/money_icon" unique_id=1312889677]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="back_nodes/CenterContainer/book_node" unique_id=360949341]
+position = Vector2(173, -1)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+
+[node name="book_button" type="Button" parent="back_nodes/CenterContainer/book_node" unique_id=761285531]
 layout_mode = 0
-offset_left = 33.0
-offset_top = -3.0
-offset_right = 49.0
-offset_bottom = 13.0
-texture = SubResource("CompressedTexture2D_nuq0q")
+offset_left = 149.0
+offset_top = -31.0
+offset_right = 203.0
+offset_bottom = 30.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ucwmf")
+
+[node name="money_container" type="CenterContainer" parent="back_nodes/CenterContainer" unique_id=905657704]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="back_nodes/CenterContainer/money_container" unique_id=1191454629]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="back_nodes/CenterContainer/money_container/VBoxContainer" unique_id=1087708516]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="back_nodes/CenterContainer/money_container/VBoxContainer/HBoxContainer" unique_id=2085936408]
+position = Vector2(28, 33)
+sprite_frames = SubResource("SpriteFrames_4c3da")
+animation = &"neutral"
+
+[node name="Label" type="Label" parent="back_nodes/CenterContainer/money_container/VBoxContainer/HBoxContainer" unique_id=1469034006]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.039215688)
+theme_override_fonts/font = ExtResource("4_ch1ap")
+theme_override_font_sizes/font_size = 40
+text = "  00,000,000.00"
+
+[node name="Control" type="Control" parent="back_nodes/CenterContainer/money_container/VBoxContainer/HBoxContainer" unique_id=1532631168]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="back_nodes/CenterContainer/money_container/VBoxContainer/HBoxContainer/Control" unique_id=60108801]
+layout_mode = 0
+offset_left = -277.0
+offset_top = 10.0
+offset_right = -4.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.24313726, 0.627451, 0.6745098, 1)
+theme_override_fonts/font = ExtResource("4_ch1ap")
+theme_override_font_sizes/font_size = 40
+text = "  99,999,999.99"
+horizontal_alignment = 2
 
 [node name="Left" type="HBoxContainer" parent="." unique_id=1853497693]
 layout_mode = 2
@@ -81,10 +189,44 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 10
 
-[node name="Username" type="Label" parent="Left/MarginContainer" unique_id=895410498]
+[node name="VBoxContainer" type="HBoxContainer" parent="Left/MarginContainer" unique_id=17102044]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "Epic_Seller123"
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Left/MarginContainer/VBoxContainer" unique_id=1914792283]
+layout_mode = 2
+
+[node name="Username" type="Label" parent="Left/MarginContainer/VBoxContainer/VBoxContainer" unique_id=895410498]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_nuq0q")
+theme_override_font_sizes/font_size = 10
+text = "MikeTheHaggler34"
+
+[node name="level_bar" type="ProgressBar" parent="Left/MarginContainer/VBoxContainer/VBoxContainer" unique_id=416620373]
+custom_minimum_size = Vector2(140, 15)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0uyao")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4c3da")
+show_percentage = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Left/MarginContainer/VBoxContainer" unique_id=87694176]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Left/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=584551176]
+layout_mode = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="Stars" parent="Left/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer" unique_id=2013305115 instance=ExtResource("6_0uyao")]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(6, -10)
+
+[node name="Label" type="Label" parent="Left/MarginContainer/VBoxContainer/VBoxContainer2/MarginContainer" unique_id=292981836]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_nuq0q")
+theme_override_font_sizes/font_size = 7
+text = "Level 1 Seller"
 
 [node name="Right" type="HBoxContainer" parent="." unique_id=402206226]
 layout_mode = 2
@@ -96,9 +238,6 @@ theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 10
-
-[node name="Control" type="Control" parent="Right/Money_Container" unique_id=216224778]
-layout_mode = 2
 
 [node name="Time_Container" type="MarginContainer" parent="Right" unique_id=354901569]
 layout_mode = 2

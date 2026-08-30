@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://exx8ateuuuc0"]
 
+[ext_resource type="PackedScene" uid="uid://31wk6mw8xgsp" path="res://scenes/background.tscn" id="1_6srp7"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="1_y8p56"]
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="2_cek5a"]
 [ext_resource type="Texture2D" uid="uid://q5bampf5boes" path="res://assets/mintora_small.png" id="2_ckslc"]
@@ -16,6 +17,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="background" parent="." unique_id=223626562 instance=ExtResource("1_6srp7")]
+layout_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1791497820]
 top_level = true

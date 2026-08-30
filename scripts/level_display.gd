@@ -3,7 +3,7 @@ extends MarginContainer
 @onready var level_text = $Number/Label
 @onready var sprite = $Level_Design/AnimatedSprite2D
 @onready var progress_bar = $Level_Design/ProgressBar
-
+@onready var progress_bar2: ProgressBar = $"../MarginContainer/VBoxContainer/VBoxContainer/level_bar"
 var level = level_calculator(Global.xp)
 
 func _ready() -> void:
@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 	level = level_calculator(Global.xp)
 	level_text.text = str(level)
 	progress_bar.value = percentage_from_next(Global.xp)
+	progress_bar2.value = percentage_from_next(Global.xp)
 	if level >= 1 and level <=9:
 		sprite.frame=0
 	elif level >= 10 and level <=24:
