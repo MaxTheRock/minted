@@ -26,7 +26,27 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2exkg"]
 atlas = ExtResource("4_0uyao")
-region = Rect2(192, 0, 64, 64)
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65lof"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4d5w"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvfws"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjjja"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb6ui"]
+atlas = ExtResource("4_0uyao")
+region = Rect2(128, 128, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
 animations = [{
@@ -42,13 +62,30 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2exkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65lof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4d5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvfws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjjja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb6ui")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucwmf"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k1jv6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2exkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j68vb"]
 atlas = ExtResource("5_ucwmf")
@@ -116,24 +153,36 @@ axis_stretch_horizontal = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="back_nodes" unique_id=673506217]
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 64.0
+offset_left = -65.0
+offset_top = 2.0
+offset_right = 1215.0
+offset_bottom = 66.0
 
 [node name="book_node" type="Control" parent="back_nodes/CenterContainer" unique_id=1011696312]
 layout_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="back_nodes/CenterContainer/book_node" unique_id=360949341]
-position = Vector2(173, -1)
-scale = Vector2(0.9, 0.9)
+[node name="ColorRect" type="ColorRect" parent="back_nodes/CenterContainer/book_node" unique_id=553057505]
+layout_mode = 0
+offset_left = 167.0
+offset_top = -33.0
+offset_right = 295.0
+offset_bottom = 67.0
+color = Color(0.339538, 0.16996965, 0.3358545, 1)
+
+[node name="book_sprite" type="AnimatedSprite2D" parent="back_nodes/CenterContainer/book_node" unique_id=360949341]
+position = Vector2(234, 3)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qnalp")
 
 [node name="book_button" type="Button" parent="back_nodes/CenterContainer/book_node" unique_id=761285531]
 layout_mode = 0
-offset_left = 149.0
-offset_top = -31.0
-offset_right = 203.0
-offset_bottom = 30.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ucwmf")
+offset_left = 167.0
+offset_top = -34.0
+offset_right = 295.0
+offset_bottom = 66.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_k1jv6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2exkg")
+button_mask = 0
 
 [node name="money_container" type="CenterContainer" parent="back_nodes/CenterContainer" unique_id=905657704]
 layout_mode = 2
@@ -200,7 +249,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_nuq0q")
 theme_override_font_sizes/font_size = 10
-text = "MikeTheHaggler34"
+text = "MargTheHaggler34"
 
 [node name="level_bar" type="ProgressBar" parent="Left/MarginContainer/VBoxContainer/VBoxContainer" unique_id=416620373]
 custom_minimum_size = Vector2(140, 15)
@@ -276,3 +325,6 @@ text = "15:52"
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "23/06/2026"
+
+[connection signal="mouse_entered" from="back_nodes/CenterContainer/book_node/book_button" to="." method="_on_book_button_mouse_entered"]
+[connection signal="mouse_exited" from="back_nodes/CenterContainer/book_node/book_button" to="." method="_on_book_button_mouse_exited"]

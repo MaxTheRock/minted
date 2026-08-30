@@ -38,3 +38,15 @@ func format_with_commas(number: float) -> String:
 	if is_negative:
 		final_result = "-" + final_result
 	return final_result
+
+
+
+
+
+func _on_book_button_mouse_entered() -> void:
+	$back_nodes/CenterContainer/book_node/book_sprite.play("default")
+
+
+
+func _on_book_button_mouse_exited() -> void:
+	$back_nodes/CenterContainer/book_node/book_sprite.play_backwards("default")

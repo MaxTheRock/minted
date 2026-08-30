@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://dglann2gjabqi" path="res://assets/cds/red_nose_pop.png" id="28_743hc"]
 [ext_resource type="Texture2D" uid="uid://clmqk8yi1qfjt" path="res://assets/brand_icons/smiley.png" id="28_cqjlv"]
 [ext_resource type="Texture2D" uid="uid://bgubyahs3dinr" path="res://assets/brand_icons/zig-zag.png" id="28_rrfqi"]
+[ext_resource type="Texture2D" uid="uid://b6xqo5ap2mwn" path="res://assets/items/encyclopedia.png" id="29_m3bit"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
 animations = [{
@@ -1538,6 +1539,77 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ry3"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaj8r"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30vlq"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew6vx"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww5f1"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e7ko"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2opt"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6470"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv6vf"]
+atlas = ExtResource("29_m3bit")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0dhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ry3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaj8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30vlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew6vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww5f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e7ko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2opt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6470")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iv6vf")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 12.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxq6w"]
 atlas = ExtResource("23_6rcit")
 region = Rect2(0, 0, 64, 64)
@@ -2175,6 +2247,12 @@ frame_progress = 0.8647179
 [node name="red_nose_pop" type="AnimatedSprite2D" parent="TextureButton" unique_id=2062457832 groups=["clothes"]]
 position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_05yuf")
+
+[node name="encyclopedia" type="AnimatedSprite2D" parent="TextureButton" unique_id=344999255 groups=["clothes"]]
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_v0dhe")
+frame = 8
+frame_progress = 1.0
 
 [node name="overlays" type="Control" parent="." unique_id=1252589936]
 layout_mode = 3

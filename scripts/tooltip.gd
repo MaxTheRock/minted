@@ -197,7 +197,11 @@ func name_generator(data) -> String:
 		display_type = "Red Nose Pop CD"
 		display_color = ""
 		display_color2 = ""
-
+	elif type == "encyclopedia":
+		display_type = "Encyclopedia"
+		display_color = ""
+		display_color2 = ""
+		
 	if data["overlay_animation"] == "ele_minimalistic_white" or data["overlay_animation"] == "ele_minimalistic_black":
 		brand_print = "elemental minimalistic "
 	

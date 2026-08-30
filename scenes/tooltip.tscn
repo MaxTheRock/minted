@@ -746,7 +746,7 @@ animations = [{
 "texture": ExtResource("7_mvtvv")
 }],
 "loop": 1,
-"name": &"booksmedia",
+"name": &"books_and_media",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1072,7 +1072,7 @@ animations = [{
 "texture": ExtResource("7_mvtvv")
 }],
 "loop": 1,
-"name": &"booksmedia",
+"name": &"books_and_media",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1607,7 +1607,7 @@ layout_mode = 2
 [node name="type_tag" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/item_type" unique_id=754524256]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_2lxiw")
-animation = &"booksmedia"
+animation = &"books_and_media"
 
 [node name="tag_shine" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/item_type" unique_id=1904893203]
 scale = Vector2(2, 2)
@@ -1622,7 +1622,7 @@ layout_mode = 2
 [node name="extra_tag" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/extra_info" unique_id=1164530071]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_86gv0")
-animation = &"booksmedia"
+animation = &"books_and_media"
 autoplay = "default"
 
 [node name="tag_shine" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/tags2/extra_info" unique_id=917486745]
