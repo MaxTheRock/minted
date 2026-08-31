@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cdp4tmf5gv8qc" path="res://assets/alarm.png" id="9_qtoah"]
 [ext_resource type="FontFile" uid="uid://cmwpv1y0o15oi" path="res://fonts/digital-7 (mono).ttf" id="10_eom3m"]
 [ext_resource type="Texture2D" uid="uid://w5vi05v5cwoc" path="res://assets/os/icons/down.png" id="12_tk5fv"]
+[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="13_w68ji"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6snss"]
 bg_color = Color(0, 0.1764706, 0, 1)
@@ -34,21 +35,23 @@ position = Vector2(0, -45)
 script = ExtResource("1_jn645")
 
 [node name="RoomBackground" parent="." unique_id=1702459445 instance=ExtResource("2_14vil")]
-position = Vector2(-640, -360)
+position = Vector2(-640, -335)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_qtoah")]
-position = Vector2(0, -69)
+position = Vector2(0, -16)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1938782641]
+position = Vector2(0, 28)
 
 [node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_14vil")]
-position = Vector2(8, -103)
+position = Vector2(8, -50)
 
 [node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("5_eom3m")]
+z_index = 10
 offset_left = -196.0
-offset_top = 158.0
+offset_top = 185.0
 offset_right = -196.0
-offset_bottom = 158.0
+offset_bottom = 185.0
 
 [node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("5_jxe34")]
 visible = false
@@ -67,16 +70,16 @@ grow_vertical = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = -407.0
-offset_top = 114.0
+offset_top = 139.0
 offset_right = -367.0
-offset_bottom = 154.0
+offset_bottom = 179.0
 
 [node name="PanelContainer" type="PanelContainer" parent="left_bar" unique_id=925895638]
 layout_mode = 0
 offset_left = 757.0
-offset_top = -481.0
+offset_top = -406.0
 offset_right = 1057.0
-offset_bottom = 319.0
+offset_bottom = -179.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6snss")
 
 [node name="ColorRect" type="TextureRect" parent="left_bar/PanelContainer" unique_id=1148005120]
@@ -93,9 +96,9 @@ offset_bottom = -65.0
 [node name="sleep_label" type="Label" parent="left_bar/sleep" unique_id=1157445545]
 layout_mode = 0
 offset_left = 390.0
-offset_top = -357.0
+offset_top = -289.0
 offset_right = 594.0
-offset_bottom = -288.0
+offset_bottom = -220.0
 theme_override_fonts/font = ExtResource("6_qtoah")
 theme_override_font_sizes/font_size = 40
 text = "Sleep:"
@@ -103,10 +106,10 @@ text = "Sleep:"
 [node name="sleep_bar" type="TextureProgressBar" parent="left_bar/sleep" unique_id=1101053757]
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 0
-offset_left = 359.0
-offset_top = -294.0
-offset_right = 423.0
-offset_bottom = -230.0
+offset_left = 375.0
+offset_top = -208.0
+offset_right = 439.0
+offset_bottom = -144.0
 scale = Vector2(1.5, 1.5)
 step = 0.1
 value = 90.0
@@ -117,10 +120,10 @@ texture_progress = ExtResource("7_7dqbv")
 
 [node name="timer" type="Control" parent="left_bar/sleep" unique_id=1712251329]
 anchors_preset = 0
-offset_left = 569.0
-offset_top = -267.0
-offset_right = 569.0
-offset_bottom = -267.0
+offset_left = 590.0
+offset_top = -185.0
+offset_right = 590.0
+offset_bottom = -185.0
 
 [node name="TextureRect" type="TextureRect" parent="left_bar/sleep/timer" unique_id=853162973]
 layout_mode = 0
@@ -144,13 +147,19 @@ text = "15:52"
 [node name="slide" type="Button" parent="left_bar" unique_id=1228107173]
 layout_mode = 0
 offset_left = 686.0
-offset_top = -460.0
+offset_top = -404.0
 offset_right = 750.0
-offset_bottom = -396.0
+offset_bottom = -340.0
 rotation = 1.5707964
 pivot_offset = Vector2(32, 32)
 icon = ExtResource("12_tk5fv")
 icon_alignment = 1
 expand_icon = true
+
+[node name="PanelContainer" parent="." unique_id=1234875554 instance=ExtResource("13_w68ji")]
+offset_left = -640.0
+offset_top = -335.0
+offset_right = 648.0
+offset_bottom = -265.0
 
 [connection signal="pressed" from="left_bar/slide" to="." method="_on_slide_pressed"]

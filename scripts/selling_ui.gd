@@ -7,7 +7,6 @@ var item_index = 0
 @onready var info_container = $PanelContainer2
 @onready var item_container = $MarginContainer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	show_info = false
 	var packed = preload("res://scenes/item_ui.tscn")

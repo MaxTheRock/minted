@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://tgenu28eqqe0" path="res://scripts/vehicle_container.gd" id="7_lt5my"]
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
 [ext_resource type="PackedScene" uid="uid://vqmdbs2bs2d3" path="res://scenes/traffic_light.tscn" id="8_lt5my"]
+[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="9_5tstl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
 size = Vector2(26.89616, 18.6732)
@@ -33,9 +34,9 @@ script = ExtResource("1_udpx5")
 [node name="road" type="TextureRect" parent="." unique_id=803390381]
 layout_mode = 0
 offset_left = -26.0
-offset_top = 250.0
+offset_top = 323.0
 offset_right = 636.0
-offset_bottom = 399.0
+offset_bottom = 472.0
 scale = Vector2(2, 2)
 texture = ExtResource("1_p61qw")
 stretch_mode = 1
@@ -43,14 +44,14 @@ stretch_mode = 1
 [node name="Locker" parent="." unique_id=1962350185 instance=ExtResource("7_uaw8k")]
 layout_mode = 1
 offset_left = 847.0
-offset_top = 35.0
+offset_top = 108.0
 offset_right = 847.0
-offset_bottom = 35.0
+offset_bottom = 108.0
 scale = Vector2(2, 2)
 
 [node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_8lkp2")]
 z_index = 5
-position = Vector2(703, 427)
+position = Vector2(703, 500)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_nsm10")]
 visible = false
@@ -58,7 +59,7 @@ modulate = Color(1, 1, 1, 0.08627451)
 position = Vector2(682, 593)
 
 [node name="building_area" type="Area2D" parent="." unique_id=958558554]
-position = Vector2(58, 40)
+position = Vector2(58, 113)
 collision_layer = 8
 collision_mask = 2
 
@@ -69,9 +70,9 @@ shape = SubResource("RectangleShape2D_4c3da")
 
 [node name="Control" type="Control" parent="." unique_id=104545168]
 anchors_preset = 0
-offset_top = 48.0
+offset_top = 121.0
 offset_right = 40.0
-offset_bottom = 88.0
+offset_bottom = 161.0
 
 [node name="InteractionPrompt" parent="Control" unique_id=2068386220 instance=ExtResource("6_bkgx0")]
 layout_mode = 1
@@ -93,9 +94,9 @@ debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
 [node name="vehicle_container" type="Control" parent="." unique_id=2065926026]
 anchors_preset = 0
 offset_left = -381.0
-offset_top = 290.0
+offset_top = 363.0
 offset_right = 1663.0
-offset_bottom = 455.0
+offset_bottom = 528.0
 script = ExtResource("7_lt5my")
 
 [node name="TrafficLight" parent="vehicle_container" unique_id=1641677231 instance=ExtResource("8_lt5my")]
@@ -133,6 +134,9 @@ debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
 position = Vector2(28, 36)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
+
+[node name="PanelContainer" parent="." unique_id=1234875554 instance=ExtResource("9_5tstl")]
+layout_mode = 0
 
 [connection signal="area_entered" from="building_area" to="." method="_on_building_area_area_entered"]
 [connection signal="area_exited" from="building_area" to="." method="_on_building_area_area_exited"]

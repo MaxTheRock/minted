@@ -13,6 +13,7 @@ var sold_items: Array = []
 var actual_sold: Array = []
 var display_poster: Array = []
 var buyers: Array = []
+var buyer_rating: float
 
 # bidding lists
 var bidding_items = []
@@ -70,11 +71,11 @@ func create_buyers(amount,id,listing_sell_id):
 			"buyer_name": buyer_name
 		}
 	buyers.append(buyer_dict)
-		
+
 func _ready() -> void:
-	player_inventory.append({ "ID": 73, "type": "radio", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 10, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
-	player_inventory.append({ "ID": 72, "type": "cd_player", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 15, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
-	wardrobe_inventory.append({ "ID": 71, "type": "smooth_jazz_1", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "jazz", "cd": true, "spice_factor": 1, "rarity": "uncommon", "logo_animation": &"none", "default_price": 4.5, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": false, "poster": false })
+	#player_inventory.append({ "ID": 73, "type": "radio", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 10, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
+	#player_inventory.append({ "ID": 72, "type": "cd_player", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 15, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
+	#wardrobe_inventory.append({ "ID": 71, "type": "smooth_jazz_1", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "jazz", "cd": true, "spice_factor": 1, "rarity": "uncommon", "logo_animation": &"none", "default_price": 4.5, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": false, "poster": false })
 	pass
 	
 func _process(_delta) -> void:
@@ -221,6 +222,28 @@ func check_buy_items(buyer,id):
 		transfer_item(player_selling,sold_items,found_index)
 		item_sold.emit()
 		Global.xp += 200
+		if trust > 0.9:
+			buyer_rating = 5.0
+		elif trust > 0.8:
+			buyer_rating = 4.5
+		elif trust > 0.7:
+			buyer_rating = 4.0
+		elif trust > 0.6:
+			buyer_rating = 3.5
+		elif trust > 0.5:
+			buyer_rating = 3.0
+		elif trust > 0.4:
+			buyer_rating = 2.5
+		elif trust > 0.3:
+			buyer_rating = 2.0
+		elif trust > 0.2:
+			buyer_rating = 1.5
+		elif trust > 0.1:
+			buyer_rating = 1.0
+		elif trust <= 0.1:
+			buyer_rating = 0.5
+		Global.player_ratings.append(buyer_rating)
+		print(Global.player_ratings)
 
 func create_bidding_details(index):
 	var bidding = bidding_items[index]	
