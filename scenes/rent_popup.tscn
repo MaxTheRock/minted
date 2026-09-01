@@ -1,26 +1,51 @@
 [gd_scene format=3 uid="uid://bf7klmhgpdjnt"]
 
+[ext_resource type="Script" uid="uid://cee0n2nym4ro1" path="res://scenes/rent_popup.gd" id="1_2e1cd"]
 [ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="1_6vq7e"]
 [ext_resource type="Texture2D" uid="uid://su3sys4n25hq" path="res://assets/hotbar/stone_hotbar_item_template.png" id="2_l6sg0"]
 [ext_resource type="Texture2D" uid="uid://b2eupinbhsyoh" path="res://assets/hotbar/speech_bubble_template.png" id="3_0bwe8"]
+[ext_resource type="Texture2D" uid="uid://d4gjvdamffvt5" path="res://assets/buy_template.png" id="4_2e1cd"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_cca4d"]
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="5_2e1cd"]
 [ext_resource type="Texture2D" uid="uid://ckfaa8maa1gw6" path="res://assets/hotbar/dor.png" id="6_d0u81"]
+[ext_resource type="Texture2D" uid="uid://cqm2ueyow8ds2" path="res://assets/hotbar/rent_day_title_template.png" id="7_0bwe8"]
 
-[node name="RentPopup" type="Control" unique_id=2011857872]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnalp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4c3da"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pjmv"]
+
+[node name="RentPopup" type="CanvasLayer" unique_id=1517185544]
+layer = 10
+
+[node name="RentPopup" type="Control" parent="." unique_id=1856405540]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 639.0
+offset_top = 377.0
+offset_right = 639.0
+offset_bottom = 377.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2e1cd")
 
-[node name="background" type="NinePatchRect" parent="." unique_id=1459180125]
+[node name="ColorRect" type="ColorRect" parent="RentPopup" unique_id=1242079508]
 layout_mode = 0
-offset_left = 386.0
-offset_top = 14.0
-offset_right = 520.25
-offset_bottom = 185.0
+offset_left = -638.0
+offset_top = -378.0
+offset_right = 642.0
+offset_bottom = 342.0
+color = Color(0.76748437, 0.9804141, 0.7496374, 1)
+
+[node name="background" type="NinePatchRect" parent="RentPopup" unique_id=1459180125]
+layout_mode = 0
+offset_left = -252.0
+offset_top = -364.0
+offset_right = -117.75
+offset_bottom = -193.0
 scale = Vector2(4, 4)
 texture = ExtResource("1_6vq7e")
 region_rect = Rect2(11, 3, 41, 56)
@@ -30,12 +55,12 @@ patch_margin_right = 9
 patch_margin_bottom = 13
 axis_stretch_horizontal = 1
 
-[node name="landlord_container" type="NinePatchRect" parent="." unique_id=887410837]
+[node name="landlord_container" type="NinePatchRect" parent="RentPopup" unique_id=887410837]
 layout_mode = 0
-offset_left = 423.0
-offset_top = 112.0
-offset_right = 459.0
-offset_bottom = 152.5
+offset_left = -215.0
+offset_top = -266.0
+offset_right = -179.0
+offset_bottom = -225.5
 scale = Vector2(4, 4)
 texture = ExtResource("2_l6sg0")
 region_rect = Rect2(15, 7, 33, 43)
@@ -45,12 +70,12 @@ patch_margin_right = 4
 patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 
-[node name="speech_bubble_container" type="NinePatchRect" parent="." unique_id=715338730]
+[node name="speech_bubble_container" type="NinePatchRect" parent="RentPopup" unique_id=715338730]
 layout_mode = 0
-offset_left = 583.0
-offset_top = 113.0
-offset_right = 657.0
-offset_bottom = 138.5
+offset_left = -55.0
+offset_top = -265.0
+offset_right = 19.0
+offset_bottom = -239.5
 scale = Vector2(4, 4)
 texture = ExtResource("3_0bwe8")
 region_rect = Rect2(12, 7, 36, 43)
@@ -59,14 +84,39 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="landlord_text" type="CenterContainer" parent="." unique_id=1987553619]
+[node name="pay_container" type="NinePatchRect" parent="RentPopup" unique_id=1360588143]
 layout_mode = 0
-offset_left = 607.0
-offset_top = 125.0
-offset_right = 867.0
-offset_bottom = 203.0
+offset_left = 75.0
+offset_top = 201.0
+offset_right = 109.75
+offset_bottom = 220.25
+scale = Vector2(4, 4)
+texture = ExtResource("4_2e1cd")
+patch_margin_left = 3
+patch_margin_top = 5
+patch_margin_right = 3
+patch_margin_bottom = 5
 
-[node name="landlord_text2" type="Label" parent="landlord_text" unique_id=1499540660]
+[node name="pay_label" type="Label" parent="RentPopup" unique_id=1032361951]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 208.0
+offset_right = 199.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.13081625, 0.24524829, 7.219613e-08, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 25
+text = "Pay"
+
+[node name="landlord_text" type="CenterContainer" parent="RentPopup" unique_id=1987553619]
+layout_mode = 0
+offset_left = -31.0
+offset_top = -253.0
+offset_right = 229.0
+offset_bottom = -175.0
+
+[node name="landlord_text2" type="Label" parent="RentPopup/landlord_text" unique_id=1499540660]
+custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(1, 1)
@@ -74,20 +124,27 @@ theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
 theme_override_fonts/font = ExtResource("4_cca4d")
 theme_override_font_sizes/font_size = 10
 text = "Time to pay up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="landlord_text" type="Label" parent="landlord_text" unique_id=13494270]
+[node name="landlord_text" type="Label" parent="RentPopup/landlord_text" unique_id=13494270]
+custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
 theme_override_fonts/font = ExtResource("4_cca4d")
 theme_override_font_sizes/font_size = 10
 text = "Time to pay up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="info_container" type="NinePatchRect" parent="." unique_id=676081974]
+[node name="info_container" type="NinePatchRect" parent="RentPopup" unique_id=676081974]
 layout_mode = 0
-offset_left = 423.0
-offset_top = 287.0
-offset_right = 537.0
-offset_bottom = 366.5
+offset_left = -215.0
+offset_top = -91.0
+offset_right = -101.0
+offset_bottom = -11.5
 scale = Vector2(4, 4)
 texture = ExtResource("5_2e1cd")
 region_rect = Rect2(15, 7, 33, 43)
@@ -97,24 +154,126 @@ patch_margin_right = 4
 patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1641246640]
+[node name="dots" type="NinePatchRect" parent="RentPopup" unique_id=1641246640]
 layout_mode = 0
-offset_left = 436.0
-offset_top = 317.0
-offset_right = 866.0
-offset_bottom = 323.0
+offset_left = -202.0
+offset_top = -34.0
+offset_right = 228.0
+offset_bottom = -28.0
 texture = ExtResource("6_d0u81")
 region_rect = Rect2(0, 2, 8, 6)
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Electrical" type="Control" parent="." unique_id=184404619]
+[node name="Summary" type="Control" parent="RentPopup" unique_id=83779821]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(1.5, 1.5)
+offset_left = -482.0
+offset_top = -310.0
+offset_right = -442.0
+offset_bottom = -270.0
 
-[node name="landlord_text2" type="Label" parent="Electrical" unique_id=1616786934]
+[node name="text1" type="Label" parent="RentPopup/Summary" unique_id=1717244738]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 20
+text = "Summary:"
+
+[node name="text2" type="Label" parent="RentPopup/Summary" unique_id=224911787]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 20
+text = "Summary:"
+
+[node name="Building" type="Control" parent="RentPopup" unique_id=538044583]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -243.0
+offset_right = -442.0
+offset_bottom = -203.0
+
+[node name="text1" type="Label" parent="RentPopup/Building" unique_id=151643584]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Building"
+
+[node name="text2" type="Label" parent="RentPopup/Building" unique_id=612542281]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Building"
+
+[node name="price1" type="Label" parent="RentPopup/Building" unique_id=2014278208]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6784314, 0.6784314, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="price2" type="Label" parent="RentPopup/Building" unique_id=912958298]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="dots2" type="NinePatchRect" parent="RentPopup/Building" unique_id=1809305990]
+modulate = Color(1, 1, 1, 0.15686275)
+layout_mode = 0
+offset_left = 356.0
+offset_top = 240.0
+offset_right = 972.0
+offset_bottom = 246.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_d0u81")
+region_rect = Rect2(0, 2, 8, 6)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Electrical" type="Control" parent="RentPopup" unique_id=184404619]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -211.0
+offset_right = -442.0
+offset_bottom = -171.0
+
+[node name="text1" type="Label" parent="RentPopup/Electrical" unique_id=1616786934]
 layout_mode = 0
 offset_left = 290.66666
 offset_top = 220.0
@@ -127,7 +286,7 @@ theme_override_fonts/font = ExtResource("4_cca4d")
 theme_override_font_sizes/font_size = 10
 text = "Electrical"
 
-[node name="landlord_text3" type="Label" parent="Electrical" unique_id=785164896]
+[node name="text2" type="Label" parent="RentPopup/Electrical" unique_id=785164896]
 layout_mode = 0
 offset_left = 290.66666
 offset_top = 220.0
@@ -137,3 +296,379 @@ theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
 theme_override_fonts/font = ExtResource("4_cca4d")
 theme_override_font_sizes/font_size = 10
 text = "Electrical"
+
+[node name="price1" type="Label" parent="RentPopup/Electrical" unique_id=1825080733]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6784314, 0.6784314, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="price2" type="Label" parent="RentPopup/Electrical" unique_id=964792021]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="dots2" type="NinePatchRect" parent="RentPopup/Electrical" unique_id=1947935273]
+modulate = Color(1, 1, 1, 0.15686275)
+layout_mode = 0
+offset_left = 376.0
+offset_top = 240.0
+offset_right = 952.0
+offset_bottom = 246.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_d0u81")
+region_rect = Rect2(0, 2, 8, 6)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Utilities" type="Control" parent="RentPopup" unique_id=1613230307]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -179.0
+offset_right = -442.0
+offset_bottom = -139.0
+
+[node name="text1" type="Label" parent="RentPopup/Utilities" unique_id=1235952026]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Utilities"
+
+[node name="text2" type="Label" parent="RentPopup/Utilities" unique_id=911817625]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Utilities"
+
+[node name="price1" type="Label" parent="RentPopup/Utilities" unique_id=665421258]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6784314, 0.6784314, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="price2" type="Label" parent="RentPopup/Utilities" unique_id=1042624217]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="dots2" type="NinePatchRect" parent="RentPopup/Utilities" unique_id=805725849]
+modulate = Color(1, 1, 1, 0.15686275)
+layout_mode = 0
+offset_left = 361.0
+offset_top = 240.0
+offset_right = 967.0
+offset_bottom = 246.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_d0u81")
+region_rect = Rect2(0, 2, 8, 6)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Maintenance" type="Control" parent="RentPopup" unique_id=1742051509]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -145.0
+offset_right = -442.0
+offset_bottom = -105.0
+
+[node name="text1" type="Label" parent="RentPopup/Maintenance" unique_id=1129348303]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Maintenance"
+
+[node name="text2" type="Label" parent="RentPopup/Maintenance" unique_id=719386338]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Maintenance"
+
+[node name="price1" type="Label" parent="RentPopup/Maintenance" unique_id=1319444775]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6784314, 0.6784314, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="price2" type="Label" parent="RentPopup/Maintenance" unique_id=1384181619]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="dots2" type="NinePatchRect" parent="RentPopup/Maintenance" unique_id=1597148010]
+modulate = Color(1, 1, 1, 0.15686275)
+layout_mode = 0
+offset_left = 402.0
+offset_top = 240.0
+offset_right = 926.0
+offset_bottom = 246.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_d0u81")
+region_rect = Rect2(0, 2, 8, 6)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Broadband" type="Control" parent="RentPopup" unique_id=1152816788]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -110.0
+offset_right = -442.0
+offset_bottom = -70.0
+
+[node name="text1" type="Label" parent="RentPopup/Broadband" unique_id=2101057988]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Broadband"
+
+[node name="text2" type="Label" parent="RentPopup/Broadband" unique_id=1531483253]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 220.0
+offset_right = 414.66666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "Broadband"
+
+[node name="price1" type="Label" parent="RentPopup/Broadband" unique_id=533786714]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6784314, 0.6784314, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="price2" type="Label" parent="RentPopup/Broadband" unique_id=161978750]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 220.0
+offset_right = 700.6666
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 10
+text = "$99"
+horizontal_alignment = 2
+
+[node name="dots2" type="NinePatchRect" parent="RentPopup/Broadband" unique_id=623874253]
+modulate = Color(1, 1, 1, 0.15686275)
+layout_mode = 0
+offset_left = 385.0
+offset_top = 240.0
+offset_right = 943.0
+offset_bottom = 246.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_d0u81")
+region_rect = Rect2(0, 2, 8, 6)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="dots2" type="NinePatchRect" parent="RentPopup" unique_id=275798790]
+layout_mode = 0
+offset_left = -202.0
+offset_top = 150.0
+offset_right = 228.0
+offset_bottom = 156.0
+texture = ExtResource("6_d0u81")
+region_rect = Rect2(0, 2, 8, 6)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Total" type="Control" parent="RentPopup" unique_id=502900446]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -310.0
+offset_right = -442.0
+offset_bottom = -270.0
+
+[node name="text1" type="Label" parent="RentPopup/Total" unique_id=178343114]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 462.0
+offset_right = 446.66666
+offset_bottom = 518.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 20
+text = "Total:"
+
+[node name="text2" type="Label" parent="RentPopup/Total" unique_id=221923253]
+layout_mode = 0
+offset_left = 290.66666
+offset_top = 462.0
+offset_right = 446.66666
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 20
+text = "Total:"
+
+[node name="price1" type="Label" parent="RentPopup/Total" unique_id=469210300]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 464.0
+offset_right = 700.6666
+offset_bottom = 520.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6784314, 0.6784314, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 20
+text = "$999"
+horizontal_alignment = 2
+
+[node name="price2" type="Label" parent="RentPopup/Total" unique_id=582528365]
+layout_mode = 0
+offset_left = 576.6666
+offset_top = 464.0
+offset_right = 700.6666
+offset_bottom = 520.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 20
+text = "$999"
+horizontal_alignment = 2
+
+[node name="title_container" type="NinePatchRect" parent="RentPopup" unique_id=42127448]
+layout_mode = 0
+offset_left = -275.0
+offset_top = -352.0
+offset_right = -126.75
+offset_bottom = -332.75
+scale = Vector2(4, 4)
+texture = ExtResource("7_0bwe8")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+
+[node name="Title" type="Control" parent="RentPopup" unique_id=481073145]
+anchors_preset = 0
+offset_left = -482.0
+offset_top = -310.0
+offset_right = -442.0
+offset_bottom = -270.0
+
+[node name="text1" type="Label" parent="RentPopup/Title" unique_id=2004192624]
+layout_mode = 0
+offset_left = 385.0
+offset_top = -50.0
+offset_right = 619.0
+offset_bottom = 34.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 30
+text = "Rent Day!"
+
+[node name="text2" type="Label" parent="RentPopup/Title" unique_id=1362741175]
+layout_mode = 0
+offset_left = 383.0
+offset_top = -52.0
+offset_right = 617.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 30
+text = "Rent Day!"
+
+[node name="pay_button" type="Button" parent="RentPopup" unique_id=509087891]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 227.0
+offset_right = 214.0
+offset_bottom = 278.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnalp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4c3da")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4pjmv")
+
+[connection signal="mouse_entered" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_mouse_entered"]
+[connection signal="mouse_exited" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_mouse_exited"]
+[connection signal="pressed" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_pressed"]

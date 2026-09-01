@@ -37,6 +37,9 @@ var month = 7
 var year = 2026
 var time_mins = 0
 
+var days_since_rent: int = 0
+var rent_triggered: bool = false
+
 var clock_timer = 0.0
 var paused = false
 var skip_dialogue = true
@@ -48,10 +51,17 @@ var radio_on = false
 var radio_playing = "none"
 var cd_paused = false
 
+# Rent
+var rent_building: float = 1.0
+var rent_electrical: float = 1.0
+var rent_utilities: float = 1.0
+var rent_maintenance: float = 1.0
+var rent_broadband: float = 1.0
+
 var frequency = 150
 # clock
 var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
-const SPEED_MULT = 1  # just makes time even faster, default to 1.
+var SPEED_MULT = 1 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
@@ -63,7 +73,15 @@ var news_interest = 1
 var daily_change = 0.2
 const refresh_news_1_at = 10
 const refresh_news_2_at = 16
+
 func _process(delta):
+	if rent_triggered:
+		RentPopup.visible = true
+		SPEED_MULT = 0
+	else:
+		RentPopup.visible = false
+		SPEED_MULT = 1
+	
 	player_rating = mean(player_ratings)
 	
 	if Input.is_action_just_released("interact"):
@@ -132,6 +150,11 @@ func new_time_calc(min_added: int) -> void:
 	if hour >= 24:
 		hour -= 24
 		day += 1
+		days_since_rent += 1
+
+		if days_since_rent >= 3:
+			rent_triggered = true
+			days_since_rent = 0
 
 		var days_in_month = calc_days_in_month(month, year)
 
@@ -294,5 +317,5 @@ func place_generatorB():
 
 func full_name_generator():
 	var forenames = ["richard","sam","oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris","daniel","jack","james","morty","kasper","olivia","elizabeth","tal","sophie","maya","eileen","noelle","susie","lois","linda","victoria","seren","otto"]
-	var surnames = ["D James", "Pearl", "Smith", "Thomson","Miserski","Weedon","Hall","Wiggum","Simpson","Cenat","Macenzie","Griffith","Walker","Simons","Digby-Dysart"]
+	var surnames = ["D James", "Pearl", "Smith", "Thomson","Misiurski","Weedon","Hall","Wiggum","Simpson","Cenat","Macenzie","Griffith","Walker","Simons","Digby-Dysart"]
 	return (forenames.pick_random()).capitalize() + " " + surnames.pick_random()
