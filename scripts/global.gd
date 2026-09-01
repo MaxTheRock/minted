@@ -47,14 +47,20 @@ var action_just_pressed = false
 var radio_on = false
 var radio_playing = "none"
 var cd_paused = false
-var last_article = {}
+
 var frequency = 150
+# clock
 var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
 const SPEED_MULT = 1  # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
 
+# newspaper
+var last_article = {}
+var articles = []
+const refresh_news_1_at = 10
+const refresh_news_2_at = 16
 func _process(delta):
 	player_rating = mean(player_ratings)
 	
@@ -82,7 +88,25 @@ func new_time_calc(min_added: int) -> void:
 	if min >= 60:
 		min -= 60
 		hour += 1
-
+		if hour == refresh_news_1_at:
+			Global.articles.pop_at(0)
+			var packed = preload("res://scenes/article.tscn")
+			var storage_ui = packed.instantiate()
+			$".".add_child(storage_ui)
+			Global.articles.insert(0,storage_ui.article_chosen)
+			
+			storage_ui.queue_free()
+			SignalBus.articles_changed.emit()
+		elif hour == refresh_news_2_at:
+			Global.articles.pop_at(1)
+			var packed = preload("res://scenes/article.tscn")
+			var storage_ui = packed.instantiate()
+			$".".add_child(storage_ui)
+			Global.articles.insert(1,storage_ui.article_chosen)
+			
+			storage_ui.queue_free()
+			SignalBus.articles_changed.emit()
+			
 	if hour >= 24:
 		hour -= 24
 		day += 1

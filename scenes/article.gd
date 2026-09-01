@@ -9,14 +9,19 @@ extends Control
 @onready var image_text = $image_container/image_text
 
 var articles_available = []
+var article_chosen = ""
+var pick_random: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	articles_available = load_json_file("res://dialogue/news.json")
-	articles_available.erase(Global.last_article)
-	var article_chosen = get_article(articles_available)
-	
-	process_article(article_chosen)
-	Global.last_article = article_chosen
+	if !pick_random:
+		return
+	elif pick_random:
+		articles_available = load_json_file("res://dialogue/news.json")
+		articles_available.erase(Global.last_article)
+		article_chosen = get_article(articles_available)
+		
+		process_article(article_chosen)
+		Global.last_article = article_chosen
 
 func load_json_file(file_path: String) -> Variant:
 	if FileAccess.file_exists(file_path):
@@ -58,7 +63,9 @@ func process_article(article):
 	logo.text = article.get("source","")
 	var image = article.get("image","none")
 	var image_desc = article.get("image_desc","")
-	
+	if article.get("subtitle","") == "":
+		article_text.size = Vector2(380,260)
+		article_text.position = Vector2(12,228-50)
 	var ad = article.get("ad",false)
 	if image != "none":
 		image_container.show()

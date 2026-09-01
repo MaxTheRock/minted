@@ -21,7 +21,6 @@ offset_right = -880.0
 offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.8)
 script = ExtResource("1_ii25t")
 
 [node name="PanelContainer" type="TextureRect" parent="." unique_id=2038387674]
@@ -45,10 +44,10 @@ text = "LOGO:"
 
 [node name="title" type="RichTextLabel" parent="." unique_id=2000236190]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 97.0
-offset_right = 377.0
-offset_bottom = 197.0
+offset_left = 22.0
+offset_top = 60.0
+offset_right = 372.0
+offset_bottom = 190.0
 theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 50

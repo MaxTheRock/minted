@@ -3,6 +3,7 @@ extends Control
 @onready var ui_element = preload("res://scenes/item_ui.tscn")
 @onready var tab_container = $Mintora/VBoxContainer/Control3/TabContainer
 
+
 func show_page(page_name: String) -> void:
 	for i in range(tab_container.get_tab_count()):
 		if tab_container.get_tab_title(i) == page_name or tab_container.get_child(i).name == page_name:
@@ -55,3 +56,14 @@ func _ready():
 			Inventory.create_bidding_details(Inventory.bidding_items.size()-1)
 				
 			item_ui.queue_free()
+	
+	if Global.articles.size() == 0:
+		for i in range(2):
+			var packed = preload("res://scenes/article.tscn")
+			var storage_ui = packed.instantiate()
+			$".".add_child(storage_ui)
+			Global.articles.append(storage_ui.article_chosen)
+			
+			storage_ui.queue_free()
+		
+		SignalBus.articles_changed.emit()

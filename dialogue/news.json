@@ -7,7 +7,7 @@
 	"weight": 100,
 	"image": "none",
 	"ad": true,
-	"effect": null,
+	"effect": null
   },
 {
 	"id": 1,
@@ -17,7 +17,7 @@
 	"weight": 100,
 	"image": "fire1",
 	"effect": null,
-	"ad": false,
+	"ad": false
 },
 {
 	"id": 2,
@@ -27,7 +27,7 @@
 	"weight": 100,
 	"image": "fire2",
 	"effect": null,
-	"ad": false,
+	"ad": false
 },
 {
 	"id": 3,
@@ -38,7 +38,7 @@
 	"image": "john",
 	"image_desc": "A portait of Hectare",
 	"effect": null,
-	"ad": false,
+	"ad": false
 },
 {
 	"id": 4,
@@ -49,7 +49,7 @@
 	"image": "none",
 	"image_desc": null,
 	"effect": "more_buyers",
-	"ad": true,
+	"ad": true
 },
 {
 	"id": 5,
@@ -60,7 +60,7 @@
 	"image": "none",
 	"image_desc": null,
 	"effect": "less_buyers",
-	"ad": true,
+	"ad": true
 },
 {
 	"id": 6,
@@ -71,7 +71,7 @@
 	"image": "person",
 	"image_desc": "[same_name]",
 	"effect": null,
-	"ad": false,
+	"ad": false
 },
 {
 	"id": 7,
@@ -82,7 +82,7 @@
 	"image": "kingfisgher",
 	"image_desc": "A Kingfisher spotted in Stally.",
 	"effect": null,
-	"ad": false,
+	"ad": false
 },
 {
 	"id": 8,
@@ -93,7 +93,7 @@
 	"image": "reservoir",
 	"image_desc": "The reservoir drying up.",
 	"effect": null,
-	"ad": false,
+	"ad": false
 },
 {
 	"id": 9,
@@ -104,7 +104,7 @@
 	"image": "none",
 	"image_desc": "none",
 	"effect": null,
-	"ad": true,
+	"ad": true
 },
 {
 	"id": 10,
@@ -115,7 +115,7 @@
 	"image": "none",
 	"image_desc": "none",
 	"effect": null,
-	"ad": true,
+	"ad": true
 },
 {
 	"id": 11,
@@ -126,18 +126,18 @@
 	"image": "none",
 	"image_desc": "none",
 	"effect": null,
-	"ad": true,
+	"ad": true
 },
 {
 	"id": 12,
 	"source": "The Daily Potato",
 	"title": "High speed car chase after hearing disappointing news. ",
-	"article": "[name] was fortunately arrested yesterday after being involved in a high speed car chase around the F71 motorway. During the chase, information was gathered that this young individual that only had 23 years of age was devastated after accidentally bidding 34k on a cd accidentally and losing his whole net worth in one click. His parents tried convincing him to start his life fresh from the start but Robert was determined to find the seller and get his money back. Mr waters was found guilty for reckless driving and sentenced to 10 years of community work.",
+	"article": "[name] was fortunately arrested yesterday after being involved in a high speed car chase around the F71 motorway. During the chase, information was gathered that this young individual that only had 23 years of age was devastated after accidentally bidding 34k on a cd accidentally and losing his whole net worth in one click. His parents tried convincing him to start his life fresh from the start but they were determined to find the seller and get his money back. [name] was found guilty for reckless driving and sentenced to 10 years of community work.",
 	"weight": 100,
 	"image": "none",
 	"image_desc": "none",
 	"effect": null,
-	"ad": true,
+	"ad": true
 },
 {
 	"id": 13,
@@ -148,7 +148,7 @@
 	"image": "sewer",
 	"image_desc": "an affected sewer",
 	"effect": null,
-	"ad": true,
-},
+	"ad": true
+}
 
 ]
