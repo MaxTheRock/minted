@@ -157,7 +157,7 @@ func process_article(article):
 
 	title.text = "[b]" + title_unformatted + "[/b]"
 
-	if article_index < Global.articles.size():
+	if article_index < Global.articles.size() and Global.articles[article_index] is Dictionary:
 		Global.articles[article_index]["saved_name"] = name
 		Global.articles[article_index]["article"] = article_itself
 		Global.articles[article_index]["title"] = title_unformatted
