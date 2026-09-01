@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://dnqcs4sdwiacp"]
+
+[ext_resource type="Script" uid="uid://c3dmickbu12gt" path="res://scenes/article.gd" id="1_ii25t"]
+[ext_resource type="Texture2D" uid="uid://dwjbbaxoamx0x" path="res://assets/icon.svg" id="1_qqirc"]
+
+[sub_resource type="Gradient" id="Gradient_ii25t"]
+colors = PackedColorArray(0.7372549, 0.9372549, 0.88235295, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccrme"]
+gradient = SubResource("Gradient_ii25t")
+fill_from = Vector2(0.49658704, 0)
+fill_to = Vector2(0.5102389, 1)
+
+[node name="article" type="Control" unique_id=1387595543]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -880.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.8)
+script = ExtResource("1_ii25t")
+
+[node name="PanelContainer" type="TextureRect" parent="." unique_id=2038387674]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 404.0
+offset_bottom = 603.0
+texture = SubResource("GradientTexture2D_ccrme")
+
+[node name="logo" type="RichTextLabel" parent="." unique_id=1398964719]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 11.0
+offset_right = 406.0
+offset_bottom = 211.0
+theme_override_colors/default_color = Color(0.4075654, 0.40756536, 0.40756533, 1)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "LOGO:"
+
+[node name="title" type="RichTextLabel" parent="." unique_id=2000236190]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 97.0
+offset_right = 377.0
+offset_bottom = 197.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+bbcode_enabled = true
+text = "[b]Your Title Text:[/b]"
+
+[node name="subtitle" type="RichTextLabel" parent="." unique_id=1817222484]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 196.0
+offset_right = 407.0
+offset_bottom = 236.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]Your subtitle text here[/center]"
+
+[node name="article" type="RichTextLabel" parent="." unique_id=1153250216]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 228.0
+offset_right = 392.0
+offset_bottom = 438.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "article"
+
+[node name="image_container" type="Control" parent="." unique_id=688036064]
+visible = false
+anchors_preset = 0
+offset_left = 152.0
+offset_top = 443.0
+offset_right = 192.0
+offset_bottom = 483.0
+
+[node name="image_text" type="RichTextLabel" parent="image_container" unique_id=2146092134]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 11.0
+offset_right = 253.0
+offset_bottom = 131.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "image decription"
+autowrap_mode = 2
+
+[node name="image" type="TextureRect" parent="image_container" unique_id=1422748660]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -4.0
+offset_right = 25.0
+offset_bottom = 146.0
+texture = ExtResource("1_qqirc")
+
+[node name="advertisement_container" type="Control" parent="." unique_id=954877976]
+visible = false
+anchors_preset = 0
+offset_left = 171.0
+offset_top = 453.0
+offset_right = 211.0
+offset_bottom = 493.0
+
+[node name="ad_text" type="RichTextLabel" parent="advertisement_container" unique_id=1630358950]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -12.0
+offset_right = 104.0
+offset_bottom = 108.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "sponsored:"
+
+[node name="ad" type="TextureRect" parent="advertisement_container" unique_id=2080618743]
+layout_mode = 0
+offset_left = -119.0
+offset_top = 20.0
+offset_right = 181.0
+offset_bottom = 148.0
+texture = ExtResource("1_qqirc")

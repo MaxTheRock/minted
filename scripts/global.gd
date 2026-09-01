@@ -47,6 +47,7 @@ var action_just_pressed = false
 var radio_on = false
 var radio_playing = "none"
 var cd_paused = false
+var last_article = {}
 var frequency = 150
 var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
 const SPEED_MULT = 1  # just makes time even faster, default to 1.

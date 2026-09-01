@@ -424,5 +424,6 @@ text = "[F]"
 position = Vector2(108, 121)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6snss")
-animation = &"landlord_mad"
+animation = &"margaret_neutral"
 autoplay = "none"
+frame_progress = 0.01940435

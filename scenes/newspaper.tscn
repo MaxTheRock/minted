@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhynb0gac2y1w"]
 
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_ge38h"]
+[ext_resource type="Script" uid="uid://cqrixx8ympgba" path="res://scenes/newspaper.gd" id="1_o430b"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="1_orewu"]
 
 [node name="Newspaper" type="Control" unique_id=1782061001]
@@ -8,6 +9,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_o430b")
 
 [node name="Label" type="Label" parent="." unique_id=422682906]
 layout_mode = 0
@@ -35,3 +37,26 @@ offset_bottom = -578.0
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_ge38h")]
 layout_mode = 2
+
+[node name="News" type="MarginContainer" parent="." unique_id=1828062992]
+custom_minimum_size = Vector2(0, 560)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 100.0
+offset_right = 1024.0
+offset_bottom = 900.0
+theme_override_constants/margin_left = 47
+theme_override_constants/margin_right = 46
+metadata/_tab_index = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="News" unique_id=1271509700]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="News/ScrollContainer" unique_id=983791215]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 15
+columns = 3
