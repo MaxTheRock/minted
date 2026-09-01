@@ -205,7 +205,7 @@ func check_buy_items(buyer,id):
 	odds = 0.15 * trust * price_affect_odds	
 	var numbar = rng.randf()
 	#print(odds, " ", numbar)
-	if odds >= numbar:
+	if odds * Global.news_interest >= numbar:
 		for j in buyers:
 			if buyer["listing_sell_id"] == j["listing_sell_id"]:
 				buyers.erase(j)
@@ -375,7 +375,7 @@ func bidder_raise(bidder):
 	
 	var numbar = rng.randf()
 	#print(odds, " ", numbar)
-	if odds >= numbar:
+	if odds * Global.news_interest >= numbar:
 		var raise_amount = calculate_minimum_raise(current_price)
 		current_price += raise_amount * rng.randi_range(1,4)
 		details["bidder_name"] = bidder["buyer_name"]

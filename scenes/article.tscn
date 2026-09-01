@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dnqcs4sdwiacp"]
 
-[ext_resource type="Script" uid="uid://c3dmickbu12gt" path="res://scenes/article.gd" id="1_ii25t"]
+[ext_resource type="Script" uid="uid://c3dmickbu12gt" path="res://scripts/article.gd" id="1_ii25t"]
 [ext_resource type="Texture2D" uid="uid://dwjbbaxoamx0x" path="res://assets/icon.svg" id="1_qqirc"]
 
 [sub_resource type="Gradient" id="Gradient_ii25t"]

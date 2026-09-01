@@ -12,9 +12,12 @@ func _load_articles():
 		child.queue_free()
  
 	var packed = preload("res://scenes/article.tscn")
+	var index = 0
 	for article in Global.articles:
 		var storage_ui = packed.instantiate()
 		storage_ui.pick_random = false
+		storage_ui.article_index = index
+		index += 1
 		grid_container.add_child(storage_ui)
 		storage_ui.process_article(article)
 		

@@ -7,16 +7,16 @@
 	"weight": 100,
 	"image": "none",
 	"ad": true,
-	"effect": null
+	"effect": "none"
   },
 {
 	"id": 1,
 	"source": "The Daily Potato",
-	"title": "Fire Spreads in Stally",
-	"article": "A fire that started on the [date] has been spreading from the heart of southwest Stally, causing damages to 12 housings and causing a severe type 2 burn to [name], rendering them paralysed from the waist down. The fire department is working hard to ensure that embers do not spread any further, attached below is an image of the damage that these fires have caused:",
+	"title": "Fire Spreads in [place]",
+	"article": "A fire that started on the [date] has been spreading from the heart of southwest [place], causing damages to 12 housings and causing a severe type 2 burn to [name], rendering them paralysed from the waist down. The fire department is working hard to ensure that embers do not spread any further, attached below is an image of the damage that these fires have caused:",
 	"weight": 100,
 	"image": "fire1",
-	"effect": null,
+	"effect": "none",
 	"ad": false
 },
 {
@@ -26,7 +26,7 @@
 	"article": "A fire that started on the [date] has been lit in a pub after the bartender announced the raising of prices for a pint by 10%. The pricy pint specifically caused an outrage with [name], who lit a fire using a matchstick on a curtain, causing a rapid fire in the pub, luckily the owner quickly put out the fire using an offhand keg of beer, which is a decision that is just as baffling as it is suprising that it worked, here's what the owner has to say: \n\t\"Beer is mostly water, right?\"",
 	"weight": 100,
 	"image": "fire2",
-	"effect": null,
+	"effect": "none",
 	"ad": false
 },
 {
@@ -37,28 +37,28 @@
 	"weight": 100,
 	"image": "john",
 	"image_desc": "A portait of Hectare",
-	"effect": null,
+	"effect": "none",
 	"ad": false
 },
 {
 	"id": 4,
 	"source": "The Daily Potato",
 	"title": "Unemployment rises in Western England",
-	"article": "In western England, there is a lack of jobs appearing, economists blame the younger generation for not treating education correctly. This has resulted in a total of a [percent]% decreases in the number of workers, some unemployed people have turned to minted.",
+	"article": "In western England, there is a lack of jobs appearing, economists blame the younger generation for not treating education correctly. This has resulted in a total of a [percent]% decreases in the number of workers, some unemployed people have turned to reselling items using the second hand company Minted, to make a quick buck.",
 	"weight": 50,
 	"image": "none",
-	"image_desc": null,
+	"image_desc": "none",
 	"effect": "more_buyers",
 	"ad": true
 },
 {
 	"id": 5,
 	"source": "The Daily Potato",
-	"title": "Minted Boycott",
+	"title": "Minted Boycott Madness!",
 	"article": "People have been boycotting Minted INC after they announced that they are raising the cut of money they are taking from purchases by [percent]%, causing outrage in the popular second hand platform. The CEO has yet to respond to the situation.",
 	"weight": 50,
 	"image": "none",
-	"image_desc": null,
+	"image_desc": "none",
 	"effect": "less_buyers",
 	"ad": true
 },
@@ -66,33 +66,33 @@
 	"id": 6,
 	"source": "The Daily Potato",
 	"title": "[name], found dead at [age]",
-	"article": "[same_name], has been found dead in their apartment, they were very famous for their acclaimed work on television for many years, many will miss them.",
+	"article": "[name], has been found dead in their apartment at [place], they were very famous for their acclaimed work on television for many years, many will miss them.",
 	"weight": 100,
 	"image": "person",
-	"image_desc": "[same_name]",
-	"effect": null,
+	"image_desc": "[name]",
+	"effect": "none",
 	"ad": false
 },
 {
 	"id": 7,
 	"source": "The Daily Potato",
-	"title": "Birdwatching Fluttering Up in England",
+	"title": "Birdwatching Fluttering Up in [place]",
 	"article": "Many people have taken interest in Birdwatching, trying to see the ellusive Kingfisher flutter near them, this interest has brought awareness to the decline in certain bird populations, such as the Woodpecker, whom have lost [percent]% in count over the last decade, with councils employing new schemes to ensure no bird is left behind.",
 	"weight": 100,
 	"image": "kingfisgher",
 	"image_desc": "A Kingfisher spotted in Stally.",
-	"effect": null,
+	"effect": "none",
 	"ad": false
 },
 {
 	"id": 8,
 	"source": "The Daily Potato",
 	"title": "Reservoir dries up.",
-	"article": "A local reservoir has lost a major percentage of its water due to the sheer heat of the summer, scientist blame a rising temperature due to climate change.",
+	"article": "A local reservoir in [place] has lost a major percentage of its water due to the sheer heat of the summer, scientist blame a rising temperature due to climate change. This losing of water has lead to a potential increase in water bills in Western England, to the dismay of many. One resident says: \n\t\"I'm thirsty.\"",
 	"weight": 100,
 	"image": "reservoir",
 	"image_desc": "The reservoir drying up.",
-	"effect": null,
+	"effect": "none",
 	"ad": false
 },
 {
@@ -103,18 +103,18 @@
 	"weight": 100,
 	"image": "none",
 	"image_desc": "none",
-	"effect": null,
+	"effect": "raise_water_bills",
 	"ad": true
 },
 {
 	"id": 10,
 	"source": "The Daily Potato",
 	"title": "King Mint's Crown Stolen",
-	"article": "King mints gold crown has disappeared yesterday evening after a strange noise was heard from the dining room. The most advanced detectives have been dispatched to search for any clues at the crime scene but many suggest it was because of the strong peppermint aroma that was irresistable. If the crown is found, please contact the daily potato imminently.",
+	"article": "King Mint's gold crown has disappeared yesterday evening after a strange noise was heard from the dining room. The most advanced detectives have been dispatched to search for any clues at the crime scene but many suggest it was because of the strong peppermint aroma that was irresistable. If the crown is found, please contact the daily potato imminently.",
 	"weight": 100,
 	"image": "none",
 	"image_desc": "none",
-	"effect": null,
+	"effect": "none",
 	"ad": true
 },
 {
@@ -122,10 +122,10 @@
 	"source": "The Daily Potato",
 	"title": "King Mint's Crown Stolen!",
 	"article": "King Mint's gold crown has disappeared yesterday evening after a strange noise was heard from the dining room. The most advanced detectives have been dispatched to search for any clues at the crime scene but many suggest it was because of the strong peppermint aroma that was irresistable. If the crown is found, please contact the daily potato imminently.",
-	"weight": 100,
+	"weight": 1,
 	"image": "none",
 	"image_desc": "none",
-	"effect": null,
+	"effect": "none",
 	"ad": true
 },
 {
@@ -136,18 +136,18 @@
 	"weight": 100,
 	"image": "none",
 	"image_desc": "none",
-	"effect": null,
+	"effect": "none",
 	"ad": true
 },
 {
 	"id": 13,
 	"source": "The Daily Potato",
 	"title": "Sewage pipes may be diluting into your fresh water!",
-	"article": "If you live between mintville and fresh hills, you may experience water shortages as sewage pipes have leaked into the fresh water sources in over 4 reservoir's around the area.",
+	"article": "If you live between Leafsville and [placeB], you may experience water shortages as sewage pipes have leaked into the fresh water sources in over 4 reservoir's around the area. This could lead to a rasing of water bills.",
 	"weight": 100,
 	"image": "sewer",
 	"image_desc": "an affected sewer",
-	"effect": null,
+	"effect": "raise_water_bills",
 	"ad": true
 }
 

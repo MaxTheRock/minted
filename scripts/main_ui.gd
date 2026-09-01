@@ -59,11 +59,29 @@ func _ready():
 	
 	if Global.articles.size() == 0:
 		for i in range(2):
+			var index = 0
 			var packed = preload("res://scenes/article.tscn")
 			var storage_ui = packed.instantiate()
 			$".".add_child(storage_ui)
+			storage_ui.article_index = index
+			index += 1
 			Global.articles.append(storage_ui.article_chosen)
 			
 			storage_ui.queue_free()
 		
-		SignalBus.articles_changed.emit()
+		Global.articles.append(null)
+				
+		var packed = preload("res://scenes/article.tscn")
+		var storage_ui = packed.instantiate()
+		storage_ui.article_index = 0
+		add_child(storage_ui)
+			
+		Global.articles[0] = storage_ui.article_chosen
+			
+		storage_ui.queue_free()
+			
+	
+	Global.articles.pop_at(2)
+	SignalBus.articles_changed.emit()
+	
+	

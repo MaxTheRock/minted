@@ -57,8 +57,10 @@ const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
 
 # newspaper
-var last_article = {}
+var last_article = -1
 var articles = []
+var news_interest = 1
+var daily_change = 0.2
 const refresh_news_1_at = 10
 const refresh_news_2_at = 16
 func _process(delta):
@@ -78,6 +80,14 @@ func new_time_calc(min_added: int) -> void:
 	update_time.emit()
 	min += min_added 
 	time_mins += min_added 
+	
+	daily_change = abs(1-news_interest) + 0.1
+	var change = daily_change / 1440
+	if news_interest > 1 and change > 0.0000001:
+		news_interest -= change
+	elif news_interest < 1 and change > 0.0000001:
+		news_interest += change
+		
 	if not no_sleep:
 		sleep -= float(min_added) / 28
 		if sleep <= 10:
@@ -88,21 +98,33 @@ func new_time_calc(min_added: int) -> void:
 	if min >= 60:
 		min -= 60
 		hour += 1
+		
+		
 		if hour == refresh_news_1_at:
-			Global.articles.pop_at(0)
+			while articles.size() < 2:
+				articles.append(null)
+				
 			var packed = preload("res://scenes/article.tscn")
 			var storage_ui = packed.instantiate()
-			$".".add_child(storage_ui)
-			Global.articles.insert(0,storage_ui.article_chosen)
+			storage_ui.article_index = 0
+			add_child(storage_ui)
+			
+			articles[0] = storage_ui.article_chosen
 			
 			storage_ui.queue_free()
 			SignalBus.articles_changed.emit()
+			
+		# --- REFRESH SLOT 1 (16:00) --- #
 		elif hour == refresh_news_2_at:
-			Global.articles.pop_at(1)
+			while articles.size() < 2:
+				articles.append(null)
+				
 			var packed = preload("res://scenes/article.tscn")
 			var storage_ui = packed.instantiate()
-			$".".add_child(storage_ui)
-			Global.articles.insert(1,storage_ui.article_chosen)
+			storage_ui.article_index = 1
+			add_child(storage_ui)
+			
+			articles[1] = storage_ui.article_chosen
 			
 			storage_ui.queue_free()
 			SignalBus.articles_changed.emit()
@@ -231,3 +253,46 @@ func mean(values: Array) -> float:
 	for v in values:
 		sum += v
 	return sum / values.size()
+
+
+func get_month(month):
+	match month:
+		1:
+			return "January"
+		2:
+			return "February"
+		3:
+			return "March"
+		4:
+			return "April"
+		5:
+			return "May"
+		6:
+			return "June"
+		7:
+			return "July"
+		8:
+			return "August"
+		9:
+			return "September"
+		10:
+			return "October"
+		11:
+			return "November"
+		12:
+			return "December"
+		0:
+			return "December"
+
+func place_generator():
+	var places = ["Leafsville","Stally","Bamber Bridge","Allomin","Verton","Floofsville","Hopesfield","Chipplesea","Tripletee","Mezzanone","Hustleville","Crankylank"]
+	return places.pick_random()
+
+func place_generatorB():
+	var places = ["Stally","Bamber Bridge","Allomin","Verton","Floofsville","Hopesfield","Chipplesea","Tripletee","Mezzanone","Hustleville","Crankylank"]
+	return places.pick_random()
+
+func full_name_generator():
+	var forenames = ["richard","sam","oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris","daniel","jack","james","morty","kasper","olivia","elizabeth","tal","sophie","maya","eileen","noelle","susie","lois","linda","victoria","seren","otto"]
+	var surnames = ["D James", "Pearl", "Smith", "Thomson","Miserski","Weedon","Hall","Wiggum","Simpson","Cenat","Macenzie","Griffith","Walker","Simons","Digby-Dysart"]
+	return (forenames.pick_random()).capitalize() + " " + surnames.pick_random()
