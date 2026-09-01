@@ -73,8 +73,9 @@ func process_article(article):
 	
 	var is_rich_text: bool = title is RichTextLabel
 	
-	# Check if article data exists in Global to reuse the saved name
-	var saved_data = Global.articles[article_index] if article_index < Global.articles.size() else {}
+	var saved_data = {}
+	if article_index < Global.articles.size() and Global.articles[article_index] is Dictionary:
+		saved_data = Global.articles[article_index]
 	var name = saved_data.get("saved_name", Global.full_name_generator())
 	
 	var title_unformatted = article.get("title","")
