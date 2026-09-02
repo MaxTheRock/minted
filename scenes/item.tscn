@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="17_1g6oc"]
 [ext_resource type="Texture2D" uid="uid://swcbdxg8h07" path="res://assets/items/boxers/boxers.png" id="17_ox7tp"]
 [ext_resource type="Texture2D" uid="uid://dno075h5l7yyo" path="res://assets/cds/the_big_mint.png" id="18_8b0vj"]
-[ext_resource type="Texture2D" uid="uid://6ddu8alan6ll" path="res://assets/cds/smooth_jazz.png" id="19_iq5q0"]
+[ext_resource type="Texture2D" uid="uid://6ddu8alan6ll" path="res://assets/cds/smooth_jazz_1.png" id="19_iq5q0"]
 [ext_resource type="Texture2D" uid="uid://dpojrv2bp68fk" path="res://assets/items/camera/camera.png" id="20_iq5q0"]
 [ext_resource type="Texture2D" uid="uid://ctnurbdwvvxkv" path="res://assets/cds/3_jelly.png" id="21_rkinn"]
 [ext_resource type="Texture2D" uid="uid://chnlv8left1xc" path="res://assets/cds/evil_pulsation.png" id="22_a0ks6"]
@@ -43,6 +43,8 @@
 [ext_resource type="Texture2D" uid="uid://bgubyahs3dinr" path="res://assets/brand_icons/zig-zag.png" id="28_rrfqi"]
 [ext_resource type="Texture2D" uid="uid://b6xqo5ap2mwn" path="res://assets/items/encyclopedia.png" id="29_m3bit"]
 [ext_resource type="Texture2D" uid="uid://btnux7ms6808l" path="res://assets/items/brickies_family_house/brickies_family_house.png" id="30_qthxh"]
+[ext_resource type="Texture2D" uid="uid://cp27lcvt2081s" path="res://assets/items/banana_poster.png" id="31_cf0sr"]
+[ext_resource type="Texture2D" uid="uid://b6as3mbewdpjp" path="res://assets/cds/smooth_jazz_2.png" id="32_bqkql"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
 animations = [{
@@ -1652,6 +1654,50 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_46mwd"]
+atlas = ExtResource("31_cf0sr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gky0e"]
+atlas = ExtResource("31_cf0sr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0s7w"]
+atlas = ExtResource("31_cf0sr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ctgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46mwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gky0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0s7w")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ctgy"]
+atlas = ExtResource("32_bqkql")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wvjb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ctgy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxq6w"]
 atlas = ExtResource("23_6rcit")
 region = Rect2(0, 0, 64, 64)
@@ -2299,6 +2345,15 @@ frame_progress = 1.0
 [node name="brickies_family_house" type="AnimatedSprite2D" parent="TextureButton" unique_id=1478535243 groups=["clothes"]]
 position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_46mwd")
+
+[node name="banana_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=412570573 groups=["clothes"]]
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_1ctgy")
+frame_progress = 0.5549996
+
+[node name="smooth_jazz_2" type="AnimatedSprite2D" parent="TextureButton" unique_id=1993631602 groups=["clothes"]]
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_wvjb6")
 
 [node name="overlays" type="Control" parent="." unique_id=1252589936]
 layout_mode = 3

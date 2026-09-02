@@ -19,7 +19,7 @@ func load_inventory() -> void:
 	for i in range(Inventory.player_inventory.size()):
 		var item_data = Inventory.player_inventory[i]
 		var item_type = item_data.get("type", "")
-		if item_type != "spud_poster" and item_type != "potion_poster":
+		if item_type != "spud_poster" and item_type != "potion_poster"and item_type != "banana_poster":
 			continue
 		var storage_ui = item_ui_scene.instantiate()
 		storage_ui.inventory_index = i

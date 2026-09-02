@@ -3,6 +3,7 @@ extends Node2D
 @onready var poster_sprites := {
 	"spud_poster": $TextureButton/spud_poster,
 	"potion_poster": $TextureButton/potion_poster,
+	"banana_poster": $TextureButton/banana_poster,
 }
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()

@@ -5,14 +5,14 @@ var tshirt_colours: Array = ["white","yellow", "red", "green", "blue", "black", 
 "apricot","turquoise","forest","coral","navy","rose","brown","burgundy","mint","lilac"]
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var conceal_colours: Array = ["white","red","green","pink","black","blue"]
-var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards","brickies_family_house"]
+var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards","brickies_family_house", "banana_poster", "smooth_jazz_2"]
 var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes","flip_flops","radio"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle","christmas_lights","encyclopedia"]
 var epic_items: Array = ["beh_enclosed_shirt","red_nose_pop"]
 var legendary_items: Array = ["gold_ring"]
 var all_items: Array = common_items + uncommon_items + rare_items + epic_items + legendary_items
 var items_with_regular_animation = ["cd_player", "puzzle_cube", "camera", "gold_ring", "radio", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle", "red_nose_pop","encyclopedia"]
-var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop"]
+var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle", "red_nose_pop", "smooth_jazz_2"]
 var items_with_secondary = ["brickies_family_house"]
 var cds = items_that_spin
 var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
@@ -20,13 +20,13 @@ var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
 var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes","flip_flops"]
 #var clothes = ["tshirt"]
 var toys: Array = ["puzzle_cube", "football","playing_cards", "brickies_family_house"]
-var home: Array = ["spud_poster","potion_poster","christmas_lights"]
-var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle","christmas_lights","radio","red_nose_pop"]
-var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop","encyclopedia"]
+var home: Array = ["spud_poster","potion_poster","christmas_lights", "banana_poster"]
+var electronics: Array = ["cd_player", "the_big_mint", "smooth_jazz_1", "camera", "three_jelly", "evil_pulsation", "jungle","christmas_lights","radio","red_nose_pop", "smooth_jazz_2"]
+var books_and_media: Array = ["spud_poster","potion_poster", "the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pulsation", "jungle","red_nose_pop","encyclopedia", "banana_poster", "smooth_jazz_2"]
 var collectables: Array = ["spud_poster", "beh_enclosed_shirt","gold_ring","encyclopedia"]
 var sports: Array = ["beh_enclosed_shirt", "football","basketball"]
 var placeable_items = ["cd_player","camera","radio"]
-var posters = ["spud_poster","potion_poster"]
+var posters = ["spud_poster","potion_poster", "banana_poster"]
 # ---------------------------------------------
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var ID = -1
@@ -114,6 +114,8 @@ var flip_flop_texture = preload("res://shaders/tshirt_colours.png")
 	"red_nose_pop": $TextureButton/red_nose_pop,
 	"encyclopedia": $TextureButton/encyclopedia,
 	"brickies_family_house": $TextureButton/brickies_family_house,
+	"banana_poster": $TextureButton/banana_poster,
+	"smooth_jazz_2": $TextureButton/smooth_jazz_2,
 }
 
 @onready var market_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
@@ -276,8 +278,12 @@ func initialize_item(category := "All"):
 		brand = "Brickies"
 		color1 = "brown"
 		color2 = "red"
+	elif type == "banana_poster":
+		color1 = "yellow"
+	elif type == "smooth_jazz_2":
+		color1 = "blue"
+		color2 = "navy"
 		
-			
 	if type == "tshirt":
 		tshirt_logo.show()
 		if pattern_type != "none":

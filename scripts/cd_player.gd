@@ -35,8 +35,6 @@ func _process(delta: float) -> void:
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/shelf.tscn")
 
-
-
 func _on_pause_pressed() -> void:
 	if not Global.radio_on:
 		Global.cd_paused = not Global.cd_paused
@@ -44,18 +42,10 @@ func _on_pause_pressed() -> void:
 		const background_menu_music = preload("res://audio/background_menu.mp3")
 		if AudioManager.music_player.stream == background_menu_music and Inventory.cd_inventory.size() == 1:
 			var type = Inventory.cd_inventory[0]["type"]
-			if type == "the_big_mint":
-				AudioManager.play_music(AudioManager.the_big_mint)
-			elif type == "smooth_jazz_1":
-				AudioManager.play_music(AudioManager.smooth_jazz_1)
-			elif type == "evil_pulsation":
-				AudioManager.play_music(AudioManager.evil_pulsation)
-			elif type == "jungle":
-				AudioManager.play_music(AudioManager.jungle)
-			elif type == "three_jelly":
-				AudioManager.play_music(AudioManager.three_jelly)
-			elif type == "red_nose_pop":
-				AudioManager.play_music(AudioManager.red_nose_pop)
+			if AudioManager.track_by_type.has(type):
+				AudioManager.play_music(AudioManager.track_by_type[type])
+			else:
+				push_warning("No audio track mapped for CD type: " + type)
 	else:
 		$radio_warning.show()
 

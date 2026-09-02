@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ddu8alan6ll"
-path="res://.godot/imported/smooth_jazz.png-4ef16cc08fee3620fee4fd1e7f3378ec.ctex"
+uid="uid://b6as3mbewdpjp"
+path="res://.godot/imported/smooth_jazz_2.png-3f3c04bab032e6662b51cb92911ab603.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cds/smooth_jazz.png"
-dest_files=["res://.godot/imported/smooth_jazz.png-4ef16cc08fee3620fee4fd1e7f3378ec.ctex"]
+source_file="res://assets/cds/smooth_jazz_2.png"
+dest_files=["res://.godot/imported/smooth_jazz_2.png-3f3c04bab032e6662b51cb92911ab603.ctex"]
 
 [params]
 

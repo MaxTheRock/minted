@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dobygv5tj146e" path="res://scripts/poster_script.gd" id="1_k0mpp"]
 [ext_resource type="Script" uid="uid://c7ybfo8tiw0an" path="res://scripts/texture_button.gd" id="2_xjijs"]
+[ext_resource type="Texture2D" uid="uid://cp27lcvt2081s" path="res://assets/items/banana_poster.png" id="5_mey64"]
 [ext_resource type="Texture2D" uid="uid://bkuvan2l18txs" path="res://assets/items/spud_poster/spud_poster.png" id="14_g1b73"]
 [ext_resource type="Texture2D" uid="uid://cv41xyf8st72r" path="res://assets/items/potion_poster/potion_poster.png" id="16_bvkls"]
 
@@ -91,6 +92,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_46mwd"]
+atlas = ExtResource("5_mey64")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gky0e"]
+atlas = ExtResource("5_mey64")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0s7w"]
+atlas = ExtResource("5_mey64")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7bpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46mwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gky0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0s7w")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
 [node name="poster_item" type="Node2D" unique_id=942505978]
 script = ExtResource("1_k0mpp")
 
@@ -110,6 +140,11 @@ visible = false
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_sowbf")
 frame_progress = 0.40995625
+
+[node name="banana_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=1927895687 groups=["clothes"]]
+visible = false
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_a7bpg")
 
 [node name="FrameTimer" type="Timer" parent="." unique_id=1133206140]
 wait_time = 0.2
