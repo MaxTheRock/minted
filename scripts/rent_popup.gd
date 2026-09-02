@@ -1,5 +1,5 @@
 extends Control
-var landlord_quotes: Array = ["Time to pay up!", "Lucky day for me, eh!", "It's my favourite time of day!", "How is your reselling going?", "Your lucky that I'm your landlord!", "Look's like Minted won't work out for you...", "Hello again!", "My favourite customer!", "You're on thin ice pal!", "Do I always look this stunning??", "Do you really class reselling as a job??", "Not even a miracle could change you're mindset!"]
+var landlord_quotes: Array = ["Time to pay up!", "Lucky day for me, eh!", "It's my favourite time of day!", "How is your reselling going?", "You're lucky that I'm your landlord!", "Look's like Minted won't work out for you...", "Hello again!", "My (least) favourite customer!", "You're on thin ice pal!", "Do I always look this stunning??", "Do you really class reselling as a job?", "Not even a miracle could change your mindset!","A dime higher and you'd be out of here."]
 var total_rent: float
 # Landlord speech
 @onready var landlord_text1: Label = $landlord_text/landlord_text
@@ -54,10 +54,12 @@ func _on_pay_button_pressed() -> void:
 		Global.rent_triggered = false
 		Global.days_since_rent = 0
 		RentPopup.visible = false
-		Global.rent_building *= 2.5
-		Global.rent_electrical *= 1.24
-		Global.rent_utilities *= 1.1
-		Global.rent_maintenance *= 1.16
-		Global.rent_broadband *= 1.07
+		Global.rent_building *= 1.32
+		Global.rent_electrical *= 1.26
+		Global.rent_utilities *= 1.12
+		Global.rent_maintenance *= 1.1
+		Global.rent_broadband_mult *= 1.07
+		Global.rent_broadband = 0
+		Global.mins_on_computer = 0
 	else:
 		print("Not enough - You lose!")

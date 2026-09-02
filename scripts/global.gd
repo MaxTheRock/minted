@@ -50,16 +50,24 @@ var action_just_pressed = false
 var radio_on = false
 var radio_playing = "none"
 var cd_paused = false
+var on_market = false
 
 # Rent
-var rent_building: float = 1.0
-var rent_electrical: float = 1.0
-var rent_utilities: float = 1.0
+var rent_building: float = 2.0
+var rent_electrical: float = 1
+var rent_utilities: float = 0.5
 var rent_maintenance: float = 1.0
-var rent_broadband: float = 1.0
+var rent_broadband: float = 0
+var rent_broadband_mult: float = 1.0
+var on_computer = false
+var mins_on_computer = 0
+var rent_frequency = 2
+var rent_ready = false
+var total_rent = 0
 
 var frequency = 150
 # clock
+# try 0.2 as default
 var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
 var SPEED_MULT = 1 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
@@ -77,10 +85,10 @@ const refresh_news_2_at = 16
 func _process(delta):
 	if rent_triggered:
 		RentPopup.visible = true
-		SPEED_MULT = 0
+		paused = true
 	else:
 		RentPopup.visible = false
-		SPEED_MULT = 1
+		paused = false
 	
 	player_rating = mean(player_ratings)
 	
@@ -98,8 +106,11 @@ func new_time_calc(min_added: int) -> void:
 	update_time.emit()
 	min += min_added 
 	time_mins += min_added 
+	if on_computer:
+		mins_on_computer += 1
 	
-	daily_change = abs(1-news_interest) + 0.1
+	
+	daily_change = abs(1-news_interest) + 0.05
 	var change = daily_change / 1440
 	if news_interest > 1 and change > 0.0000001:
 		news_interest -= change
@@ -112,12 +123,23 @@ func new_time_calc(min_added: int) -> void:
 			sleep += float(min_added) / 60 # 50% slower
 		elif sleep <= 40:
 			sleep += float(min_added) / 120 # 25% slower
-		
+	
+	if mins_on_computer >= 60:
+		mins_on_computer = 0
+		rent_broadband += 0.04 * rent_broadband_mult
+			
 	if min >= 60:
 		min -= 60
 		hour += 1
 		
-		
+		if hour == 12:
+			days_since_rent += 1
+			if days_since_rent >= rent_frequency:
+				rent_ready = true
+				days_since_rent = 0
+		if hour == 12 and rent_ready:
+			rent_triggered = true
+
 		if hour == refresh_news_1_at:
 			while articles.size() < 2:
 				articles.append(null)
@@ -131,6 +153,7 @@ func new_time_calc(min_added: int) -> void:
 			
 			storage_ui.queue_free()
 			SignalBus.articles_changed.emit()
+			print(Global.news_interest)
 			
 		# --- REFRESH SLOT 1 (16:00) --- #
 		elif hour == refresh_news_2_at:
@@ -146,18 +169,15 @@ func new_time_calc(min_added: int) -> void:
 			
 			storage_ui.queue_free()
 			SignalBus.articles_changed.emit()
+			print(Global.news_interest)
 			
 	if hour >= 24:
 		hour -= 24
 		day += 1
-		days_since_rent += 1
-
-		if days_since_rent >= 7:
-			rent_triggered = true
-			days_since_rent = 0
+		
 
 		var days_in_month = calc_days_in_month(month, year)
-
+	
 		if day > days_in_month:
 			day = 1
 			month += 1
@@ -165,7 +185,9 @@ func new_time_calc(min_added: int) -> void:
 			if month > 12:
 				month = 1
 				year += 1
-
+		
+	
+	total_rent = rent_broadband + rent_building + rent_electrical + rent_maintenance + rent_utilities
 func get_time_text() -> String:
 	return format_time(hour) + ":" + format_time(min)
 

@@ -5,7 +5,7 @@ extends Control
 @onready var now_playing_text = $now_playing_text
 
 var bounce_time = 0.0
-
+var cd_just_in = false
 
 
 func _ready() -> void:
@@ -21,9 +21,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Global.now_playing != "":
+		
 		if Global.cd_paused:
 			now_playing_text.text = "Now Playing: " + Global.now_playing + " (paused)"
 		else:
+			if not cd_just_in:
+				cd_player.play("cd")
+			cd_just_in = true
+			
 			now_playing_text.text = "Now Playing: " + Global.now_playing
 			bounce_time += delta * 6.0
 			var bounce = sin(bounce_time) * 0.2
@@ -31,7 +36,10 @@ func _process(delta: float) -> void:
 				10.0 + bounce,
 				10.0 - bounce * 0.5
 			)
-		
+	else:
+		if cd_just_in:
+			cd_player.play("no cd")
+		cd_just_in = false
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/shelf.tscn")
 

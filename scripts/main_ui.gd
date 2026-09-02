@@ -81,7 +81,9 @@ func _ready():
 		storage_ui.queue_free()
 			
 	
-	Global.articles.pop_at(2)
+	if Global.articles.size() >= 3:
+		Global.articles.pop_at(2)
 	SignalBus.articles_changed.emit()
+	Global.news_interest = 1
 	
 	

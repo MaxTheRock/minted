@@ -556,7 +556,9 @@ func _on_use_button_pressed() -> void:
 			AudioManager.play_music(AudioManager.three_jelly)
 		elif item.type == "red_nose_pop":
 			AudioManager.play_music(AudioManager.red_nose_pop)
-			
+		elif item.type == "smooth_jazz_2":
+			AudioManager.play_music(AudioManager.smooth_jazz_2)
+				
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
 			print("Could not find CD to play!")
 			return

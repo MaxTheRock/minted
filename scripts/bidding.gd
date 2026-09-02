@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 func _on_button_pressed() -> void:
 	if Global.refreshProgress >= 100:
 		Global.refreshProgress = 0
+		Global.rent_broadband += 0.02 * Global.rent_broadband_mult
 		Inventory.bidding_items = []
 		Inventory.bidding_details = [{},{},{}]
 		Inventory.bidders = []

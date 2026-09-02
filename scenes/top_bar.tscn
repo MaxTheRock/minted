@@ -166,20 +166,21 @@ layout_mode = 0
 offset_left = 167.0
 offset_top = -33.0
 offset_right = 295.0
-offset_bottom = 67.0
+offset_bottom = 47.0
 color = Color(0.339538, 0.16996965, 0.3358545, 1)
 
 [node name="book_sprite" type="AnimatedSprite2D" parent="back_nodes/CenterContainer/book_node" unique_id=360949341]
-position = Vector2(234, 3)
-scale = Vector2(2, 2)
+position = Vector2(238, -4)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_qnalp")
 
 [node name="book_button" type="Button" parent="back_nodes/CenterContainer/book_node" unique_id=761285531]
+top_level = true
 layout_mode = 0
 offset_left = 167.0
 offset_top = -34.0
 offset_right = 295.0
-offset_bottom = 66.0
+offset_bottom = 46.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_k1jv6")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_2exkg")
 button_mask = 0

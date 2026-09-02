@@ -17,8 +17,9 @@ func run_loop() -> void:
 func _process(delta: float) -> void:
 	if Global.current_interactable == self and Input.is_action_pressed("interact"):
 		Global.first_room = false
+		Global.rent_broadband += 0.02 * Global.rent_broadband_mult
 		get_tree().change_scene_to_file("res://scenes/main_ui.tscn")
-
+		Global.on_computer = true
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "Player_Detector":
 		label_shown = true

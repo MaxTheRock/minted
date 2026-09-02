@@ -3,10 +3,25 @@ extends Node2D
 @onready var grid = $Hotbar/inventory/ScrollContainer/GridContainer
 @onready var player = $player/Player
 @onready var sleep_bar = $left_bar/sleep/sleep_bar
-@onready var time_ui = $left_bar/sleep/timer/Time
 @onready var left_bar = $left_bar
 
+@onready var building_label1: Label = $left_bar/rent/text/Building/price1
+@onready var building_label2: Label = $left_bar/rent/text/Building/price2
+@onready var electrical_label1: Label = $left_bar/rent/text/Electrical/price1
+@onready var electrical_label2: Label = $left_bar/rent/text/Electrical/price2
+@onready var utilities_label1: Label = $left_bar/rent/text/Utilities/price1
+@onready var utilities_label2: Label = $left_bar/rent/text/Utilities/price2
+@onready var maintenance_label1: Label = $left_bar/rent/text/Maintenance/price1
+@onready var maintenance_label2: Label = $left_bar/rent/text/Maintenance/price2
+@onready var broadband_label1: Label = $left_bar/rent/text/Broadband/price1
+@onready var broadband_label2: Label = $left_bar/rent/text/Broadband/price2
+@onready var total_label1: Label = $left_bar/rent/text/Total/price1
+@onready var total_label2: Label = $left_bar/rent/text/Total/price2
+@onready var days_1 = $left_bar/rent/text/Days/price1
+@onready var days_2 = $left_bar/rent/text/Days/price2
+
 var left = true
+var total_rent = 0
 
 func _ready() -> void:
 	Inventory.current_ui_type = "player"
@@ -25,9 +40,9 @@ func _ready() -> void:
 
 func _process(float) -> void:
 	sleep_bar.value = Global.sleep
-	time_ui.text = Global.get_time_text()
 	Global.player_saved_x = player.global_position.x
 	Global.player_saved_y = player.global_position.y
+	refresh_popup()
 	
 var tween: Tween
 @onready var start_position: Vector2 = left_bar.position
@@ -37,7 +52,7 @@ func _on_slide_pressed() -> void:
 		tween.kill()
 	tween = create_tween()
 	left = !left
-	$left_bar/slide.rotation_degrees += 180
+	$left_bar/sleep/slide.rotation_degrees += 180
 	if left:
 		
 		var target_position = start_position 
@@ -46,9 +61,36 @@ func _on_slide_pressed() -> void:
 		.set_trans(Tween.TRANS_QUAD) \
 		.set_ease(Tween.EASE_OUT)
 	else:
-		var target_position = start_position + Vector2(300, 0)
+		var target_position = start_position + Vector2(200, 0)
 
 		tween.tween_property(left_bar, "position", target_position, 1.0) \
 		.set_trans(Tween.TRANS_QUAD) \
 		.set_ease(Tween.EASE_OUT)
 		
+func refresh_popup() -> void:
+	# Price
+	building_label1.text = "$" + "%.2f" % Global.rent_building
+	building_label2.text = "$" + "%.2f" % Global.rent_building
+	electrical_label1.text = "$" + "%.2f" % Global.rent_electrical
+	electrical_label2.text = "$" + "%.2f" % Global.rent_electrical
+	utilities_label1.text = "$" + "%.2f" % Global.rent_utilities
+	utilities_label2.text = "$" + "%.2f" % Global.rent_utilities
+	maintenance_label1.text = "$" + "%.2f" % Global.rent_maintenance
+	maintenance_label2.text = "$" + "%.2f" % Global.rent_maintenance
+	broadband_label1.text = "$" + "%.2f" % Global.rent_broadband
+	broadband_label2.text = "$" + "%.2f" % Global.rent_broadband
+	total_rent = Global.rent_building + Global.rent_electrical + Global.rent_utilities + Global.rent_maintenance + Global.rent_broadband
+	total_label1.text = "$" + "%.2f" % total_rent
+	total_label2.text = "$" + "%.2f" % total_rent
+	if total_rent > Global.money:
+		total_label2.add_theme_color_override("font_color", Color(1, 0, 0)) 
+	else:
+		total_label2.add_theme_color_override("font_color", Color(0.0, 0.0, 0.0, 1.0)) 
+	days_1.text = str(Global.rent_frequency - Global.days_since_rent)
+	days_2.text = str(Global.rent_frequency - Global.days_since_rent)
+	if Global.rent_frequency - Global.days_since_rent == 1 and Global.hour < 12:
+		days_1.text = "Today at 12AM"
+		days_2.text = "Today at 12AM"
+	elif Global.rent_frequency - Global.days_since_rent == 1 and Global.hour > 12:
+		days_1.text = "Tomorrow at 12AM"
+		days_2.text = "Tomorrow at 12AM"

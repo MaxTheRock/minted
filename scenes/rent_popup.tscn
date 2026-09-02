@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cee0n2nym4ro1" path="res://scripts/rent_popup.gd" id="1_2e1cd"]
 [ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="1_6vq7e"]
+[ext_resource type="PackedScene" uid="uid://pwxrjsbr7h2n" path="res://scenes/background_rent.tscn" id="2_c5317"]
 [ext_resource type="Texture2D" uid="uid://su3sys4n25hq" path="res://assets/hotbar/stone_hotbar_item_template.png" id="2_l6sg0"]
 [ext_resource type="Texture2D" uid="uid://b2eupinbhsyoh" path="res://assets/hotbar/speech_bubble_template.png" id="3_0bwe8"]
 [ext_resource type="Texture2D" uid="uid://cwssp2l3qjnc1" path="res://assets/hotbar/item_template_extension.png" id="3_nbhv4"]
@@ -122,12 +123,20 @@ grow_vertical = 2
 script = ExtResource("1_2e1cd")
 
 [node name="ColorRect" type="ColorRect" parent="RentPopup" unique_id=1242079508]
+visible = false
 layout_mode = 0
 offset_left = -638.0
 offset_top = -378.0
 offset_right = 642.0
 offset_bottom = 342.0
 color = Color(0.76748437, 0.9804141, 0.7496374, 1)
+
+[node name="background2" parent="RentPopup" unique_id=223626562 instance=ExtResource("2_c5317")]
+layout_mode = 0
+offset_left = -679.0
+offset_top = -360.0
+offset_right = -679.0
+offset_bottom = -360.0
 
 [node name="background" type="NinePatchRect" parent="RentPopup" unique_id=1459180125]
 layout_mode = 0

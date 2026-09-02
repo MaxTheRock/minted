@@ -71,7 +71,7 @@ func show_tooltip(target):
 	stars.set_item(target)
 	seller_label.text = str(item.seller_name)
 	
-	if Inventory.current_ui_type == "Market" or Inventory.current_ui_type == "display_bidding":
+	if Global.on_market:
 		rating_container.show()
 	else:
 		rating_container.hide()
@@ -107,7 +107,7 @@ func show_tooltip(target):
 		brand_label.text = item.genre
 		brand_icon.play(str(item.spice_factor))
 	
-	if Inventory.current_ui_type == "Market" or Inventory.current_ui_type == "display_bidding":
+	if Global.on_market:
 		$mouse_hitbox/TooltipPanel/container/shipping.show()
 		$mouse_hitbox/TooltipPanel/container/money.show()
 		$mouse_hitbox/TooltipPanel/container/shipping/shipping_time.text = str(item.shippingTime) + " Days"

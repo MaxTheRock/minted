@@ -28,7 +28,7 @@ func _on_button_pressed() -> void:
 		Global.refreshProgress = 0
 		var packed = preload("res://scenes/item_ui.tscn")
 		var category = Inventory.current_market_type
-		
+		Global.rent_broadband += 0.02 * Global.rent_broadband_mult
 		# idk how to do this without a big if statement, oh well. :/
 		if category == "All":
 			for child in all.get_children():
