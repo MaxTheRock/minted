@@ -3,12 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_krot7"]
 [ext_resource type="PackedScene" uid="uid://31wk6mw8xgsp" path="res://scenes/background.tscn" id="1_u4wd2"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="3_w18ys"]
-[ext_resource type="Texture2D" uid="uid://ca53b330au17" path="res://assets/minimize.png" id="4_uhids"]
-[ext_resource type="Texture2D" uid="uid://b4dhox1bkrcke" path="res://assets/close.png" id="5_yxilm"]
-[ext_resource type="PackedScene" uid="uid://cs0lhhsrw5dnd" path="res://scenes/upgrades_container.tscn" id="6_yxilm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnalp"]
-bg_color = Color(0, 0, 0, 0.12156863)
 
 [node name="Home" type="Control" unique_id=1623614779]
 layout_mode = 3
@@ -38,105 +32,4 @@ offset_bottom = -578.0
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_krot7")]
 z_index = 5
-layout_mode = 2
-
-[node name="UpgradePanel" type="Control" parent="." unique_id=1100447236]
-custom_minimum_size = Vector2(200, 0)
-custom_maximum_size = Vector2(300, -1)
-anchors_preset = 0
-offset_left = 938.0
-offset_top = 124.0
-offset_right = 1138.0
-offset_bottom = 124.0
-
-[node name="MarginContainer" type="MarginContainer" parent="UpgradePanel" unique_id=252880590]
-layout_mode = 0
-offset_left = -22.0
-offset_top = -12.0
-offset_right = 301.0
-offset_bottom = 481.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UpgradePanel/MarginContainer" unique_id=2129736978]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="UpgradePanel/MarginContainer/VBoxContainer" unique_id=551272893]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer" unique_id=397913818]
-layout_mode = 2
-alignment = 2
-
-[node name="minimise" type="TextureRect" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=887420141]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("4_uhids")
-
-[node name="close" type="TextureRect" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1632380325]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("5_yxilm")
-
-[node name="MarginContainer" type="MarginContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=2046128606]
-layout_mode = 2
-theme_override_constants/margin_right = 5
-
-[node name="PanelContainer2" type="PanelContainer" parent="UpgradePanel/MarginContainer/VBoxContainer" unique_id=1713960239]
-custom_minimum_size = Vector2(0, 400)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2" unique_id=1044911348]
-layout_mode = 2
-
-[node name="UpgradeContainer" type="VBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer" unique_id=67341278]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer" unique_id=1542305998]
-layout_mode = 2
-text = "Room Upgrades"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer" unique_id=1027202679]
-custom_minimum_size = Vector2(0, 110)
-layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer/ScrollContainer" unique_id=290767008]
-custom_minimum_size = Vector2(300, 110)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/h_separation = 75
-columns = 6
-
-[node name="UpgradesContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer/ScrollContainer/GridContainer" unique_id=1742191462 instance=ExtResource("6_yxilm")]
-layout_mode = 2
-upgrade = "lv2_bed"
-
-[node name="UpgradesContainer2" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer/ScrollContainer/GridContainer" unique_id=892609266 instance=ExtResource("6_yxilm")]
-layout_mode = 2
-upgrade = "lv2_computer"
-
-[node name="UpgradeContainer2" type="VBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer" unique_id=1007312055]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer2" unique_id=1340739500]
-layout_mode = 2
-text = "Technology Perks"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer2" unique_id=215142182]
-layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer2/ScrollContainer" unique_id=1165167266]
-layout_mode = 2
-
-[node name="UpgradeContainer3" type="VBoxContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer" unique_id=356505876]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer3" unique_id=638883802]
-layout_mode = 2
-text = "Fortune"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer3" unique_id=1386700291]
-layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="UpgradePanel/MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/UpgradeContainer3/ScrollContainer" unique_id=22531357]
 layout_mode = 2

@@ -2,14 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c3dmickbu12gt" path="res://scripts/article.gd" id="1_ii25t"]
 [ext_resource type="Texture2D" uid="uid://dwjbbaxoamx0x" path="res://assets/icon.svg" id="1_qqirc"]
+[ext_resource type="FontFile" uid="uid://cslvc74mc3cbj" path="res://fonts/Pixel Times Bold.ttf" id="3_byp8p"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_pfocr"]
 
-[sub_resource type="Gradient" id="Gradient_ii25t"]
-colors = PackedColorArray(0.7372549, 0.9372549, 0.88235295, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccrme"]
-gradient = SubResource("Gradient_ii25t")
-fill_from = Vector2(0.49658704, 0)
-fill_to = Vector2(0.5102389, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00qdj"]
+bg_color = Color(0.8666667, 0.827451, 0.75686276, 1)
+border_color = Color(0.5921569, 0.5647059, 0.5058824, 1)
 
 [node name="article" type="Control" unique_id=1387595543]
 custom_minimum_size = Vector2(400, 0)
@@ -22,59 +20,6 @@ offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ii25t")
-
-[node name="PanelContainer" type="TextureRect" parent="." unique_id=2038387674]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 404.0
-offset_bottom = 603.0
-texture = SubResource("GradientTexture2D_ccrme")
-
-[node name="logo" type="RichTextLabel" parent="." unique_id=1398964719]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 11.0
-offset_right = 406.0
-offset_bottom = 211.0
-theme_override_colors/default_color = Color(0.4075654, 0.40756536, 0.40756533, 1)
-theme_override_font_sizes/normal_font_size = 40
-bbcode_enabled = true
-text = "LOGO:"
-
-[node name="title" type="RichTextLabel" parent="." unique_id=2000236190]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 60.0
-offset_right = 372.0
-offset_bottom = 190.0
-theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
-theme_override_font_sizes/normal_font_size = 50
-theme_override_font_sizes/bold_font_size = 50
-bbcode_enabled = true
-text = "[b]Your Title Text:[/b]"
-
-[node name="subtitle" type="RichTextLabel" parent="." unique_id=1817222484]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 196.0
-offset_right = 407.0
-offset_bottom = 236.0
-theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
-theme_override_font_sizes/normal_font_size = 25
-bbcode_enabled = true
-text = "[center]Your subtitle text here[/center]"
-
-[node name="article" type="RichTextLabel" parent="." unique_id=1153250216]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 228.0
-offset_right = 392.0
-offset_bottom = 438.0
-theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
-theme_override_font_sizes/normal_font_size = 15
-bbcode_enabled = true
-text = "article"
 
 [node name="image_container" type="Control" parent="." unique_id=688036064]
 visible = false
@@ -130,3 +75,33 @@ offset_top = 20.0
 offset_right = 181.0
 offset_bottom = 148.0
 texture = ExtResource("1_qqirc")
+
+[node name="PanelContainer3" type="PanelContainer" parent="." unique_id=913926023]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 311.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_00qdj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3" unique_id=343274930]
+layout_mode = 2
+
+[node name="title" type="Label" parent="PanelContainer3/VBoxContainer" unique_id=1315382604]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.50980395, 0.48235294, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("3_byp8p")
+theme_override_font_sizes/font_size = 40
+text = "Title_000000000000000000"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="article" type="Label" parent="PanelContainer3/VBoxContainer" unique_id=137323988]
+custom_maximum_size = Vector2(600, 600)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.50980395, 0.48235294, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("4_pfocr")
+theme_override_font_sizes/font_size = 10
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et nunc et mauris eleifend iaculis vitae sit amet ex. Suspendisse porta, lacus vel consectetur scelerisque, orci odio aliquet turpis, vitae tincidunt massa mauris sed odio."
+horizontal_alignment = 1
+autowrap_mode = 3

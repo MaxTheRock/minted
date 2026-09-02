@@ -1,12 +1,10 @@
 extends Control
 
-@onready var logo = $logo
-@onready var title = $title
-@onready var subtitle = $subtitle
-@onready var article_text = $article
-@onready var image_container = $image_container
-@onready var ad_container = $advertisement_container
-@onready var image_text = $image_container/image_text
+@onready var title = $PanelContainer3/VBoxContainer/title
+@onready var article_text = $PanelContainer3/VBoxContainer/article
+#@onready var image_container = $image_container
+#@onready var ad_container = $advertisement_container
+#@onready var image_text = $image_container/image_text
 
 var articles_available = []
 var article_chosen = ""
@@ -68,8 +66,8 @@ func process_article(article):
 	if not article is Dictionary or article.is_empty():
 		return
 		
-	image_container.hide()
-	ad_container.hide()
+	#image_container.hide()
+	#ad_container.hide()
 	
 	var is_rich_text: bool = title is RichTextLabel
 	
@@ -81,8 +79,6 @@ func process_article(article):
 	var title_unformatted = article.get("title","")
 	title_unformatted = title_unformatted.replace("[name]", name)
 	
-	title.add_theme_font_size_override("bold_font_size", 50 - round(len(article.get("title",""))) * 0.5)
-	subtitle.text = "[center]" + article.get("subtitle","") + "[/center]"
 	var article_itself = article.get("article","")
 	
 	article_itself = article_itself.replace("[name]", name)
@@ -143,19 +139,20 @@ func process_article(article):
 	title_unformatted = title_unformatted.replace("[age]", str(rng.randi_range(10, 100))) 
 	
 	article_text.text = article_itself
-	logo.text = article.get("source", "")
 	var image = article.get("image", "none")
 	var image_desc = article.get("image_desc", "")
 	
 	var image_desc_parsed = image_desc.replace("[name]", name)
-	image_text.text = image_desc_parsed
+	#image_text.text = image_desc_parsed
 	if image != "none":
-		image_container.show()
-		image_text.text = image_desc_parsed
+		#image_container.show()
+		#image_text.text = image_desc_parsed
+		pass
 	elif article.get("ad", false):
-		ad_container.show()
+		#ad_container.show()
+		pass
 
-	title.text = "[b]" + title_unformatted + "[/b]"
+	title.text = title_unformatted
 
 	if article_index < Global.articles.size() and Global.articles[article_index] is Dictionary:
 		Global.articles[article_index]["saved_name"] = name
@@ -167,31 +164,6 @@ func process_article(article):
 		article_text.size = Vector2(380, 260)
 		article_text.position = Vector2(12, 188)
 		
-	var start_size: int = 38
-	var min_size: int = 14
-	var current_size: int = start_size
-	
-	if is_rich_text:
-		title.add_theme_font_size_override("bold_font_size", start_size)
-		title.add_theme_font_size_override("normal_font_size", start_size)
-	else:
-		title.add_theme_font_size_override("font_size", start_size)
-	
-	await get_tree().process_frame
-
-	while title.get_combined_minimum_size().x > title.size.x - 50:
-		current_size -= 3
-		
-		if is_rich_text:
-			title.add_theme_font_size_override("bold_font_size", current_size)
-			title.add_theme_font_size_override("normal_font_size", current_size)
-		else:
-			title.add_theme_font_size_override("font_size", current_size)
-			
-		if current_size <= min_size:
-			title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-			break
-
 func article_effect(article):
 	var effect = article.get("effect","none")
 	if effect == "less_buyers":
