@@ -4,6 +4,7 @@ var total_rent: float
 # Landlord speech
 @onready var landlord_text1: Label = $landlord_text/landlord_text
 @onready var landlord_text2: Label = $landlord_text/landlord_text2
+@onready var landlord_image: AnimatedSprite2D = $landlord_image
 # Price label
 @onready var building_label1: Label = $Building/price1
 @onready var building_label2: Label = $Building/price2
@@ -28,6 +29,7 @@ func refresh_popup() -> void:
 	var quote = landlord_quotes.pick_random()
 	landlord_text1.text = quote
 	landlord_text2.text = quote
+	landlord_image.play(str(randi_range(1, 7)))
 	# Price
 	building_label1.text = "$" + "%.2f" % Global.rent_building
 	building_label2.text = "$" + "%.2f" % Global.rent_building

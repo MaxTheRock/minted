@@ -4,17 +4,106 @@
 [ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="1_6vq7e"]
 [ext_resource type="Texture2D" uid="uid://su3sys4n25hq" path="res://assets/hotbar/stone_hotbar_item_template.png" id="2_l6sg0"]
 [ext_resource type="Texture2D" uid="uid://b2eupinbhsyoh" path="res://assets/hotbar/speech_bubble_template.png" id="3_0bwe8"]
+[ext_resource type="Texture2D" uid="uid://cwssp2l3qjnc1" path="res://assets/hotbar/item_template_extension.png" id="3_nbhv4"]
 [ext_resource type="Texture2D" uid="uid://d4gjvdamffvt5" path="res://assets/buy_template.png" id="4_2e1cd"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_cca4d"]
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="5_2e1cd"]
 [ext_resource type="Texture2D" uid="uid://ckfaa8maa1gw6" path="res://assets/hotbar/dor.png" id="6_d0u81"]
 [ext_resource type="Texture2D" uid="uid://cqm2ueyow8ds2" path="res://assets/hotbar/rent_day_title_template.png" id="7_0bwe8"]
+[ext_resource type="Texture2D" uid="uid://cs3vixntdy0vx" path="res://assets/face_sprites/john.png" id="10_d0u81"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnalp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4c3da"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pjmv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbhv4"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5317"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfeia"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jth1c"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74nn4"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26vv7"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30nm5"]
+atlas = ExtResource("10_d0u81")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnalp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbhv4")
+}],
+"loop": 1,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5317")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfeia")
+}],
+"loop": 1,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jth1c")
+}],
+"loop": 1,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74nn4")
+}],
+"loop": 1,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26vv7")
+}],
+"loop": 1,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30nm5")
+}],
+"loop": 1,
+"name": &"7",
+"speed": 5.0
+}]
 
 [node name="RentPopup" type="CanvasLayer" unique_id=1517185544]
 layer = 10
@@ -55,12 +144,25 @@ patch_margin_right = 9
 patch_margin_bottom = 13
 axis_stretch_horizontal = 1
 
+[node name="extension_background" type="NinePatchRect" parent="RentPopup" unique_id=697088469]
+layout_mode = 0
+offset_left = -194.0
+offset_top = -263.0
+offset_right = -90.25
+offset_bottom = -208.0
+scale = Vector2(4, 4)
+texture = ExtResource("3_nbhv4")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
 [node name="landlord_container" type="NinePatchRect" parent="RentPopup" unique_id=887410837]
 layout_mode = 0
-offset_left = -215.0
-offset_top = -266.0
-offset_right = -179.0
-offset_bottom = -225.5
+offset_left = -172.0
+offset_top = -245.0
+offset_right = -136.0
+offset_bottom = -209.5
 scale = Vector2(4, 4)
 texture = ExtResource("2_l6sg0")
 region_rect = Rect2(15, 7, 33, 43)
@@ -72,10 +174,10 @@ axis_stretch_horizontal = 2
 
 [node name="speech_bubble_container" type="NinePatchRect" parent="RentPopup" unique_id=715338730]
 layout_mode = 0
-offset_left = -55.0
-offset_top = -265.0
-offset_right = 19.0
-offset_bottom = -239.5
+offset_left = -56.0
+offset_top = -249.0
+offset_right = 9.25
+offset_bottom = -224.5
 scale = Vector2(4, 4)
 texture = ExtResource("3_0bwe8")
 region_rect = Rect2(12, 7, 36, 43)
@@ -110,13 +212,13 @@ text = "Pay"
 
 [node name="landlord_text" type="CenterContainer" parent="RentPopup" unique_id=1987553619]
 layout_mode = 0
-offset_left = -31.0
-offset_top = -253.0
-offset_right = 229.0
-offset_bottom = -175.0
+offset_left = -55.0
+offset_top = -247.0
+offset_right = 205.0
+offset_bottom = -169.0
 
 [node name="landlord_text2" type="Label" parent="RentPopup/landlord_text" unique_id=1499540660]
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(1, 1)
@@ -129,7 +231,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="landlord_text" type="Label" parent="RentPopup/landlord_text" unique_id=13494270]
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
 theme_override_fonts/font = ExtResource("4_cca4d")
@@ -668,6 +770,11 @@ offset_bottom = 278.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qnalp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_4c3da")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4pjmv")
+
+[node name="landlord_image" type="AnimatedSprite2D" parent="RentPopup" unique_id=2056634538]
+position = Vector2(-95, -175)
+sprite_frames = SubResource("SpriteFrames_qnalp")
+animation = &"1"
 
 [connection signal="mouse_entered" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_mouse_entered"]
 [connection signal="mouse_exited" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_mouse_exited"]
