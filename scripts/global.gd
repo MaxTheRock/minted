@@ -152,7 +152,7 @@ func new_time_calc(min_added: int) -> void:
 		day += 1
 		days_since_rent += 1
 
-		if days_since_rent >= 3:
+		if days_since_rent >= 7:
 			rent_triggered = true
 			days_since_rent = 0
 
