@@ -21,7 +21,7 @@ func movement(d):
 			most_recent_dir = "left"
 		elif Input.is_action_pressed("up"):
 			moveDir.y = -1
-			sprite.play("up")
+			sprite.play("walk_up")
 			most_recent_dir = "up"
 		elif Input.is_action_pressed("down"):
 			moveDir.y = 1
