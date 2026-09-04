@@ -2,6 +2,9 @@ extends Control
 
 signal page_requested(page_name: String)
 
+var colors: Array = ["black", "grey", "white", "cream", "beige", "apricot", "orange", "coral", "red", "burgundy", "pink", "rose", "purple", "lilac", "light_blue", "blue", "navy", "turquoise", "mint", "green", "dark_green", "khaki", "brown", "mustard", "yellow", "silver", "gold", "multi", "clear"]
+var chosen_color_list: Array = []
+
 var current_text = ""
 @onready var inventory_grid = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/inventory/ScrollContainer/GridContainer"
 @onready var item_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/1/Control/ItemTexture"
@@ -171,6 +174,15 @@ func load_uploaded_item_info() -> void:
 	price_display.text = ""
 	name_display.text = item_data.get("type", "").replace("_", " ").capitalize()
 	type_display.text = item_data.get("type", "").replace("_", " ").capitalize()
+	var correct_place: int = randi_range(0,2)
+	for i in range(3):
+		var button = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4".get_node("Button" + str(i))
+		if i == correct_place:
+			button.text = item_data.get("color1", "").capitalize()
+			print(item_data.get("color1", "").capitalize())
+		else:
+			button.text = str(colors.pick_random()).capitalize()
+			
 	#color_display.text = item_data.get("color", "")
 
 	if item_data.get("selected_brand", "none") != "none":
