@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jpt5cerd61ct" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bvh50ksmcbxhf" path="res://assets/player/directions.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://bkt8g4g14irwm" path="res://assets/player/walk.png" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -18,6 +19,30 @@ region = Rect2(64, 100, 64, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("2_g2els")
 region = Rect2(0, 100, 64, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 0, 64, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(64, 0, 64, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(128, 0, 64, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 100, 64, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(64, 100, 64, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(128, 100, 64, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6snss"]
 animations = [{
@@ -52,6 +77,29 @@ animations = [{
 "loop": 1,
 "name": &"up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjrip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4r1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
@@ -73,19 +121,23 @@ script = ExtResource("1_g2els")
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6snss")
-animation = &"down"
+animation = &"walk_down"
 autoplay = "down"
+frame_progress = 0.019074732
 
 [node name="building_collision" type="CollisionShape2D" parent="Player" unique_id=344316980]
+visible = false
 position = Vector2(-3, 85)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_4c3da")
 debug_color = Color(0.381612, 0.11398546, 0.024642583, 0.41960785)
 
 [node name="Player_Detector" type="Area2D" parent="Player" unique_id=603105424]
+visible = false
 collision_layer = 2
 
 [node name="detection" type="CollisionShape2D" parent="Player/Player_Detector" unique_id=1866695373]
+visible = false
 position = Vector2(-2.5, 28.5)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(1, 1, 0, 0.41960785)

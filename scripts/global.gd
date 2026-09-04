@@ -61,7 +61,7 @@ var rent_broadband: float = 0
 var rent_broadband_mult: float = 1.0
 var on_computer = false
 var mins_on_computer = 0
-var rent_frequency = 2
+var rent_frequency = 4
 var rent_ready = false
 var total_rent = 0
 

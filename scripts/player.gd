@@ -4,6 +4,7 @@ const SPEED = 300.0
 var moveDir = Vector2(0,0)
 
 @onready var sprite= $Player
+var most_recent_dir = ""
 
 func _physics_process(delta: float) -> void:
 	movement(delta)
@@ -13,15 +14,22 @@ func movement(d):
 		if Input.is_action_pressed("right"):
 			moveDir.x = 1
 			sprite.play("right")
-		if Input.is_action_pressed("left"):
+			most_recent_dir = "right"
+		elif Input.is_action_pressed("left"):
 			moveDir.x = -1
 			sprite.play("left")
-		if Input.is_action_pressed("up"):
+			most_recent_dir = "left"
+		elif Input.is_action_pressed("up"):
 			moveDir.y = -1
 			sprite.play("up")
-		if Input.is_action_pressed("down"):
+			most_recent_dir = "up"
+		elif Input.is_action_pressed("down"):
 			moveDir.y = 1
-			sprite.play("down")
+			sprite.play("walk_down")
+			most_recent_dir = "down"
+		else:
+			sprite.play(most_recent_dir)
+			
 		if !Input.is_action_pressed("right") and !Input.is_action_pressed("left"):
 			moveDir.x = 0
 		if !Input.is_action_pressed("up") and !Input.is_action_pressed("down"):

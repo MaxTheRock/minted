@@ -1,116 +1,122 @@
 [
-  {
-	"id": "0",
-	"speaker": "landlord",
-	"face": "neutral",
-	"text": "Hey, so you found the apartment!",
-	"type": "line",
-	"next_id": "1"
-  },
-  {
-	"id": "1",
-	"speaker": "margaret",
-	"face": "unimp",
-	"text": "This was the best you could do?",
-	"type": "line",
-	"next_id": "2"
-  },
-  {
-	"id": "2",
-	"speaker": "landlord",
-	"face": "neutral",
-	"text": "You signed up for this, you saw the photos.",
-	"type": "line",
-	"next_id": "3"
-  },
-  {
-	"id": "3",
-	"speaker": "landlord",
-	"face": "smug",
-	"text": "(I see you took the divorce well)",
-	"type": "line",
-	"next_id": "4"
-  },
-  {
-	"id": "4",
-	"speaker": "none",
-	"face": "none",
-	"type": "choice",
-	"choices": [
-	  { "text": "I'm going to make bank on Minted.", "next_id": "5a" },
-	  { "text": "I see your hair is doing well.", "next_id": "5b" }
-	]
-  },
-  {
-	"id": "5a",
-	"speaker": "landlord",
-	"face": "smug",
-	"text": "[b]Seriously[/b] Margaret, Minted? Like the second hand app?",
-	"type": "line",
-	"next_id": "6a"
-  },
-  {
-	"id": "6a",
-	"speaker": "margaret",
-	"face": "concern",
-	"text": "<af><p1>.<p1>.<p1>.<at> [shake rate=20.0 level=5.0]It could work.[/shake]",
-	"type": "line",
-	"next_id": "7a"
-  },
-  {
-	"id": "7a",
-	"speaker": "landlord",
-	"face": "smug",
-	"text": "Well, good luck!<p0.5> (;",
-	"type": "line",
-	"next_id": "8"
-  },
-  {
-	"id": "5b",
-	"speaker": "landlord",
-	"face": "mad",
-	"text": "I could kick you out at any moment, you know!",
-	"type": "line",
-	"next_id": "6b"
-  },
-  {
-	"id": "6b",
-	"speaker": "margaret",
-	"face": "neutral",
-	"text": "Well, off to make money on minted.",
-	"type": "line",
-	"next_id": "7b"
-  },
-  {
-	"id": "7b",
-	"speaker": "landlord",
-	"face": "smug",
-	"text": "Minted? Well, good luck with that.",
-	"type": "line",
-	"next_id": "8"
-  },
-  {
-	"id": "8",
-	"speaker": "none",
-	"face": "none",
-	"text": "The landlord hung up.",
-	"type": "end",
-	"next_id": "end"
-  },
-{
-	"id": "9",
-	"speaker": "none",
-	"face": "none",
-	"text": "You closed your eyes<p0.5>.<p0.5>.<p0.5>.",
-	"type": "line",
-	"next_id": "10"
-  },
-{
-	"id": "10",
-	"speaker": "none",
-	"face": "none",
-	"text": "And went to sleep.",
-	"type": "end",
-	"next_id": "end"
-  },
+	{
+		"id": "0",
+		"speaker": "landlord",
+		"face": "neutral",
+		"text": "Hey, so you found the apartment!",
+		"type": "line",
+		"next_id": "1"
+	},
+	{
+		"id": "1",
+		"speaker": "margaret",
+		"face": "unimp",
+		"text": "This was the best you could do?",
+		"type": "line",
+		"next_id": "2"
+	},
+	{
+		"id": "2",
+		"speaker": "landlord",
+		"face": "neutral",
+		"text": "You signed up for this, you saw the photos.",
+		"type": "line",
+		"next_id": "3"
+	},
+	{
+		"id": "3",
+		"speaker": "landlord",
+		"face": "smug",
+		"text": "(I see you took the divorce well)",
+		"type": "line",
+		"next_id": "4"
+	},
+	{
+		"id": "4",
+		"speaker": "none",
+		"face": "none",
+		"type": "choice",
+		"choices": [
+			{
+				"text": "I'm going to make bank on Minted.",
+				"next_id": "5a"
+			},
+			{
+				"text": "I see your hair is doing well.",
+				"next_id": "5b"
+			}
+		]
+	},
+	{
+		"id": "5a",
+		"speaker": "landlord",
+		"face": "smug",
+		"text": "[b]Seriously[/b] Margaret, Minted? Like the second hand app?",
+		"type": "line",
+		"next_id": "6a"
+	},
+	{
+		"id": "6a",
+		"speaker": "margaret",
+		"face": "concern",
+		"text": "<af><p1>.<p1>.<p1>.<at> [shake rate=20.0 level=5.0]It could work.[/shake]",
+		"type": "line",
+		"next_id": "7a"
+	},
+	{
+		"id": "7a",
+		"speaker": "landlord",
+		"face": "smug",
+		"text": "Well, good luck!<p0.5> (;",
+		"type": "line",
+		"next_id": "8"
+	},
+	{
+		"id": "5b",
+		"speaker": "landlord",
+		"face": "mad",
+		"text": "I could kick you out at any moment, you know!",
+		"type": "line",
+		"next_id": "6b"
+	},
+	{
+		"id": "6b",
+		"speaker": "margaret",
+		"face": "neutral",
+		"text": "Well, off to make money on minted.",
+		"type": "line",
+		"next_id": "7b"
+	},
+	{
+		"id": "7b",
+		"speaker": "landlord",
+		"face": "smug",
+		"text": "Minted? Well, good luck with that.",
+		"type": "line",
+		"next_id": "8"
+	},
+	{
+		"id": "8",
+		"speaker": "none",
+		"face": "none",
+		"text": "The landlord hung up.",
+		"type": "end",
+		"next_id": "end"
+	},
+	{
+		"id": "9",
+		"speaker": "none",
+		"face": "none",
+		"text": "You closed your eyes<p0.5>.<p0.5>.<p0.5>.",
+		"type": "line",
+		"next_id": "10"
+	},
+	{
+		"id": "10",
+		"speaker": "none",
+		"face": "none",
+		"text": "And went to sleep.",
+		"type": "end",
+		"next_id": "end"
+	}
 ]

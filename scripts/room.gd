@@ -89,8 +89,8 @@ func refresh_popup() -> void:
 	days_1.text = str(Global.rent_frequency - Global.days_since_rent)
 	days_2.text = str(Global.rent_frequency - Global.days_since_rent)
 	if Global.rent_frequency - Global.days_since_rent == 1 and Global.hour < 12:
-		days_1.text = "Today at 12AM"
-		days_2.text = "Today at 12AM"
+		days_1.text = "Today at 12PM"
+		days_2.text = "Today at 12PM"
 	elif Global.rent_frequency - Global.days_since_rent == 1 and Global.hour > 12:
-		days_1.text = "Tomorrow at 12AM"
-		days_2.text = "Tomorrow at 12AM"
+		days_1.text = "Tomorrow at 12PM"
+		days_2.text = "Tomorrow at 12PM"
