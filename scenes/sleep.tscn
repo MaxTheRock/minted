@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5otyytahqibf" path="res://themes/progress.tres" id="4_svgiq"]
 [ext_resource type="Texture2D" uid="uid://m5nxngichs36" path="res://themes/progress2.tres" id="6_svgiq"]
 [ext_resource type="Texture2D" uid="uid://cdp4tmf5gv8qc" path="res://assets/alarm.png" id="6_uvjmt"]
+[ext_resource type="PackedScene" uid="uid://b768048q8ww8w" path="res://scenes/sleep_screen.tscn" id="8_4lsgk"]
 [ext_resource type="PackedScene" uid="uid://dasxcj57x3w1g" path="res://scenes/dialogue.tscn" id="8_uvjmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16o1l"]
@@ -37,7 +38,7 @@ content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lsgk"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.00957049, 9.836722e-06, 0.029248392, 1)
 
 [node name="Sleep" type="Control" unique_id=551383356]
 layout_mode = 3
@@ -207,25 +208,25 @@ offset_bottom = 610.0
 theme_override_font_sizes/font_size = 40
 text = "Sleep"
 
-[node name="sleep_screen" type="Control" parent="." unique_id=2013565710]
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=2022858148]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PanelContainer" type="PanelContainer" parent="sleep_screen" unique_id=557747971]
 layout_mode = 0
+offset_top = -1.0
 offset_right = 1280.0
-offset_bottom = 720.0
+offset_bottom = 719.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4lsgk")
+
+[node name="sleep_screen" parent="." unique_id=429930551 instance=ExtResource("8_4lsgk")]
+visible = false
+layout_mode = 1
 
 [node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("8_uvjmt")]
 visible = false
 layout_mode = 1
-offset_left = 247.0
-offset_top = 446.0
-offset_right = 247.0
-offset_bottom = 446.0
+offset_left = 129.0
+offset_top = 228.0
+offset_right = 129.0
+offset_bottom = 228.0
 
 [connection signal="changed" from="HSlider" to="." method="_on_h_slider_changed"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

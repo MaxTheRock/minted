@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b768048q8ww8w"]
+
+[ext_resource type="Script" uid="uid://cekmqyckml88x" path="res://scripts/sleep_screen.gd" id="1_gtmii"]
+[ext_resource type="Shader" uid="uid://bsq33uc36pak1" path="res://shaders/sleep_screen.gdshader" id="1_lseeq"]
+[ext_resource type="Texture2D" uid="uid://yv4b1koxprex" path="res://assets/background/repeating_unit_sleep.png" id="1_nc7m3"]
+[ext_resource type="Texture2D" uid="uid://rpqw7f5o7v34" path="res://assets/background/sleep_background.png" id="2_nc7m3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6siq7"]
+bg_color = Color(0.00957049, 9.836722e-06, 0.029248392, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6snss"]
+shader = ExtResource("1_lseeq")
+shader_parameter/SPEED = 1.0
+shader_parameter/INTENSITY = 1.0
+shader_parameter/BAND_PIXEL_HEIGHT = 1.0
+shader_parameter/SCANLINE_SPEED = 2.0
+shader_parameter/DARKEN_FACTOR = 0.5
+
+[node name="sleep_screen" type="Control" unique_id=429930551]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gtmii")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1163815421]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1280.0
+offset_bottom = 719.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6siq7")
+
+[node name="ParallaxLayer" type="Parallax2D" parent="." unique_id=686204306]
+scroll_offset = Vector2(58, -91)
+repeat_size = Vector2(32, 32)
+autoscroll = Vector2(20, 20)
+repeat_times = 10
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer" unique_id=1192356981]
+texture_repeat = 2
+offset_left = -141.0
+offset_top = -123.0
+offset_right = 1896.0
+offset_bottom = 1047.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_nc7m3")
+stretch_mode = 1
+
+[node name="ParallaxLayer2" type="Parallax2D" parent="." unique_id=1947434842]
+visible = false
+scroll_scale = Vector2(2, 2)
+scroll_offset = Vector2(-624, -197)
+repeat_size = Vector2(640, 360)
+autoscroll = Vector2(0, 20)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=688369735]
+material = SubResource("ShaderMaterial_6snss")
+layout_mode = 0
+offset_left = -157.00002
+offset_top = -95.99999
+offset_right = 483.0
+offset_bottom = 264.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_nc7m3")
+
+[node name="fade_in" type="PanelContainer" parent="." unique_id=1203024189]
+layout_mode = 0
+offset_left = -207.0
+offset_top = -307.0
+offset_right = 1793.0
+offset_bottom = 1693.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6siq7")

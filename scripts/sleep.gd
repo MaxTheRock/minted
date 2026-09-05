@@ -8,13 +8,14 @@ extends Control
 var sleep_duration = 8
 @onready var sleep_text = $Sleep_duration
 @onready var not_tired = $not_tired
-@onready var fade_overlay = $sleep_screen/PanelContainer
+@onready var fade_overlay = $PanelContainer2
 var sleep_needed_int = 0
 var sleep_gained_int = 0
 
 var sleep_name = "Sleep"
 var sleep_vals = [8,10,12,14,16,18,20,22,25,28,31,35,41,46,50]
 var sleep_amounts = [20,25,30,33,36,40,45,48,50,52,54,56,60,64,67,70]
+
 func _ready() -> void:
 	var original_image = Image.load_from_file("res://assets/os/icons/sleep.png")	
 	original_image.resize(32, 32, Image.INTERPOLATE_LANCZOS)
@@ -72,12 +73,11 @@ func _on_h_slider_value_changed(value: float) -> void:
 		sleep_needed_int += 10
 	get_sleep_text(slider.value)
 
-
-
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/room.tscn")
 
 func fade_to_black(duration: float = 1.0) -> void:
+	fade_overlay.show() 
 	var tween = create_tween()
 	tween.tween_property(fade_overlay, "modulate", Color(1, 1, 1, 1), duration)
 	await tween.finished
@@ -86,22 +86,28 @@ func fade_from_black(duration: float = 1.0) -> void:
 	var tween = create_tween()
 	tween.tween_property(fade_overlay, "modulate", Color(1, 1, 1, 0), duration)
 	await tween.finished
+	fade_overlay.hide() 
 		
 func _on_sleep_button_pressed() -> void:
 	if float(sleep_needed_int) + Global.sleep > 100:
 		not_tired.text = "Not Tired Enough..."
 	else:
+		Global.current_interactable = null
 		Global.dialogue_ongoing = true
-		$sleep_screen.show()
-		
-		fade_overlay.modulate = Color(1, 1, 1, 0) 
-		
+		AudioManager.pause(true)
+		fade_overlay.modulate = Color(1, 1, 1, 0)
 		await fade_to_black(1.5)
 		
+		$dialogue.sleep_mode()
+		$sleep_screen.show()		
+		var sleep_tween = create_tween()
+		$sleep_screen.fade_out_black_screen()
+		sleep_tween.tween_property($sleep_screen, "modulate", Color(1, 1, 1, 1), 2.0)
+		await sleep_tween.finished
+		
 		SignalBus.display_dialogue.emit("find", 9)
-		
 		await SignalBus.dialogue_finished
-		
+
 		Global.sleep += min(float(sleep_gained_int), 100)
 		Global.hour += int(slider.value)
 		Global.time_mins += int(slider.value) * 60
@@ -109,6 +115,8 @@ func _on_sleep_button_pressed() -> void:
 		get_sleep_text(8.0)
 		_on_h_slider_value_changed(8)
 		
+		# Clean up and exit
 		$sleep_screen.hide()
-		Global.dialogue_ongoing = false
+		AudioManager.pause(false)
 		get_tree().change_scene_to_file("res://scenes/room.tscn")
+		Global.dialogue_ongoing = false

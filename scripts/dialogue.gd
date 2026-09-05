@@ -211,3 +211,7 @@ func _process(delta: float) -> void:
 		timer = 0
 	highlight_text()
 	process_dialogic(delta)
+
+func sleep_mode():
+	$ColorRect.color = Color(0.0,0.0,0.0,0.0)
+	$ColorRect/RichTextLabel.add_theme_font_size_override("font_size",70)

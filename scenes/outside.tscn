@@ -111,6 +111,7 @@ shape = SubResource("RectangleShape2D_lt5my")
 debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="TrafficLight2" parent="vehicle_container" unique_id=1429295902 instance=ExtResource("8_lt5my")]
+visible = false
 position = Vector2(948, -108)
 scale = Vector2(2, 2)
 

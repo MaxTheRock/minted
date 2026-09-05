@@ -166,9 +166,9 @@ script = ExtResource("1_g2els")
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6snss")
-animation = &"walk_up"
+animation = &"walk_down"
 autoplay = "down"
-frame_progress = 0.5421729
+frame_progress = 0.7210182
 
 [node name="building_collision" type="CollisionShape2D" parent="Player" unique_id=344316980]
 visible = false
