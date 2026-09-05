@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Minted"
-run/main_scene="uid://6b5xby3glpnl"
+run/main_scene="uid://bkc4n158kkjf4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://chmkshoe0k71w"
 

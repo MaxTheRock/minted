@@ -58,7 +58,7 @@ offset_transform_position = Vector2(0, -99.97)
 layout_mode = 0
 offset_left = 19.0
 offset_right = 1300.0
-offset_bottom = 630.0
+offset_bottom = 472.0
 draw_focus_border = true
 
 [node name="Sections" type="VBoxContainer" parent="Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer" unique_id=387823112]
