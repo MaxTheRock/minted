@@ -3,8 +3,9 @@
 [ext_resource type="Theme" uid="uid://csyx1m4i6wle" path="res://themes/main_theme.tres" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://cx2r86r3pb2j2" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bv1a7623ph6l5" path="res://assets/minted logo.png" id="3_bqqt6"]
-[ext_resource type="Script" uid="uid://bbviw1sbmiesy" path="res://scenes/menu_background1.gd" id="4_rtw2f"]
+[ext_resource type="Script" uid="uid://bbviw1sbmiesy" path="res://scripts/menu_background1.gd" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dkoecjxvwmw5u" path="res://assets/outside/outside_road.png" id="5_oa1go"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c4pr4off1h2sh" path="res://assets/shippley_delivery_truck.png" id="6_tbmy8"]
 
 [sub_resource type="Animation" id="Animation_jk1qb"]
@@ -45,6 +46,21 @@ _data = {
 &"moving car": SubResource("Animation_5dd4i")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnalp"]
+bg_color = Color(1, 1, 1, 0.16078432)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
+bg_color = Color(1, 1, 1, 0.6156863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
+bg_color = Color(0.5176471, 1, 0.76862746, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk1qb"]
+bg_color = Color(3.946722e-06, 0.836271, 0.56488794, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
+bg_color = Color(0.5176471, 1, 0.76862746, 1)
+
 [node name="MainMenu" type="Control" unique_id=859143254]
 layout_mode = 3
 anchors_preset = 0
@@ -82,33 +98,67 @@ libraries/ = SubResource("AnimationLibrary_lgwnu")
 
 [node name="SpawnTimer" type="Timer" parent="background" unique_id=584373721]
 
-[node name="Play_Button" type="Button" parent="." unique_id=540149891]
-z_index = 10
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=950429803]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 301.0
-offset_right = 307.0
-offset_bottom = 357.0
-text = "Play"
+offset_left = 56.0
+offset_right = 491.0
+offset_bottom = 639.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnalp")
 
-[node name="Options_Button" type="Button" parent="." unique_id=576103707]
-z_index = 10
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1691259075]
 layout_mode = 0
-offset_left = 71.0
-offset_top = 380.0
-offset_right = 308.0
-offset_bottom = 431.0
-text = "Options
-"
+offset_left = 56.0
+offset_top = 639.0
+offset_right = 491.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5dd4i")
 
-[node name="Quit_Button" type="Button" parent="." unique_id=1348030729]
-z_index = 10
+[node name="button_container" type="VBoxContainer" parent="." unique_id=1484310092]
 layout_mode = 0
-offset_left = 71.0
-offset_top = 457.0
-offset_right = 309.0
-offset_bottom = 508.0
-text = "Quit"
+offset_left = 56.0
+offset_top = 265.0
+offset_right = 491.0
+offset_bottom = 555.0
+
+[node name="Continue_Button" type="Button" parent="button_container" unique_id=540149891]
+z_index = 10
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_oa1go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oa1go")
+text = "Continue"
+
+[node name="New_game_Button" type="Button" parent="button_container" unique_id=372425303]
+z_index = 10
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_oa1go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oa1go")
+text = "New Game"
+
+[node name="Options_Button" type="Button" parent="button_container" unique_id=1493160093]
+z_index = 10
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_oa1go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oa1go")
+text = "Options"
+
+[node name="Exit_game_Button" type="Button" parent="button_container" unique_id=505706220]
+z_index = 10
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_oa1go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oa1go")
+text = "Exit Game"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=41949816]
 z_index = 10
@@ -120,6 +170,16 @@ offset_bottom = 239.0
 texture = ExtResource("3_bqqt6")
 expand_mode = 1
 
-[connection signal="pressed" from="Play_Button" to="." method="_on_play_button_pressed"]
-[connection signal="button_down" from="Options_Button" to="." method="_on_options_button_button_down"]
-[connection signal="pressed" from="Quit_Button" to="." method="_on_quit_button_pressed"]
+[node name="version" type="Label" parent="." unique_id=1591514112]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 641.0
+offset_right = 130.0
+offset_bottom = 687.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_oa1go")
+text = "v0.1d"
+
+[connection signal="pressed" from="button_container/Continue_Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="button_container/Options_Button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="button_container/Exit_game_Button" to="." method="_on_exit_game_button_pressed"]

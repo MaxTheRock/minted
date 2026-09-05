@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ddllt5abm0be7"]
 
 [ext_resource type="Script" uid="uid://buwunijkps3vu" path="res://scripts/vehicle.gd" id="1_pu4i8"]
+[ext_resource type="Texture2D" uid="uid://c4pr4off1h2sh" path="res://assets/shippley_delivery_truck.png" id="2_d0fkt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnalp"]
 radius = 41.0
@@ -12,9 +13,27 @@ size = Vector2(91, 53)
 [node name="Vehicle" type="Node2D" unique_id=2137682358]
 script = ExtResource("1_pu4i8")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1544352420]
+[node name="car" type="Control" parent="." unique_id=1115732821]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="car" unique_id=1544352420]
+layout_mode = 0
 offset_right = 168.0
 offset_bottom = 62.0
+
+[node name="shippley_van" type="Control" parent="." unique_id=1847586453]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="shippley_van" unique_id=1567522902]
+position = Vector2(79, -2)
+scale = Vector2(2, 2)
+texture = ExtResource("2_d0fkt")
 
 [node name="vehicle_hitbox" type="Area2D" parent="." unique_id=2101200868]
 

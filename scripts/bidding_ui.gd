@@ -143,12 +143,6 @@ func _on_button_pressed() -> void:
 
 		Inventory.bid_done.emit()
 
-
 func _on_price_text_changed(new_text: String) -> void:
 	Global.buffer_text = new_text
 	Global.bidding_index_selected = item_index
-	
-
-func _on_panel_container_mouse_entered() -> void: # this doesn't work for some reason.
-	if $"item_container/item UI":
-		$"item_container/item UI".display_thing()

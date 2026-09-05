@@ -79,3 +79,11 @@ func _on_front_detection_area_exited(area: Area2D) -> void:
 	elif area.name == "traffic_light_area":
 		if area.get_parent().current_color != "red" or area.get_parent().current_color != "amber_end":
 			speed = saved_speed
+
+func skin(skin_name):
+	$car.hide()
+	$shippley_van.hide()
+	if skin_name == "car":
+		$car.show()
+	elif skin_name == "shippley_van":
+		$shippley_van.show()

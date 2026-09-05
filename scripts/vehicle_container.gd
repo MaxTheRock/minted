@@ -1,7 +1,7 @@
 extends Control
 
 var vehicle = preload("res://scenes/vehicle.tscn")
-var types: Array = ["car"]
+var types: Array = ["car", "shippley_van"]
 var chosen_type: String = "car"
 
 var left_spawn_locked: bool = false
@@ -24,13 +24,15 @@ func _process(delta: float) -> void:
 func spawn_vehicle(type, direction):
 	var instance = vehicle.instantiate()
 	add_child(instance)
-
+	instance.skin(type)
 	if direction == "right":
 		instance.position = Vector2(100,0)
 		instance.direction = "right"
+		instance.scale.x = -1
 	elif direction == "left":
 		instance.position = Vector2(1800,90)
 		instance.direction = "left"
+		instance.scale.x = 1
 	
 func generate_vehicle(queue):
 	chosen_type = types.pick_random()

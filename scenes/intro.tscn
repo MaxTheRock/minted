@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkc4n158kkjf4"]
 
-[ext_resource type="Script" uid="uid://b24ikjwv6o2xt" path="res://scenes/intro.gd" id="1_4bx60"]
+[ext_resource type="Script" uid="uid://b24ikjwv6o2xt" path="res://scripts/intro.gd" id="1_4bx60"]
 [ext_resource type="Texture2D" uid="uid://3umge0marxk0" path="res://assets/weneedastudioname_studio.png" id="2_i2l1n"]
 [ext_resource type="Texture2D" uid="uid://dqdtinhe3sbio" path="res://assets/Godot Logo.png" id="3_i2l1n"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_wfs7u"]
