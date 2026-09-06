@@ -13,11 +13,11 @@ func movement(d):
 	if not Global.dialogue_ongoing:
 		if Input.is_action_pressed("right"):
 			moveDir.x = 1
-			sprite.play("right")
+			sprite.play("walk_right")
 			most_recent_dir = "right"
 		elif Input.is_action_pressed("left"):
 			moveDir.x = -1
-			sprite.play("left")
+			sprite.play("walk_left")
 			most_recent_dir = "left"
 		elif Input.is_action_pressed("up"):
 			moveDir.y = -1
