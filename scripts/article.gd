@@ -2,9 +2,9 @@ extends Control
 
 @onready var title = $PanelContainer3/VBoxContainer/title
 @onready var article_text = $PanelContainer3/VBoxContainer/article
-#@onready var image_container = $image_container
-#@onready var ad_container = $advertisement_container
-#@onready var image_text = $image_container/image_text
+@onready var image_container = $PanelContainer3/VBoxContainer/image_container
+@onready var ad_container = $PanelContainer3/VBoxContainer/advertisement_container
+@onready var image_text = $PanelContainer3/VBoxContainer/image_container/image_text
 
 var articles_available = []
 var article_chosen = ""
@@ -143,26 +143,29 @@ func process_article(article):
 	var image_desc = article.get("image_desc", "")
 	
 	var image_desc_parsed = image_desc.replace("[name]", name)
-	#image_text.text = image_desc_parsed
+	print(image_desc_parsed)
+	if image_desc_parsed is String:
+		
+		image_text.text = image_desc_parsed
 	if image != "none":
-		#image_container.show()
-		#image_text.text = image_desc_parsed
-		pass
+		image_container.show()
+		image_text.text = image_desc_parsed
 	elif article.get("ad", false):
-		#ad_container.show()
-		pass
-
+		ad_container.show()
+	
+	print(title_unformatted)
 	title.text = title_unformatted
-
-	if article_index < Global.articles.size() and Global.articles[article_index] is Dictionary:
+	title.add_theme_font_size_override("font_size", ceili(40-len(title_unformatted)/4))
+	
+	if article_index < Global.articles.size() and (Global.articles[article_index] is Dictionary):
 		Global.articles[article_index]["saved_name"] = name
 		Global.articles[article_index]["article"] = article_itself
 		Global.articles[article_index]["title"] = title_unformatted
 		Global.articles[article_index]["image_desc"] = image_desc_parsed
 
-	if article.get("subtitle", "") == "":
-		article_text.size = Vector2(380, 260)
-		article_text.position = Vector2(12, 188)
+	#if article.get("subtitle", "") == "":
+		#article_text.size = Vector2(380, 260)
+		#article_text.position = Vector2(12, 188)
 		
 func article_effect(article):
 	var effect = article.get("effect","none")

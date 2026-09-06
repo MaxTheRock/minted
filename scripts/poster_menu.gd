@@ -33,7 +33,7 @@ func _on_poster_selected(item_data: Dictionary) -> void:
 
 
 func _on_close_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/room.tscn")
+	Global.goto_scene("res://scenes/room.tscn")
 
 
 func _on_put_back_pressed() -> void:

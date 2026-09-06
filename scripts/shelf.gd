@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Global.current_interactable == self and Input.is_action_pressed("interact"):
 		Global.first_room = false
-		get_tree().change_scene_to_file("res://scenes/shelf.tscn")
+		Global.goto_scene("res://scenes/shelf.tscn")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "Player_Detector":
