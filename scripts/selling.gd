@@ -12,13 +12,16 @@ var current_text = ""
 @onready var name_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/HBoxContainer/Name"
 @onready var type_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer/Type"
 @onready var condition_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer3/Condition"
-@onready var color_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4/Color"
 @onready var brand_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer2/Brand"
 @onready var price_display = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/4/HBoxContainer/Price"
 @onready var exeption_message = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/display_error"
 @onready var item_count = $Sections/Centre/TabContainer/sell_list/Label
 @onready var sold_display = $Sections/Centre/TabContainer/sold_list/ScrollContainer/GridContainer
 @onready var description = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/2/VBoxContainer/decription"
+
+@onready var button0: Button = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4/Button0"
+@onready var button1: Button = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4/Button1"
+@onready var button2: Button = $"Sections/Centre/TabContainer/Sell Item/sell_item/ScrollContainer/Sections/3/HBoxContainer4/Button2"
 
 var template = "Items: {items}/{storage}"
 	
@@ -31,7 +34,6 @@ func clear_contents() -> void:
 	type_display.clear()
 	brand_display.clear()
 	condition_display.select(-1)
-	color_display.clear()
 	price_display.clear()
 	for child in item_display.get_children():
 		child.queue_free()
@@ -120,7 +122,14 @@ func _on_sell_button_pressed() -> void:
 		Inventory.transfer_item(list_thing,
 		Inventory.actual_selling, 0)
 		
-		var color = color_display.text
+		
+		var color
+		if button0.button_pressed == true:
+			color = button0.text
+		elif button1.button_pressed == true:
+			color = button1.text
+		else:
+			color = button2.text
 		var color1 = ""
 		var color2 = ""
 		var colors = color.split(" ") 
@@ -140,7 +149,7 @@ func _on_sell_button_pressed() -> void:
 			"name": name_display.text,
 			"type": type_display.text,
 			"condition": current_text,
-			"color": color_display.text,
+			"color": color,
 			"color1": color1,
 			"color2": color2,
 			"price": price_written,
@@ -235,3 +244,18 @@ func _refresh_inventory_grid() -> void:
 		storage_ui.inventory_index = i
 		storage_ui.page_requested.connect(_on_item_page_requested)
 		inventory_grid.add_child(storage_ui)
+
+
+func _on_button_0_toggled(toggled_on: bool) -> void:
+	button1.button_pressed = false
+	button2.button_pressed = false
+
+
+func _on_button_1_toggled(toggled_on: bool) -> void:
+	button0.button_pressed = false
+	button2.button_pressed = false
+
+
+func _on_button_2_toggled(toggled_on: bool) -> void:
+	button0.button_pressed = false
+	button1.button_pressed = false
