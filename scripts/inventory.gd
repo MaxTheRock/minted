@@ -435,3 +435,75 @@ func return_item_to_inventory(item: Dictionary) -> bool:
 	player_inventory.append(item)
 	inventories_changed.emit()
 	return true
+
+func get_save_data() -> Dictionary:
+	return {
+		"player_inventory": player_inventory,
+		"wardrobe_inventory": wardrobe_inventory,
+		"shelf_inventory": shelf_inventory,
+		"cd_inventory": cd_inventory,
+		"display_item": display_item,
+		"actual_selling": actual_selling,
+		"player_selling": player_selling,
+		"sold_items": sold_items,
+		"actual_sold": actual_sold,
+		"display_poster": display_poster,
+		"buyers": buyers,
+		"buyer_rating": buyer_rating,
+
+		"bidding_items": bidding_items,
+		"bidding_details": bidding_details,
+		"bidders": bidders,
+
+		"item_id": item_id,
+		"sell_id": sell_id,
+		"market_items": market_items,
+	}
+
+func load_save_data(data: Dictionary) -> void:
+	player_inventory = data.get("player_inventory", player_inventory)
+	wardrobe_inventory = data.get("wardrobe_inventory", wardrobe_inventory)
+	shelf_inventory = data.get("shelf_inventory", shelf_inventory)
+	cd_inventory = data.get("cd_inventory", cd_inventory)
+	display_item = data.get("display_item", display_item)
+	actual_selling = data.get("actual_selling", actual_selling)
+	player_selling = data.get("player_selling", player_selling)
+	sold_items = data.get("sold_items", sold_items)
+	actual_sold = data.get("actual_sold", actual_sold)
+	display_poster = data.get("display_poster", display_poster)
+	buyers = data.get("buyers", buyers)
+	buyer_rating = data.get("buyer_rating", buyer_rating)
+
+	bidding_items = data.get("bidding_items", bidding_items)
+	bidding_details = data.get("bidding_details", bidding_details)
+	bidders = data.get("bidders", bidders)
+
+	item_id = data.get("item_id", item_id)
+	sell_id = data.get("sell_id", sell_id)
+	market_items = data.get("market_items", market_items)
+
+func reset_to_defaults() -> void:
+	current_ui_type = ""
+	current_market_type = "All"
+	player_inventory = []
+	wardrobe_inventory = []
+	shelf_inventory = []
+	cd_inventory = []
+	display_item = []
+	actual_selling = []
+	player_selling = []
+	sold_items = []
+	actual_sold = []
+	display_poster = []
+	buyers = []
+	buyer_rating = 0.0
+
+	bidding_items = []
+	bidding_details = [{},{},{}]
+	bidders = []
+
+	item_id = 0
+	sell_id = 0
+	market_items = {}
+
+	inventories_changed.emit()

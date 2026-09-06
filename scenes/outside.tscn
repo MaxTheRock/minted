@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
 [ext_resource type="PackedScene" uid="uid://vqmdbs2bs2d3" path="res://scenes/traffic_light.tscn" id="8_lt5my"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="9_5tstl"]
-[ext_resource type="Script" uid="uid://brb33k0ofomi2" path="res://scenes/sub_viewport.gd" id="10_lt7nq"]
+[ext_resource type="Script" uid="uid://brb33k0ofomi2" path="res://scripts/sub_viewport.gd" id="10_lt7nq"]
 [ext_resource type="Texture2D" uid="uid://dbkygic0v4ck5" path="res://assets/player/minimap_icon.png" id="11_v7x2m"]
 [ext_resource type="Texture2D" uid="uid://djv0irctjr0sb" path="res://assets/os/icons/locker_icon.png" id="12_cdqji"]
 [ext_resource type="Texture2D" uid="uid://ch67o1t37wkhb" path="res://assets/os/icons/home_icon.png" id="13_x3una"]
@@ -107,14 +107,14 @@ debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
 
 [node name="vehicle_container" type="Control" parent="." unique_id=2065926026]
 anchors_preset = 0
-offset_left = -518.0
+offset_left = -738.0
 offset_top = 274.0
-offset_right = 2482.0
+offset_right = 2196.0
 offset_bottom = 574.0
 script = ExtResource("7_lt5my")
 
 [node name="TrafficLight" parent="vehicle_container" unique_id=1641677231 instance=ExtResource("8_lt5my")]
-position = Vector2(576, 89)
+position = Vector2(808, 89)
 scale = Vector2(2, 2)
 
 [node name="traffic_light_area" type="Area2D" parent="vehicle_container/TrafficLight" unique_id=1614143430]
@@ -126,7 +126,7 @@ shape = SubResource("RectangleShape2D_lt5my")
 debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="TrafficLight2" parent="vehicle_container" unique_id=1429295902 instance=ExtResource("8_lt5my")]
-position = Vector2(969, -317)
+position = Vector2(1215, -317)
 scale = Vector2(2, 2)
 
 [node name="traffic_light_area" type="Area2D" parent="vehicle_container/TrafficLight2" unique_id=697511749]
@@ -138,17 +138,17 @@ shape = SubResource("RectangleShape2D_lt5my")
 debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="l_detector" type="Area2D" parent="vehicle_container" unique_id=1554712430]
-position = Vector2(0, -24)
+position = Vector2(49, -24)
 
 [node name="left_vehicle_detector" type="CollisionShape2D" parent="vehicle_container/l_detector" unique_id=408685547]
-position = Vector2(1905, 142)
+position = Vector2(2589, 164)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
 
 [node name="r_detector" type="Area2D" parent="vehicle_container" unique_id=1693979169]
 
 [node name="right_vehicle_detector" type="CollisionShape2D" parent="vehicle_container/r_detector" unique_id=1067990905]
-position = Vector2(28, 36)
+position = Vector2(223, 19)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
 

@@ -2,6 +2,43 @@
 
 [ext_resource type="Script" uid="uid://buwunijkps3vu" path="res://scripts/vehicle.gd" id="1_pu4i8"]
 [ext_resource type="Texture2D" uid="uid://c4pr4off1h2sh" path="res://assets/shippley_delivery_truck.png" id="2_d0fkt"]
+[ext_resource type="Texture2D" uid="uid://kn54m0wou5by" path="res://assets/wheels.png" id="3_tvtne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dd4i"]
+atlas = ExtResource("3_tvtne")
+region = Rect2(111, 0, 37, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgwnu"]
+atlas = ExtResource("3_tvtne")
+region = Rect2(74, 0, 37, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flqon"]
+atlas = ExtResource("3_tvtne")
+region = Rect2(37, 0, 37, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcqid"]
+atlas = ExtResource("3_tvtne")
+region = Rect2(0, 0, 37, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psfx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dd4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgwnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flqon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcqid")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnalp"]
 radius = 59.896885
@@ -9,6 +46,9 @@ height = 479.8629
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
 size = Vector2(91, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnalp"]
+size = Vector2(453, 163)
 
 [node name="Vehicle" type="Node2D" unique_id=2137682358]
 script = ExtResource("1_pu4i8")
@@ -27,13 +67,25 @@ offset_bottom = 62.0
 [node name="shippley_van" type="Control" parent="." unique_id=1847586453]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 73.0
+offset_top = 19.0
+offset_right = 113.0
+offset_bottom = 59.0
 
 [node name="Sprite2D" type="Sprite2D" parent="shippley_van" unique_id=1567522902]
-position = Vector2(79, -2)
+position = Vector2(2, -7)
 scale = Vector2(2, 2)
 texture = ExtResource("2_d0fkt")
+
+[node name="wheel1" type="AnimatedSprite2D" parent="shippley_van/Sprite2D" unique_id=1332940584]
+z_index = -1
+position = Vector2(-71.66669, 49.66667)
+sprite_frames = SubResource("SpriteFrames_psfx0")
+
+[node name="wheel2" type="AnimatedSprite2D" parent="shippley_van/Sprite2D" unique_id=616610585]
+z_index = -1
+position = Vector2(80.66667, 49.66667)
+sprite_frames = SubResource("SpriteFrames_psfx0")
 
 [node name="vehicle_hitbox" type="Area2D" parent="." unique_id=2101200868]
 
@@ -53,6 +105,15 @@ debug_color = Color(0.68102884, 0.29883936, 1, 0.41960785)
 position = Vector2(-221, 32)
 shape = SubResource("RectangleShape2D_4c3da")
 debug_color = Color(0.68102884, 0.29883936, 1, 0.41960785)
+
+[node name="collisions" type="StaticBody2D" parent="." unique_id=35339922]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions" unique_id=2053589711]
+z_index = 1
+position = Vector2(73.5, 52.5)
+shape = SubResource("RectangleShape2D_qnalp")
+debug_color = Color(0.9668239, 1.8289685e-06, 0.48111242, 0.41960785)
 
 [connection signal="area_entered" from="front_detection" to="." method="_on_front_detection_area_entered"]
 [connection signal="area_exited" from="front_detection" to="." method="_on_front_detection_area_exited"]

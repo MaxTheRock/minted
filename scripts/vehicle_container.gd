@@ -26,13 +26,13 @@ func spawn_vehicle(type, direction):
 	add_child(instance)
 	instance.skin(type)
 	if direction == "right":
-		instance.position = Vector2(100,0)
+		instance.position = Vector2(100,-90)
 		instance.direction = "right"
-		instance.scale.x = -1
+		instance.flip(true)
 	elif direction == "left":
-		instance.position = Vector2(1800,90)
+		instance.position = Vector2(2500,90)
 		instance.direction = "left"
-		instance.scale.x = 1
+		instance.flip(false)
 	
 func generate_vehicle(queue):
 	chosen_type = types.pick_random()

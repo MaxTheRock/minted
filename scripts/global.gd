@@ -1,6 +1,7 @@
 extends Node
 
 var money: float = 50.00
+var current_money: float = money
 var xp: int = 0
 var rank: String = "Seller"
 var storage_capacity: int = 10
@@ -87,6 +88,8 @@ const refresh_news_2_at = 16
 var player_pos = Vector2(0,0)
 
 func _process(delta):
+	if money != current_money:
+		SaveLoad._save()
 	if rent_triggered:
 		RentPopup.visible = true
 		paused = true
@@ -352,3 +355,179 @@ func full_name_generator():
 	var forenames = ["richard","sam","oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris","daniel","jack","james","morty","kasper","olivia","elizabeth","tal","sophie","maya","eileen","noelle","susie","lois","linda","victoria","seren","otto"]
 	var surnames = ["D James", "Pearl", "Smith", "Thomson","Misiurski","Weedon","Hall","Wiggum","Simpson","Cenat","Macenzie","Griffith","Walker","Simons","Digby-Dysart"]
 	return (forenames.pick_random()).capitalize() + " " + surnames.pick_random()
+
+func get_save_data() -> Dictionary:
+	return {
+		"money": money,
+		"xp": xp,
+		"rank": rank,
+		"storage_capacity": storage_capacity,
+		"inWardrobe": inWardrobe,
+		"inShelf": inShelf,
+		"outside": outside,
+		"inLocker": inLocker,
+		"now_playing": now_playing,
+		"music_volume": music_volume,
+		"sfx_volume": sfx_volume,
+		"camera_quality": camera_quality,
+		"refreshProgress": refreshProgress,
+		"player_saved_x": player_saved_x,
+		"player_saved_y": player_saved_y,
+		"first_room": first_room,
+		"bidding_index_selected": bidding_index_selected,
+		"vehicle_queue_left": vehicle_queue_left,
+		"vehicle_queue_right": vehicle_queue_right,
+
+		"min": min,
+		"hour": hour,
+		"day": day,
+		"month": month,
+		"year": year,
+		"time_mins": time_mins,
+
+		"days_since_rent": days_since_rent,
+		"rent_triggered": rent_triggered,
+		"no_sleep": no_sleep,
+		"sleep": sleep,
+		"radio_on": radio_on,
+		"radio_playing": radio_playing,
+		"on_market": on_market,
+
+		"rent_building": rent_building,
+		"rent_electrical": rent_electrical,
+		"rent_utilities": rent_utilities,
+		"rent_maintenance": rent_maintenance,
+		"rent_broadband": rent_broadband,
+		"rent_broadband_mult": rent_broadband_mult,
+		"mins_on_computer": mins_on_computer,
+		"rent_frequency": rent_frequency,
+		"rent_ready": rent_ready,
+		"total_rent": total_rent,
+
+		"frequency": frequency,
+
+		"last_article": last_article,
+		"articles": articles,
+		"news_interest": news_interest,
+		"daily_change": daily_change,
+
+		"player_pos": player_pos,
+		"player_ratings": player_ratings,
+		"player_rating": player_rating,
+	}
+
+func load_save_data(data: Dictionary) -> void:
+	money = data.get("money", money)
+	xp = data.get("xp", xp)
+	rank = data.get("rank", rank)
+	storage_capacity = data.get("storage_capacity", storage_capacity)
+	inWardrobe = data.get("inWardrobe", inWardrobe)
+	inShelf = data.get("inShelf", inShelf)
+	outside = data.get("outside", outside)
+	inLocker = data.get("inLocker", inLocker)
+	now_playing = data.get("now_playing", now_playing)
+	music_volume = data.get("music_volume", music_volume)
+	sfx_volume = data.get("sfx_volume", sfx_volume)
+	camera_quality = data.get("camera_quality", camera_quality)
+	refreshProgress = data.get("refreshProgress", refreshProgress)
+	player_saved_x = data.get("player_saved_x", player_saved_x)
+	player_saved_y = data.get("player_saved_y", player_saved_y)
+	first_room = data.get("first_room", first_room)
+	bidding_index_selected = data.get("bidding_index_selected", bidding_index_selected)
+	vehicle_queue_left = data.get("vehicle_queue_left", vehicle_queue_left)
+	vehicle_queue_right = data.get("vehicle_queue_right", vehicle_queue_right)
+
+	min = data.get("min", min)
+	hour = data.get("hour", hour)
+	day = data.get("day", day)
+	month = data.get("month", month)
+	year = data.get("year", year)
+	time_mins = data.get("time_mins", time_mins)
+
+	days_since_rent = data.get("days_since_rent", days_since_rent)
+	rent_triggered = data.get("rent_triggered", rent_triggered)
+	no_sleep = data.get("no_sleep", no_sleep)
+	sleep = data.get("sleep", sleep)
+	radio_on = data.get("radio_on", radio_on)
+	radio_playing = data.get("radio_playing", radio_playing)
+	on_market = data.get("on_market", on_market)
+
+	rent_building = data.get("rent_building", rent_building)
+	rent_electrical = data.get("rent_electrical", rent_electrical)
+	rent_utilities = data.get("rent_utilities", rent_utilities)
+	rent_maintenance = data.get("rent_maintenance", rent_maintenance)
+	rent_broadband = data.get("rent_broadband", rent_broadband)
+	rent_broadband_mult = data.get("rent_broadband_mult", rent_broadband_mult)
+	mins_on_computer = data.get("mins_on_computer", mins_on_computer)
+	rent_frequency = data.get("rent_frequency", rent_frequency)
+	rent_ready = data.get("rent_ready", rent_ready)
+	total_rent = data.get("total_rent", total_rent)
+
+	frequency = data.get("frequency", frequency)
+
+	last_article = data.get("last_article", last_article)
+	articles = data.get("articles", articles)
+	news_interest = data.get("news_interest", news_interest)
+	daily_change = data.get("daily_change", daily_change)
+
+	player_pos = data.get("player_pos", player_pos)
+	player_ratings = data.get("player_ratings", player_ratings)
+	player_rating = data.get("player_rating", player_rating)
+
+func reset_to_defaults() -> void:
+	money = 50.00
+	xp = 0
+	rank = "Seller"
+	storage_capacity = 10
+	inWardrobe = false
+	inShelf = false
+	outside = false
+	inLocker = false
+	now_playing = ""
+	music_volume = -10
+	sfx_volume = -5
+	camera_quality = "Good"
+	refreshProgress = 100
+	player_saved_x = 0
+	player_saved_y = 0
+	first_room = true
+	bidding_index_selected = -1
+	vehicle_queue_left = []
+	vehicle_queue_right = []
+
+	min = 0
+	hour = 6
+	day = 1
+	month = 7
+	year = 2026
+	time_mins = 0
+
+	days_since_rent = 0
+	rent_triggered = false
+	no_sleep = true
+	sleep = 40
+	radio_on = false
+	radio_playing = "none"
+	on_market = false
+
+	rent_building = 2.0
+	rent_electrical = 1
+	rent_utilities = 0.5
+	rent_maintenance = 1.0
+	rent_broadband = 0
+	rent_broadband_mult = 1.0
+	mins_on_computer = 0
+	rent_frequency = 2
+	rent_ready = false
+	total_rent = 0
+
+	frequency = 150
+
+	last_article = -1
+	articles = []
+	news_interest = 1
+	daily_change = 0.2
+
+	player_pos = Vector2(0,0)
+	player_ratings = [5.0]
+	player_rating = 0.0

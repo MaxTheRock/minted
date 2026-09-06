@@ -7,12 +7,24 @@ var driver_types: Array = [100.0, 150.0, 200.0, 300.0]
 
 @onready var front_detection: Area2D = $front_detection
 
+@onready var wheel1: AnimatedSprite2D = $shippley_van/Sprite2D/wheel1
+@onready var wheel2: AnimatedSprite2D = $shippley_van/Sprite2D/wheel2
+
 func _ready() -> void:
+	wheel1.play("default")
+	wheel2.play("default")
 	speed = driver_types.pick_random()
 	saved_speed = speed
 
 
 func _process(delta: float) -> void:
+	if speed == 0.0:
+		wheel1.stop()
+		wheel2.stop()
+	else:
+		wheel1.play("default")
+		wheel2.play("default")
+	
 	if speed > 350:
 		speed = 350
 
@@ -88,3 +100,9 @@ func skin(skin_name):
 		$car.show()
 	elif skin_name == "shippley_van":
 		$shippley_van.show()
+
+func flip(left):
+	if left:
+		$shippley_van/Sprite2D.scale.x = -2.0
+	else:
+		$shippley_van/Sprite2D.scale.x = 2.0

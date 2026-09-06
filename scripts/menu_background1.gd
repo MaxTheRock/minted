@@ -7,28 +7,30 @@ extends Control
 
 var textures: Array[TextureRect] = []
 
+@onready var wheel1: AnimatedSprite2D = $Sprite2D/wheel1
+@onready var wheel2: AnimatedSprite2D = $Sprite2D/wheel2
+
 
 func _ready() -> void:
 	template.visible = false
 	$AnimationPlayer.play("moving car")
-	# Start with 3 textures
+	wheel1.play("default")
+	wheel2.play("default")
+
 	spawn_texture(-template.size.x * 2)
 	spawn_texture(-template.size.x)
 	spawn_texture(0)
 
 
 func _process(delta: float) -> void:
-	# Move every texture
 	for texture in textures:
 		texture.position.x += speed * delta
 
-	# Delete textures that are completely off the right
 	for texture in textures.duplicate():
 		if texture.position.x > size.x:
 			textures.erase(texture)
 			texture.queue_free()
 
-	# Find the leftmost texture
 	if textures.is_empty():
 		spawn_texture(-template.size.x)
 		return
@@ -39,7 +41,6 @@ func _process(delta: float) -> void:
 		if texture.position.x < leftmost.position.x:
 			leftmost = texture
 
-	# Create another texture off-screen on the left
 	if leftmost.position.x > -template.size.x:
 		var new_x = leftmost.position.x - template.size.x - spacing
 		spawn_texture(new_x)

@@ -28,6 +28,7 @@ ShippingHandler="*uid://4xcuwmqdjr78"
 SignalBus="*uid://cqa5kc3g7nk0k"
 Tooltip="*uid://cx3ugramkbs1d"
 RentPopup="*uid://bf7klmhgpdjnt"
+SaveLoad="*uid://cee4tjy4boisu"
 
 [display]
 
