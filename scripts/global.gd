@@ -8,6 +8,7 @@ var inWardrobe: bool = false
 var inShelf: bool = false
 var outside: bool = false
 var inLocker: bool = false
+var scene_loading = false
 var now_playing: String = ""
 var music_volume: int = -10
 var sfx_volume: int = -5
@@ -61,14 +62,14 @@ var rent_broadband: float = 0
 var rent_broadband_mult: float = 1.0
 var on_computer = false
 var mins_on_computer = 0
-var rent_frequency = 14
+var rent_frequency = 2
 var rent_ready = false
 var total_rent = 0
 
 var frequency = 150
 # clock
 # try 0.2 as default
-var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
+var CLOCK_SPEED = 0.2# ---> The lower, the faster jsuk rohan for testing
 var SPEED_MULT = 1 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
@@ -95,11 +96,11 @@ func _process(delta):
 	if Input.is_action_just_released("interact"):
 		action_just_pressed = false
 	clock_timer += delta
-	if clock_timer >= CLOCK_SPEED and not paused and not dialogue_ongoing:
+	if clock_timer >= CLOCK_SPEED and not paused and not dialogue_ongoing and not scene_loading:
 		refreshProgress += 100/REFRESHTIME
 		clock_timer -= CLOCK_SPEED
 		new_time_calc(SPEED_MULT)
-	elif dialogue_ongoing or paused:
+	elif dialogue_ongoing or paused or scene_loading:
 		clock_timer = 0
 		
 func new_time_calc(min_added: int) -> void:
@@ -214,6 +215,13 @@ func format_time(time) -> String:
 		t = "0" + t
 	return t
 
+func goto_scene(path: String) -> void:
+	scene_loading = true
+	clock_timer = 0
+	get_tree().change_scene_to_file(path)
+	#await get_tree().process_frame
+	scene_loading = false
+	
 # --- END Clock --- #
 
 func name_generator():

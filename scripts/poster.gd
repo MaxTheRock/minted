@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		
 	if Global.current_interactable == self and Input.is_action_pressed("interact"):
 		Global.first_room = false
-		get_tree().change_scene_to_file("res://scenes/poster_menu.tscn")
+		Global.goto_scene("res://scenes/poster_menu.tscn")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "Player_Detector":

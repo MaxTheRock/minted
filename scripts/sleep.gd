@@ -41,8 +41,9 @@ func _process(delta:float) -> void:
 	elif Global.hour >= 18 and Global.hour <= 22:
 		sleep_needed_int += 10
 	sleep_needed.value = sleep_needed_int
-	sleep_gained.value = sleep_gained_int
+	sleep_gained.value = min(sleep_gained_int,sleep_gained_int-(sleep_gained_int+Global.sleep-100))
 	time_ui.text = Global.get_time_text()
+	sleep_gained.rotation_degrees = Global.sleep * 3.6
 	
 func get_sleep_text(time):
 	var format_string = "(%s hours)"
@@ -64,7 +65,7 @@ func _on_h_slider_value_changed(value: float) -> void:
 	sleep_needed.value = sleep_needed_int
 	sleep_needed_int = sleep_vals[slider.value-2]
 	sleep_gained_int = sleep_amounts[slider.value-2]
-	
+
 	if Global.hour >= 6 and Global.hour <= 10:
 		sleep_needed_int += 20
 	elif Global.hour >= 7 and Global.hour <= 18:
@@ -87,7 +88,40 @@ func fade_from_black(duration: float = 1.0) -> void:
 	tween.tween_property(fade_overlay, "modulate", Color(1, 1, 1, 0), duration)
 	await tween.finished
 	fade_overlay.hide() 
-		
+
+func simulate_sleep(hours_to_sleep: int) -> Dictionary:
+	var hours_slept = 0
+	var sleep_percent: float = 0
+	var rent_due = false
+	for i in range(hours_to_sleep):
+		Global.hour += 1
+		hours_slept += 1
+		sleep_percent += 1.0/float(hours_to_sleep)
+ 
+		if Global.hour == 12:
+			Global.days_since_rent += 1
+			if Global.days_since_rent >= Global.rent_frequency:
+				Global.rent_ready = true
+				Global.days_since_rent = 0
+			if Global.rent_ready:
+				rent_due = true
+ 
+		if Global.hour >= 24:
+			Global.hour -= 24
+			Global.day += 1
+			var days_in_month = Global.calc_days_in_month(Global.month, Global.year)
+			if Global.day > days_in_month:
+				Global.day = 1
+				Global.month += 1
+				if Global.month > 12:
+					Global.month = 1
+					Global.year += 1
+ 
+		if rent_due:
+			break
+ 
+	return {"hours_slept": hours_slept, "rent_due": rent_due, "sleep_percent":sleep_percent}
+			
 func _on_sleep_button_pressed() -> void:
 	if float(sleep_needed_int) + Global.sleep > 100:
 		not_tired.text = "Not Tired Enough..."
@@ -105,18 +139,28 @@ func _on_sleep_button_pressed() -> void:
 		sleep_tween.tween_property($sleep_screen, "modulate", Color(1, 1, 1, 1), 2.0)
 		await sleep_tween.finished
 		
-		SignalBus.display_dialogue.emit("find", 9)
+		var requested_hours = int(slider.value)
+		var sleep_result = simulate_sleep(requested_hours)
+		var hours_slept = sleep_result["hours_slept"]
+		var rent_due = sleep_result["rent_due"]
+		var sleep_ratio = sleep_result["sleep_percent"]
+		
+		if rent_due:
+			SignalBus.display_dialogue.emit("find", 11)
+		else:
+			SignalBus.display_dialogue.emit("find", 9)
 		await SignalBus.dialogue_finished
-
-		Global.sleep += min(float(sleep_gained_int), 100)
-		Global.hour += int(slider.value)
-		Global.time_mins += int(slider.value) * 60
-		Global.hour = Global.hour % 24
+ 
+		
+		Global.sleep += min(float(sleep_gained_int) * sleep_ratio, 100)
+		Global.time_mins = (Global.time_mins + hours_slept * 60) % 60
 		get_sleep_text(8.0)
 		_on_h_slider_value_changed(8)
-		
-		# Clean up and exit
+
 		$sleep_screen.hide()
 		AudioManager.pause(false)
-		get_tree().change_scene_to_file("res://scenes/room.tscn")
+		Global.goto_scene("res://scenes/room.tscn")
 		Global.dialogue_ongoing = false
+		
+		if rent_due:
+			Global.rent_triggered = true

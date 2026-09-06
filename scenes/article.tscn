@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_pfocr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00qdj"]
-bg_color = Color(0.8666667, 0.827451, 0.75686276, 1)
+bg_color = Color(0.72590226, 0.7151892, 0.6283968, 1)
 border_color = Color(0.5921569, 0.5647059, 0.5058824, 1)
 
 [node name="article" type="Control" unique_id=1387595543]
@@ -21,65 +21,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ii25t")
 
-[node name="image_container" type="Control" parent="." unique_id=688036064]
-visible = false
-anchors_preset = 0
-offset_left = 152.0
-offset_top = 443.0
-offset_right = 192.0
-offset_bottom = 483.0
-
-[node name="image_text" type="RichTextLabel" parent="image_container" unique_id=2146092134]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 11.0
-offset_right = 253.0
-offset_bottom = 131.0
-theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "image decription"
-autowrap_mode = 2
-
-[node name="image" type="TextureRect" parent="image_container" unique_id=1422748660]
-layout_mode = 0
-offset_left = -125.0
-offset_top = -4.0
-offset_right = 25.0
-offset_bottom = 146.0
-texture = ExtResource("1_qqirc")
-
-[node name="advertisement_container" type="Control" parent="." unique_id=954877976]
-visible = false
-anchors_preset = 0
-offset_left = 171.0
-offset_top = 453.0
-offset_right = 211.0
-offset_bottom = 493.0
-
-[node name="ad_text" type="RichTextLabel" parent="advertisement_container" unique_id=1630358950]
-layout_mode = 0
-offset_left = -96.0
-offset_top = -12.0
-offset_right = 104.0
-offset_bottom = 108.0
-theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "sponsored:"
-
-[node name="ad" type="TextureRect" parent="advertisement_container" unique_id=2080618743]
-layout_mode = 0
-offset_left = -119.0
-offset_top = 20.0
-offset_right = 181.0
-offset_bottom = 148.0
-texture = ExtResource("1_qqirc")
-
 [node name="PanelContainer3" type="PanelContainer" parent="." unique_id=913926023]
+custom_maximum_size = Vector2(470, -1)
 layout_mode = 0
-offset_right = 600.0
-offset_bottom = 311.0
+offset_right = 450.0
+offset_bottom = 591.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_00qdj")
 
@@ -101,7 +47,54 @@ custom_maximum_size = Vector2(600, 600)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.50980395, 0.48235294, 0.42352942, 1)
 theme_override_fonts/font = ExtResource("4_pfocr")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et nunc et mauris eleifend iaculis vitae sit amet ex. Suspendisse porta, lacus vel consectetur scelerisque, orci odio aliquet turpis, vitae tincidunt massa mauris sed odio."
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="advertisement_container" type="Control" parent="PanelContainer3/VBoxContainer" unique_id=954877976]
+visible = false
+layout_mode = 2
+
+[node name="ad_text" type="RichTextLabel" parent="PanelContainer3/VBoxContainer/advertisement_container" unique_id=1630358950]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 3.0
+offset_right = 220.0
+offset_bottom = 123.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "sponsored:"
+
+[node name="ad" type="TextureRect" parent="PanelContainer3/VBoxContainer/advertisement_container" unique_id=2080618743]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 31.0
+offset_right = 315.0
+offset_bottom = 159.0
+texture = ExtResource("1_qqirc")
+
+[node name="image_container" type="Control" parent="PanelContainer3/VBoxContainer" unique_id=688036064]
+visible = false
+layout_mode = 2
+
+[node name="image_text" type="RichTextLabel" parent="PanelContainer3/VBoxContainer/image_container" unique_id=2146092134]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 16.0
+offset_right = 420.0
+offset_bottom = 136.0
+theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "image decription"
+autowrap_mode = 2
+
+[node name="image" type="TextureRect" parent="PanelContainer3/VBoxContainer/image_container" unique_id=1422748660]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -1.0
+offset_right = 170.0
+offset_bottom = 149.0
+texture = ExtResource("1_qqirc")

@@ -118,5 +118,37 @@
 		"text": "And went to sleep.",
 		"type": "end",
 		"next_id": "end"
-	}
+	},
+		{
+		"id": "11",
+		"speaker": "none",
+		"face": "none",
+		"text": "You closed your eyes<p0.5>.<p0.5>.<p0.5>.",
+		"type": "line",
+		"next_id": "12"
+	},
+	{
+		"id": "12",
+		"speaker": "none",
+		"face": "none",
+		"text": "And tried to sleep<p0.5>.<p0.5>.<p0.5>.",
+		"type": "line",
+		"next_id": "13"
+	},
+		{
+		"id": "13",
+		"speaker": "none",
+		"face": "none",
+		"text": "But you were awoken by a gentle knock.",
+		"type": "end",
+		"next_id": "end"
+	},
+	{
+		"id": "14",
+		"speaker": "none",
+		"face": "none",
+		"text": "30/09/26",
+		"type": "end",
+		"next_id": "end"
+	},
 ]

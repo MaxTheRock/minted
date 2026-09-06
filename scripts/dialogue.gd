@@ -214,4 +214,5 @@ func _process(delta: float) -> void:
 
 func sleep_mode():
 	$ColorRect.color = Color(0.0,0.0,0.0,0.0)
-	$ColorRect/RichTextLabel.add_theme_font_size_override("font_size",70)
+	$ColorRect/RichTextLabel.custom_minimum_size = Vector2(600, 300)
+	$ColorRect/RichTextLabel.add_theme_font_size_override("normal_font_size",70)

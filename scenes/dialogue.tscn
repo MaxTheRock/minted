@@ -383,6 +383,8 @@ theme_override_fonts/bold_font = ExtResource("3_fyky8")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
+text = "lurp"
+autowrap_mode = 2
 
 [node name="choices" type="Control" parent="ColorRect" unique_id=1412240598]
 anchors_preset = 0

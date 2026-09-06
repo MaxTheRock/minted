@@ -16,6 +16,14 @@ shader_parameter/BAND_PIXEL_HEIGHT = 1.0
 shader_parameter/SCANLINE_SPEED = 2.0
 shader_parameter/DARKEN_FACTOR = 0.5
 
+[sub_resource type="Gradient" id="Gradient_wax1t"]
+colors = PackedColorArray(0, 0, 0, 0.41960785, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gtmii"]
+gradient = SubResource("Gradient_wax1t")
+fill_from = Vector2(0.5341297, 0.98805463)
+fill_to = Vector2(0.49658704, 0)
+
 [node name="sleep_screen" type="Control" unique_id=429930551]
 layout_mode = 3
 anchors_preset = 15
@@ -65,6 +73,15 @@ offset_right = 483.0
 offset_bottom = 264.0
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_nc7m3")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=6242316]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 1299.0
+offset_bottom = 715.0
+texture = SubResource("GradientTexture2D_gtmii")
 
 [node name="fade_in" type="PanelContainer" parent="." unique_id=1203024189]
 layout_mode = 0
