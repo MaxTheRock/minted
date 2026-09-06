@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://kjbeye4v6bjr" path="res://scenes/locker.tscn" id="7_uaw8k"]
 [ext_resource type="PackedScene" uid="uid://vqmdbs2bs2d3" path="res://scenes/traffic_light.tscn" id="8_lt5my"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="9_5tstl"]
+[ext_resource type="Script" uid="uid://brb33k0ofomi2" path="res://scenes/sub_viewport.gd" id="10_lt7nq"]
+[ext_resource type="Texture2D" uid="uid://dbkygic0v4ck5" path="res://assets/player/minimap_icon.png" id="11_v7x2m"]
+[ext_resource type="Texture2D" uid="uid://djv0irctjr0sb" path="res://assets/os/icons/locker_icon.png" id="12_cdqji"]
+[ext_resource type="Texture2D" uid="uid://ch67o1t37wkhb" path="res://assets/os/icons/home_icon.png" id="13_x3una"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
 size = Vector2(26.89616, 18.6732)
@@ -23,35 +27,45 @@ size = Vector2(136, 54)
 size = Vector2(203, 47)
 
 [node name="Outside" type="Control" unique_id=1576444141]
+light_mask = 3
+visibility_layer = 3
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_udpx5")
 
 [node name="road" type="TextureRect" parent="." unique_id=803390381]
+light_mask = 3
+visibility_layer = 3
 layout_mode = 0
-offset_left = -26.0
-offset_top = 323.0
-offset_right = 636.0
-offset_bottom = 472.0
+offset_left = -334.0
+offset_top = 86.0
+offset_right = 688.0
+offset_bottom = 386.0
 scale = Vector2(2, 2)
 texture = ExtResource("1_p61qw")
 stretch_mode = 1
 
 [node name="Locker" parent="." unique_id=1962350185 instance=ExtResource("7_uaw8k")]
 layout_mode = 1
-offset_left = 1002.0
-offset_top = 221.0
-offset_right = 1002.0
-offset_bottom = 221.0
+offset_left = 1126.0
+offset_top = -93.0
+offset_right = 1126.0
+offset_bottom = -93.0
+scale = Vector2(2, 2)
 
 [node name="player" parent="." unique_id=1318553151 instance=ExtResource("3_8lkp2")]
+light_mask = 3
+visibility_layer = 3
 z_index = 5
 position = Vector2(703, 500)
-scale = Vector2(0.5, 0.5)
+
+[node name="Camera2D" type="Camera2D" parent="player/Player" parent_id_path=PackedInt32Array(1318553151, 923979185) index="0" unique_id=1510337569]
+limit_left = -334
+limit_top = -200
+limit_right = 1710
+limit_bottom = 900
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_nsm10")]
 visible = false
@@ -93,38 +107,41 @@ debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
 
 [node name="vehicle_container" type="Control" parent="." unique_id=2065926026]
 anchors_preset = 0
-offset_left = -381.0
-offset_top = 363.0
-offset_right = 1663.0
-offset_bottom = 528.0
+offset_left = -518.0
+offset_top = 274.0
+offset_right = 2482.0
+offset_bottom = 574.0
 script = ExtResource("7_lt5my")
 
 [node name="TrafficLight" parent="vehicle_container" unique_id=1641677231 instance=ExtResource("8_lt5my")]
-position = Vector2(587, 122)
+position = Vector2(576, 89)
 scale = Vector2(2, 2)
 
 [node name="traffic_light_area" type="Area2D" parent="vehicle_container/TrafficLight" unique_id=1614143430]
+position = Vector2(0, 42.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vehicle_container/TrafficLight/traffic_light_area" unique_id=1896786216]
-position = Vector2(88, 10)
+position = Vector2(93.5, -7.5)
 shape = SubResource("RectangleShape2D_lt5my")
 debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="TrafficLight2" parent="vehicle_container" unique_id=1429295902 instance=ExtResource("8_lt5my")]
-position = Vector2(948, -108)
+position = Vector2(969, -317)
 scale = Vector2(2, 2)
 
 [node name="traffic_light_area" type="Area2D" parent="vehicle_container/TrafficLight2" unique_id=697511749]
+position = Vector2(-20.5, 28.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vehicle_container/TrafficLight2/traffic_light_area" unique_id=274230957]
-position = Vector2(-92.5, 58)
+position = Vector2(-90.5, 118)
 shape = SubResource("RectangleShape2D_lt5my")
 debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="l_detector" type="Area2D" parent="vehicle_container" unique_id=1554712430]
+position = Vector2(0, -24)
 
 [node name="left_vehicle_detector" type="CollisionShape2D" parent="vehicle_container/l_detector" unique_id=408685547]
-position = Vector2(1913.5, 129)
+position = Vector2(1905, 142)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
 
@@ -135,8 +152,54 @@ position = Vector2(28, 36)
 shape = SubResource("RectangleShape2D_4pjmv")
 debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
 
-[node name="PanelContainer" parent="." unique_id=1234875554 instance=ExtResource("9_5tstl")]
-layout_mode = 0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2033593751]
+
+[node name="PanelContainer" parent="CanvasLayer" unique_id=1234875554 instance=ExtResource("9_5tstl")]
+
+[node name="MiniMap" type="SubViewportContainer" parent="CanvasLayer" unique_id=114497988]
+offset_left = 56.0
+offset_top = 92.0
+offset_right = 256.0
+offset_bottom = 292.0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/MiniMap" unique_id=234023841]
+handle_input_locally = false
+canvas_cull_mask = 4294966274
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+script = ExtResource("10_lt7nq")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/MiniMap/SubViewport" unique_id=710291572]
+zoom = Vector2(0.1, 0.1)
+limit_left = -334
+limit_top = -200
+limit_right = 1710
+limit_bottom = 900
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/MiniMap" unique_id=835561860]
+position = Vector2(-44, -102)
+points = PackedVector2Array(43, 102, 242, 102, 242, 300, 44, 301)
+closed = true
+
+[node name="marker" type="Sprite2D" parent="CanvasLayer/MiniMap" unique_id=1394841216]
+light_mask = 2
+visibility_layer = 2
+z_index = 100
+position = Vector2(102, 97)
+scale = Vector2(2, 2)
+texture = ExtResource("11_v7x2m")
+
+[node name="locker_icon" type="Sprite2D" parent="CanvasLayer/MiniMap" unique_id=1887365597]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(2, 2)
+texture = ExtResource("12_cdqji")
+
+[node name="home_icon" type="Sprite2D" parent="CanvasLayer/MiniMap" unique_id=1580090216]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(2, 2)
+texture = ExtResource("13_x3una")
 
 [connection signal="area_entered" from="building_area" to="." method="_on_building_area_area_entered"]
 [connection signal="area_exited" from="building_area" to="." method="_on_building_area_area_exited"]
@@ -144,3 +207,5 @@ layout_mode = 0
 [connection signal="area_exited" from="Control/door_area" to="." method="_on_door_area_area_exited"]
 [connection signal="area_exited" from="vehicle_container/l_detector" to="vehicle_container" method="_on_l_detector_area_exited"]
 [connection signal="area_exited" from="vehicle_container/r_detector" to="vehicle_container" method="_on_r_detector_area_exited"]
+
+[editable path="player"]

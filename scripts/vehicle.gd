@@ -41,19 +41,20 @@ func _process(delta: float) -> void:
 	if direction == "left":
 		if front_detection.get_child_count() > 1:
 			$front_detection/right.queue_free()
+		$shippley_van/Sprite2D.z_index = 4
 
 		position.x -= speed * delta
 
-		if position.x <= 0:
+		if position.x <= -1000:
 			queue_free()
 
 	elif direction == "right":
 		if front_detection.get_child_count() > 1:
 			$front_detection/left.queue_free()
-
+			
 		position.x += speed * delta
-
-		if position.x >= 1800:
+		$shippley_van/Sprite2D.z_index = 3
+		if position.x >= 2800:
 			queue_free()
 
 

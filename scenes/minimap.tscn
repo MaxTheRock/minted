@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://78l8c6xcg5qc"]
+
+[ext_resource type="Script" uid="uid://blxunc2effhot" path="res://scripts/minimap.gd" id="1_yfyr0"]
+
+[sub_resource type="Gradient" id="Gradient_jujhc"]
+offsets = PackedFloat32Array(0, 0.23165138, 1)
+colors = PackedColorArray(0, 0.33333334, 1, 1, 9.939e-05, 0.13008597, 0.46123666, 0.60321105, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6snss"]
+gradient = SubResource("Gradient_jujhc")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.4556314, 0.49658704)
+
+[node name="minimap" type="Node2D" unique_id=1755432659]
+script = ExtResource("1_yfyr0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1622680257]
+offset_right = 180.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="player" type="TextureRect" parent="ColorRect" unique_id=184682298]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 111.0
+offset_right = 97.0
+offset_bottom = 127.0
+texture = SubResource("GradientTexture2D_6snss")

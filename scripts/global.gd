@@ -83,6 +83,9 @@ var daily_change = 0.2
 const refresh_news_1_at = 10
 const refresh_news_2_at = 16
 
+# player
+var player_pos = Vector2(0,0)
+
 func _process(delta):
 	if rent_triggered:
 		RentPopup.visible = true

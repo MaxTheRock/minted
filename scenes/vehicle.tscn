@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c4pr4off1h2sh" path="res://assets/shippley_delivery_truck.png" id="2_d0fkt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnalp"]
-radius = 41.0
-height = 174.0
+radius = 59.896885
+height = 479.8629
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
 size = Vector2(91, 53)
@@ -38,19 +38,19 @@ texture = ExtResource("2_d0fkt")
 [node name="vehicle_hitbox" type="Area2D" parent="." unique_id=2101200868]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vehicle_hitbox" unique_id=1465511240]
-position = Vector2(84, 32)
+position = Vector2(74, 40.000004)
 rotation = 1.5644274
 shape = SubResource("CapsuleShape2D_qnalp")
 
 [node name="front_detection" type="Area2D" parent="." unique_id=892294414]
 
 [node name="right" type="CollisionShape2D" parent="front_detection" unique_id=2132083411]
-position = Vector2(210, 32)
+position = Vector2(379, 32)
 shape = SubResource("RectangleShape2D_4c3da")
 debug_color = Color(0.68102884, 0.29883936, 1, 0.41960785)
 
 [node name="left" type="CollisionShape2D" parent="front_detection" unique_id=1291989279]
-position = Vector2(-41.5, 31.5)
+position = Vector2(-221, 32)
 shape = SubResource("RectangleShape2D_4c3da")
 debug_color = Color(0.68102884, 0.29883936, 1, 0.41960785)
 

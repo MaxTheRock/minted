@@ -45,3 +45,5 @@ func movement(d):
 				slide_vector = slide_vector.normalized() * remainder.length() * 0.7
 			
 			move_and_collide(slide_vector)
+		
+		Global.player_pos = position
