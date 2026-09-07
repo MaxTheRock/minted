@@ -5,6 +5,7 @@ var previous_delivered_size = 0
 var previous_inventory_size = 0
 
 func _ready() -> void:
+	$Outside/CanvasLayer.hide()
 	Global.inShelf = false
 	Global.inWardrobe = true
 	Global.inLocker = true
