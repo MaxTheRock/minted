@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://b3uwig7o6vwet" path="res://scripts/bank.gd" id="1_rjesy"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_0aawc"]
 [ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="3_3bwp7"]
+[ext_resource type="Texture2D" uid="uid://cs3vixntdy0vx" path="res://assets/face_sprites/john.png" id="4_dkbjb"]
+[ext_resource type="Texture2D" uid="uid://b2eupinbhsyoh" path="res://assets/hotbar/speech_bubble_template.png" id="5_xwtro"]
+[ext_resource type="Texture2D" uid="uid://b8bcdob1flen3" path="res://assets/next_button.png" id="6_7nnl3"]
+[ext_resource type="Texture2D" uid="uid://dkr1udwiclbhe" path="res://assets/next_button_hovered.png" id="7_1di4w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0aawc"]
 content_margin_left = 10.0
@@ -10,6 +14,93 @@ content_margin_top = 5.0
 content_margin_right = 10.0
 content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbhv4"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5317"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfeia"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jth1c"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74nn4"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26vv7"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30nm5"]
+atlas = ExtResource("4_dkbjb")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7nnl3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbhv4")
+}],
+"loop": 1,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5317")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfeia")
+}],
+"loop": 1,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jth1c")
+}],
+"loop": 1,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74nn4")
+}],
+"loop": 1,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26vv7")
+}],
+"loop": 1,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30nm5")
+}],
+"loop": 1,
+"name": &"7",
+"speed": 5.0
+}]
 
 [node name="Bank" type="Control" unique_id=1237760597]
 layout_mode = 3
@@ -20,7 +111,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rjesy")
 
-[node name="Close" type="Button" parent="." unique_id=1396322856]
+[node name="left" type="Control" parent="." unique_id=1985418036]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Close" type="Button" parent="left" unique_id=1396322856]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 13.0
@@ -31,22 +127,93 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_0aawc")
 text = "X"
 
-[node name="Label" type="Label" parent="." unique_id=886215843]
+[node name="Label" type="Label" parent="left" unique_id=886215843]
 layout_mode = 0
-offset_left = 175.0
-offset_top = 13.0
-offset_right = 431.0
-offset_bottom = 193.0
+offset_left = 161.0
+offset_top = 71.0
+offset_right = 361.0
+offset_bottom = 211.0
 theme_override_fonts/font = ExtResource("2_0aawc")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 50
 text = "Bank"
 
-[node name="background" type="NinePatchRect" parent="." unique_id=1481002194]
+[node name="landlord_image" type="AnimatedSprite2D" parent="left" unique_id=3508480]
+position = Vector2(251, 362)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7nnl3")
+animation = &"1"
+
+[node name="speech_bubble_container" type="NinePatchRect" parent="left" unique_id=660740950]
 layout_mode = 0
-offset_left = 602.0
-offset_top = 24.0
-offset_right = 761.25
-offset_bottom = 192.0
+offset_left = 298.0
+offset_top = 256.0
+offset_right = 363.25
+offset_bottom = 280.5
+scale = Vector2(4, 4)
+texture = ExtResource("5_xwtro")
+region_rect = Rect2(12, 7, 36, 43)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="landlord_text" type="CenterContainer" parent="left" unique_id=1868093168]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 258.0
+offset_right = 559.0
+offset_bottom = 358.0
+
+[node name="landlord_text2" type="Label" parent="left/landlord_text" unique_id=16476864]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(1, 1)
+theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "Hello Again!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="landlord_text" type="Label" parent="left/landlord_text" unique_id=203436571]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "Hello Again!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="right" type="Control" parent="." unique_id=1903888954]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="choose_option_text" type="Label" parent="right" unique_id=356303388]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 78.0
+offset_right = 1062.0
+offset_bottom = 218.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 20
+text = "Choose an option:"
+
+[node name="container" type="Control" parent="right" unique_id=2122632607]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="background" type="NinePatchRect" parent="right/container" unique_id=1481002194]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 136.0
+offset_right = 766.25
+offset_bottom = 172.5
 scale = Vector2(4, 4)
 texture = ExtResource("3_3bwp7")
 region_rect = Rect2(11, 3, 41, 56)
@@ -56,4 +223,106 @@ patch_margin_right = 9
 patch_margin_bottom = 13
 axis_stretch_horizontal = 1
 
-[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[node name="loan" type="Label" parent="right/container" unique_id=1197273511]
+layout_mode = 0
+offset_left = 677.0
+offset_top = 165.0
+offset_right = 912.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Take a loan"
+
+[node name="TextureButton" type="TextureButton" parent="right/container" unique_id=956269483]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 139.0
+offset_right = 1081.0
+offset_bottom = 171.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("6_7nnl3")
+texture_hover = ExtResource("7_1di4w")
+
+[node name="container2" type="Control" parent="right" unique_id=388641442]
+anchors_preset = 0
+offset_top = 165.0
+offset_right = 40.0
+offset_bottom = 205.0
+
+[node name="background" type="NinePatchRect" parent="right/container2" unique_id=587328356]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 136.0
+offset_right = 766.25
+offset_bottom = 172.5
+scale = Vector2(4, 4)
+texture = ExtResource("3_3bwp7")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="loan" type="Label" parent="right/container2" unique_id=203643686]
+layout_mode = 0
+offset_left = 677.0
+offset_top = 165.0
+offset_right = 912.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Invest"
+
+[node name="TextureButton" type="TextureButton" parent="right/container2" unique_id=1284854203]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 139.0
+offset_right = 1081.0
+offset_bottom = 171.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("6_7nnl3")
+texture_hover = ExtResource("7_1di4w")
+
+[node name="container3" type="Control" parent="right" unique_id=147289740]
+anchors_preset = 0
+offset_top = 330.0
+offset_right = 40.0
+offset_bottom = 370.0
+
+[node name="background" type="NinePatchRect" parent="right/container3" unique_id=979567650]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 136.0
+offset_right = 766.25
+offset_bottom = 172.5
+scale = Vector2(4, 4)
+texture = ExtResource("3_3bwp7")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="loan" type="Label" parent="right/container3" unique_id=1261118395]
+layout_mode = 0
+offset_left = 677.0
+offset_top = 165.0
+offset_right = 912.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Savings account"
+
+[node name="TextureButton" type="TextureButton" parent="right/container3" unique_id=1187916135]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 139.0
+offset_right = 1081.0
+offset_bottom = 171.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("6_7nnl3")
+texture_hover = ExtResource("7_1di4w")
+
+[connection signal="pressed" from="left/Close" to="." method="_on_close_pressed"]
