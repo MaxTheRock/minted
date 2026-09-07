@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://3umge0marxk0" path="res://assets/weneedastudioname_studio.png" id="2_i2l1n"]
 [ext_resource type="Texture2D" uid="uid://dqdtinhe3sbio" path="res://assets/Godot Logo.png" id="3_i2l1n"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_wfs7u"]
+[ext_resource type="Material" uid="uid://hduiy5give5w" path="res://shaders/warp.tres" id="5_wfs7u"]
+[ext_resource type="AudioStream" uid="uid://bv0bg7ef37yrr" path="res://audio/intro.wav" id="6_es01l"]
 
 [sub_resource type="Animation" id="Animation_es01l"]
 resource_name = "Fade in"
@@ -68,11 +70,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4bx60")
 
-[node name="background" type="ColorRect" parent="." unique_id=1830233493]
+[node name="warp_background" type="ColorRect" parent="." unique_id=442933447]
+material = ExtResource("5_wfs7u")
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.096204735, 0.09620475, 0.096204735, 1)
 
 [node name="studio_logo" type="Sprite2D" parent="." unique_id=833658682]
 position = Vector2(633, 349)
@@ -109,3 +111,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=66262219]
 libraries/ = SubResource("AnimationLibrary_t1qkj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1728658937]
+stream = ExtResource("6_es01l")
+autoplay = true
