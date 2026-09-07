@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var grid = $Hotbar/inventory/ScrollContainer/GridContainer
 @onready var player = $player/Player
 @onready var sleep_bar = $left_bar/sleep/sleep_bar
 @onready var left_bar = $left_bar
@@ -31,12 +30,9 @@ func _ready() -> void:
 		Global.dialogue_ongoing = true
 		await get_tree().create_timer(1.0).timeout
 		SignalBus.display_dialogue.emit("find",0)
+	
 
-	for i in range(Inventory.player_inventory.size()):
-		var packed = preload("res://scenes/item_ui.tscn")
-		var storage_ui = packed.instantiate()
-		storage_ui.inventory_index = i
-		grid.add_child(storage_ui)
+		
 
 func _process(float) -> void:
 	sleep_bar.value = Global.sleep

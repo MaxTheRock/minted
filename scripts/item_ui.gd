@@ -393,7 +393,8 @@ func _on_take_button_mouse_exited() -> void:
 func _on_take_button_pressed() -> void:
 	take_button.modulate = Color(0.5, 0.5, 0.5, 1)
 	if is_parcel:
-		if Inventory.player_inventory.size() <= 1:
+		var item_data = item.get_data()
+		if item_data["shippingValue"] + Inventory.player_inventory_weight <= Inventory.player_max:
 			if inventory_index < 0 or inventory_index >= ShippingHandler.locker_list.size():
 				print("Could not find parcel item to take!")
 				return
@@ -406,20 +407,22 @@ func _on_take_button_pressed() -> void:
 		else:
 			print("Cannot carry any more items!")
 	else:
-		if Inventory.player_inventory.size() <= 1:
+		var item_data = item.get_data()
+		if item_data["shippingValue"] + Inventory.player_inventory_weight <= Inventory.player_max:
 			if inventory_index < 0 or inventory_index >= Inventory.wardrobe_inventory.size():
 				print("Could not find wardrobe item to take!")
 				return
  
-			Inventory.transfer_item(
+			if Inventory.transfer_item(
 				Inventory.wardrobe_inventory,
 				Inventory.player_inventory,
 				inventory_index
-			)
- 
-			get_tree().reload_current_scene()
+			):
+				Inventory.wardrobe_carry_weight -= item_data["shippingValue"]
+				Inventory.player_inventory_weight += item_data["shippingValue"]
+				get_tree().reload_current_scene()
 		else:
-			print("Cannot carry any more items!")
+			print("Cannot carry any more items! Exceeds weight capacity.")
  
  
 func _on_put_button_button_down() -> void:
@@ -432,21 +435,26 @@ func _on_put_button_button_up() -> void:
  
 func _on_put_button_pressed() -> void:
 	put_button.modulate = Color(0.5, 0.5, 0.5, 1)
-	if Inventory.wardrobe_inventory.size() <= Global.storage_capacity:
+	var item_data = item.get_data()
+	if item_data["shippingValue"] + Inventory.wardrobe_carry_weight <= Inventory.wardrobe_max:
 		if inventory_index < 0 or inventory_index >= Inventory.player_inventory.size():
 			print("Could not find item to put away!")
 			return
- 
+ 		
+		
 		Inventory.transfer_item(
 			Inventory.player_inventory,
 			Inventory.wardrobe_inventory,
 			inventory_index
 		)
+		
+		Inventory.player_inventory_weight -= item_data["shippingValue"]
+		Inventory.wardrobe_carry_weight += item_data["shippingValue"]
  
 		queue_free()
 		get_tree().reload_current_scene()
 	else:
-		print("Wardrobe cannot annot carry any more items!")
+		print("Wardrobe cannot carry any more items!")
  
  
 func _on_place_button_button_down() -> void:
@@ -502,23 +510,26 @@ func _on_remove_button_up() -> void:
  
 func _on_remove_pressed() -> void:
 	hbox_remove.modulate = Color(0.5, 0.5, 0.5, 1)
-	if Inventory.player_inventory.size() <= 1:
+	var item_data = item.get_data()
+	if item_data["shippingValue"] + Inventory.player_inventory_weight <= Inventory.player_max:
 		if inventory_index < 0 or inventory_index >= Inventory.shelf_inventory.size():
 			print("Could not find shelf item to remove!")
 			return
  
-		Inventory.transfer_item(
+		if Inventory.transfer_item(
 			Inventory.shelf_inventory,
 			Inventory.player_inventory,
 			inventory_index
-		)
+		):
+			Inventory.player_inventory_weight += item_data["shippingValue"]
  
-		queue_free()
-		get_tree().reload_current_scene()
-		var data = item.get_data()
-		if data.type == "radio":
-			AudioManager.eject()
-			Global.radio_on = false
+			var data = item.get_data()
+			if data.get("type") == "radio":
+				AudioManager.eject()
+				Global.radio_on = false
+
+			queue_free()
+			get_tree().reload_current_scene()
 	else:
 		print("Cannot carry any more items!")
  
@@ -577,7 +588,8 @@ func _on_use_button_pressed() -> void:
  
 func _on_eject_pressed() -> void:
 	cd_eject.modulate = Color(0.5, 0.5, 0.5, 1)
-	if Inventory.player_inventory.size() < 2:
+	var item_data = item.get_data()
+	if item_data["shippingValue"] + Inventory.player_inventory_weight <= Inventory.player_max:
 		AudioManager.music_player.bus = "Master"
 		AudioManager.eject()
  
@@ -586,6 +598,7 @@ func _on_eject_pressed() -> void:
 			Inventory.player_inventory,
 			0
 		)
+		Inventory.player_inventory_weight += item_data["shippingValue"]
  
 		get_tree().reload_current_scene()
 		Global.now_playing = ""
@@ -613,7 +626,11 @@ func load_data(data):
  
  
 func get_data():
-	return item.get_data()
+	if not is_node_ready():
+		await ready
+	if item:
+		return item.get_data()
+	return {}
 
 func create_item():
 	item.initialize_item()
@@ -726,3 +743,5 @@ func _on_tooltip_visibility_toggled(is_visible: bool, target: Control) -> void:
 		z_index = 7
 	else:
 		z_index = 0
+
+	

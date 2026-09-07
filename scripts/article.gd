@@ -143,7 +143,6 @@ func process_article(article):
 	var image_desc = article.get("image_desc", "")
 	
 	var image_desc_parsed = image_desc.replace("[name]", name)
-	print(image_desc_parsed)
 	if image_desc_parsed is String:
 		
 		image_text.text = image_desc_parsed

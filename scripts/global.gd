@@ -160,7 +160,6 @@ func new_time_calc(min_added: int) -> void:
 			
 			storage_ui.queue_free()
 			SignalBus.articles_changed.emit()
-			print(Global.news_interest)
 			
 		# --- REFRESH SLOT 1 (16:00) --- #
 		elif hour == refresh_news_2_at:
@@ -176,7 +175,6 @@ func new_time_calc(min_added: int) -> void:
 			
 			storage_ui.queue_free()
 			SignalBus.articles_changed.emit()
-			print(Global.news_interest)
 			
 	if hour >= 24:
 		hour -= 24
