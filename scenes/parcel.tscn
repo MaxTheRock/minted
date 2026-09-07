@@ -2,19 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dca7nmf1xgssp" path="res://scripts/box.gd" id="1_40veq"]
 [ext_resource type="PackedScene" uid="uid://gecfymnbrhpx" path="res://scenes/outside.tscn" id="2_fve4f"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fve4f"]
-bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
-border_width_left = 5
-border_width_top = 7
-border_width_right = 5
-border_width_bottom = 7
-border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 10
+[ext_resource type="PackedScene" uid="uid://bc74kfvt7nm5p" path="res://scenes/hotbar.tscn" id="3_7w5s1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40veq"]
 content_margin_left = 10.0
@@ -40,6 +28,24 @@ offset_right = -3619.0
 offset_bottom = 488.0
 scale = Vector2(3, 3)
 
+[node name="player" parent="Outside" index="2" unique_id=1318553151]
+visible = false
+
+[node name="building_area" parent="Outside" index="4" unique_id=958558554]
+visible = false
+
+[node name="building_collision_shape" parent="Outside/building_area" index="0" unique_id=1201566750]
+visible = false
+
+[node name="Control" parent="Outside" index="5" unique_id=104545168]
+visible = false
+
+[node name="CanvasLayer" parent="Outside" index="7" unique_id=2033593751]
+visible = false
+
+[node name="SubViewport" parent="Outside/CanvasLayer/MiniMap" parent_id_path=PackedInt32Array(1576444141, 114497988) index="0" unique_id=234023841]
+render_target_update_mode = 0
+
 [node name="items" type="MarginContainer" parent="." unique_id=1275630380]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 0
@@ -47,10 +53,10 @@ offset_left = 376.0
 offset_top = 206.0
 offset_right = 913.0
 offset_bottom = 573.0
-theme_override_constants/margin_left = 47
-theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 46
-theme_override_constants/margin_bottom = 42
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="items" unique_id=89698883]
@@ -64,37 +70,12 @@ size_flags_horizontal = 0
 size_flags_vertical = 2
 columns = 3
 
-[node name="inventory" type="MarginContainer" parent="." unique_id=981788832]
-custom_minimum_size = Vector2(0, 300)
-layout_mode = 0
-offset_left = 477.0
-offset_top = 550.0
-offset_right = 849.0
-offset_bottom = 850.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 0
-
-[node name="ColorRect" type="Panel" parent="inventory" unique_id=1797633252]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-10, -10)
-theme_override_styles/panel = SubResource("StyleBoxFlat_fve4f")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=2089844796]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
-
-[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=1772122533]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 2
+[node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("3_7w5s1")]
+layout_mode = 1
+offset_left = 327.0
+offset_top = 616.0
+offset_right = 327.0
+offset_bottom = 616.0
 
 [node name="Close" type="Button" parent="." unique_id=281439670]
 layout_mode = 0
@@ -108,3 +89,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_40veq")
 text = "X"
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+
+[editable path="Outside"]
+[editable path="Outside/player"]

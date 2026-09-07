@@ -71,6 +71,7 @@ func _process(delta: float) -> void:
 	if label_shown and Input.is_action_just_pressed("interact"):
 		if ShippingHandler.locker_list.size() > 0:
 			Global.first_room = false
+			#Global.outside_saved_position = Vector2(100,100)
 			get_tree().change_scene_to_file("res://scenes/parcel.tscn")
 		else:
 			print("No delivered items to collect")

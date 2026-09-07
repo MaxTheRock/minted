@@ -14,12 +14,7 @@ func _ready() -> void:
 		storage_ui.inventory_index = i
 		grid.add_child(storage_ui)
 	
-	Inventory.current_ui_type = "place"
-	for i in range(Inventory.player_inventory.size()):
-		var packed = preload("res://scenes/item_ui.tscn")
-		var storage_ui = packed.instantiate()
-		storage_ui.inventory_index = i
-		inventory_grid.add_child(storage_ui)
+
 
 
 

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d3uqf1m2u01pw" path="res://assets/room/small_shelf.png" id="2_xj574"]
 [ext_resource type="Texture2D" uid="uid://pdenli7nwj00" path="res://assets/room/broke/broke_walls.png" id="3_tw82s"]
 [ext_resource type="Texture2D" uid="uid://1jctyxr0fxeh" path="res://assets/room/broke/broke_floor.png" id="4_oyalq"]
+[ext_resource type="PackedScene" uid="uid://bc74kfvt7nm5p" path="res://scenes/hotbar.tscn" id="6_tw82s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5u3a"]
 content_margin_left = 10.0
@@ -12,19 +13,6 @@ content_margin_top = 5.0
 content_margin_right = 10.0
 content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyi4x"]
-bg_color = Color(0.3254902, 0.4627451, 0.4392157, 0.56078434)
-border_width_left = 5
-border_width_top = 7
-border_width_right = 5
-border_width_bottom = 7
-border_color = Color(0.5596317, 0.8909877, 0.627951, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 10
 
 [node name="Shelf" type="Control" unique_id=123048220]
 layout_mode = 3
@@ -105,36 +93,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 2
 
-[node name="inventory" type="MarginContainer" parent="." unique_id=1990020607]
-custom_minimum_size = Vector2(0, 300)
-layout_mode = 0
-offset_left = 890.0
-offset_top = 418.0
-offset_right = 1262.0
-offset_bottom = 718.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 0
-
-[node name="ColorRect" type="Panel" parent="inventory" unique_id=649065096]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-10, -10)
-theme_override_styles/panel = SubResource("StyleBoxFlat_eyi4x")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=1651639150]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
-
-[node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer" unique_id=1646810474]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 2
+[node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("6_tw82s")]
+layout_mode = 1
+offset_left = 683.0
+offset_top = 70.0
+offset_right = 683.0
+offset_bottom = 70.0
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

@@ -392,7 +392,7 @@ func get_brand(pool):
 		weighted_sum += pool[n]
 	
 	var brand_selected = rng.randi_range(0,weighted_sum)
-	for n in brands:
+	for n in pool:
 		if brand_selected <= pool[n]:
 			return n
 		else:

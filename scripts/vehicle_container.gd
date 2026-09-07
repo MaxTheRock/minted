@@ -1,7 +1,7 @@
 extends Control
 
 var vehicle = preload("res://scenes/vehicle.tscn")
-var types: Array = ["car", "shippley_van"]
+var types: Array = ["car", "shippley_van", "car", "car"]
 var chosen_type: String = "car"
 
 var left_spawn_locked: bool = false
@@ -46,7 +46,7 @@ func _on_l_detector_area_exited(area: Area2D) -> void:
 	if Global.vehicle_queue_left.size() < 10 and not left_spawn_locked:
 		generate_vehicle("left")
 		left_spawn_locked = true
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(3.0).timeout
 		left_spawn_locked = false
 		
 
@@ -54,6 +54,6 @@ func _on_r_detector_area_exited(area: Area2D) -> void:
 	if Global.vehicle_queue_right.size() < 10 and not right_spawn_locked:
 		generate_vehicle("right")
 		right_spawn_locked = true
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(3.0).timeout
 		right_spawn_locked = false
 		

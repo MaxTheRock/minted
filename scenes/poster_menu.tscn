@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wk44d2urwwny" path="res://scripts/poster_menu.gd" id="1_1f6ci"]
 [ext_resource type="PackedScene" uid="uid://bs2geidmgyaeh" path="res://scenes/building.tscn" id="2_1f6ci"]
+[ext_resource type="PackedScene" uid="uid://bc74kfvt7nm5p" path="res://scenes/hotbar.tscn" id="3_dd176"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5n3w"]
 content_margin_left = 10.0
@@ -48,6 +49,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r5n3w")
 text = "X"
 
 [node name="inventory" type="MarginContainer" parent="." unique_id=698747490]
+visible = false
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 0
 offset_left = 814.0
@@ -78,6 +80,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
+
+[node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("3_dd176")]
+layout_mode = 1
+offset_left = 799.0
+offset_top = 54.0
+offset_right = 799.0
+offset_bottom = 54.0
 
 [node name="put_back" type="Button" parent="." unique_id=1438202216]
 layout_mode = 0

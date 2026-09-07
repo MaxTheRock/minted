@@ -275,7 +275,13 @@ func _ready() -> void:
 		upload_button.hide()
 		shelf_ui_buttons.hide()
 		grid_container.show()
-
+		
+		var item_data = item.get_data()
+		if item_data["poster"] == false:
+			panel_container.custom_maximum_size = Vector2(150, 160)
+			$PanelContainer2.hide()
+			place_button.hide()
+			
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
@@ -472,12 +478,18 @@ func _on_place_button_pressed() -> void:
 			print("Could not find item to place!")
 			return
  
-		Inventory.transfer_item(
-				Inventory.player_inventory,
-				Inventory.display_poster,
-				inventory_index
-			)
-		poster_selected.emit(item.get_data())
+		if Inventory.display_poster.size() > 0:
+			var old_poster = Inventory.display_poster.pop_at(0)
+			Inventory.player_inventory.append(old_poster)
+
+		var placed_item_data = item.get_data()
+		if Inventory.transfer_item(
+			Inventory.player_inventory,
+			Inventory.display_poster,
+			inventory_index
+		):
+			Inventory.player_inventory_weight -= placed_item_data.get("shippingValue", 0)
+			poster_selected.emit(placed_item_data)
 		return
  
 	if Inventory.shelf_inventory.size() <= 5:

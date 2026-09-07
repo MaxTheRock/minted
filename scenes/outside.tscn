@@ -10,8 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://vqmdbs2bs2d3" path="res://scenes/traffic_light.tscn" id="8_lt5my"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="9_5tstl"]
 [ext_resource type="Script" uid="uid://brb33k0ofomi2" path="res://scripts/sub_viewport.gd" id="10_lt7nq"]
+[ext_resource type="FontFile" uid="uid://d27f0kxbi0qvo" path="res://fonts/Daydream.otf" id="10_tjkqt"]
 [ext_resource type="Texture2D" uid="uid://dbkygic0v4ck5" path="res://assets/player/minimap_icon.png" id="11_v7x2m"]
+[ext_resource type="Texture2D" uid="uid://b5otyytahqibf" path="res://themes/progress.tres" id="11_xq4d2"]
 [ext_resource type="Texture2D" uid="uid://djv0irctjr0sb" path="res://assets/os/icons/locker_icon.png" id="12_cdqji"]
+[ext_resource type="Texture2D" uid="uid://dog20d6b2p7oq" path="res://assets/os/icons/sleep.png" id="12_ni2yb"]
+[ext_resource type="Texture2D" uid="uid://w5vi05v5cwoc" path="res://assets/os/icons/down.png" id="13_pu366"]
 [ext_resource type="Texture2D" uid="uid://ch67o1t37wkhb" path="res://assets/os/icons/home_icon.png" id="13_x3una"]
 [ext_resource type="Texture2D" uid="uid://dkdfnn4jclghs" path="res://assets/os/icons/bank_icon.png" id="14_nxbbw"]
 
@@ -26,6 +30,22 @@ size = Vector2(136, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pjmv"]
 size = Vector2(203, 47)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xi7x6"]
+bg_color = Color(0, 0.1764706, 0, 1)
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Gradient" id="Gradient_w68ji"]
+colors = PackedColorArray(0.5058824, 1, 0.54509807, 1, 0.7058824, 1, 0.63529414, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s22lx"]
+gradient = SubResource("Gradient_w68ji")
+fill_from = Vector2(0.48293516, 0)
+fill_to = Vector2(0.4010239, 1)
 
 [node name="Outside" type="Control" unique_id=1576444141]
 light_mask = 3
@@ -162,6 +182,63 @@ debug_color = Color(0.9795752, 0, 0.39078584, 0.41960785)
 
 [node name="PanelContainer" parent="CanvasLayer" unique_id=1234875554 instance=ExtResource("9_5tstl")]
 
+[node name="sleep" type="Control" parent="CanvasLayer" unique_id=1781225485]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 675.0
+offset_top = 363.0
+offset_right = 715.0
+offset_bottom = 403.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/sleep" unique_id=838688007]
+layout_mode = 0
+offset_left = 384.0
+offset_top = -277.0
+offset_right = 584.0
+offset_bottom = -97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xi7x6")
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/sleep/PanelContainer" unique_id=1705566561]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_s22lx")
+
+[node name="sleep_label" type="Label" parent="CanvasLayer/sleep" unique_id=1730187917]
+layout_mode = 0
+offset_left = 397.0
+offset_top = -265.0
+offset_right = 601.0
+offset_bottom = -196.0
+theme_override_fonts/font = ExtResource("10_tjkqt")
+theme_override_font_sizes/font_size = 35
+text = "Sleep:"
+
+[node name="sleep_bar" type="TextureProgressBar" parent="CanvasLayer/sleep" unique_id=444440755]
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 443.0
+offset_top = -206.0
+offset_right = 507.0
+offset_bottom = -142.0
+scale = Vector2(1.5, 1.5)
+step = 0.1
+value = 90.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("11_xq4d2")
+texture_progress = ExtResource("12_ni2yb")
+
+[node name="slide" type="Button" parent="CanvasLayer/sleep" unique_id=630435142]
+layout_mode = 0
+offset_left = 308.0
+offset_top = -229.0
+offset_right = 372.0
+offset_bottom = -165.0
+rotation = -1.5707964
+pivot_offset = Vector2(32, 32)
+icon = ExtResource("13_pu366")
+icon_alignment = 1
+expand_icon = true
+
 [node name="MiniMap" type="SubViewportContainer" parent="CanvasLayer" unique_id=114497988]
 offset_left = 56.0
 offset_top = 92.0
@@ -249,6 +326,7 @@ debug_color = Color(0.62831336, 0.36791223, 0.9626203, 0.41960785)
 [connection signal="area_exited" from="Control/door_area" to="." method="_on_door_area_area_exited"]
 [connection signal="area_exited" from="vehicle_container/l_detector" to="vehicle_container" method="_on_l_detector_area_exited"]
 [connection signal="area_exited" from="vehicle_container/r_detector" to="vehicle_container" method="_on_r_detector_area_exited"]
+[connection signal="pressed" from="CanvasLayer/sleep/slide" to="." method="_on_slide_pressed"]
 [connection signal="area_entered" from="bank/bank_area" to="." method="_on_bank_area_area_entered"]
 [connection signal="area_exited" from="bank/bank_area" to="." method="_on_bank_area_area_exited"]
 
