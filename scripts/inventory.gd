@@ -22,6 +22,12 @@ var bidders: Array = []
 
 var item_id: int = 0
 var sell_id: int = 0
+
+var wardrobe_carry_weight = 0
+var player_inventory_weight = 0
+var player_max = 6
+var wardrobe_max = 20
+
 var market_items: Dictionary = {}
 var buyer_types = ["cheap","normal","stingy"]
 # global signal
@@ -73,8 +79,10 @@ func create_buyers(amount,id,listing_sell_id):
 	buyers.append(buyer_dict)
 
 func _ready() -> void:
-	#player_inventory.append({ "ID": 73, "type": "radio", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 10, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
-	player_inventory.append({ "ID": 72, "type": "cd_player", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 15, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
+	wardrobe_inventory.append({ "ID": 73, "type": "radio", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 3, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 10, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
+	player_inventory.append({ "ID": 72, "type": "cd_player", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 3, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": false, "spice_factor": 0, "rarity": "uncommon", "logo_animation": &"none", "default_price": 15, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": true, "poster": false })
+	player_inventory.append({ "ID": 74, "type": "jungle", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "none", "cd": true, "spice_factor": 3, "rarity": "uncommon", "logo_animation": &"none", "default_price": 15, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": false, "poster": false })
+	player_inventory.append({ "ID": 71, "type": "smooth_jazz_2", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "jazz", "cd": true, "spice_factor": 1, "rarity": "uncommon", "logo_animation": &"none", "default_price": 4.5, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": false, "poster": false })
 	player_inventory.append({ "ID": 71, "type": "smooth_jazz_2", "number": 4, "color1": "grey", "color2": "", "price": 3.99, "shippingTime": 3.0, "shippingValue": 1, "condition": "Good", "condition_price_mult": 0.8, "brand": "C.O.M.A", "brandmult": 1, "selected_brand": "C.O.M.A", "genre": "jazz", "cd": true, "spice_factor": 1, "rarity": "uncommon", "logo_animation": &"none", "default_price": 4.5, "overlay_animation": "none", "pattern_type": "none", "pattern_mult": 1, "pattern_index": 0, "seller_name": "greental61", "seller_rating": 4.0, "item_category": ["electronics"], "placeable": false, "poster": false })
 	pass
 	
@@ -113,6 +121,14 @@ func _process(_delta) -> void:
 		var details = bidding_details[i]
 		if details.has("bid_end") and Global.time_mins >= int(details["bid_end"]):
 			resolve_bid(i)
+			
+	wardrobe_carry_weight = 0
+	for i in wardrobe_inventory:
+		wardrobe_carry_weight += i["shippingValue"]
+	player_inventory_weight = 0
+	for i in player_inventory:
+		player_inventory_weight += i["shippingValue"]
+			
 			
 func get_buy_probability_sigmoid(price: float, base_price: float) -> float:
 	if base_price <= 0.0:

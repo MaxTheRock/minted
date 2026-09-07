@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://btnux7ms6808l" path="res://assets/items/brickies_family_house/brickies_family_house.png" id="30_qthxh"]
 [ext_resource type="Texture2D" uid="uid://cp27lcvt2081s" path="res://assets/items/banana_poster.png" id="31_cf0sr"]
 [ext_resource type="Texture2D" uid="uid://b6as3mbewdpjp" path="res://assets/cds/smooth_jazz_2.png" id="32_bqkql"]
+[ext_resource type="Texture2D" uid="uid://b0rc41gwkl30k" path="res://assets/items/polo.png" id="33_muevd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
 animations = [{
@@ -1698,6 +1699,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvjb6"]
+atlas = ExtResource("33_muevd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4pal"]
+atlas = ExtResource("33_muevd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41lm0"]
+atlas = ExtResource("33_muevd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hseu5"]
+atlas = ExtResource("33_muevd")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ehor"]
+atlas = ExtResource("33_muevd")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6jdm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvjb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4pal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41lm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hseu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ehor")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxq6w"]
 atlas = ExtResource("23_6rcit")
 region = Rect2(0, 0, 64, 64)
@@ -2354,6 +2398,12 @@ frame_progress = 0.5549996
 [node name="smooth_jazz_2" type="AnimatedSprite2D" parent="TextureButton" unique_id=1993631602 groups=["clothes"]]
 position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_wvjb6")
+
+[node name="polo_shirt" type="AnimatedSprite2D" parent="TextureButton" unique_id=422939884 groups=["clothes"]]
+position = Vector2(40, 40)
+sprite_frames = SubResource("SpriteFrames_a6jdm")
+frame = 4
+frame_progress = 0.55246305
 
 [node name="overlays" type="Control" parent="." unique_id=1252589936]
 layout_mode = 3

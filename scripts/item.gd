@@ -6,7 +6,7 @@ var tshirt_colours: Array = ["white","yellow", "red", "green", "blue", "black", 
 var trouser_colours: Array = ["white", "black", "grey", "blue", "green"]
 var conceal_colours: Array = ["white","red","green","pink","black","blue"]
 var common_items: Array = ["tshirt","socks","trousers","shorts", "shoes","boxers", "smooth_jazz_1", "football","basketball","playing_cards","brickies_family_house", "banana_poster", "smooth_jazz_2"]
-var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes","flip_flops","radio"]
+var uncommon_items: Array = ["cd_player", "puzzle_cube", "spud_poster","potion_poster", "camera", "three_jelly","conceal_shoes","flip_flops","radio","polo_shirt"]
 var rare_items: Array = ["the_big_mint", "evil_pulsation", "jungle","christmas_lights","encyclopedia"]
 var epic_items: Array = ["beh_enclosed_shirt","red_nose_pop"]
 var legendary_items: Array = ["gold_ring"]
@@ -16,8 +16,10 @@ var items_that_spin = ["the_big_mint", "smooth_jazz_1", "three_jelly", "evil_pul
 var items_with_secondary = ["brickies_family_house"]
 var cds = items_that_spin
 var brands: Dictionary = {"none":100, "elemental":30,"conceal":20}
+var polo_brands = {"none":100, "elemental":30}
+
 # Categories
-var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes","flip_flops"]
+var clothes: Array = ["tshirt", "tshirt","tshirt","socks", "trousers", "shorts", "shoes", "beh_enclosed_shirt","boxers","conceal_shoes","flip_flops","polo_shirt"]
 #var clothes = ["tshirt"]
 var toys: Array = ["puzzle_cube", "football","playing_cards", "brickies_family_house"]
 var home: Array = ["spud_poster","potion_poster","christmas_lights", "banana_poster"]
@@ -60,12 +62,13 @@ var placeable = false
 var poster = false
 
 var rarities = {
-	"common": 600,
-	"uncommon": 300,
-	"rare": 100,
-	"epic": 25,
-	"legendary": 5
-}
+			"common": 500,
+			"uncommon": 250,
+			"rare": 100,
+			"epic": 25,
+			"legendary": 5
+	}
+	
 var rarity = "common"
 var pattern_type = "none"
 var patterns: Dictionary = {"stripes":200,"checker":100,"polka-dot":80,"wavy":40,"zig-zag":30,"geometric":20,"hearts":20,"smiley":20}
@@ -116,6 +119,7 @@ var flip_flop_texture = preload("res://shaders/tshirt_colours.png")
 	"brickies_family_house": $TextureButton/brickies_family_house,
 	"banana_poster": $TextureButton/banana_poster,
 	"smooth_jazz_2": $TextureButton/smooth_jazz_2,
+	"polo_shirt": $TextureButton/polo_shirt
 }
 
 @onready var market_details_ui = get_node_or_null("/root/MainUI/Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Product_Details")
@@ -178,7 +182,7 @@ func initialize_item(category := "All"):
 			}
 			type = get_random_item(all_items)
 			rarities = {
-				"common": 900,
+				"common": 500,
 				"uncommon": 300,
 				"rare": 100,
 				"epic": 20,
@@ -186,6 +190,14 @@ func initialize_item(category := "All"):
 			}
 		_:
 			type = get_random_item(all_items)
+	
+	rarities = {
+				"common": 500,
+				"uncommon": 250,
+				"rare": 100,
+				"epic": 25,
+				"legendary": 5
+			}
 	generate_parameters(type)
 	set_item_type(type)
 	
@@ -373,18 +385,18 @@ func get_rarity():
 			rarity_selected -= rarities[n]
 			
 
-func get_brand():
+func get_brand(pool):
 	rng.randomize()
 	var weighted_sum = 0
-	for n in brands:
-		weighted_sum += brands[n]
+	for n in pool:
+		weighted_sum += pool[n]
 	
 	var brand_selected = rng.randi_range(0,weighted_sum)
 	for n in brands:
-		if brand_selected <= brands[n]:
+		if brand_selected <= pool[n]:
 			return n
 		else:
-			brand_selected -= brands[n]
+			brand_selected -= pool[n]
 			
 func get_pattern():
 	rng.randomize()
@@ -400,7 +412,7 @@ func get_pattern():
 			brand_selected -= patterns[n]
 								
 func logo_calculator(color1_of_shirt: String) -> void:
-	selected_brand = get_brand()
+	selected_brand = get_brand(brands)
 	if selected_brand == "elemental":
 		brand = "elemental"
 		brandmult = 1.5
@@ -534,6 +546,17 @@ func generate_parameters(type):
 				pattern_type = get_pattern()
 		price = snapped(2.5 * condition_price_mult * rng.randf_range(0.8,1.2) * brandmult,0.01)
 		default_price = 2.5
+	elif type == "polo_shirt":
+		number = rng.randi_range(0, tshirt_colours.size()-1)
+		color1 = tshirt_colours[number]
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 1
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		logo_calculator(color1)
+		price = snapped(5 * condition_price_mult * rng.randf_range(0.8,1.2) * brandmult,0.01)
+		default_price = 5
+		
 	elif type == "socks":
 		number = rng.randi_range(0, colours.size()-1)
 		color1 = colours[number]
@@ -547,7 +570,7 @@ func generate_parameters(type):
 		number = rng.randi_range(0, trouser_colours.size()-1)
 		color1 = trouser_colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
-		shippingValue = 1
+		shippingValue = 2
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(4.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
@@ -556,7 +579,7 @@ func generate_parameters(type):
 		number = rng.randi_range(0, trouser_colours.size()-1)
 		color1 = trouser_colours[number]
 		shippingTime = rng.randi_range(1, 5.0)
-		shippingValue = 1
+		shippingValue = 2
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(3.5 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
@@ -572,7 +595,7 @@ func generate_parameters(type):
 		default_price = 3
 	elif type == "cd_player":
 		shippingTime = rng.randi_range(2, 6.0)
-		shippingValue = 2
+		shippingValue = 3
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(10 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
@@ -593,7 +616,7 @@ func generate_parameters(type):
 		default_price = 7
 	elif type == "beh_enclosed_shirt":
 		shippingTime = rng.randi_range(3, 10.0)
-		shippingValue = 5
+		shippingValue = 4
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(23 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
@@ -826,7 +849,7 @@ func set_node_palette(target_sprite: AnimatedSprite2D, num):
 		target_sprite.material.set_shader_parameter("palette_count", 10)
 		target_sprite.material.set_shader_parameter("palette_index", num)
 		
-	elif type == "tshirt":
+	elif type == "tshirt" or type == "polo_shirt":
 		target_sprite.material.shader = tshirt_shader
 		
 		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
