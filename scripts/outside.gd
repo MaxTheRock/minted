@@ -7,6 +7,7 @@ var moved: bool = false
 var starting_position: Vector2 = Vector2(0.0, -1.5)
 
 func _ready() -> void:
+	$CanvasLayer.show()
 	building.modulate.a = 0.22
 	room_label.hide()
 	Global.outside = true

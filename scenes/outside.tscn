@@ -114,6 +114,7 @@ offset_bottom = 574.0
 script = ExtResource("7_lt5my")
 
 [node name="TrafficLight" parent="vehicle_container" unique_id=1641677231 instance=ExtResource("8_lt5my")]
+z_index = 6
 position = Vector2(808, 89)
 scale = Vector2(2, 2)
 
@@ -126,6 +127,8 @@ shape = SubResource("RectangleShape2D_lt5my")
 debug_color = Color(0, 0.63603574, 0.4137723, 0.41960785)
 
 [node name="TrafficLight2" parent="vehicle_container" unique_id=1429295902 instance=ExtResource("8_lt5my")]
+visible = false
+z_index = 6
 position = Vector2(1215, -317)
 scale = Vector2(2, 2)
 
@@ -200,6 +203,12 @@ light_mask = 2
 visibility_layer = 2
 scale = Vector2(2, 2)
 texture = ExtResource("13_x3una")
+
+[node name="collisions" type="StaticBody2D" parent="." unique_id=523601834]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=1168135129]
+polygon = PackedVector2Array(1709, 86, -334, 86, -334, 686, 1710, 686, 1710, 88, 1713, 88, 1713, 690, -338, 689, -338, 81, 1714, 80)
 
 [connection signal="area_entered" from="building_area" to="." method="_on_building_area_area_entered"]
 [connection signal="area_exited" from="building_area" to="." method="_on_building_area_area_exited"]

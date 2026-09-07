@@ -34,19 +34,19 @@ script = ExtResource("1_40veq")
 
 [node name="Outside" parent="." unique_id=1576444141 instance=ExtResource("2_fve4f")]
 layout_mode = 1
-offset_left = -2400.0
-offset_top = -89.0
-offset_right = -2400.0
-offset_bottom = -89.0
+offset_left = -3619.0
+offset_top = 488.0
+offset_right = -3619.0
+offset_bottom = 488.0
 scale = Vector2(3, 3)
 
 [node name="items" type="MarginContainer" parent="." unique_id=1275630380]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 0
-offset_left = 729.0
-offset_top = 17.0
-offset_right = 1266.0
-offset_bottom = 384.0
+offset_left = 376.0
+offset_top = 206.0
+offset_right = 913.0
+offset_bottom = 573.0
 theme_override_constants/margin_left = 47
 theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 46
@@ -67,10 +67,10 @@ columns = 3
 [node name="inventory" type="MarginContainer" parent="." unique_id=981788832]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 0
-offset_left = 895.0
-offset_top = 402.0
-offset_right = 1267.0
-offset_bottom = 702.0
+offset_left = 477.0
+offset_top = 550.0
+offset_right = 849.0
+offset_bottom = 850.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -98,10 +98,10 @@ columns = 2
 
 [node name="Close" type="Button" parent="." unique_id=281439670]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 23.0
-offset_right = 72.0
-offset_bottom = 102.0
+offset_left = -319.0
+offset_top = 197.0
+offset_right = -268.0
+offset_bottom = 276.0
 theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_40veq")
