@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dcp023siquqf2"]
+
+[ext_resource type="Script" uid="uid://b3uwig7o6vwet" path="res://scripts/bank.gd" id="1_rjesy"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_0aawc"]
+[ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="3_3bwp7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0aawc"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Bank" type="Control" unique_id=1237760597]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjesy")
+
+[node name="Close" type="Button" parent="." unique_id=1396322856]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_0aawc")
+text = "X"
+
+[node name="Label" type="Label" parent="." unique_id=886215843]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 13.0
+offset_right = 431.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 64
+text = "Bank"
+
+[node name="background" type="NinePatchRect" parent="." unique_id=1481002194]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 24.0
+offset_right = 761.25
+offset_bottom = 192.0
+scale = Vector2(4, 4)
+texture = ExtResource("3_3bwp7")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
