@@ -5,10 +5,42 @@
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="2_cek5a"]
 [ext_resource type="Texture2D" uid="uid://q5bampf5boes" path="res://assets/mintora_small.png" id="2_ckslc"]
 [ext_resource type="PackedScene" uid="uid://cxbgcv0xjeqmn" path="res://scenes/market.tscn" id="2_vytop"]
+[ext_resource type="Texture2D" uid="uid://cc3vkacie3oae" path="res://assets/tab_background.png" id="3_3xwq2"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="3_7y0nb"]
 [ext_resource type="Script" uid="uid://bmmfim110oj5e" path="res://scripts/tab_container.gd" id="3_f86in"]
 [ext_resource type="PackedScene" uid="uid://8w6oo4gmhwor" path="res://scenes/mail.tscn" id="3_vytop"]
 [ext_resource type="PackedScene" uid="uid://sb8cwtgdt6rd" path="res://scenes/selling.tscn" id="4_esrwv"]
+[ext_resource type="Texture2D" uid="uid://ccnk3dvu2p7mr" path="res://assets/mintora_home.png" id="5_3qiqk"]
 [ext_resource type="PackedScene" uid="uid://5fnes7u1us3e" path="res://scenes/trading.tscn" id="5_pvjfy"]
+[ext_resource type="Texture2D" uid="uid://bbo7eipovh6ud" path="res://assets/mintora_mail.png" id="6_egard"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qiqk"]
+bg_color = Color(0.007843138, 0.043137256, 0, 0.972549)
+border_width_top = 3
+border_color = Color(0.007843138, 0.043137256, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xgls0"]
+texture = ExtResource("3_3xwq2")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 64, 21)
+modulate_color = Color(0.47788018, 0.47788012, 0.47788012, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7y0nb"]
+texture = ExtResource("3_3xwq2")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+axis_stretch_horizontal = 2
+region_rect = Rect2(0, 0, 64, 20)
+modulate_color = Color(3.5629182, 3.5629182, 3.5629182, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qkbt6"]
+texture = ExtResource("3_3xwq2")
+texture_margin_left = 25.0
+texture_margin_right = 30.0
+axis_stretch_horizontal = 2
+region_rect = Rect2(0, 0, 64, 20)
 
 [node name="Mintora" type="Control" unique_id=1932963451]
 layout_mode = 3
@@ -46,8 +78,20 @@ layout_mode = 0
 offset_top = -644.0
 offset_right = 1280.0
 offset_bottom = -73.0
+theme_override_colors/font_selected_color = Color(0.23137255, 0.5764706, 0.38039216, 1)
+theme_override_colors/font_unselected_color = Color(0.1866667, 0.47858804, 0.31278473, 1)
+theme_override_colors/icon_unselected_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+theme_override_constants/icon_separation = 10
+theme_override_constants/icon_max_width = 20
+theme_override_fonts/font = ExtResource("3_7y0nb")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_3qiqk")
+theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_xgls0")
+theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_7y0nb")
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_qkbt6")
 current_tab = 0
-tab_0/icon = ExtResource("2_ckslc")
+tab_0/icon = ExtResource("5_3qiqk")
+tab_1/icon = ExtResource("6_egard")
 tab_2/icon = ExtResource("2_ckslc")
 tab_3/icon = ExtResource("2_ckslc")
 script = ExtResource("3_f86in")
