@@ -53,3 +53,9 @@ func _on_window_mode_item_selected(index: int) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		"Borderless":
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		Global.debug_enabled = true
+	else:
+		Global.debug_enabled = false

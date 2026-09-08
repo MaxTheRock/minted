@@ -2,8 +2,30 @@
 
 [ext_resource type="Script" uid="uid://bjdovmv78p4t1" path="res://scripts/market.gd" id="1_4msli"]
 [ext_resource type="PackedScene" uid="uid://bl2hjfsjnp4kq" path="res://scenes/search_bar.tscn" id="2_wa5cj"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="3_d6tgm"]
 [ext_resource type="Texture2D" uid="uid://desj2yykwoxb7" path="res://assets/os/icons/refresh.png" id="11_wa5cj"]
 [ext_resource type="Texture2D" uid="uid://b5otyytahqibf" path="res://themes/progress.tres" id="12_k7ps5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc3i3"]
+bg_color = Color(0.007843138, 0.043137256, 0, 0.972549)
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(0.007843138, 0.043137256, 0, 0.972549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j1t4"]
+content_margin_left = 30.0
+content_margin_top = 5.0
+content_margin_right = 30.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.972549)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6tgm"]
+content_margin_left = 30.0
+content_margin_top = 5.0
+content_margin_right = 30.0
+content_margin_bottom = 5.0
+bg_color = Color(5.565118e-08, 0.07140266, 0.016983919, 1)
 
 [sub_resource type="Gradient" id="Gradient_23wqn"]
 offsets = PackedFloat32Array(0, 0.56772906, 0.59960157, 0.79083663, 0.99800795)
@@ -27,13 +49,14 @@ url = "https://minted.io/home"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=819516122]
 layout_mode = 0
-offset_top = 47.0
+offset_top = 32.0
 offset_right = 1285.0
-offset_bottom = 714.0
+offset_bottom = 720.0
 
 [node name="Sections" type="HBoxContainer" parent="VBoxContainer" unique_id=187412644]
 custom_minimum_size = Vector2(0, 570)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Centre" type="VBoxContainer" parent="VBoxContainer/Sections" unique_id=1179697940]
 layout_mode = 2
@@ -42,6 +65,16 @@ size_flags_horizontal = 3
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/Sections/Centre" unique_id=1364613776]
 custom_minimum_size = Vector2(0, 650)
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_selected_color = Color(0.5411765, 0.9607843, 0.7058824, 1)
+theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
+theme_override_colors/font_unselected_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+theme_override_fonts/font = ExtResource("3_d6tgm")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_jc3i3")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_1j1t4")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_d6tgm")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_1j1t4")
 current_tab = 0
 
 [node name="All" type="MarginContainer" parent="VBoxContainer/Sections/Centre/TabContainer" unique_id=764952681]

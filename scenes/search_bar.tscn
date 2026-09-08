@@ -4,6 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://fn1si2qsl1pg" path="res://assets/safe.png" id="1_xxajr"]
 [ext_resource type="Texture2D" uid="uid://c3wsjjsitasps" path="res://assets/puzzle.png" id="2_de5vt"]
 [ext_resource type="Texture2D" uid="uid://dqwp4vq1gcisi" path="res://assets/menu.png" id="3_2yp4w"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="3_l2vko"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_de5vt"]
+bg_color = Color(0.007843138, 0.043137256, 0, 0.972549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yp4w"]
+bg_color = Color(0.10747976, 0.10747973, 0.10747973, 0.972549)
 
 [node name="SearchBar" type="Control" unique_id=1070994751]
 layout_mode = 3
@@ -17,34 +24,44 @@ script = ExtResource("1_de5vt")
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1140796848]
 layout_mode = 0
 offset_right = 1280.0
-offset_bottom = 46.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_de5vt")
 
 [node name="Left" type="HBoxContainer" parent="PanelContainer" unique_id=1714269120]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Left" unique_id=477237996]
-custom_minimum_size = Vector2(900, 0)
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Left" unique_id=93001942]
 layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Left/PanelContainer" unique_id=983098287]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Left/MarginContainer" unique_id=477237996]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2yp4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Left/MarginContainer/PanelContainer" unique_id=983098287]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/Left/PanelContainer/MarginContainer" unique_id=239998937]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Left/MarginContainer/PanelContainer/MarginContainer" unique_id=239998937]
 custom_minimum_size = Vector2(32, 32)
-custom_maximum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("1_xxajr")
 expand_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Left/PanelContainer/MarginContainer" unique_id=1759736259]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Left/MarginContainer/PanelContainer/MarginContainer" unique_id=1759736259]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 
-[node name="Label" type="Label" parent="PanelContainer/Left/PanelContainer/MarginContainer/MarginContainer" unique_id=1334802230]
+[node name="Label" type="Label" parent="PanelContainer/Left/MarginContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=1334802230]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l2vko")
+theme_override_font_sizes/font_size = 8
 text = "https://minted.io/home"
 
 [node name="Right" type="HBoxContainer" parent="PanelContainer" unique_id=642597290]
@@ -60,7 +77,7 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="PanelContainer/Right/MarginContainer/HBoxContainer" unique_id=279423770]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(25, 25)
 custom_maximum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
@@ -68,7 +85,7 @@ texture = ExtResource("2_de5vt")
 expand_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/Right/MarginContainer/HBoxContainer" unique_id=2028346218]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(25, 25)
 custom_maximum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4

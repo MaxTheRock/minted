@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bcgnfguo71fb1"]
+
+[ext_resource type="Script" uid="uid://cldqw2yyohesa" path="res://scripts/debug.gd" id="1_5spvt"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_c2xgb"]
+
+[node name="Debug" type="CanvasLayer" unique_id=373666288]
+script = ExtResource("1_5spvt")
+
+[node name="FPSLabel" type="Label" parent="." unique_id=107684935]
+unique_name_in_owner = true
+offset_left = 11.0
+offset_top = 179.0
+offset_right = 110.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("2_c2xgb")
+text = "FPS: 100"

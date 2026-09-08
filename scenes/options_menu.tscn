@@ -19,12 +19,29 @@ script = ExtResource("1_ijpji")
 layout_mode = 0
 offset_right = 1279.0
 offset_bottom = 715.0
-current_tab = 2
+current_tab = 0
 
 [node name="Game" type="TabBar" parent="TabContainer" unique_id=863515563]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="CheckBox" type="CheckBox" parent="TabContainer/Game" unique_id=296412047]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 45.0
+offset_right = 245.0
+offset_bottom = 69.0
+scale = Vector2(2.5, 2.5)
+
+[node name="Label2" type="Label" parent="TabContainer/Game/CheckBox" unique_id=1771348595]
+layout_mode = 0
+offset_left = -70.71295
+offset_top = 1.1999817
+offset_right = 111.28705
+offset_bottom = 47.19998
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = ExtResource("2_ijpji")
+text = "Debug Display"
 
 [node name="Controls" type="TabBar" parent="TabContainer" unique_id=496899837]
 visible = false
@@ -32,6 +49,7 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="Video" type="TabBar" parent="TabContainer" unique_id=126568020]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -234,6 +252,7 @@ offset_bottom = 696.0
 theme_override_fonts/font = ExtResource("2_ijpji")
 text = "BACK"
 
+[connection signal="toggled" from="TabContainer/Game/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="item_selected" from="TabContainer/Video/window_settings/resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="item_selected" from="TabContainer/Video/window_settings/window_mode" to="." method="_on_window_mode_item_selected"]
 [connection signal="toggled" from="TabContainer/Video/window_settings/CheckBox" to="TabContainer/Video/window_settings/CheckBox" method="_on_toggled"]

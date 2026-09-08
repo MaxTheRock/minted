@@ -41,10 +41,11 @@ func _on_building_area_area_exited(area: Area2D) -> void:
 		building.modulate.a = 0.10
 
 func _on_door_area_area_entered(area: Area2D) -> void:
-	Global.current_interactable = self
-	target_scene = "res://scenes/room.tscn"
-	Global.outside_saved_position = player.position
-	room_label.show()
+	if !Global.inLocker:
+		Global.current_interactable = self
+		target_scene = "res://scenes/room.tscn"
+		Global.outside_saved_position = player.position
+		room_label.show()
 
 func _on_door_area_area_exited(area: Area2D) -> void:
 	if Global.current_interactable == self:

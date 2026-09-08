@@ -37,9 +37,6 @@ visible = false
 [node name="building_collision_shape" parent="Outside/building_area" index="0" unique_id=1201566750]
 visible = false
 
-[node name="Control" parent="Outside" index="5" unique_id=104545168]
-visible = false
-
 [node name="CanvasLayer" parent="Outside" index="7" unique_id=2033593751]
 visible = false
 
