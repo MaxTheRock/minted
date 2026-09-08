@@ -148,7 +148,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"up",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -171,7 +171,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_down",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -194,7 +194,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_left",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -217,7 +217,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_right",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -240,7 +240,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_up",
-"speed": 6.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c3da"]
@@ -264,7 +264,7 @@ visibility_layer = 3
 position = Vector2(0, -2)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6snss")
-animation = &"walk_right"
+animation = &"walk_down"
 autoplay = "down"
 
 [node name="building_collision" type="CollisionShape2D" parent="Player" unique_id=344316980]

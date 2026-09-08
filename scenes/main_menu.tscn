@@ -105,6 +105,9 @@ bg_color = Color(0, 0.75149065, 0.5059224, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flqon"]
 bg_color = Color(2.2140146e-06, 0.5212294, 0.34577352, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ajci"]
+bg_color = Color(1.347661e-06, 0.43315557, 0.28374577, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcqid"]
 bg_color = Color(1.5642495e-07, 0.32832438, 0.211606, 1)
 
@@ -212,6 +215,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jk1qb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_flqon")
 text = "Options"
+
+[node name="Credits_Button" type="Button" parent="button_container" unique_id=811244819]
+z_index = 10
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_oa1go")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tbmy8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ajci")
+text = "Credits"
 
 [node name="Exit_game_Button" type="Button" parent="button_container" unique_id=505706220]
 z_index = 10

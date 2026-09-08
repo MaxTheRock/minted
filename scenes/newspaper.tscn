@@ -120,6 +120,7 @@ layout_mode = 0
 offset_top = -648.0
 offset_right = 1285.0
 offset_bottom = -578.0
+mintora = true
 
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_ge38h")]
 layout_mode = 2

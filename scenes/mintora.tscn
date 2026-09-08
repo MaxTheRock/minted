@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://31wk6mw8xgsp" path="res://scenes/background.tscn" id="1_6srp7"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="1_y8p56"]
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="2_cek5a"]
-[ext_resource type="Texture2D" uid="uid://q5bampf5boes" path="res://assets/mintora_small.png" id="2_ckslc"]
 [ext_resource type="PackedScene" uid="uid://cxbgcv0xjeqmn" path="res://scenes/market.tscn" id="2_vytop"]
 [ext_resource type="Texture2D" uid="uid://cc3vkacie3oae" path="res://assets/tab_background.png" id="3_3xwq2"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="3_7y0nb"]
@@ -13,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://ccnk3dvu2p7mr" path="res://assets/mintora_home.png" id="5_3qiqk"]
 [ext_resource type="PackedScene" uid="uid://5fnes7u1us3e" path="res://scenes/trading.tscn" id="5_pvjfy"]
 [ext_resource type="Texture2D" uid="uid://bbo7eipovh6ud" path="res://assets/mintora_mail.png" id="6_egard"]
+[ext_resource type="Texture2D" uid="uid://bbtflmmunbxrd" path="res://assets/mintora_selling.png" id="7_3qiqk"]
+[ext_resource type="Texture2D" uid="uid://cph1owbe5ixla" path="res://assets/mintora_bidding.png" id="8_egard"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qiqk"]
 bg_color = Color(0.007843138, 0.043137256, 0, 0.972549)
@@ -69,15 +70,16 @@ layout_mode = 0
 offset_top = -712.0
 offset_right = 1285.0
 offset_bottom = -642.0
+mintora = true
 
 [node name="Control3" type="Control" parent="VBoxContainer" unique_id=234152939]
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/Control3" unique_id=1632207118]
 layout_mode = 0
-offset_top = -644.0
+offset_top = -652.0
 offset_right = 1280.0
-offset_bottom = -73.0
+offset_bottom = -65.0
 theme_override_colors/font_selected_color = Color(0.23137255, 0.5764706, 0.38039216, 1)
 theme_override_colors/font_unselected_color = Color(0.1866667, 0.47858804, 0.31278473, 1)
 theme_override_colors/icon_unselected_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
@@ -92,8 +94,8 @@ theme_override_styles/tab_selected = SubResource("StyleBoxTexture_qkbt6")
 current_tab = 0
 tab_0/icon = ExtResource("5_3qiqk")
 tab_1/icon = ExtResource("6_egard")
-tab_2/icon = ExtResource("2_ckslc")
-tab_3/icon = ExtResource("2_ckslc")
+tab_2/icon = ExtResource("7_3qiqk")
+tab_3/icon = ExtResource("8_egard")
 script = ExtResource("3_f86in")
 
 [node name="Home" type="MarginContainer" parent="VBoxContainer/Control3/TabContainer" unique_id=121694614]

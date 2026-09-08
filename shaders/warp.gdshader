@@ -24,7 +24,7 @@ void fragment() {
     // Black → red
     float pattern = 0.5 + 0.5 * sin(pos.x + pos.y + t);
 
-    vec3 red = vec3(1.0, 0.05, 0.05);
+    vec3 red = vec3(1.0, 0.45, 0.45);
     vec3 col = mix(vec3(0.0), red, pattern);
 
     COLOR = vec4(col, 1.0);

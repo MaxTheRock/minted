@@ -89,6 +89,9 @@ const refresh_news_2_at = 16
 # player
 var player_pos = Vector2(0,0)
 
+# Debug
+var debug_enabled: bool
+
 func _process(delta):
 	if money != current_money:
 		SaveLoad._save()
@@ -427,6 +430,8 @@ func get_save_data() -> Dictionary:
 		"player_pos": player_pos,
 		"player_ratings": player_ratings,
 		"player_rating": player_rating,
+		
+		"debug_enabled": debug_enabled,
 	}
 
 func load_save_data(data: Dictionary) -> void:
@@ -486,6 +491,8 @@ func load_save_data(data: Dictionary) -> void:
 	player_pos = data.get("player_pos", player_pos)
 	player_ratings = data.get("player_ratings", player_ratings)
 	player_rating = data.get("player_rating", player_rating)
+	
+	debug_enabled = data.get("debug_enabled", debug_enabled)
 
 func reset_to_defaults() -> void:
 	money = 50.00
@@ -544,3 +551,5 @@ func reset_to_defaults() -> void:
 	player_pos = Vector2(0,0)
 	player_ratings = [5.0]
 	player_rating = 0.0
+	
+	debug_enabled = false
