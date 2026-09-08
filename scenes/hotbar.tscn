@@ -33,7 +33,6 @@ offset_right = 486.0
 offset_bottom = 184.0
 scale = Vector2(0.25, 0.25)
 size_flags_vertical = 3
-horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 scroll_horizontal_by_default = true
 scroll_deadzone = 20

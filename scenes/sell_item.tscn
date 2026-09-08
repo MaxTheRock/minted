@@ -1,0 +1,322 @@
+[gd_scene format=3 uid="uid://b7b6um4sspyeh"]
+
+[ext_resource type="Script" uid="uid://b1nkvk244beub" path="res://scripts/sell_item.gd" id="0_form"]
+[ext_resource type="Texture2D" uid="uid://dddh8b1fmhkvh" path="res://assets/hotbar/stone_box_template.png" id="1_k4cy3"]
+[ext_resource type="Texture2D" uid="uid://bmnmvldc5uipc" path="res://assets/os/icons/dollar.png" id="2_m35c4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m35c4"]
+bg_color = Color(0.31336713, 0.69031686, 0.4448178, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+
+[node name="sell_item" type="Control" unique_id=1742411866]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("0_form")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=579021331]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sections" type="VBoxContainer" parent="ScrollContainer" unique_id=711203777]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="PhotosSection" type="VBoxContainer" parent="ScrollContainer/Sections" unique_id=2146413467]
+layout_mode = 2
+
+[node name="title_label" type="Label" parent="ScrollContainer/Sections/PhotosSection" unique_id=1133652622]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Photos"
+
+[node name="inv_background" type="Control" parent="ScrollContainer/Sections/PhotosSection" unique_id=1546026017]
+layout_mode = 2
+
+[node name="ninepatchrect" type="NinePatchRect" parent="ScrollContainer/Sections/PhotosSection/inv_background" unique_id=1032747865]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = 309.0
+offset_bottom = 57.25
+scale = Vector2(4, 4)
+texture = ExtResource("1_k4cy3")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="InventoryContainer" type="MarginContainer" parent="ScrollContainer/Sections/PhotosSection" unique_id=1289924077]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/Sections/PhotosSection/InventoryContainer" unique_id=596173941]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="InventoryGrid" type="GridContainer" parent="ScrollContainer/Sections/PhotosSection/InventoryContainer/ScrollContainer" unique_id=1856498536]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 6
+
+[node name="ItemDisplayContainer" type="Control" parent="ScrollContainer/Sections/PhotosSection" unique_id=997295715]
+layout_mode = 2
+
+[node name="ItemDisplay" type="ColorRect" parent="ScrollContainer/Sections/PhotosSection/ItemDisplayContainer" unique_id=1854948443]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 680.0
+offset_top = 30.0
+offset_right = 870.0
+offset_bottom = 212.0
+color = Color(0.3882353, 0.76862746, 0.52156866, 0)
+
+[node name="AboutSection" type="VBoxContainer" parent="ScrollContainer/Sections" unique_id=1026072046]
+layout_mode = 2
+
+[node name="title_label" type="Label" parent="ScrollContainer/Sections/AboutSection" unique_id=1109580765]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "About your item"
+
+[node name="Fields" type="VBoxContainer" parent="ScrollContainer/Sections/AboutSection" unique_id=428518984]
+layout_mode = 2
+
+[node name="TitleRow" type="HBoxContainer" parent="ScrollContainer/Sections/AboutSection/Fields" unique_id=1882365411]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/AboutSection/Fields/TitleRow" unique_id=1401047111]
+layout_mode = 2
+text = "Title"
+
+[node name="NameEdit" type="LineEdit" parent="ScrollContainer/Sections/AboutSection/Fields/TitleRow" unique_id=323542481]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Input Title Here:"
+max_length = 100
+clear_button_enabled = true
+
+[node name="DescriptionRow" type="HBoxContainer" parent="ScrollContainer/Sections/AboutSection/Fields" unique_id=2091395300]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/AboutSection/Fields/DescriptionRow" unique_id=1062089553]
+layout_mode = 2
+text = "Description"
+
+[node name="DescriptionEdit" type="TextEdit" parent="ScrollContainer/Sections/AboutSection/Fields" unique_id=2146183748]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+placeholder_text = "Input Description Here"
+wrap_mode = 1
+
+[node name="DetailsSection" type="VBoxContainer" parent="ScrollContainer/Sections" unique_id=274471022]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/DetailsSection" unique_id=1150427117]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Item details"
+
+[node name="ConditionRow" type="HBoxContainer" parent="ScrollContainer/Sections/DetailsSection" unique_id=1077106876]
+layout_mode = 2
+theme_override_constants/separation = 160
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/DetailsSection/ConditionRow" unique_id=442761230]
+layout_mode = 2
+text = "Condition"
+
+[node name="ConditionOption" type="OptionButton" parent="ScrollContainer/Sections/DetailsSection/ConditionRow" unique_id=1841720431]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+allow_reselect = true
+item_count = 6
+popup/item_0/text = "Poor"
+popup/item_0/id = 0
+popup/item_1/text = "Satisfactory"
+popup/item_1/id = 1
+popup/item_2/text = "Good"
+popup/item_2/id = 2
+popup/item_3/text = "Great"
+popup/item_3/id = 3
+popup/item_4/text = "Excellent"
+popup/item_4/id = 4
+popup/item_5/text = "Minted"
+popup/item_5/id = 5
+
+[node name="CategoryRow" type="HBoxContainer" parent="ScrollContainer/Sections/DetailsSection" unique_id=1542060016]
+layout_mode = 2
+theme_override_constants/separation = 165
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/DetailsSection/CategoryRow" unique_id=992051444]
+layout_mode = 2
+text = "Category"
+
+[node name="TypeEdit" type="LineEdit" parent="ScrollContainer/Sections/DetailsSection/CategoryRow" unique_id=886060976]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+max_length = 20
+
+[node name="BrandRow" type="HBoxContainer" parent="ScrollContainer/Sections/DetailsSection" unique_id=431569439]
+layout_mode = 2
+theme_override_constants/separation = 188
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/DetailsSection/BrandRow" unique_id=294601917]
+layout_mode = 2
+text = "Brand"
+
+[node name="BrandEdit" type="LineEdit" parent="ScrollContainer/Sections/DetailsSection/BrandRow" unique_id=184107409]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+max_length = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Sections/DetailsSection" unique_id=1017163444]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRow" type="HBoxContainer" parent="ScrollContainer/Sections/DetailsSection/MarginContainer" unique_id=874587582]
+layout_mode = 2
+theme_override_constants/separation = 176
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1992518177]
+layout_mode = 2
+text = "Colours"
+
+[node name="ColorButton0" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1981806427]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Green"
+
+[node name="ColorButton1" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1104021246]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Green"
+
+[node name="ColorButton2" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1554359412]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Green"
+
+[node name="PricingSection" type="VBoxContainer" parent="ScrollContainer/Sections" unique_id=1511686765]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/PricingSection" unique_id=1538151221]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Pricing"
+
+[node name="PriceRow" type="HBoxContainer" parent="ScrollContainer/Sections/PricingSection" unique_id=1780821288]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="ScrollContainer/Sections/PricingSection/PriceRow" unique_id=1059922316]
+layout_mode = 2
+text = "Price"
+
+[node name="PriceEdit" type="LineEdit" parent="ScrollContainer/Sections/PricingSection/PriceRow" unique_id=1274782933]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 1, 1)
+theme_override_font_sizes/font_size = 20
+placeholder_text = "X.XX"
+max_length = 15
+right_icon = ExtResource("2_m35c4")
+icon_expand_mode = 1
+
+[node name="SliderRow" type="Control" parent="ScrollContainer/Sections/PricingSection" unique_id=1624780967]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="SuggestPriceButton" type="Button" parent="ScrollContainer/Sections/PricingSection/SliderRow" unique_id=973564615]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 419.0
+offset_top = -13.0
+offset_right = 719.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(7.797182e-06, 0.91265476, 0.638343, 1)
+theme_override_font_sizes/font_size = 20
+text = "Suggest Price"
+
+[node name="stinge_label" type="Label" parent="ScrollContainer/Sections/PricingSection/SliderRow" unique_id=489089899]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 433.0
+offset_top = -93.0
+offset_right = 1713.0
+offset_bottom = -69.0
+theme_override_font_sizes/font_size = 20
+text = "Markup: 0% (Normal)"
+
+[node name="stinge_slider" type="HSlider" parent="ScrollContainer/Sections/PricingSection/SliderRow" unique_id=1495746250]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 0
+offset_left = 370.0
+offset_top = -50.0
+offset_right = 770.0
+offset_bottom = -25.0
+theme_override_constants/grabber_offset = -5
+theme_override_styles/slider = SubResource("StyleBoxFlat_m35c4")
+max_value = 6.0
+value = 3.0
+tick_count = 7
+ticks_on_borders = true
+
+[node name="ErrorLabel" type="Label" parent="ScrollContainer/Sections" unique_id=1080723145]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1.1004806, 0.17704102, 0.16845088, 1)
+theme_override_font_sizes/font_size = 25
+
+[node name="SellButton" type="Button" parent="ScrollContainer/Sections" unique_id=738269140]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6880813, 0.37404057, 0.8417459, 1)
+theme_override_colors/font_focus_color = Color(0.85994095, 0.5478075, 0.91201293, 1)
+theme_override_font_sizes/font_size = 30
+text = "Sell"
+
+[connection signal="value_changed" from="ScrollContainer/Sections/PricingSection/SliderRow/stinge_slider" to="." method="_on_stinge_slider_value_changed"]
