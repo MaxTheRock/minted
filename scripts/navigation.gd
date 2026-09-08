@@ -31,6 +31,7 @@ func _on_mintora_pressed() -> void:
 	options_screen.hide()
 	mintora_screen.show()
 	
+	
 func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
 

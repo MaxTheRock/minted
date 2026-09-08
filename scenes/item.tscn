@@ -2389,6 +2389,7 @@ frame_progress = 1.0
 [node name="brickies_family_house" type="AnimatedSprite2D" parent="TextureButton" unique_id=1478535243 groups=["clothes"]]
 position = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_46mwd")
+animation = &"secondary"
 
 [node name="banana_poster" type="AnimatedSprite2D" parent="TextureButton" unique_id=412570573 groups=["clothes"]]
 position = Vector2(40, 40)

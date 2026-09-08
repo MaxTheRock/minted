@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c3dmickbu12gt" path="res://scripts/article.gd" id="1_ii25t"]
 [ext_resource type="Texture2D" uid="uid://dwjbbaxoamx0x" path="res://assets/icon.svg" id="1_qqirc"]
 [ext_resource type="FontFile" uid="uid://cslvc74mc3cbj" path="res://fonts/Pixel Times Bold.ttf" id="3_byp8p"]
-[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_pfocr"]
+[ext_resource type="PackedScene" uid="uid://dfba7km02ckby" path="res://scenes/ad.tscn" id="4_00qdj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00qdj"]
 bg_color = Color(0.72590226, 0.7151892, 0.6283968, 1)
@@ -46,8 +46,8 @@ autowrap_mode = 3
 custom_maximum_size = Vector2(600, 600)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.50980395, 0.48235294, 0.42352942, 1)
-theme_override_fonts/font = ExtResource("4_pfocr")
-theme_override_font_sizes/font_size = 9
+theme_override_fonts/font = ExtResource("3_byp8p")
+theme_override_font_sizes/font_size = 15
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et nunc et mauris eleifend iaculis vitae sit amet ex. Suspendisse porta, lacus vel consectetur scelerisque, orci odio aliquet turpis, vitae tincidunt massa mauris sed odio."
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -59,21 +59,22 @@ layout_mode = 2
 [node name="ad_text" type="RichTextLabel" parent="PanelContainer3/VBoxContainer/advertisement_container" unique_id=1630358950]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 3.0
+offset_top = 47.0
 offset_right = 220.0
-offset_bottom = 123.0
+offset_bottom = 167.0
 theme_override_colors/default_color = Color(0.15775332, 0.15775332, 0.15775332, 1)
+theme_override_fonts/normal_font = ExtResource("3_byp8p")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "sponsored:"
 
-[node name="ad" type="TextureRect" parent="PanelContainer3/VBoxContainer/advertisement_container" unique_id=2080618743]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 31.0
-offset_right = 315.0
-offset_bottom = 159.0
-texture = ExtResource("1_qqirc")
+[node name="ad" parent="PanelContainer3/VBoxContainer/advertisement_container" unique_id=2028049715 instance=ExtResource("4_00qdj")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 34.0
+offset_top = 80.0
+offset_right = 34.0
+offset_bottom = 80.0
 
 [node name="image_container" type="Control" parent="PanelContainer3/VBoxContainer" unique_id=688036064]
 visible = false

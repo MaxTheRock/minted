@@ -5,6 +5,7 @@ extends Control
 @onready var image_container = $PanelContainer3/VBoxContainer/image_container
 @onready var ad_container = $PanelContainer3/VBoxContainer/advertisement_container
 @onready var image_text = $PanelContainer3/VBoxContainer/image_container/image_text
+@onready var ad = %ad
 
 var articles_available = []
 var article_chosen = ""
@@ -151,8 +152,16 @@ func process_article(article):
 		image_text.text = image_desc_parsed
 	elif article.get("ad", false):
 		ad_container.show()
+		
+		var has_saved_ad = article_index < Inventory.ad_items.size() and not Inventory.ad_items[article_index].is_empty()
 	
-	print(title_unformatted)
+		if not has_saved_ad:
+			ad.create_ad(article_index)
+		else:
+			ad.load_ad(article_index)
+		
+	
+	#print(title_unformatted)
 	title.text = title_unformatted
 	title.add_theme_font_size_override("font_size", ceili(40-len(title_unformatted)/4))
 	

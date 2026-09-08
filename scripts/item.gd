@@ -60,6 +60,7 @@ var overlay_animation = "none"
 var item_category = []
 var placeable = false
 var poster = false
+var ad = false
 
 var rarities = {
 			"common": 500,
@@ -188,6 +189,24 @@ func initialize_item(category := "All"):
 				"epic": 20,
 				"legendary": 4
 			}
+		"Advert":
+			rarities = {
+				"common": 1,
+				"uncommon": 2,
+				"rare": 3,
+				"epic": 4,
+				"legendary": 5
+			}
+			ad = true
+			type = get_random_item(all_items)
+			rarities = {
+				"common": 500,
+				"uncommon": 250,
+				"rare": 100,
+				"epic": 25,
+				"legendary": 5
+			}
+			
 		_:
 			type = get_random_item(all_items)
 	
@@ -295,6 +314,7 @@ func initialize_item(category := "All"):
 	elif type == "smooth_jazz_2":
 		color1 = "blue"
 		color2 = "navy"
+		spice_factor = 1
 		
 	if type == "tshirt":
 		tshirt_logo.show()
@@ -748,8 +768,8 @@ func generate_parameters(type):
 		condition = conditions.pick_random()
 		condition_price_mult = condition_mult_calc(condition)
 		genre = "pop"
-		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
-		default_price = 7
+		price = snapped(8 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 8
 	elif type == "encyclopedia":
 		shippingTime = rng.randi_range(1, 5.0)
 		shippingValue = 2
@@ -757,7 +777,32 @@ func generate_parameters(type):
 		condition_price_mult = condition_mult_calc(condition)
 		price = snapped(25 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
 		default_price = 25
-			
+	elif type == "smooth_jazz_2":
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 1
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		genre = "jazz"
+		price = snapped(7 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 7
+	elif type == "banana_poster":
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 1
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(6.50 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 6.50
+	elif type == "brickies_family_house":
+		shippingTime = rng.randi_range(1, 5.0)
+		shippingValue = 2
+		condition = conditions.pick_random()
+		condition_price_mult = condition_mult_calc(condition)
+		price = snapped(10.50 * condition_price_mult * rng.randf_range(0.8,1.2),0.01)
+		default_price = 10.50
+		
+	if ad:
+		number = 0
+				
 	if brand != "none":
 		pattern_type = "none"
 		color2 = ""
@@ -788,6 +833,10 @@ func generate_parameters(type):
 		
 		price = snapped(price*pattern_mult,0.01)
 	
+	for news in Inventory.boosted_items_news:
+		if news["type"] == type:
+			price = snapped(price * news["amount"],0.01)
+			
 	# bug fix (idk why this is happening lmao)
 	if overlay_animation != "none" and brand == "none":
 		overlay_animation = "none"
@@ -813,6 +862,7 @@ func generate_parameters(type):
 	# minimum price is £1
 	if price < 1:
 		price = 1.00
+		
 func condition_mult_calc(condition: String) -> float:
 	if condition == "Poor":
 		return 0.4
@@ -829,87 +879,88 @@ func display_fps(fps):
 	frame_timer.wait_time = 1/fps
 	
 func set_node_palette(target_sprite: AnimatedSprite2D, num):
-	if target_sprite.material == null:
-		var new_mat = ShaderMaterial.new()
-		target_sprite.material = new_mat
-	else:
-		target_sprite.material = target_sprite.material.duplicate()
+	if not ad:
+		if target_sprite.material == null:
+			var new_mat = ShaderMaterial.new()
+			target_sprite.material = new_mat
+		else:
+			target_sprite.material = target_sprite.material.duplicate()
 
-	if tshirt_pattern.material == null and pattern_type != "none":
-		tshirt_pattern.material = ShaderMaterial.new()
-	elif tshirt_pattern.material != null:
-		tshirt_pattern.material = tshirt_pattern.material.duplicate()
+		if tshirt_pattern.material == null and pattern_type != "none":
+			tshirt_pattern.material = ShaderMaterial.new()
+		elif tshirt_pattern.material != null:
+			tshirt_pattern.material = tshirt_pattern.material.duplicate()
+			
+		if type == "socks":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", socks_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.05)
+			target_sprite.material.set_shader_parameter("color_count", 6)
+			target_sprite.material.set_shader_parameter("palette_count", 10)
+			target_sprite.material.set_shader_parameter("palette_index", num)
+			
+		elif type == "tshirt" or type == "polo_shirt":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.1)
+			target_sprite.material.set_shader_parameter("color_count", 5)
+			target_sprite.material.set_shader_parameter("palette_count", 20)
+			target_sprite.material.set_shader_parameter("palette_index", num)
+		elif type == "shorts":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", shorts_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.05)
+			target_sprite.material.set_shader_parameter("color_count", 4)
+			target_sprite.material.set_shader_parameter("palette_count", 5)
+			target_sprite.material.set_shader_parameter("palette_index", num)
+		elif type == "trousers":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", trousers_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.05)
+			target_sprite.material.set_shader_parameter("color_count", 4)
+			target_sprite.material.set_shader_parameter("palette_count", 5)
+			target_sprite.material.set_shader_parameter("palette_index", num)
+		elif type == "boxers":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", boxers_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.02)
+			target_sprite.material.set_shader_parameter("color_count", 6)
+			target_sprite.material.set_shader_parameter("palette_count", 10)
+			target_sprite.material.set_shader_parameter("palette_index", num)
+		elif type == "conceal_shoes":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", conceal_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.02)
+			target_sprite.material.set_shader_parameter("color_count", 11)
+			target_sprite.material.set_shader_parameter("palette_count", 6)
+			target_sprite.material.set_shader_parameter("palette_index", num)
+			
+		elif type == "flip_flops":
+			target_sprite.material.shader = tshirt_shader
+			
+			target_sprite.material.set_shader_parameter("palette_texture", flip_flop_texture)
+			target_sprite.material.set_shader_parameter("tolerance", 0.1)
+			target_sprite.material.set_shader_parameter("color_count", 5)
+			target_sprite.material.set_shader_parameter("palette_count", 20)
+			target_sprite.material.set_shader_parameter("palette_index", num)
 		
-	if type == "socks":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", socks_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.05)
-		target_sprite.material.set_shader_parameter("color_count", 6)
-		target_sprite.material.set_shader_parameter("palette_count", 10)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-		
-	elif type == "tshirt" or type == "polo_shirt":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", tshirt_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 5)
-		target_sprite.material.set_shader_parameter("palette_count", 20)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-	elif type == "shorts":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", shorts_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.05)
-		target_sprite.material.set_shader_parameter("color_count", 4)
-		target_sprite.material.set_shader_parameter("palette_count", 5)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-	elif type == "trousers":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", trousers_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.05)
-		target_sprite.material.set_shader_parameter("color_count", 4)
-		target_sprite.material.set_shader_parameter("palette_count", 5)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-	elif type == "boxers":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", boxers_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.02)
-		target_sprite.material.set_shader_parameter("color_count", 6)
-		target_sprite.material.set_shader_parameter("palette_count", 10)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-	elif type == "conceal_shoes":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", conceal_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.02)
-		target_sprite.material.set_shader_parameter("color_count", 11)
-		target_sprite.material.set_shader_parameter("palette_count", 6)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-		
-	elif type == "flip_flops":
-		target_sprite.material.shader = tshirt_shader
-		
-		target_sprite.material.set_shader_parameter("palette_texture", flip_flop_texture)
-		target_sprite.material.set_shader_parameter("tolerance", 0.1)
-		target_sprite.material.set_shader_parameter("color_count", 5)
-		target_sprite.material.set_shader_parameter("palette_count", 20)
-		target_sprite.material.set_shader_parameter("palette_index", num)
-	
-	else:
-		target_sprite.material.shader = null
-		
-	if pattern_type != "none":
-		tshirt_pattern.material.shader = tshirt_shader
-		
-		tshirt_pattern.material.set_shader_parameter("palette_texture", pattern_texture)
-		tshirt_pattern.material.set_shader_parameter("tolerance", 0.05)
-		tshirt_pattern.material.set_shader_parameter("color_count", 4)
-		tshirt_pattern.material.set_shader_parameter("palette_count", 20)
-		tshirt_pattern.material.set_shader_parameter("palette_index", num)	
+		else:
+			target_sprite.material.shader = null
+			
+		if pattern_type != "none":
+			tshirt_pattern.material.shader = tshirt_shader
+			
+			tshirt_pattern.material.set_shader_parameter("palette_texture", pattern_texture)
+			tshirt_pattern.material.set_shader_parameter("tolerance", 0.05)
+			tshirt_pattern.material.set_shader_parameter("color_count", 4)
+			tshirt_pattern.material.set_shader_parameter("palette_count", 20)
+			tshirt_pattern.material.set_shader_parameter("palette_index", num)	
 	
 
 #------ for storage
@@ -942,7 +993,8 @@ func get_data() -> Dictionary:
 		"seller_rating": seller_rating,
 		"item_category": item_category,
 		"placeable": placeable,
-		"poster": poster
+		"poster": poster,
+		"ad": ad
 	}
 
 func load_data(data: Dictionary) -> void:
@@ -973,6 +1025,7 @@ func load_data(data: Dictionary) -> void:
 	placeable = data.get("placeable",false)
 	poster = data.get("poster",false)
 	spice_factor = data.get("spice_factor",1)
+	ad = data.get("ad",false)
 	set_item_type(type)
 
 	if sprites.has(type):

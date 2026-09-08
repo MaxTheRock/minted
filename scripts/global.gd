@@ -118,7 +118,19 @@ func new_time_calc(min_added: int) -> void:
 	if on_computer:
 		mins_on_computer += min_added
 	
-	
+	var news_index = 0
+	for news in Inventory.boosted_items_news:
+		if time_mins - news["time"]  >= 24*60:
+			Inventory.boosted_items_news[news_index]["time"] = time_mins
+			Inventory.boosted_items_news[news_index]["amount"] -= 0.1
+			
+			if Inventory.boosted_items_news[news_index]["amount"] < 1:
+				Inventory.boosted_items_news.pop_at(news_interest)
+			
+		news_index += 1
+			
+			
+			
 	daily_change = abs(1-news_interest) + 0.05
 	var change = daily_change / 1440
 	if news_interest > 1 and change > 0.0000001:
@@ -157,7 +169,7 @@ func new_time_calc(min_added: int) -> void:
 			var storage_ui = packed.instantiate()
 			storage_ui.article_index = 0
 			add_child(storage_ui)
-			
+			Inventory.ad_items[0] = {}
 			articles[0] = storage_ui.article_chosen
 			
 			storage_ui.queue_free()
@@ -173,6 +185,7 @@ func new_time_calc(min_added: int) -> void:
 			storage_ui.article_index = 1
 			add_child(storage_ui)
 			
+			Inventory.ad_items[1] = {}
 			articles[1] = storage_ui.article_chosen
 			
 			storage_ui.queue_free()

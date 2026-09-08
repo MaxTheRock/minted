@@ -22,6 +22,7 @@ signal visibility_toggled(is_visible, target)
 @onready var tag_container = $mouse_hitbox/TooltipPanel/tags2
 @onready var info_container = $mouse_hitbox/TooltipPanel/container
 @onready var rating_container: Control = $mouse_hitbox/TooltipPanel/rating
+@onready var money_trend = %money_trend
 
 var current_target = null
 var initial_y = 0
@@ -111,6 +112,18 @@ func show_tooltip(target):
 		$mouse_hitbox/TooltipPanel/container/shipping.show()
 		$mouse_hitbox/TooltipPanel/container/money.show()
 		$mouse_hitbox/TooltipPanel/container/shipping/shipping_time.text = str(item.shippingTime) + " Days"
+		var boosts = 0
+		var overall_boost = 1
+		for news in Inventory.boosted_items_news:
+			if news["type"] == item["type"]:
+				boosts += 1
+				overall_boost *= news["amount"]
+		if boosts == 0:
+			money_trend.play("neutral")
+		elif overall_boost >= 1.1:
+			money_trend.play("upwards")
+		elif overall_boost <= 0.9:
+			money_trend.play("downwards")	
 	else:
 		$mouse_hitbox/TooltipPanel/container/shipping.hide()
 		$mouse_hitbox/TooltipPanel/container/money.hide()

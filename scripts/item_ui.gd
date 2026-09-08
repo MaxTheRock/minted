@@ -357,6 +357,7 @@ func _rarity_ui(item_rarity) -> void:
 	condition_mark.play(item.condition.to_lower())
 
 func _on_buy_button_mouse_entered() -> void:
+	Global.on_market = true
 	Tooltip.show_tooltip(self)
 	item.button_enter()
 	$hitbox.show()

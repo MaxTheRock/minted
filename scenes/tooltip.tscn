@@ -31,6 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://2qashjy331ua" path="res://assets/tooltip/tags/xl_item.png" id="18_jfaob"]
 [ext_resource type="Texture2D" uid="uid://denre067x00av" path="res://assets/tooltip/tags/intensity_icons.png" id="21_vnvf4"]
 [ext_resource type="Texture2D" uid="uid://dgrj4flfceq2a" path="res://assets/tooltip/brand_icons/brickies.png" id="24_4kajc"]
+[ext_resource type="Texture2D" uid="uid://dktwofbvqtbon" path="res://assets/tooltip/trend_downwards.png" id="32_jfaob"]
+[ext_resource type="Texture2D" uid="uid://btjr0fu4aktrm" path="res://assets/tooltip/trend_none.png" id="33_tw8mu"]
+[ext_resource type="Texture2D" uid="uid://b33316o4f7hw6" path="res://assets/tooltip/trend_upwards.png" id="34_tg777"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wstpj"]
 load_path = "res://.godot/imported/item_template_extension.png-9d54d6aa0164fee790ac6468fc2e8de9.ctex"
@@ -1520,6 +1523,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ccrme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_jfaob")
+}],
+"loop": 1,
+"name": &"downwards",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_tw8mu")
+}],
+"loop": 1,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("34_tg777")
+}],
+"loop": 1,
+"name": &"upwards",
+"speed": 5.0
+}]
+
 [node name="Tooltip" type="Control" unique_id=1854001114]
 top_level = true
 layout_mode = 3
@@ -1789,6 +1819,13 @@ theme_override_colors/font_color = Color(0.85490197, 0.7490196, 0.023529412, 1)
 theme_override_fonts/font = ExtResource("2_miqp6")
 theme_override_font_sizes/font_size = 15
 text = "67.21"
+
+[node name="money_trend" type="AnimatedSprite2D" parent="mouse_hitbox/TooltipPanel/container/money" unique_id=113005577]
+unique_name_in_owner = true
+position = Vector2(238, 25)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ccrme")
+animation = &"neutral"
 
 [node name="tag_info" type="Control" parent="mouse_hitbox/TooltipPanel" unique_id=663665821]
 anchors_preset = 0

@@ -9,12 +9,14 @@ var cd_inventory: Array = []
 var display_item: Array = []
 var actual_selling: Array = []
 var player_selling: Array = []
+var ad_items = [{},{}]
 var sold_items: Array = []
 var actual_sold: Array = []
 var display_poster: Array = []
 var buyers: Array = []
 var buyer_rating: float
 
+var boosted_items_news = []
 # bidding lists
 var bidding_items = []
 var bidding_details = [{},{},{}]
@@ -213,6 +215,10 @@ func check_buy_items(buyer,id):
 		pattern_mult = actual_dict["pattern_mult"]
 
 	default_price = default_price* price_mult * brandmult * pattern_mult
+	for news in Inventory.boosted_items_news:
+		if news["type"] == actual_dict["type"]:
+			default_price = snapped(default_price * news["amount"],0.01)
+			
 	if buyer["buyer_type"] == "stingy":
 		default_price *= 0.8
 	elif buyer["buyer_type"] == "leniant":
@@ -306,6 +312,10 @@ func create_bidding_details(index):
 	
 	var default_price = bidding["default_price"]
 	default_price = default_price * price_mult * brandmult * pattern_mult
+	for news in Inventory.boosted_items_news:
+		if news["type"] == bidding["type"]:
+			default_price = snapped(default_price * news["amount"],0.01)
+			
 	var initial_price = max(snapped(default_price / rng.randf_range(2,5),0.5),1.00)
 	var competition_num = randi_range(round(days_to_bid*1.2),round(days_to_bid*2))
 	var bidder_names = []
