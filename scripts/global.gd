@@ -72,7 +72,7 @@ var total_rent = 0
 var frequency = 150
 # clock
 # try 0.2 as default
-var CLOCK_SPEED = 0.2 # ---> The lower, the faster jsuk rohan for testing
+var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
 var SPEED_MULT = 1 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
@@ -128,7 +128,7 @@ func new_time_calc(min_added: int) -> void:
 			Inventory.boosted_items_news[news_index]["amount"] -= 0.1
 			
 			if Inventory.boosted_items_news[news_index]["amount"] < 1:
-				Inventory.boosted_items_news.pop_at(news_interest)
+				Inventory.boosted_items_news.pop_at(news_index)
 			
 		news_index += 1
 			

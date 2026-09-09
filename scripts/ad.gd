@@ -13,7 +13,7 @@ func create_ad(inventory_index):
 	var rng = RandomNumberGenerator.new()
 	var ad_effect = snapped(randf_range(1.2,1.4),0.01)
 	Inventory.boosted_items_news.append({"type":data["type"], "amount":ad_effect, "time":Global.time_mins})
-	print(Inventory.boosted_items_news)
+	#print(Inventory.boosted_items_news)
 	
 func load_ad(inventory_index):
 	if Inventory.ad_items:

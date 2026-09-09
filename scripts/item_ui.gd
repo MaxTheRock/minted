@@ -17,10 +17,10 @@ extends Control
 @onready var hbox_remove = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/HBoxContainer/Remove
 @onready var cd_use = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Use
 @onready var cd_eject = $PanelContainer2/GridContainer/VBoxContainer/MarginContainer/cd_playing/Eject
+@onready var sold_container = %sold_container
 
 signal page_requested(page_name: String)
 signal poster_selected(item_data: Dictionary)
-
 var market_type = ""
 
 var inventory_index = 0
@@ -31,11 +31,13 @@ var watching_hover = false
 
 func _ready() -> void:
 	Tooltip.visibility_toggled.connect(_on_tooltip_visibility_toggled)
+	Inventory.market_update.connect(_item_sold)
 	Tooltip.hide_tooltip(self)
 	var custom_minumum_size = Vector2(150, 220)
 
 	if Inventory.current_ui_type == "market":
 		buy_button.show()
+		sold_container.hide()
 		take_button.hide()
 		place_button.hide()
 		shelf_ui_buttons.hide()
@@ -47,7 +49,7 @@ func _ready() -> void:
 		item.rarity_ui.connect(_rarity_ui)
 		if item.type == "":
 			item.initialize_item()
-		
+		market_type = Inventory.current_market_type
 
 	elif Inventory.current_ui_type == "wardrobe":
 		buy_button.hide()
@@ -636,7 +638,9 @@ func _on_upload_button_pressed() -> void:
  
 func load_data(data):
 	item.load_data(data)
- 
+	if Inventory.current_ui_type == "market":
+		buy_button.show()
+		sold_container.hide()
  
 func get_data():
 	if not is_node_ready():
@@ -757,4 +761,19 @@ func _on_tooltip_visibility_toggled(is_visible: bool, target: Control) -> void:
 	else:
 		z_index = 0
 
-	
+
+func fade_from_black(duration: float = 1.0) -> void:
+	var tween = create_tween()
+	tween.tween_property(sold_container, "modulate", Color(1, 1, 1, 1), duration)
+	await tween.finished
+	sold_container.hide() 
+		
+func _item_sold(updated_market_type, found_index) -> void:
+	if get_index() == found_index and Global.on_market and market_type == updated_market_type:
+		buy_button.hide()
+		sold_container.show()
+		fade_from_black(3.0)
+		await fade_from_black(3.0)
+		buy_button.show()
+		load_data(Inventory.market_items[updated_market_type][inventory_index])
+		

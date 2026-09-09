@@ -61,6 +61,7 @@ var item_category = []
 var placeable = false
 var poster = false
 var ad = false
+var market_category = ""
 
 var rarities = {
 			"common": 500,
@@ -158,6 +159,7 @@ func initialize_item(category := "All"):
 	seller_name = Global.name_generator()
 	seller_rating = star_rating_bell_curve()
 	rng.randomize()
+	market_category = category
 	match category:
 		"Clothes":
 			type = get_random_item(clothes)
@@ -994,7 +996,8 @@ func get_data() -> Dictionary:
 		"item_category": item_category,
 		"placeable": placeable,
 		"poster": poster,
-		"ad": ad
+		"ad": ad,
+		"market_category": market_category
 	}
 
 func load_data(data: Dictionary) -> void:
@@ -1026,6 +1029,7 @@ func load_data(data: Dictionary) -> void:
 	poster = data.get("poster",false)
 	spice_factor = data.get("spice_factor",1)
 	ad = data.get("ad",false)
+	market_category = data.get("markey_category","")
 	set_item_type(type)
 
 	if sprites.has(type):

@@ -672,6 +672,31 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_er7ca")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_xfqyr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mfkka")
 
+[node name="sold_container" type="Control" parent="." unique_id=794295294]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="sold_container" unique_id=338529405]
+z_index = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 49.0
+offset_right = 120.0
+offset_bottom = 109.0
+color = Color(1, 0, 0, 1)
+
+[node name="sold_label" type="Label" parent="sold_container" unique_id=1028945066]
+z_index = 2
+layout_mode = 0
+offset_left = 40.0
+offset_top = 67.0
+offset_right = 85.0
+offset_bottom = 86.0
+text = "SOLD!"
+
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_pressed"]
