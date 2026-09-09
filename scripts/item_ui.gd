@@ -775,5 +775,5 @@ func _item_sold(updated_market_type, found_index) -> void:
 		fade_from_black(3.0)
 		await fade_from_black(3.0)
 		buy_button.show()
-		load_data(Inventory.market_items[updated_market_type][inventory_index])
+		load_data(Inventory.market_items[updated_market_type][found_index])
 		
