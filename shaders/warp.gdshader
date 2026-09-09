@@ -21,11 +21,11 @@ void fragment() {
         pos.y += strength * cos(2.0 * t + k * 1.5 * pos.x);
     }
 
-    // Black → red
+    // Black → grey
     float pattern = 0.5 + 0.5 * sin(pos.x + pos.y + t);
 
-    vec3 red = vec3(1.0, 0.45, 0.45);
-    vec3 col = mix(vec3(0.0), red, pattern);
+    vec3 grey = vec3(0.2, 0.2, 0.2);
+    vec3 col = mix(vec3(0.0), grey, pattern);
 
     COLOR = vec4(col, 1.0);
 }

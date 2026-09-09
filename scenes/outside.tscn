@@ -294,7 +294,7 @@ texture = ExtResource("14_nxbbw")
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions" unique_id=1168135129]
-polygon = PackedVector2Array(1709, 86, -334, 86, -334, 686, 1710, 686, 1710, 88, 1713, 88, 1713, 690, -338, 689, -338, 81, 1714, 80)
+polygon = PackedVector2Array(1709, 86, -334, 86, -334, 686, 1710, 686, 1710, 88, 1803, 89, 1807, 690, -411, 691, -405, 78, 1714, 80)
 
 [node name="bank" type="Control" parent="." unique_id=451124641]
 anchors_preset = 0
