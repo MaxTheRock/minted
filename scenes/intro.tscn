@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bkc4n158kkjf4"]
 
 [ext_resource type="Script" uid="uid://b24ikjwv6o2xt" path="res://scripts/intro.gd" id="1_4bx60"]
-[ext_resource type="Texture2D" uid="uid://3umge0marxk0" path="res://assets/weneedastudioname_studio.png" id="2_i2l1n"]
 [ext_resource type="Texture2D" uid="uid://dqdtinhe3sbio" path="res://assets/Godot Logo.png" id="3_i2l1n"]
+[ext_resource type="Texture2D" uid="uid://bcui8pl5kkt1y" path="res://assets/peppermint_studios_logo.png" id="4_es01l"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_wfs7u"]
 [ext_resource type="Material" uid="uid://hduiy5give5w" path="res://shaders/warp.tres" id="5_wfs7u"]
 [ext_resource type="AudioStream" uid="uid://bv0bg7ef37yrr" path="res://audio/intro.wav" id="6_es01l"]
@@ -76,17 +76,32 @@ layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 
+[node name="Label2" type="Label" parent="." unique_id=519936632]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 124.0
+offset_right = 758.0
+offset_bottom = 208.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_wfs7u")
+theme_override_font_sizes/font_size = 30
+text = "A game by:"
+
+[node name="Label3" type="Label" parent="." unique_id=1657839715]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 462.0
+offset_right = 884.0
+offset_bottom = 546.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_wfs7u")
+theme_override_font_sizes/font_size = 30
+text = "Peppermint Studios"
+
 [node name="studio_logo" type="Sprite2D" parent="." unique_id=833658682]
 position = Vector2(633, 349)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_i2l1n")
-
-[node name="Label" type="Label" parent="studio_logo" unique_id=519936632]
-offset_left = -37.333332
-offset_top = -113.33333
-offset_right = 86.66667
-offset_bottom = -94.33333
-text = "A GAME BY"
+scale = Vector2(3, 3)
+texture = ExtResource("4_es01l")
 
 [node name="godot_logo" type="Sprite2D" parent="." unique_id=597884680]
 position = Vector2(97, 633)
