@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bwj18fktghcya" path="res://assets/send_icon.png" id="4_mhtwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c3da"]
-bg_color = Color(0.33288118, 0.3328805, 0.33288047, 1)
+bg_color = Color(0.007843138, 0.043137256, 0, 0.972549)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pjmv"]
-bg_color = Color(0.5171835, 0.517185, 0.51718366, 1)
+bg_color = Color(0.13414475, 0.13463625, 0.119847484, 0.972549)
 
 [node name="Mail" type="Control" unique_id=559621438]
 layout_mode = 3
@@ -25,11 +25,10 @@ url = "https://royalmint.mail/u/1/inbox"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=820746613]
 layout_mode = 0
-offset_top = 41.0
+offset_top = -34.0
 offset_right = 1416.0
-offset_bottom = 630.0
+offset_bottom = 659.0
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -60)
 
 [node name="Sections" type="HBoxContainer" parent="VBoxContainer" unique_id=178959929]
 layout_mode = 2

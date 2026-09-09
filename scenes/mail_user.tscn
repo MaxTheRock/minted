@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b58wrow8u7ql8" path="res://scripts/mail_user.gd" id="1_5jt3h"]
 [ext_resource type="Texture2D" uid="uid://jp8x71olgos" path="res://assets/brand_icons/shippley/wallpaper_shippley.png" id="2_seybc"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="2_xkhmy"]
 [ext_resource type="Texture2D" uid="uid://dptsyh77eukpj" path="res://assets/brand_icons/shippley/shippley_logo.png" id="3_xkhmy"]
 
 [node name="MailUser" type="Control" unique_id=179058187]
@@ -34,6 +35,8 @@ mouse_filter = 2
 
 [node name="NamenTime" type="Label" parent="Button/PanelContainer/VBoxContainer" unique_id=620952769]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xkhmy")
+theme_override_font_sizes/font_size = 8
 text = "SDS - Shippley Delivery Service  =  6:30pm"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Button/PanelContainer/VBoxContainer" unique_id=1491017712]
@@ -67,6 +70,8 @@ mouse_filter = 2
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.6431373)
+theme_override_fonts/font = ExtResource("2_xkhmy")
+theme_override_font_sizes/font_size = 8
 text = "Your parcel is on its way! Your tracking information is shown below. For further information your ident..."
 autowrap_mode = 2
 
