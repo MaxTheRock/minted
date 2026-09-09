@@ -611,7 +611,7 @@ func check_buy_market(buyer,id):
 	elif buyer["buyer_type"] == "leniant":
 		default_price *= 1.2
 	price_affect_odds = get_buy_probability_sigmoid(actual_dict["price"],default_price)
-	odds = 0.05 * trust * price_affect_odds	
+	odds = 0.15 * trust * price_affect_odds	
 	var numbar = rng.randf()
 	#print(odds, " ", numbar)
 	if odds * Global.news_interest >= numbar:
