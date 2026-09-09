@@ -29,7 +29,7 @@ func _on_button_pressed() -> void:
 		progress.value = 0
 		Global.refreshProgress = 0
 		Global.rent_broadband += 0.02 * Global.rent_broadband_mult
-		Inventory.refresh_buyer_market(category)
+		Inventory.refresh_buyers_market(category)
 
 		if grids.has(category):
 			var grid = grids[category]

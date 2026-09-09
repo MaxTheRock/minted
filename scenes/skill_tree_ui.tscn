@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://q0prwqs6h2li"]
+
+[ext_resource type="Texture2D" uid="uid://ccnk3dvu2p7mr" path="res://assets/mintora_home.png" id="1_4h77i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6snss"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4h77i"]
+
+[node name="Control" type="PanelContainer" unique_id=326210433]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 38.0
+offset_right = -1070.0
+offset_bottom = -582.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1650106415]
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("1_4h77i")
+
+[node name="Button" type="Button" parent="." unique_id=689891231]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6snss")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4h77i")
