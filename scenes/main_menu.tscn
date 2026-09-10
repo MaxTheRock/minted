@@ -255,7 +255,7 @@ offset_right = 130.0
 offset_bottom = 687.0
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_oa1go")
-text = "v0.1d"
+text = "v0.2d"
 
 [connection signal="pressed" from="button_container/Continue_Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="button_container/New_game_Button" to="." method="_on_new_game_button_pressed"]
