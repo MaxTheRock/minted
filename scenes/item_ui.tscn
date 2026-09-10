@@ -20,6 +20,7 @@
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="16_eu0tx"]
 [ext_resource type="Texture2D" uid="uid://msqt2kk1lk8h" path="res://assets/delte_button.png" id="18_ry7r3"]
 [ext_resource type="Texture2D" uid="uid://d0gfmu5iqpyy" path="res://assets/secondary_action_button.png" id="19_0l2t5"]
+[ext_resource type="Texture2D" uid="uid://cqm2ueyow8ds2" path="res://assets/hotbar/rent_day_title_template.png" id="21_0l2t5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_my6qv"]
 atlas = ExtResource("4_t0011")
@@ -674,28 +675,35 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_mfkka")
 
 [node name="sold_container" type="Control" parent="." unique_id=794295294]
 unique_name_in_owner = true
-visible = false
+z_index = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="sold_container" unique_id=338529405]
-z_index = 2
-layout_mode = 0
-offset_left = 20.0
-offset_top = 49.0
-offset_right = 120.0
-offset_bottom = 109.0
-color = Color(1, 0, 0, 1)
-
 [node name="sold_label" type="Label" parent="sold_container" unique_id=1028945066]
 z_index = 2
 layout_mode = 0
-offset_left = 40.0
-offset_top = 67.0
-offset_right = 85.0
-offset_bottom = 86.0
+offset_left = 38.0
+offset_top = 55.0
+offset_right = 108.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("16_eu0tx")
 text = "SOLD!"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="sold_container" unique_id=1528188608]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 30.0
+offset_right = 40.0
+offset_bottom = 54.75
+scale = Vector2(4, 4)
+texture = ExtResource("21_0l2t5")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
 
 [connection signal="mouse_entered" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer2/GridContainer/VBoxContainer/MarginContainer/Use_Button" to="." method="_on_use_button_mouse_exited"]

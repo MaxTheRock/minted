@@ -25,9 +25,8 @@ url = "https://royalmint.mail/u/1/inbox"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=820746613]
 layout_mode = 0
-offset_top = -34.0
 offset_right = 1416.0
-offset_bottom = 659.0
+offset_bottom = 645.0
 offset_transform_enabled = true
 
 [node name="Sections" type="HBoxContainer" parent="VBoxContainer" unique_id=178959929]
@@ -39,7 +38,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Sections/Control" unique_id=62051332]
 layout_mode = 0
-offset_top = 66.0
+offset_top = 32.0
 offset_right = 416.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4c3da")
@@ -73,7 +72,7 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Sections/MarginContainer2/Control" unique_id=1398443035]
 layout_mode = 0
 offset_left = -20.0
-offset_top = -34.0
+offset_top = -68.0
 offset_right = 848.0
 offset_bottom = 548.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4pjmv")

@@ -61,6 +61,7 @@ func _ready() -> void:
 		eject_button.hide()
 		upload_button.hide()
 		grid_container.show()
+		sold_container.hide()
 
 		if Inventory.wardrobe_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -81,6 +82,7 @@ func _ready() -> void:
 		eject_button.hide()
 		upload_button.hide()
 		grid_container.show()
+		sold_container.hide()
 
 		if Inventory.shelf_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -105,6 +107,7 @@ func _ready() -> void:
 		eject_button.hide()
 		upload_button.hide()
 		grid_container.show()
+		sold_container.hide()
 
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -131,6 +134,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$PanelContainer2.hide()
+		sold_container.hide()
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
 			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
@@ -149,6 +153,7 @@ func _ready() -> void:
 		use_button.hide()
 		upload_button.hide()
 		shelf_ui_buttons.hide()
+		sold_container.hide()
 
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -169,6 +174,7 @@ func _ready() -> void:
 		eject_button.hide()
 		upload_button.hide()
 		grid_container.show()
+		sold_container.hide()
 
 		if Inventory.player_inventory:
 			item.rarity_ui.connect(_rarity_ui)
@@ -188,6 +194,7 @@ func _ready() -> void:
 		eject_button.hide()
 		upload_button.show()
 		grid_container.show()
+		sold_container.hide()
 
 		if Inventory.display_item:
 			item.rarity_ui.connect(_rarity_ui)
@@ -209,7 +216,8 @@ func _ready() -> void:
 		upload_button.hide()
 		grid_container.show()
 		item.rarity_ui.connect(_rarity_ui)
-
+		sold_container.hide()
+		
 		if inventory_index >= 0 and inventory_index < ShippingHandler.locker_list.size():
 			item.load_data(ShippingHandler.locker_list[inventory_index][0][0][0])
 
@@ -224,6 +232,7 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		$PanelContainer2.hide()
+		sold_container.hide()
 
 		if Inventory.actual_selling:
 			item.rarity_ui.connect(_rarity_ui)
@@ -245,6 +254,7 @@ func _ready() -> void:
 		grid_container.hide()
 		upload_button.hide()
 		$PanelContainer2.hide()
+		sold_container.hide()
 
 		if Inventory.actual_sold:
 			item.rarity_ui.connect(_rarity_ui)
@@ -277,6 +287,7 @@ func _ready() -> void:
 		upload_button.hide()
 		shelf_ui_buttons.hide()
 		grid_container.show()
+		sold_container.hide()
 		
 		var item_data = item.get_data()
 		if item_data["poster"] == false:
@@ -305,6 +316,7 @@ func _ready() -> void:
 		upload_button.hide()
 		panel_container.custom_maximum_size = Vector2(150, 160)
 		$PanelContainer2.hide()
+		sold_container.hide()
 		
 		if Inventory.bidding_items:
 			item.rarity_ui.connect(_rarity_ui)
@@ -327,7 +339,8 @@ func _ready() -> void:
 		grid_container.hide()
 		$PanelContainer2.hide()
 		item.rarity_ui.connect(_rarity_ui)
-
+		sold_container.hide()
+		
 	else:
 		$PanelContainer2.show()
 
