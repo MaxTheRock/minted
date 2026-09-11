@@ -163,7 +163,6 @@ func new_time_calc(min_added: int) -> void:
 				days_since_rent = 0
 		if hour == 12 and rent_ready:
 			rent_triggered = true
-
 		if hour == refresh_news_1_at:
 			while articles.size() < 2:
 				articles.append(null)

@@ -52,6 +52,7 @@ func _on_pay_button_pressed() -> void:
 	if Global.money >= total_rent:
 		Global.money -= total_rent
 		Global.rent_triggered = false
+		Global.rent_ready = false
 		Global.days_since_rent = 0
 		RentPopup.visible = false
 		Global.rent_building *= 1.32
