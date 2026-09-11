@@ -5,7 +5,7 @@ To-do list (add as we go and delete when completed):
 - More items
 - Endings
 - Scamming
-- News ads + art
+- News art
 - More rooms
 - Tutorial level
 - Upgrade outside
