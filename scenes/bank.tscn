@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://b2eupinbhsyoh" path="res://assets/hotbar/speech_bubble_template.png" id="5_xwtro"]
 [ext_resource type="Texture2D" uid="uid://b8bcdob1flen3" path="res://assets/next_button.png" id="6_7nnl3"]
 [ext_resource type="Texture2D" uid="uid://dkr1udwiclbhe" path="res://assets/next_button_hovered.png" id="7_1di4w"]
+[ext_resource type="Texture2D" uid="uid://cwssp2l3qjnc1" path="res://assets/hotbar/item_template_extension.png" id="8_evogc"]
+[ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="9_qnd04"]
+[ext_resource type="Texture2D" uid="uid://d4gjvdamffvt5" path="res://assets/buy_template.png" id="10_qnd04"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0aawc"]
 content_margin_left = 10.0
@@ -101,6 +104,12 @@ animations = [{
 "name": &"7",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5yi6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avos3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dondp"]
 
 [node name="Bank" type="Control" unique_id=1237760597]
 layout_mode = 3
@@ -325,4 +334,302 @@ scale = Vector2(4, 4)
 texture_normal = ExtResource("6_7nnl3")
 texture_hover = ExtResource("7_1di4w")
 
+[node name="popup" type="Control" parent="." unique_id=287511671]
+anchors_preset = 0
+offset_left = 614.0
+offset_top = 25.0
+offset_right = 1223.0
+offset_bottom = 698.0
+
+[node name="loan" type="Control" parent="popup" unique_id=1571352447]
+anchors_preset = 0
+
+[node name="background" type="NinePatchRect" parent="popup/loan" unique_id=1903361717]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 152.75
+offset_bottom = 174.25
+scale = Vector2(4, 4)
+texture = ExtResource("3_3bwp7")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="banner" type="NinePatchRect" parent="popup/loan" unique_id=866152783]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 152.75
+offset_bottom = 58.75
+scale = Vector2(4, 4)
+texture = ExtResource("8_evogc")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="text" type="Label" parent="popup/loan" unique_id=1851061093]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 48.0
+offset_right = 417.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Take a loan"
+
+[node name="loanButton1" type="TextureButton" parent="popup/loan" unique_id=854682106]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 194.0
+offset_bottom = 318.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButton1" unique_id=1477137150]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text" type="Label" parent="popup/loan/loanButton1/background" unique_id=903833562]
+custom_maximum_size = Vector2(100, -1)
+layout_mode = 0
+offset_left = 7.5
+offset_top = 6.25
+offset_right = 107.5
+offset_bottom = 149.25
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Small loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="loanButton2" type="TextureButton" parent="popup/loan" unique_id=1320524497]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 226.0
+offset_top = 150.0
+offset_right = 370.0
+offset_bottom = 318.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButton2" unique_id=1133614133]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text" type="Label" parent="popup/loan/loanButton2/background" unique_id=780108746]
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 0
+offset_left = 3.25
+offset_top = 6.25
+offset_right = 153.25
+offset_bottom = 149.25
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Medium loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="loanButton3" type="TextureButton" parent="popup/loan" unique_id=1944076780]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 405.0
+offset_top = 150.0
+offset_right = 549.0
+offset_bottom = 318.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButton3" unique_id=561489979]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text" type="Label" parent="popup/loan/loanButton3/background" unique_id=750023087]
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 0
+offset_left = 3.25
+offset_top = 6.25
+offset_right = 153.25
+offset_bottom = 149.25
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Large loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="total_background" type="NinePatchRect" parent="popup/loan" unique_id=727962180]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 337.0
+offset_right = 164.0
+offset_bottom = 390.5
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="amountLabel" type="Label" parent="popup/loan/total_background" unique_id=1930034948]
+layout_mode = 0
+offset_left = 6.5
+offset_top = 3.75
+offset_right = 241.5
+offset_bottom = 73.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Amount"
+
+[node name="amountNumber" type="Label" parent="popup/loan/total_background" unique_id=1897976596]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 41.5
+offset_top = 3.75
+offset_right = 482.75
+offset_bottom = 73.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "$1000"
+horizontal_alignment = 2
+
+[node name="interestLabel" type="Label" parent="popup/loan/total_background" unique_id=820146217]
+layout_mode = 0
+offset_left = 6.5
+offset_top = 14.75
+offset_right = 241.5
+offset_bottom = 84.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Interest"
+
+[node name="interestNumber" type="Label" parent="popup/loan/total_background" unique_id=988416531]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 41.5
+offset_top = 14.75
+offset_right = 482.75
+offset_bottom = 84.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "25%"
+horizontal_alignment = 2
+
+[node name="repayLabel" type="Label" parent="popup/loan/total_background" unique_id=2047812187]
+layout_mode = 0
+offset_left = 6.5
+offset_top = 25.75
+offset_right = 336.5
+offset_bottom = 95.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Repayment time"
+
+[node name="repayNumber" type="Label" parent="popup/loan/total_background" unique_id=817274231]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 41.5
+offset_top = 25.75
+offset_right = 482.75
+offset_bottom = 95.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "2 days"
+horizontal_alignment = 2
+
+[node name="confirmButton" type="Button" parent="popup/loan" unique_id=1674272922]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 416.0
+offset_top = 526.0
+offset_right = 537.0
+offset_bottom = 576.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d5yi6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_avos3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dondp")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="popup/loan/confirmButton" unique_id=2126079564]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 39.0
+offset_bottom = 10.0
+scale = Vector2(4, 4)
+texture = ExtResource("10_qnd04")
+patch_margin_left = 3
+patch_margin_top = 5
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="popup/loan/confirmButton" unique_id=1133487097]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 4.0
+offset_right = 101.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.13081625, 0.24524829, 7.219613e-08, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "CONFIRM"
+
 [connection signal="pressed" from="left/Close" to="." method="_on_close_pressed"]
+[connection signal="mouse_entered" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_mouse_entered"]
+[connection signal="mouse_exited" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_mouse_exited"]
+[connection signal="pressed" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_pressed"]
+[connection signal="mouse_entered" from="popup/loan/loanButton2" to="." method="_on_loan_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="popup/loan/loanButton2" to="." method="_on_loan_button_2_mouse_exited"]
+[connection signal="pressed" from="popup/loan/loanButton2" to="." method="_on_loan_button_2_pressed"]
+[connection signal="mouse_entered" from="popup/loan/loanButton3" to="." method="_on_loan_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="popup/loan/loanButton3" to="." method="_on_loan_button_3_mouse_exited"]
+[connection signal="pressed" from="popup/loan/loanButton3" to="." method="_on_loan_button_3_pressed"]
+[connection signal="mouse_entered" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_entered"]
+[connection signal="mouse_exited" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_exited"]
+[connection signal="pressed" from="popup/loan/confirmButton" to="." method="_on_confirm_button_pressed"]

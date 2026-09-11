@@ -675,6 +675,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_mfkka")
 
 [node name="sold_container" type="Control" parent="." unique_id=794295294]
 unique_name_in_owner = true
+visible = false
 z_index = 2
 anchors_preset = 0
 offset_right = 40.0
