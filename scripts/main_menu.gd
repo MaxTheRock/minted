@@ -8,6 +8,7 @@ func _ready() -> void:
 		$button_container/Continue_Button.show()
 
 func _on_play_button_pressed() -> void:
+	Global.do_rent = true
 	get_tree().change_scene_to_file("res://scenes/room.tscn")
 	
 func _on_options_button_pressed() -> void:

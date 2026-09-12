@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://q0prwqs6h2li"]
 
-[ext_resource type="Texture2D" uid="uid://ccnk3dvu2p7mr" path="res://assets/mintora_home.png" id="1_4h77i"]
+[ext_resource type="Script" uid="uid://cflg7ipgh0a3b" path="res://scripts/skill_tree_ui.gd" id="1_0u12c"]
+[ext_resource type="Texture2D" uid="uid://dhdd61j288hvf" path="res://assets/skill_tree/dual_posters.png" id="1_4h77i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0u12c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6snss"]
 
@@ -8,22 +11,26 @@
 
 [node name="Control" type="PanelContainer" unique_id=326210433]
 z_index = 1
+custom_minimum_size = Vector2(64, 64)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 110.0
-offset_top = 38.0
-offset_right = -1070.0
-offset_bottom = -582.0
+offset_right = -1216.0
+offset_bottom = -656.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0u12c")
+script = ExtResource("1_0u12c")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1650106415]
-custom_maximum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("1_4h77i")
+expand_mode = 1
 
 [node name="Button" type="Button" parent="." unique_id=689891231]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_6snss")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_4h77i")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

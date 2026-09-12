@@ -12,10 +12,16 @@ func _save():
 
 func _load():
 	if FileAccess.file_exists(save_location):
-		SaveFileData = ResourceLoader.load(save_location).duplicate(true)
-		Global.load_save_data(SaveFileData.global_data)
-		Inventory.load_save_data(SaveFileData.inventory_data)
-
+		var loaded_res = ResourceLoader.load(save_location, "", ResourceLoader.CACHE_MODE_IGNORE)
+		
+		if loaded_res != null:
+			SaveFileData = loaded_res.duplicate(true)
+			Global.load_save_data(SaveFileData.global_data)
+			Inventory.load_save_data(SaveFileData.inventory_data)
+		else:
+			print("Save file corrupted or invalid. Creating fresh save data.")
+			_wipe()
+			
 func _wipe():
 	if FileAccess.file_exists(save_location):
 		DirAccess.remove_absolute(save_location)

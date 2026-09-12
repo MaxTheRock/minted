@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ed7j3rpvwggq" path="res://scripts/main_ui.gd" id="1_j6a7c"]
 [ext_resource type="PackedScene" uid="uid://cwxics053ly5x" path="res://scenes/home.tscn" id="3_okuri"]
+[ext_resource type="PackedScene" uid="uid://bogynt6dv1h1e" path="res://scenes/skill_tree.tscn" id="5_i1gbh"]
 [ext_resource type="PackedScene" uid="uid://dhynb0gac2y1w" path="res://scenes/newspaper.tscn" id="5_kyx1g"]
 [ext_resource type="PackedScene" uid="uid://exx8ateuuuc0" path="res://scenes/mintora.tscn" id="5_scoti"]
-[ext_resource type="PackedScene" uid="uid://drm5u2rxuticl" path="res://scenes/options.tscn" id="7_r0apq"]
 
 [node name="MainUI" type="Control" unique_id=68240334]
 layout_mode = 3
@@ -25,8 +25,8 @@ offset_bottom = 115.0
 [node name="Newspaper" parent="." unique_id=1782061001 instance=ExtResource("5_kyx1g")]
 layout_mode = 0
 
-[node name="Options" parent="." unique_id=20333252 instance=ExtResource("7_r0apq")]
-layout_mode = 0
-
 [node name="Mintora" parent="." unique_id=1932963451 instance=ExtResource("5_scoti")]
+layout_mode = 1
+
+[node name="Skill_Tree" parent="." unique_id=1935670365 instance=ExtResource("5_i1gbh")]
 layout_mode = 1

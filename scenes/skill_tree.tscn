@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://bogynt6dv1h1e"]
 
 [ext_resource type="Script" uid="uid://rpc3422o50py" path="res://scripts/skill_tree.gd" id="1_tnam6"]
-[ext_resource type="PackedScene" uid="uid://q0prwqs6h2li" path="res://scenes/skill_tree_ui.tscn" id="2_a302t"]
+[ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="2_tnam6"]
+[ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="3_a302t"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_tyjg3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyjg3"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Skill_tree" type="Control" unique_id=1935670365]
 layout_mode = 3
@@ -12,45 +21,116 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tnam6")
 
-[node name="Control" parent="." unique_id=326210433 instance=ExtResource("2_a302t")]
-layout_mode = 1
-offset_left = 416.0
-offset_top = 370.0
-offset_right = -764.0
-offset_bottom = -250.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=589978637]
 
-[node name="Control2" parent="." unique_id=1219265233 instance=ExtResource("2_a302t")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 714.0
-offset_top = 250.0
-offset_right = 814.0
-offset_bottom = 350.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1185537181]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+alignment = 2
 
-[node name="Control3" parent="." unique_id=156415097 instance=ExtResource("2_a302t")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 747.0
-offset_top = 578.0
-offset_right = 847.0
-offset_bottom = 678.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=85995014]
+layout_mode = 2
 
-[node name="Control4" parent="." unique_id=311506023 instance=ExtResource("2_a302t")]
+[node name="PanelContainer2" parent="CanvasLayer/VBoxContainer/Control" unique_id=1557691227 instance=ExtResource("2_tnam6")]
 layout_mode = 0
+offset_top = -648.0
+offset_right = 1285.0
+offset_bottom = -578.0
+mintora = true
+
+[node name="PanelContainer" parent="CanvasLayer/VBoxContainer" unique_id=156462522 instance=ExtResource("3_a302t")]
+layout_mode = 2
+
+[node name="SkillTreeContainer" type="Control" parent="." unique_id=622221306]
 anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 226.0
-offset_top = 92.0
-offset_right = 326.0
-offset_bottom = 192.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 873.0
+offset_top = 838.0
+offset_right = 913.0
+offset_bottom = 878.0
+
+[node name="info" type="ColorRect" parent="." unique_id=1921204348]
+visible = false
+layout_mode = 0
+offset_left = 921.0
+offset_top = 5.0
+offset_right = 1321.0
+offset_bottom = 725.0
+
+[node name="Close" type="Button" parent="info" unique_id=2077533833]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 68.0
+offset_right = 62.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0.7992127, 0.0019698713, 0.08457186, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_tyjg3")
+text = "X"
+
+[node name="Buy" type="Button" parent="info" unique_id=1242449362]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 535.0
+offset_right = 224.0
+offset_bottom = 614.0
+theme_override_colors/font_color = Color(0.72156864, 0.8117647, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_tyjg3")
+text = "BUY"
+
+[node name="title" type="Label" parent="info" unique_id=1712556758]
+unique_name_in_owner = true
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 0
+offset_left = 22.0
+offset_top = 159.0
+offset_right = 322.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="decription" type="RichTextLabel" parent="info" unique_id=937059847]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 200)
+custom_maximum_size = Vector2(300, 200)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 268.0
+offset_right = 319.0
+offset_bottom = 468.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "Description"
+
+[node name="price" type="Label" parent="info" unique_id=1072418699]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 449.0
+offset_right = 168.0
+offset_bottom = 505.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tyjg3")
+theme_override_font_sizes/font_size = 20
+text = "Price:"
+
+[node name="price2" type="Label" parent="info" unique_id=1564378148]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 95.0
+offset_top = 454.0
+offset_right = 219.0
+offset_bottom = 510.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tyjg3")
+theme_override_font_sizes/font_size = 20
+text = "$999"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="info/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="info/Buy" to="." method="_on_buy_pressed"]

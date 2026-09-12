@@ -69,6 +69,7 @@ var rent_frequency = 10
 var rent_ready = false
 var total_rent = 0
 var loan_info: Array = [0, 0, 0] # money, days left, interest
+var do_rent = false
 
 var frequency = 150
 # clock
@@ -93,10 +94,13 @@ var player_pos = Vector2(0,0)
 # Debug
 var debug_enabled: bool
 
+# Skill Tree
+var skill_tree_unlocked = [0]
+
 func _process(delta):
 	if money != current_money:
 		SaveLoad._save()
-	if rent_triggered:
+	if rent_triggered and do_rent:
 		RentPopup.visible = true
 		paused = true
 	else:
@@ -427,11 +431,11 @@ func get_save_data() -> Dictionary:
 		"articles": articles,
 		"news_interest": news_interest,
 		"daily_change": daily_change,
-
+		"do_rent": do_rent,
 		"player_pos": player_pos,
 		"player_ratings": player_ratings,
 		"player_rating": player_rating,
-		
+		"skill_tree_unlocked":skill_tree_unlocked,
 		"debug_enabled": debug_enabled,
 	}
 
@@ -455,7 +459,8 @@ func load_save_data(data: Dictionary) -> void:
 	bidding_index_selected = data.get("bidding_index_selected", bidding_index_selected)
 	vehicle_queue_left = data.get("vehicle_queue_left", vehicle_queue_left)
 	vehicle_queue_right = data.get("vehicle_queue_right", vehicle_queue_right)
-
+	do_rent = data.get("do_rent",true)
+	skill_tree_unlocked = data.get("skill_tree_unlocked",[0])
 	min = data.get("min", min)
 	hour = data.get("hour", hour)
 	day = data.get("day", day)
