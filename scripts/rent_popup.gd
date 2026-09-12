@@ -73,7 +73,7 @@ func _on_pay_button_pressed() -> void:
 		Global.rent_broadband_mult *= 1.07
 		Global.rent_broadband = 0
 		Global.mins_on_computer = 0
-		if Global.loan_info[0] <= 0:
+		if Global.loan_info[0] > 0 and Global.loan_info[1] > 0:
 			Global.loan_info[0] -= Global.loan_info[0]/Global.loan_info[1]
 			Global.loan_info[1] -= 1
 	else:

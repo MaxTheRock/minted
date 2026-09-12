@@ -252,6 +252,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Username" type="Label" parent="Left/MarginContainer/VBoxContainer/VBoxContainer" unique_id=895410498]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_nuq0q")
 theme_override_font_sizes/font_size = 10
@@ -332,5 +333,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "23/06/2026"
 
+[node name="front_nodes" type="Control" parent="." unique_id=278328708]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="front_nodes" unique_id=1654144285]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 9.0
+offset_right = 276.0
+offset_bottom = 37.0
+
 [connection signal="mouse_entered" from="back_nodes/CenterContainer/book_node/book_button" to="." method="_on_book_button_mouse_entered"]
 [connection signal="mouse_exited" from="back_nodes/CenterContainer/book_node/book_button" to="." method="_on_book_button_mouse_exited"]
+[connection signal="pressed" from="front_nodes/TextureButton" to="." method="_on_texture_button_pressed"]
