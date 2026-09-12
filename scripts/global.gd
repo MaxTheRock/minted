@@ -74,7 +74,7 @@ var frequency = 150
 # clock
 # try 0.2 as default
 var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
-var SPEED_MULT = 5 # just makes time even faster, default to 1.
+var SPEED_MULT = 1 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
