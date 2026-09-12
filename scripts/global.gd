@@ -1,6 +1,7 @@
 extends Node
 
 var money: float = 50.00
+var username: String = "margthehagler34"
 var current_money: float = money
 var xp: int = 0
 var rank: String = "Seller"
@@ -375,6 +376,7 @@ func full_name_generator():
 func get_save_data() -> Dictionary:
 	return {
 		"money": money,
+		"username": username,
 		"xp": xp,
 		"rank": rank,
 		"storage_capacity": storage_capacity,
@@ -437,6 +439,7 @@ func get_save_data() -> Dictionary:
 
 func load_save_data(data: Dictionary) -> void:
 	money = data.get("money", money)
+	username = data.get("username", username)
 	xp = data.get("xp", xp)
 	rank = data.get("rank", rank)
 	storage_capacity = data.get("storage_capacity", storage_capacity)
@@ -498,6 +501,7 @@ func load_save_data(data: Dictionary) -> void:
 
 func reset_to_defaults() -> void:
 	money = 50.00
+	username = "margthehagler34"
 	xp = 0
 	rank = "Seller"
 	storage_capacity = 10

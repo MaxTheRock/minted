@@ -22,6 +22,8 @@ func _process(delta):
 	money_string = " "
 	money_string += format_with_commas(Global.money)
 	
+	%Username.text = Global.username
+	
 	money_ui.text = money_string
 	time_ui.text = Global.get_time_text()
 	date_ui.text = Global.get_date_text()
@@ -58,10 +60,6 @@ func format_with_commas(number: float) -> String:
 		final_result = "-" + final_result
 	return final_result
 
-
-
-
-
 func _on_book_button_mouse_entered() -> void:
 	$back_nodes/CenterContainer/book_node/book_sprite.play("default")
 
@@ -69,3 +67,7 @@ func _on_book_button_mouse_entered() -> void:
 
 func _on_book_button_mouse_exited() -> void:
 	$back_nodes/CenterContainer/book_node/book_sprite.play_backwards("default")
+
+
+func _on_texture_button_pressed() -> void:
+	ActionPopup.usernamePanel.show()
