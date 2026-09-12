@@ -787,6 +787,7 @@ sprite_frames = SubResource("SpriteFrames_qnalp")
 animation = &"1"
 
 [node name="loan_extension" type="Control" parent="RentPopup" unique_id=1902653148]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -797,7 +798,7 @@ layout_mode = 0
 offset_left = 122.0
 offset_top = -79.0
 offset_right = 231.0
-offset_bottom = -24.0
+offset_bottom = -38.75
 scale = Vector2(4, 4)
 texture = ExtResource("3_nbhv4")
 patch_margin_left = 3
@@ -817,6 +818,30 @@ theme_override_colors/font_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
 theme_override_fonts/font = ExtResource("4_cca4d")
 theme_override_font_sizes/font_size = 20
 text = "Loan Summary:"
+
+[node name="loanValue" type="Label" parent="RentPopup/loan_extension" unique_id=442109144]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 298.0
+offset_top = -11.0
+offset_right = 466.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 15
+text = "$9999999999"
+
+[node name="loanDaysLeft" type="Label" parent="RentPopup/loan_extension" unique_id=640539545]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 298.0
+offset_top = 18.0
+offset_right = 482.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+theme_override_fonts/font = ExtResource("4_cca4d")
+theme_override_font_sizes/font_size = 15
+text = "2 rent days left"
 
 [connection signal="mouse_entered" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_mouse_entered"]
 [connection signal="mouse_exited" from="RentPopup/pay_button" to="RentPopup" method="_on_pay_button_mouse_exited"]

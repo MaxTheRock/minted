@@ -335,6 +335,7 @@ texture_normal = ExtResource("6_7nnl3")
 texture_hover = ExtResource("7_1di4w")
 
 [node name="popup" type="Control" parent="." unique_id=287511671]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 614.0
 offset_top = 25.0
@@ -342,6 +343,7 @@ offset_right = 1223.0
 offset_bottom = 698.0
 
 [node name="loan" type="Control" parent="popup" unique_id=1571352447]
+unique_name_in_owner = true
 anchors_preset = 0
 
 [node name="background" type="NinePatchRect" parent="popup/loan" unique_id=1903361717]
@@ -609,18 +611,35 @@ patch_margin_top = 5
 patch_margin_right = 3
 patch_margin_bottom = 5
 
-[node name="Label" type="Label" parent="popup/loan/confirmButton" unique_id=1133487097]
+[node name="CenterContainer" type="CenterContainer" parent="popup/loan/confirmButton" unique_id=1265864505]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 4.0
-offset_right = 101.0
-offset_bottom = 60.0
+offset_left = 20.0
+offset_right = 116.0
+offset_bottom = 39.0
+
+[node name="confirmButtonLabel" type="Label" parent="popup/loan/confirmButton/CenterContainer" unique_id=1133487097]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_colors/font_color = Color(0.13081625, 0.24524829, 7.219613e-08, 1)
 theme_override_fonts/font = ExtResource("2_0aawc")
 theme_override_font_sizes/font_size = 10
 text = "CONFIRM"
 
+[node name="popupBack" type="TextureButton" parent="popup" unique_id=1156610827]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 626.0
+offset_top = 108.0
+offset_right = 658.0
+offset_bottom = 140.0
+rotation = -3.1382308
+scale = Vector2(4, 4)
+texture_normal = ExtResource("6_7nnl3")
+texture_hover = ExtResource("7_1di4w")
+
 [connection signal="pressed" from="left/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="right/container/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="mouse_entered" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_mouse_entered"]
 [connection signal="mouse_exited" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_mouse_exited"]
 [connection signal="pressed" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_pressed"]
@@ -633,3 +652,4 @@ text = "CONFIRM"
 [connection signal="mouse_entered" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_entered"]
 [connection signal="mouse_exited" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_exited"]
 [connection signal="pressed" from="popup/loan/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="popup/popupBack" to="." method="_on_popup_back_pressed"]

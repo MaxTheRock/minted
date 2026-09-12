@@ -31,6 +31,15 @@ func refresh_popup() -> void:
 	landlord_text2.text = quote
 	landlord_image.play(str(randi_range(1, 7)))
 	# Price
+	var pay_current = 0
+	if Global.loan_info[1] == 0:
+		pay_current = (Global.loan_info[0]/1)*Global.loan_info[2]
+	else:
+		pay_current = (Global.loan_info[0]/Global.loan_info[1])*(1+(Global.loan_info[2]/100))
+	if pay_current == 0:
+		%loan_extension.hide()
+	else:
+		%loan_extension.show()
 	building_label1.text = "$" + "%.2f" % Global.rent_building
 	building_label2.text = "$" + "%.2f" % Global.rent_building
 	electrical_label1.text = "$" + "%.2f" % Global.rent_electrical
@@ -41,9 +50,11 @@ func refresh_popup() -> void:
 	maintenance_label2.text = "$" + "%.2f" % Global.rent_maintenance
 	broadband_label1.text = "$" + "%.2f" % Global.rent_broadband
 	broadband_label2.text = "$" + "%.2f" % Global.rent_broadband
-	total_rent = Global.rent_building + Global.rent_electrical + Global.rent_utilities + Global.rent_maintenance + Global.rent_broadband
+	total_rent = Global.rent_building + Global.rent_electrical + Global.rent_utilities + Global.rent_maintenance + Global.rent_broadband + pay_current
 	total_label1.text = "$" + "%.2f" % total_rent
 	total_label2.text = "$" + "%.2f" % total_rent
+	%loanValue.text = "$" + str(pay_current)
+	%loanDaysLeft.text = str(Global.loan_info[1]-1) + " rent days left"
 func _on_pay_button_mouse_entered() -> void:
 	$pay_container.modulate.a = 0.7
 func _on_pay_button_mouse_exited() -> void:
@@ -62,5 +73,9 @@ func _on_pay_button_pressed() -> void:
 		Global.rent_broadband_mult *= 1.07
 		Global.rent_broadband = 0
 		Global.mins_on_computer = 0
+		if Global.loan_info[0] <= 0:
+			Global.loan_info[0] -= Global.loan_info[0]/Global.loan_info[1]
+			Global.loan_info[1] -= 1
 	else:
 		print("Not enough - You lose!")
+	

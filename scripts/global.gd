@@ -68,12 +68,13 @@ var mins_on_computer = 0
 var rent_frequency = 10
 var rent_ready = false
 var total_rent = 0
+var loan_info: Array = [0, 0, 0] # money, days left, interest
 
 var frequency = 150
 # clock
 # try 0.2 as default
 var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
-var SPEED_MULT = 1 # just makes time even faster, default to 1.
+var SPEED_MULT = 5 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
 const REFRESHTIME: float = 6*60 # 6 in game hours
@@ -418,6 +419,7 @@ func get_save_data() -> Dictionary:
 		"rent_frequency": rent_frequency,
 		"rent_ready": rent_ready,
 		"total_rent": total_rent,
+		"loan_info": loan_info,
 
 		"frequency": frequency,
 
@@ -479,6 +481,7 @@ func load_save_data(data: Dictionary) -> void:
 	rent_frequency = data.get("rent_frequency", rent_frequency)
 	rent_ready = data.get("rent_ready", rent_ready)
 	total_rent = data.get("total_rent", total_rent)
+	loan_info = data.get("loan_info", loan_info)
 
 	frequency = data.get("frequency", frequency)
 
@@ -539,6 +542,7 @@ func reset_to_defaults() -> void:
 	rent_frequency = 10
 	rent_ready = false
 	total_rent = 0
+	loan_info = [0,0,0]
 
 	frequency = 150
 
