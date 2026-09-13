@@ -285,8 +285,10 @@ func check_buy_items(buyer,id):
 		transfer_item(actual_selling,actual_sold,found_index)
 		player_selling[found_index]["buyer_name"] = buyer["buyer_name"]	
 		transfer_item(player_selling,sold_items,found_index)
-		item_sold.emit()
 		Global.xp += 200
+		# NOTE: buyer_rating must be computed and appended BEFORE item_sold
+		# is emitted, otherwise listeners read the previous sale's rating
+		# (or the 0.0 default on the very first sale).
 		if trust > 0.9:
 			buyer_rating = 5.0
 		elif trust > 0.8:
@@ -309,6 +311,7 @@ func check_buy_items(buyer,id):
 			buyer_rating = 0.5
 		Global.player_ratings.append(buyer_rating)
 		print(Global.player_ratings)
+		item_sold.emit()
 
 func create_bidding_details(index):
 	var bidding = bidding_items[index]	
@@ -634,11 +637,6 @@ func check_buy_market(buyer,id):
 			item_ui.queue_free()
 			market_update.emit(market_type, found_index)
 			
-		
-		#print("item sold in: ", market_type)
-		
-		
-		
 func load_save_data(data: Dictionary) -> void:
 	player_inventory = data.get("player_inventory", player_inventory)
 	wardrobe_inventory = data.get("wardrobe_inventory", wardrobe_inventory)

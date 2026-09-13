@@ -108,7 +108,7 @@ func _process(delta):
 		RentPopup.visible = false
 		paused = false
 	
-	player_rating = mean(player_ratings)
+	player_rating = snapped(mean(player_ratings), 0.5)
 	
 	if Input.is_action_just_released("interact"):
 		action_just_pressed = false
