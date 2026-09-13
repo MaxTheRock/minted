@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="1_krot7"]
 [ext_resource type="PackedScene" uid="uid://31wk6mw8xgsp" path="res://scenes/background.tscn" id="1_u4wd2"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="3_w18ys"]
+[ext_resource type="PackedScene" uid="uid://u5u4fml3cx2h" path="res://scenes/minty.tscn" id="4_reixx"]
 
 [node name="Home" type="Control" unique_id=1623614779]
 layout_mode = 3
@@ -19,6 +20,7 @@ custom_minimum_size = Vector2(1280, 720)
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 alignment = 2
 
 [node name="Control" type="Control" parent="VBoxContainer" unique_id=1453479795]
@@ -34,3 +36,19 @@ mintora = true
 [node name="PanelContainer" parent="VBoxContainer" unique_id=156462522 instance=ExtResource("1_krot7")]
 z_index = 5
 layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1305413964]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 167.0
+offset_right = 240.0
+offset_bottom = 517.0
+color = Color(0.63529414, 0.4509804, 0.47843137, 0.09411765)
+
+[node name="minty" parent="." unique_id=941616838 instance=ExtResource("4_reixx")]
+z_index = 5
+layout_mode = 1
+offset_left = 129.0
+offset_top = 373.0
+offset_right = 129.0
+offset_bottom = 373.0

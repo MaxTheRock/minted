@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://u5u4fml3cx2h"]
+
+[ext_resource type="Script" uid="uid://dr77ik1y03od5" path="res://scripts/minty.gd" id="1_o4slf"]
+[ext_resource type="Texture2D" uid="uid://d2uyc6gslcxxs" path="res://minty/minty_default.png" id="2_jeq38"]
+[ext_resource type="PackedScene" uid="uid://dasxcj57x3w1g" path="res://scenes/dialogue.tscn" id="3_jeq38"]
+[ext_resource type="Script" uid="uid://dsnoqta6hhh8n" path="res://scenes/dialogue_minty.gd" id="4_qeod4"]
+[ext_resource type="AudioStream" uid="uid://digoufspwtoaw" path="res://audio/SFX/click.wav" id="5_cbmdh"]
+[ext_resource type="Texture2D" uid="uid://cc3vkacie3oae" path="res://assets/tab_background.png" id="5_pdb0s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6snss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jeq38")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6snss"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwrc3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fih1l"]
+
+[node name="minty" type="Control" unique_id=941616838]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 388.0
+offset_top = 269.0
+offset_right = 388.0
+offset_bottom = 269.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o4slf")
+metadata/_edit_horizontal_guides_ = [581.0]
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1367902093]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6snss")
+
+[node name="Button" type="Button" parent="sprite" unique_id=333580544]
+offset_left = -41.0
+offset_top = -60.5
+offset_right = 39.0
+offset_bottom = 67.5
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6snss")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dwrc3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fih1l")
+
+[node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("3_jeq38")]
+visible = false
+layout_mode = 1
+offset_left = -64.0
+offset_top = -290.0
+offset_right = -64.0
+offset_bottom = -290.0
+script = ExtResource("4_qeod4")
+
+[node name="Polygon2D" type="Polygon2D" parent="dialogue" unique_id=374818011]
+z_index = -1
+position = Vector2(64, 288)
+color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+polygon = PackedVector2Array(113, -140, 95.62485, -115.591965, 71, -81, 68, -143)
+
+[node name="ColorRect" parent="dialogue" index="1" unique_id=969856573]
+offset_right = 299.0
+offset_bottom = 151.0
+color = Color(0.14090776, 0.40691423, 0.31100366, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="dialogue/ColorRect" index="0" unique_id=22902221]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 4.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_pdb0s")
+
+[node name="RichTextLabel" parent="dialogue/ColorRect" index="1" unique_id=1614527342]
+offset_left = 24.0
+offset_top = 27.0
+offset_right = 274.0
+offset_bottom = 147.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+
+[node name="choices" parent="dialogue/ColorRect" index="2" unique_id=1412240598]
+offset_left = 26.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 48.0
+
+[node name="Label" parent="dialogue" index="2" unique_id=1747820778]
+visible = false
+
+[node name="portrait" parent="dialogue" index="3" unique_id=97119813]
+visible = false
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="dialogue" unique_id=1420479230]
+position = Vector2(-99, 162)
+stream = ExtResource("5_cbmdh")
+volume_db = -2.634
+
+[connection signal="pressed" from="sprite/Button" to="." method="_on_button_pressed"]
+
+[editable path="dialogue"]

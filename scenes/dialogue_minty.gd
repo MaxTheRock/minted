@@ -16,13 +16,12 @@ var pause_timer = 0
 var is_typing = false
 var play_animation = true
 var animation_playing = ""
-
-
-
+ 
 @onready var portrait = $portrait
 @onready var text_display = $ColorRect/RichTextLabel
 @onready var choiceA = $ColorRect/choices/choiceA
 @onready var choiceB = $ColorRect/choices/choiceB
+@onready var sfx = preload("res://audio/SFX/minty_speak.wav")
 
 func load_json_file(file_path: String) -> Variant:
 	if FileAccess.file_exists(file_path):
@@ -52,8 +51,6 @@ func display_portrait(speaker, face):
 		portrait.play("none")
 func _display_dialogue(data, id):
 	visible = true
-	Global.paused = true
-	Global.dialogue_ongoing = true
 	if data is not Array:
 		if data == "find":
 			data = dialogue_data
@@ -119,7 +116,10 @@ func process_dialogic(delta: float): #dialogue logic
 		var total_visible = text_display.get_parsed_text().length()
 		
 		if current_visible < total_visible:
-
+			print(sfx)
+			AudioManager.play_sfx(sfx)
+			
+			
 			text_timer = 0
 			var index = get_text_pos(current_visible)
 			if raw_text_string.substr(index,4) == "<p1>":

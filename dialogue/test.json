@@ -147,8 +147,24 @@
 		"id": "14",
 		"speaker": "none",
 		"face": "none",
-		"text": "30/09/26",
+		"text": "Oh yeah, I forgot to mention this date<p1>.<p1>.<p1>.<p1> \n 30/09/26",
 		"type": "end",
 		"next_id": "end"
+	},
+	{
+		"id": "15",
+		"speaker": "none",
+		"face": "none",
+		"text": "Hey there, I'm Minty!",
+		"type": "line",
+		"next_id": "16"
+	},
+		{
+		"id": "16",
+		"speaker": "none",
+		"face": "none",
+		"text": "Here to help with all your shopping needs!",
+		"type": "line",
+		"next_id": "14"
 	},
 ]
