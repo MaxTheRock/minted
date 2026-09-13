@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cwssp2l3qjnc1" path="res://assets/hotbar/item_template_extension.png" id="8_evogc"]
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="9_qnd04"]
 [ext_resource type="Texture2D" uid="uid://d4gjvdamffvt5" path="res://assets/buy_template.png" id="10_qnd04"]
+[ext_resource type="Texture2D" uid="uid://cukod51634gwm" path="res://assets/invest_grid.png" id="11_d5yi6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0aawc"]
 content_margin_left = 10.0
@@ -344,6 +345,7 @@ offset_bottom = 698.0
 
 [node name="loan" type="Control" parent="popup" unique_id=1571352447]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 
 [node name="background" type="NinePatchRect" parent="popup/loan" unique_id=1903361717]
@@ -625,6 +627,137 @@ theme_override_fonts/font = ExtResource("2_0aawc")
 theme_override_font_sizes/font_size = 10
 text = "CONFIRM"
 
+[node name="invest" type="Control" parent="popup" unique_id=846385907]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="background" type="NinePatchRect" parent="popup/invest" unique_id=1412197102]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 152.75
+offset_bottom = 174.25
+scale = Vector2(4, 4)
+texture = ExtResource("3_3bwp7")
+region_rect = Rect2(11, 3, 41, 56)
+patch_margin_left = 9
+patch_margin_top = 13
+patch_margin_right = 9
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+
+[node name="banner" type="NinePatchRect" parent="popup/invest" unique_id=989107324]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 152.75
+offset_bottom = 58.75
+scale = Vector2(4, 4)
+texture = ExtResource("8_evogc")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="text" type="Label" parent="popup/invest" unique_id=1976745317]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 48.0
+offset_right = 373.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Invest"
+
+[node name="total_background" type="NinePatchRect" parent="popup/invest" unique_id=1278175356]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 161.0
+offset_right = 164.0
+offset_bottom = 179.75
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="investButton" type="Button" parent="popup/invest" unique_id=1285378376]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 434.0
+offset_top = 178.0
+offset_right = 555.0
+offset_bottom = 228.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d5yi6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_avos3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dondp")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="popup/invest/investButton" unique_id=706429380]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 39.0
+offset_bottom = 10.0
+scale = Vector2(4, 4)
+texture = ExtResource("10_qnd04")
+patch_margin_left = 3
+patch_margin_top = 5
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="popup/invest/investButton" unique_id=2110442938]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 116.0
+offset_bottom = 39.0
+
+[node name="investButtonLabel" type="Label" parent="popup/invest/investButton/CenterContainer" unique_id=1017147772]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.13081625, 0.24524829, 7.219613e-08, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "INVEST"
+
+[node name="OptionButton" type="OptionButton" parent="popup/invest" unique_id=2140224530]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 181.0
+offset_right = 266.0
+offset_bottom = 216.0
+item_count = 5
+popup/item_0/text = "One week (0.71% profit)"
+popup/item_0/id = 0
+popup/item_1/text = "Two weeks (1.56% profit)"
+popup/item_1/id = 1
+popup/item_2/text = "One month (3.61% profit)"
+popup/item_2/id = 2
+popup/item_3/text = "Two months (7.46% profit)"
+popup/item_3/id = 3
+popup/item_4/text = "Three months (12.33% profit)"
+popup/item_4/id = 4
+
+[node name="LineEdit" type="LineEdit" parent="popup/invest" unique_id=1210048252]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 182.0
+offset_right = 434.0
+offset_bottom = 216.0
+placeholder_text = "Money: $0.00"
+
+[node name="TextureRect" type="TextureRect" parent="popup/invest" unique_id=183025005]
+modulate = Color(1, 1, 1, 0.20784314)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 250.0
+offset_right = 302.0
+offset_bottom = 386.0
+scale = Vector2(2, 2)
+texture = ExtResource("11_d5yi6")
+
 [node name="popupBack" type="TextureButton" parent="popup" unique_id=1156610827]
 unique_name_in_owner = true
 visible = false
@@ -652,4 +785,7 @@ texture_hover = ExtResource("7_1di4w")
 [connection signal="mouse_entered" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_entered"]
 [connection signal="mouse_exited" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_exited"]
 [connection signal="pressed" from="popup/loan/confirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="mouse_entered" from="popup/invest/investButton" to="." method="_on_confirm_button_mouse_entered"]
+[connection signal="mouse_exited" from="popup/invest/investButton" to="." method="_on_confirm_button_mouse_exited"]
+[connection signal="pressed" from="popup/invest/investButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="popup/popupBack" to="." method="_on_popup_back_pressed"]
