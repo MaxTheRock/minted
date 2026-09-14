@@ -12,6 +12,8 @@ var sleep_duration = 8
 var sleep_needed_int = 0
 var sleep_gained_int = 0
 
+@onready var sleep_track = preload("res://audio/sleep_ambience.mp3")
+@onready var themey = preload("res://audio/background_menu.mp3")
 var sleep_name = "Sleep"
 var sleep_vals = [8,10,12,14,16,18,20,22,25,28,31,35,41,46,50]
 var sleep_amounts = [20,25,30,33,36,40,45,48,50,52,54,56,60,64,67,70]
@@ -139,6 +141,7 @@ func _on_sleep_button_pressed() -> void:
 		sleep_tween.tween_property($sleep_screen, "modulate", Color(1, 1, 1, 1), 2.0)
 		await sleep_tween.finished
 		
+		AudioManager.play_music(sleep_track)
 		var requested_hours = int(slider.value)
 		var sleep_result = simulate_sleep(requested_hours)
 		var hours_slept = sleep_result["hours_slept"]
@@ -161,6 +164,6 @@ func _on_sleep_button_pressed() -> void:
 		AudioManager.pause(false)
 		Global.goto_scene("res://scenes/room.tscn")
 		Global.dialogue_ongoing = false
-		
+		AudioManager.play_music(themey)
 		if rent_due:
 			Global.rent_triggered = true

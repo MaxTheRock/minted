@@ -614,7 +614,7 @@ func reset_to_defaults() -> void:
 	articles = []
 	news_interest = 1
 	daily_change = 0.2
-
+	skill_tree_unlocked = [0]
 	player_pos = Vector2(0,0)
 	player_ratings = [5.0]
 	player_rating = 0.0
