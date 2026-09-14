@@ -60,13 +60,7 @@ offset_right = -64.0
 offset_bottom = -290.0
 script = ExtResource("4_qeod4")
 
-[node name="Polygon2D" type="Polygon2D" parent="dialogue" unique_id=374818011]
-z_index = -1
-position = Vector2(64, 288)
-color = Color(0.09411765, 0.09411765, 0.09411765, 1)
-polygon = PackedVector2Array(113, -140, 95.62485, -115.591965, 71, -81, 68, -143)
-
-[node name="ColorRect" parent="dialogue" index="1" unique_id=969856573]
+[node name="ColorRect" parent="dialogue" index="0" unique_id=969856573]
 offset_right = 299.0
 offset_bottom = 151.0
 color = Color(0.14090776, 0.40691423, 0.31100366, 1)
@@ -98,11 +92,17 @@ offset_top = 8.0
 offset_right = 66.0
 offset_bottom = 48.0
 
-[node name="Label" parent="dialogue" index="2" unique_id=1747820778]
+[node name="Label" parent="dialogue" index="1" unique_id=1747820778]
 visible = false
 
-[node name="portrait" parent="dialogue" index="3" unique_id=97119813]
+[node name="portrait" parent="dialogue" index="2" unique_id=97119813]
 visible = false
+
+[node name="Polygon2D" type="Polygon2D" parent="dialogue" unique_id=374818011]
+z_index = -1
+position = Vector2(64, 288)
+color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+polygon = PackedVector2Array(113, -140, 95.62485, -115.591965, 71, -81, 68, -143)
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="dialogue" unique_id=1420479230]
 position = Vector2(-99, 162)

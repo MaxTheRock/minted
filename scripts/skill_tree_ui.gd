@@ -5,6 +5,7 @@ var data = []
 var locked = true
 
 @onready var icon = $TextureRect
+@onready var selected = $selected
 
 func load_json_file(file_path: String) -> Variant:
 	if FileAccess.file_exists(file_path):
@@ -18,6 +19,7 @@ func load_json_file(file_path: String) -> Variant:
 
 
 func load_data(index):
+	selected.hide()
 	if not is_node_ready():
 		await ready
 	data = load_json_file("res://dialogue/skill_tree.json")
@@ -36,15 +38,18 @@ func load_data(index):
 		icon.texture = load(path)
 		locked = false
 	else:
-		print(type)
 		if type == "house":
 			icon.texture = load("res://assets/skill_tree/house_locked.png")	
+			selected.self_modulate = Color(1.0, 0.839, 0.745, 1.0)
 		elif type == "furnature":
 			icon.texture = load("res://assets/skill_tree/furnature_locked.png")
+			selected.self_modulate = Color(0.243, 0.0, 1.0, 1.0)
 		elif type == "community":
 			icon.texture = load("res://assets/skill_tree/community_locked.png")
+			selected.self_modulate = Color(1.0, 0.118, 0.075, 1.0)
 		elif type == "money":
 			icon.texture = load("res://assets/skill_tree/money_locked.png")
+			selected.self_modulate = Color(0.804, 0.745, 0.0, 1.0)
 				
 				
 	var offset = Vector2(current_data["x_level"]*30,current_data["y_level"]*-80)
@@ -53,6 +58,17 @@ func load_data(index):
 
 
 func _on_button_pressed() -> void:
+	
+	var type = data[index]["type"]
+	if type == "house":
+		selected.self_modulate = Color(1.0, 0.839, 0.745, 1.0)
+	elif type == "furnature":
+		selected.self_modulate = Color(0.243, 0.0, 1.0, 1.0)
+	elif type == "community":
+		selected.self_modulate = Color(1.0, 0.118, 0.075, 1.0)
+	elif type == "money":
+		selected.self_modulate = Color(0.804, 0.745, 0.0, 1.0)
+		
 	if locked:
 		SignalBus.show_skill.emit({"name":"Locked","desc":"This item is locked","price":"XXX","id":-1.0},false)
 	else:
@@ -61,3 +77,8 @@ func _on_button_pressed() -> void:
 			SignalBus.show_skill.emit(data[index],true)
 		else:
 			SignalBus.show_skill.emit(data[index],false)
+	
+	selected.show()
+	
+func hide_selected():
+	selected.hide()

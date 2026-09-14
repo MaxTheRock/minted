@@ -5,7 +5,7 @@ uniform float INTENSITY = 0.3;
 uniform float BAND_PIXEL_HEIGHT = 1;
 uniform float SCANLINE_SPEED = 20.0;
 
-uniform float DARKEN_FACTOR : hint_range(0.0, 1.0) = 0.7;
+uniform float DARKEN_FACTOR : hint_range(0.0, 1.0) = 0.6;
 
 void fragment() {
 	float pixel_y = UV.y / TEXTURE_PIXEL_SIZE.y;

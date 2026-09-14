@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cflg7ipgh0a3b" path="res://scripts/skill_tree_ui.gd" id="1_0u12c"]
 [ext_resource type="Texture2D" uid="uid://dhdd61j288hvf" path="res://assets/skill_tree/dual_posters.png" id="1_4h77i"]
+[ext_resource type="Texture2D" uid="uid://mv302mk7x7r5" path="res://assets/os/octagon.png" id="2_230bi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0u12c"]
 
@@ -21,6 +22,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0u12c")
 script = ExtResource("1_0u12c")
+
+[node name="selected" type="TextureRect" parent="." unique_id=1726796642]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_230bi")
+expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1650106415]
 custom_maximum_size = Vector2(64, 64)

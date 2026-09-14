@@ -7,3 +7,5 @@ signal display_bidding_info
 signal articles_changed
 signal refresh_market(type)
 signal show_skill(data, bought)
+signal hide_zoom # bro why is this a thing
+signal show_zoom

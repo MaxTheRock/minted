@@ -6,9 +6,13 @@ var data = []
 @onready var description = %decription
 @onready var price2 = %price2
 @onready var price = %price
-
+@onready var info = $CanvasLayer/info
 var current_id = 0
 var dragging: bool = false
+var tweening = Tween
+var zoom_tween = Tween
+var current_zoom = 1
+@onready var offset = Vector2(0,0)
 @export var line_color: Color = Color.BLUE_VIOLET
 @export var locked_line_color = Color.LIGHT_STEEL_BLUE
 @export var line_width: float = 5.0
@@ -63,12 +67,18 @@ func create_connection_line(node_a: Control, node_b: Control, unlocked: bool) ->
 	line.width = line_width
 	if unlocked:
 		line.default_color = line_color
+		line.default_color.a = 0.6
+		if node_a.name == "4" and node_b.name == "12" or node_a.name == "15" and node_b.name == "19":
+			line.default_color = Color(0.371, 0.5, 0.847, 1.0)
+		line.default_color.a = 0.6
 	else:
 		line.default_color = locked_line_color
+		line.default_color.a = 0.3
+		if node_a.name == "21" and node_b.name == "13" or node_a.name == "21" and node_b.name == "20":
+			line.default_color = Color(0.076, 0.238, 0.366, 1.0)
 	line.joint_mode = Line2D.LINE_JOINT_ROUND
 	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-	line.end_cap_mode = Line2D.LINE_CAP_ROUND
-
+	line.end_cap_mode = Line2D.LINE_CAP_BOX
 	var start_pos = node_a.position + (node_a.size / 2.0)
 	var end_pos = node_b.position + (node_b.size / 2.0)
 
@@ -82,16 +92,23 @@ func create_connection_line(node_a: Control, node_b: Control, unlocked: bool) ->
 
 
 func _on_close_pressed() -> void:
-	$info.hide()
+	info.hide()
+	for child in grid.get_children():
+		if !child is Line2D:
+			child.hide_selected()
+	
 
 func _show_skill(data2, bought):
+	for child in grid.get_children():
+		if !child is Line2D:
+			child.hide_selected()
 	current_id = int(data2["id"])
-	$info.show()
-	$info/Buy.show()
+	info.show()
+	$CanvasLayer/info/Buy.show()
 	price2.show()
 	price.show()
 	if data2["name"] == "Locked":
-		$info/Buy.hide()
+		$CanvasLayer/info/Buy.hide()
 		price2.hide()
 		price.hide()
 	title.text = data2["name"]
@@ -100,12 +117,76 @@ func _show_skill(data2, bought):
 	if bought:
 		price2.hide()
 		price.hide()
-		$info/Buy.hide()
+		$CanvasLayer/info/Buy.hide()
+		
+	
+	var selected_node = grid.get_node_or_null(str(current_id))
+	if selected_node:
+		center_on_node(selected_node)
 
+func center_on_node(target_node: Control) -> void:
+	var node_center = target_node.position + (target_node.size / 2.0)
+
+	var node_scaled_center = node_center * grid.scale
+
+	var screen_center = get_viewport_rect().size / 2.0
+	var target_grid_position = screen_center - node_scaled_center
+	
+	var tween = create_tween()
+	target_grid_position.x = clamp(target_grid_position.x, 550, 1350.0)
+	tween.tween_property(grid, "position", target_grid_position/1.1, 0.4)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+	await tween.finished
 
 func _on_buy_pressed() -> void:
 	var current_price = data[current_id]["price"]
-	if Global.money > current_price:
+	if Global.money >= current_price:
 		Global.skill_tree_unlocked.append(current_id)
 		Global.money -= current_price
 		_load_page()
+
+	
+
+func _on_dragging_button_button_up() -> void:
+	dragging = false
+	
+func _on_dragging_button_button_down() -> void:
+	dragging = true
+	offset = get_global_mouse_position() - grid.position
+
+func _process(delta: float) -> void:
+	if dragging:
+		# Update the grid container directly
+		var target_pos = get_global_mouse_position() - offset
+		grid.position.x = clamp(target_pos.x, 550, 1350.0)
+		grid.position.y = max(target_pos.y, -3000.0)
+
+@export var zoom_step: float = 0.25
+@export var min_zoom: float = 0.5
+@export var max_zoom: float = 2.0
+
+func _on_zoom_out_pressed() -> void:
+	_adjust_zoom(-zoom_step)
+
+func _on_zoom_in_pressed() -> void:
+	_adjust_zoom(zoom_step)
+
+func _adjust_zoom(amount: float) -> void:
+	var old_zoom = current_zoom
+	current_zoom = clamp(current_zoom + amount, min_zoom, max_zoom)
+	
+	if old_zoom == current_zoom:
+		return
+
+	var screen_center = get_viewport_rect().size / 2.0
+	var focus_offset = screen_center - grid.position
+	var new_position = screen_center - (focus_offset * (current_zoom / old_zoom))
+
+	var zoom_tween = create_tween().set_parallel(true)
+	zoom_tween.tween_property(grid, "scale", Vector2(current_zoom, current_zoom), 0.25)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+	zoom_tween.tween_property(grid, "position", new_position, 0.25)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
