@@ -144,6 +144,7 @@ func _on_buy_pressed() -> void:
 	if Global.money >= current_price:
 		Global.skill_tree_unlocked.append(current_id)
 		Global.money -= current_price
+		_on_close_pressed()
 		_load_page()
 
 	
