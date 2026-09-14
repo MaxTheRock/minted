@@ -1,6 +1,7 @@
 extends Node
 
 var money: float = 50.00
+var bank_money: float = 0.0
 var username: String = "margthehagler34"
 var current_money: float = money
 var xp: int = 0
@@ -376,6 +377,60 @@ func full_name_generator():
 	var forenames = ["richard","sam","oliver","tom","max","arthur","rohan","william","kai","jerry","mac","gabe","rick","peter","chris","daniel","jack","james","morty","kasper","olivia","elizabeth","tal","sophie","maya","eileen","noelle","susie","lois","linda","victoria","seren","otto"]
 	var surnames = ["D James", "Pearl", "Smith", "Thomson","Misiurski","Weedon","Hall","Wiggum","Simpson","Cenat","Macenzie","Griffith","Walker","Simons","Digby-Dysart"]
 	return (forenames.pick_random()).capitalize() + " " + surnames.pick_random()
+
+# got the big gpt to make this one cos its repetitive and boring
+func add_to_date(add_days: int = 0, add_months: int = 0, from_day: int = day, from_month: int = month, from_year: int = year) -> Dictionary:
+	var d = from_day
+	var m = from_month
+	var y = from_year
+
+	m += add_months
+	while m > 12:
+		m -= 12
+		y += 1
+	while m < 1:
+		m += 12
+		y -= 1
+
+	var days_in_new_month = calc_days_in_month(m, y)
+	if d > days_in_new_month:
+		d = days_in_new_month
+
+	d += add_days
+	var days_in_month = calc_days_in_month(m, y)
+	while d > days_in_month:
+		d -= days_in_month
+		m += 1
+		if m > 12:
+			m = 1
+			y += 1
+		days_in_month = calc_days_in_month(m, y)
+	while d < 1:
+		m -= 1
+		if m < 1:
+			m = 12
+			y -= 1
+		d += calc_days_in_month(m, y)
+
+	return {"day": d, "month": m, "year": y}
+
+
+func date_to_absolute_days(d: int, m: int, y: int) -> int:
+	var total_days = 0
+	for yr in range(0, y):
+		total_days += 366 if is_leap_year(yr) else 365
+	for mo in range(1, m):
+		total_days += calc_days_in_month(mo, y)
+	total_days += d
+	return total_days
+
+func days_between(d1: int, m1: int, y1: int, d2: int, m2: int, y2: int) -> int:
+	return date_to_absolute_days(d2, m2, y2) - date_to_absolute_days(d1, m1, y1)
+
+func days_until(target_day: int, target_month: int, target_year: int) -> int:
+	return days_between(day, month, year, target_day, target_month, target_year)
+
+func months_until(target_day: int, target_month: int, target_year: int) -> float:	return days_until(target_day, target_month, target_year) / 30.44
 
 func get_save_data() -> Dictionary:
 	return {

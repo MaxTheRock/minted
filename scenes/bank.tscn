@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="9_qnd04"]
 [ext_resource type="Texture2D" uid="uid://d4gjvdamffvt5" path="res://assets/buy_template.png" id="10_qnd04"]
 [ext_resource type="Texture2D" uid="uid://cukod51634gwm" path="res://assets/invest_grid.png" id="11_d5yi6"]
+[ext_resource type="Texture2D" uid="uid://bq63ihht630x3" path="res://assets/invest_bars.png" id="12_avos3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0aawc"]
 content_margin_left = 10.0
@@ -111,6 +112,69 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avos3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dondp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dondp"]
+atlas = ExtResource("12_avos3")
+region = Rect2(0, 0, 122, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46a6a"]
+atlas = ExtResource("12_avos3")
+region = Rect2(122, 0, 122, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t33ln"]
+atlas = ExtResource("12_avos3")
+region = Rect2(0, 65, 122, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8riiu"]
+atlas = ExtResource("12_avos3")
+region = Rect2(122, 65, 122, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xeka"]
+atlas = ExtResource("12_avos3")
+region = Rect2(0, 130, 122, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7bd6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dondp")
+}],
+"loop": 1,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46a6a")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t33ln")
+}],
+"loop": 1,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8riiu")
+}],
+"loop": 1,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xeka")
+}],
+"loop": 1,
+"name": &"5",
+"speed": 5.0
+}]
 
 [node name="Bank" type="Control" unique_id=1237760597]
 layout_mode = 3
@@ -284,7 +348,7 @@ theme_override_fonts/font = ExtResource("2_0aawc")
 theme_override_font_sizes/font_size = 25
 text = "Invest"
 
-[node name="TextureButton" type="TextureButton" parent="right/container2" unique_id=1284854203]
+[node name="TextureButton2" type="TextureButton" parent="right/container2" unique_id=1284854203]
 layout_mode = 0
 offset_left = 1049.0
 offset_top = 139.0
@@ -685,6 +749,7 @@ patch_margin_bottom = 5
 axis_stretch_horizontal = 2
 
 [node name="investButton" type="Button" parent="popup/invest" unique_id=1285378376]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
 offset_left = 434.0
@@ -716,6 +781,7 @@ offset_right = 116.0
 offset_bottom = 39.0
 
 [node name="investButtonLabel" type="Label" parent="popup/invest/investButton/CenterContainer" unique_id=1017147772]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.13081625, 0.24524829, 7.219613e-08, 1)
 theme_override_fonts/font = ExtResource("2_0aawc")
@@ -740,7 +806,8 @@ popup/item_3/id = 3
 popup/item_4/text = "Three months (12.33% profit)"
 popup/item_4/id = 4
 
-[node name="LineEdit" type="LineEdit" parent="popup/invest" unique_id=1210048252]
+[node name="investMoney" type="LineEdit" parent="popup/invest" unique_id=1210048252]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 322.0
 offset_top = 182.0
@@ -758,6 +825,181 @@ offset_bottom = 386.0
 scale = Vector2(2, 2)
 texture = ExtResource("11_d5yi6")
 
+[node name="columns" type="Control" parent="popup/invest" unique_id=2066431596]
+anchors_preset = 0
+offset_left = 167.0
+offset_top = 487.0
+offset_right = 573.0
+offset_bottom = 521.0
+
+[node name="CenterContainer" type="CenterContainer" parent="popup/invest/columns" unique_id=1532731872]
+layout_mode = 0
+offset_left = 13.5
+offset_right = 70.5
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="popup/invest/columns/CenterContainer" unique_id=1920014201]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "1w 0.51%"
+horizontal_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="popup/invest/columns" unique_id=1751400850]
+layout_mode = 0
+offset_left = 91.5
+offset_right = 154.5
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="popup/invest/columns/CenterContainer2" unique_id=1732665572]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "2w 1.56%"
+horizontal_alignment = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="popup/invest/columns" unique_id=161731069]
+layout_mode = 0
+offset_left = 174.5
+offset_right = 231.5
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="popup/invest/columns/CenterContainer3" unique_id=1713897477]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "1m 3.61%"
+horizontal_alignment = 1
+
+[node name="CenterContainer4" type="CenterContainer" parent="popup/invest/columns" unique_id=2058752551]
+layout_mode = 0
+offset_left = 245.5
+offset_right = 318.5
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="popup/invest/columns/CenterContainer4" unique_id=1226033023]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = " 2m 7.46%"
+horizontal_alignment = 1
+
+[node name="CenterContainer5" type="CenterContainer" parent="popup/invest/columns" unique_id=1389794234]
+layout_mode = 0
+offset_left = 328.5
+offset_right = 401.5
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="popup/invest/columns/CenterContainer5" unique_id=1908015810]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 10
+text = "3m 12.33%"
+horizontal_alignment = 1
+
+[node name="rows" type="Control" parent="popup/invest" unique_id=18823811]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="popup/invest/rows" unique_id=480322188]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 450.0
+offset_right = 166.0
+offset_bottom = 486.0
+
+[node name="lv1_inv_num" type="Label" parent="popup/invest/rows/CenterContainer" unique_id=249156113]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.40784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "$0"
+
+[node name="CenterContainer2" type="CenterContainer" parent="popup/invest/rows" unique_id=2108166302]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 411.0
+offset_right = 166.0
+offset_bottom = 448.0
+
+[node name="lv2_inv_num" type="Label" parent="popup/invest/rows/CenterContainer2" unique_id=1022528972]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.40784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "$0"
+
+[node name="CenterContainer3" type="CenterContainer" parent="popup/invest/rows" unique_id=573412164]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 372.0
+offset_right = 166.0
+offset_bottom = 409.0
+
+[node name="lv3_inv_num" type="Label" parent="popup/invest/rows/CenterContainer3" unique_id=2138186758]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.40784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "$0"
+
+[node name="CenterContainer4" type="CenterContainer" parent="popup/invest/rows" unique_id=1730613283]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 332.0
+offset_right = 166.0
+offset_bottom = 369.0
+
+[node name="lv4_inv_num" type="Label" parent="popup/invest/rows/CenterContainer4" unique_id=606803744]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.40784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "$0"
+
+[node name="CenterContainer5" type="CenterContainer" parent="popup/invest/rows" unique_id=837507889]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 293.0
+offset_right = 166.0
+offset_bottom = 330.0
+
+[node name="lv5_inv_num" type="Label" parent="popup/invest/rows/CenterContainer5" unique_id=1145051880]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.40784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "$0"
+
+[node name="CenterContainer6" type="CenterContainer" parent="popup/invest/rows" unique_id=1266612602]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 254.0
+offset_right = 166.0
+offset_bottom = 291.0
+
+[node name="lv6_inv_num" type="Label" parent="popup/invest/rows/CenterContainer6" unique_id=1634582511]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.40784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "$0"
+
+[node name="bars" type="AnimatedSprite2D" parent="popup/invest" unique_id=628445943]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.9607843)
+position = Vector2(370, 381)
+scale = Vector2(3.25, 3.25)
+sprite_frames = SubResource("SpriteFrames_s7bd6")
+animation = &"1"
+
 [node name="popupBack" type="TextureButton" parent="popup" unique_id=1156610827]
 unique_name_in_owner = true
 visible = false
@@ -773,6 +1015,7 @@ texture_hover = ExtResource("7_1di4w")
 
 [connection signal="pressed" from="left/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="right/container/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="right/container2/TextureButton2" to="." method="_on_texture_button_2_pressed"]
 [connection signal="mouse_entered" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_mouse_entered"]
 [connection signal="mouse_exited" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_mouse_exited"]
 [connection signal="pressed" from="popup/loan/loanButton1" to="." method="_on_loan_button_1_pressed"]
@@ -787,5 +1030,8 @@ texture_hover = ExtResource("7_1di4w")
 [connection signal="pressed" from="popup/loan/confirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="mouse_entered" from="popup/invest/investButton" to="." method="_on_confirm_button_mouse_entered"]
 [connection signal="mouse_exited" from="popup/invest/investButton" to="." method="_on_confirm_button_mouse_exited"]
-[connection signal="pressed" from="popup/invest/investButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="popup/invest/investButton" to="." method="_on_invest_button_pressed"]
+[connection signal="item_focused" from="popup/invest/OptionButton" to="." method="_on_option_button_item_focused"]
+[connection signal="item_selected" from="popup/invest/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="text_changed" from="popup/invest/investMoney" to="." method="_on_invest_money_text_changed"]
 [connection signal="pressed" from="popup/popupBack" to="." method="_on_popup_back_pressed"]

@@ -14,7 +14,12 @@ var loan_value: int = 0
 var loan_interest: float = 0.0
 var loan_days: int = 0
 
+var invest_request: float = 0.0
+
 var selected: String = ""
+var invest_selected: int = 1
+var future
+var invested = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +29,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if invested:
+		%investButtonLabel.text = str(Global.days_until(future["day"], future["month"], future["year"])) + " days"
 	if current_popup != "none":
 		%popupBack.show()
 		%popup.show()
@@ -32,6 +39,7 @@ func _process(delta: float) -> void:
 		%popup.hide()
 	if current_popup == "loan":
 		%loan.show()
+		%invest.hide()
 		if selected == "small":
 			loan_value =  100
 			loan_interest = 5.0
@@ -52,8 +60,12 @@ func _process(delta: float) -> void:
 		amountNumber.text = "$" + str(loan_value)
 		interestNumber.text = str(loan_interest) + "%"
 		repayNumber.text = str(loan_days) + " rent days"
+	elif current_popup == "invest":
+		%invest.show()
+		%loan.hide()
 	elif current_popup == "none":
 		%loan.hide()
+		%invest.hide()
 
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/outside.tscn")
@@ -119,3 +131,152 @@ func _on_popup_back_pressed() -> void:
 
 func _on_texture_button_pressed() -> void:
 	current_popup = "loan"
+
+
+func _on_option_button_item_selected(index: int) -> void:
+	if index == 0:
+		%bars.play("1")
+		invest_selected = 1
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	elif index == 1:
+		%bars.play("2")
+		invest_selected = 2
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	elif index == 2:
+		%bars.play("3")
+		invest_selected = 3
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	elif index == 3:
+		%bars.play("4")
+		invest_selected = 4
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	else:
+		%bars.play("5")
+		invest_selected = 5
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+
+func _on_option_button_item_focused(index: int) -> void:
+	if index == 0:
+		%bars.play("1")
+		invest_selected = 1
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	elif index == 1:
+		%bars.play("2")
+		invest_selected = 2
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	elif index == 2:
+		%bars.play("3")
+		invest_selected = 3
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	elif index == 3:
+		%bars.play("4")
+		invest_selected = 4
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("806847"))
+	else:
+		%bars.play("5")
+		invest_selected = 5
+		%lv1_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv2_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv3_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv4_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv5_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+		%lv6_inv_num.add_theme_color_override("font_color", Color.html("ffffff"))
+
+func invest_calc(money, option):
+	if option == 1:
+		return snapped(money * 1.0071, 0.001)
+	elif option == 2:
+		return snapped(money * 1.0156, 0.001)
+	elif option == 3:
+		return snapped(money * 1.0361, 0.001)
+	elif option == 4:
+		return snapped(money * 1.0746, 0.001)
+	elif option == 5:
+		return snapped(money * 1.1233, 0.001)
+		
+
+func _on_invest_money_text_changed(new_text: String) -> void:
+	var regex := RegEx.new()
+	regex.compile("^-?\\d*\\.?\\d{0,2}$")
+	if not regex.search(new_text):
+		var caret : int = %investMoney.caret_column
+		%investMoney.text = new_text.substr(0, new_text.length() - 1)
+		%investMoney.caret_column = caret - 1
+		return
+
+	if new_text.is_valid_float():
+		var value: float = new_text.to_float()
+		invest_request = new_text.to_float()
+		%lv1_inv_num.text = "$" + str(value)
+		%lv2_inv_num.text = "$" + str(invest_calc(value, 1))
+		%lv3_inv_num.text = "$" + str(invest_calc(value, 2))
+		%lv4_inv_num.text = "$" + str(invest_calc(value, 3))
+		%lv5_inv_num.text = "$" + str(invest_calc(value, 4))
+		%lv6_inv_num.text = "$" + str(invest_calc(value, 5))
+
+
+func _on_texture_button_2_pressed() -> void:
+	current_popup = "invest"
+
+
+func _on_invest_button_pressed() -> void:
+	if Global.money >= invest_request:
+		Global.money -= invest_request
+		Global.bank_money += invest_request
+		%investButton.disabled = true
+		if invest_selected == 1:
+			future = Global.add_to_date(7, 0)
+		elif invest_selected == 2:
+			future = Global.add_to_date(14,0)
+		elif invest_selected == 3:
+			future = Global.add_to_date(0,1)
+		elif invest_selected == 4:
+			future = Global.add_to_date(0,2)
+		elif invest_selected == 5:
+			future = Global.add_to_date(0,3)
+		invested = true
