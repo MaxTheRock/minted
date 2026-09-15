@@ -387,7 +387,6 @@ offset_right = 912.0
 offset_bottom = 235.0
 theme_override_fonts/font = ExtResource("2_0aawc")
 theme_override_font_sizes/font_size = 25
-text = "Savings account"
 
 [node name="TextureButton" type="TextureButton" parent="right/container3" unique_id=1187916135]
 layout_mode = 0
@@ -693,6 +692,7 @@ text = "CONFIRM"
 
 [node name="invest" type="Control" parent="popup" unique_id=846385907]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 
 [node name="background" type="NinePatchRect" parent="popup/invest" unique_id=1412197102]

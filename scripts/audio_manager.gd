@@ -3,7 +3,13 @@ extends Node
 @onready var music_player := AudioStreamPlayer.new()
 @onready var sfx_player := AudioStreamPlayer.new()
 @onready var click_player := AudioStreamPlayer.new()
+@onready var skill_ambience_player := AudioStreamPlayer.new()
 var current_active_channel: String = "none"
+
+var skill_tree: bool = false:
+	set(value):
+		skill_tree = value
+		_update_skill_tree_audio()
 
 const background_menu_music = preload("res://audio/background_menu.mp3")
 const the_big_mint = preload("res://audio/the_big_mint.mp3")
@@ -14,6 +20,7 @@ const three_jelly = preload("res://audio/three_jelly.mp3")
 const red_nose_pop = preload("res://audio/red_nose_pop.mp3")
 const audio_static = preload("res://audio/static.mp3")
 const smooth_jazz_2 = preload("res://audio/smooth_jazz_2.mp3")
+const skill_mp3 = preload("res://audio/skill_tree_ambience.mp3")
 
 var radio_a = [smooth_jazz_1,red_nose_pop, smooth_jazz_2]
 var radio_b = [three_jelly, the_big_mint, jungle]
@@ -34,16 +41,35 @@ func _ready() -> void:
 	add_child(music_player)
 	add_child(sfx_player)
 	add_child(click_player)
+	add_child(skill_ambience_player)
 
 	music_player.bus = "Music"
 	sfx_player.bus = "SFX"
 	click_player.bus = "SFX"
+	skill_ambience_player.bus = "SkillAmbience"
 
 	music_player.volume_db = Global.music_volume
 	sfx_player.volume_db = Global.sfx_volume
 	click_player.stream = preload("res://audio/SFX/click.wav")
 	music_player.finished.connect(_on_music_player_finished)
 	get_tree().node_added.connect(_on_node_added)
+
+	_update_skill_tree_audio()
+
+func _update_skill_tree_audio() -> void:
+	var music_bus_idx := AudioServer.get_bus_index("Music")
+	var skill_bus_idx := AudioServer.get_bus_index("SkillAmbience")
+
+	if skill_tree:
+		AudioServer.set_bus_mute(music_bus_idx, true)
+		AudioServer.set_bus_mute(skill_bus_idx, false)
+		skill_ambience_player.volume_db = linear_to_db(db_to_linear(Global.music_volume) * 0.5)
+		skill_ambience_player.stream = skill_mp3
+		skill_ambience_player.play()
+	else:
+		AudioServer.set_bus_mute(music_bus_idx, false)
+		AudioServer.set_bus_mute(skill_bus_idx, true)
+		skill_ambience_player.stop()
 
 func _on_music_player_finished() -> void:
 	if Global.radio_on and current_active_channel != "none":
