@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dr77ik1y03od5" path="res://scripts/minty.gd" id="1_o4slf"]
 [ext_resource type="Texture2D" uid="uid://d2uyc6gslcxxs" path="res://minty/minty_default.png" id="2_jeq38"]
 [ext_resource type="PackedScene" uid="uid://dasxcj57x3w1g" path="res://scenes/dialogue.tscn" id="3_jeq38"]
-[ext_resource type="Script" uid="uid://dsnoqta6hhh8n" path="res://scenes/dialogue_minty.gd" id="4_qeod4"]
+[ext_resource type="Script" uid="uid://dsnoqta6hhh8n" path="res://scripts/dialogue_minty.gd" id="4_qeod4"]
 [ext_resource type="AudioStream" uid="uid://digoufspwtoaw" path="res://audio/SFX/click.wav" id="5_cbmdh"]
 [ext_resource type="Texture2D" uid="uid://cc3vkacie3oae" path="res://assets/tab_background.png" id="5_pdb0s"]
 

@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
+	speed *= Global.SPEED_MULT
 	if speed == 0.0:
 		van_wheel1.stop()
 		van_wheel2.stop()

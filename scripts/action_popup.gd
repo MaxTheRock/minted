@@ -11,6 +11,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Global.SPEED_MULT = 0
+		$pause_menu.show()
+		get_viewport().set_input_as_handled()
 
 func _on_confirm_button_pressed() -> void:
 	Global.username = %username_field.text
@@ -23,3 +28,20 @@ func _on_confirm_button_mouse_entered() -> void:
 
 func _on_confirm_button_mouse_exited() -> void:
 	%confirmButton.modulate.a = 1
+
+
+func _on_resume_pressed() -> void:
+	Global.SPEED_MULT = 1
+	$pause_menu.hide()
+
+
+func _on_options_pressed() -> void:
+	Global.SPEED_MULT = 1
+	$pause_menu.hide()
+	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
+
+
+func _on_quit_title_pressed() -> void:
+	Global.SPEED_MULT = 1
+	$pause_menu.hide()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
