@@ -18,19 +18,29 @@ var invest_request: float = 0.0
 
 var selected: String = ""
 var invest_selected: int = 1
-var future
-var invested = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Global.invested:
+		%investButton.disabled = true
+	else:
+		%investButton.disabled = false
 	%loan.hide()
 	%popupBack.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if invested:
-		%investButtonLabel.text = str(Global.days_until(future["day"], future["month"], future["year"])) + " days"
+	if Global.invested and Global.future != null:
+		if Global.days_until(Global.future["day"], Global.future["month"], Global.future["year"]) == 0:
+			Global.invested = false
+			Global.invest_claimed = false
+		else:
+			%investButtonLabel.text = str(Global.days_until(Global.future["day"], Global.future["month"], Global.future["year"])) + " days"
+	if Global.invest_claimed == false:
+		%investButtonLabel.text = "Claim"
+	elif !Global.invested:
+		%investButtonLabel.text = "Invest"
 	if current_popup != "none":
 		%popupBack.show()
 		%popup.show()
@@ -263,20 +273,27 @@ func _on_invest_money_text_changed(new_text: String) -> void:
 func _on_texture_button_2_pressed() -> void:
 	current_popup = "invest"
 
-
 func _on_invest_button_pressed() -> void:
-	if Global.money >= invest_request:
+	if Global.money >= invest_request and Global.invest_claimed:
 		Global.money -= invest_request
-		Global.bank_money += invest_request
 		%investButton.disabled = true
 		if invest_selected == 1:
-			future = Global.add_to_date(7, 0)
+			Global.future = Global.add_to_date(7, 0)
+			Global.bank_money += invest_calc(invest_request, 1)
 		elif invest_selected == 2:
-			future = Global.add_to_date(14,0)
+			Global.future = Global.add_to_date(14,0)
+			Global.bank_money += invest_calc(invest_request, 2)
 		elif invest_selected == 3:
-			future = Global.add_to_date(0,1)
+			Global.future = Global.add_to_date(0,1)
+			Global.bank_money += invest_calc(invest_request, 3)
 		elif invest_selected == 4:
-			future = Global.add_to_date(0,2)
+			Global.future = Global.add_to_date(0,2)
+			Global.bank_money += invest_calc(invest_request, 4)
 		elif invest_selected == 5:
-			future = Global.add_to_date(0,3)
-		invested = true
+			Global.future = Global.add_to_date(0,3)
+			Global.bank_money += invest_calc(invest_request, 5)
+		Global.invested = true
+	elif Global.invest_claimed == false:
+		Global.money += Global.bank_money
+		Global.bank_money = 0
+		Global.invest_claimed = true

@@ -99,6 +99,10 @@ var debug_enabled: bool
 # Skill Tree
 var skill_tree_unlocked = [0]
 
+var invested: bool = false
+var future
+var invest_claimed = true
+
 func _process(delta):
 	if money != current_money:
 		SaveLoad._save()
@@ -435,6 +439,7 @@ func months_until(target_day: int, target_month: int, target_year: int) -> float
 func get_save_data() -> Dictionary:
 	return {
 		"money": money,
+		"bank_money": bank_money,
 		"username": username,
 		"xp": xp,
 		"rank": rank,
@@ -493,11 +498,15 @@ func get_save_data() -> Dictionary:
 		"player_ratings": player_ratings,
 		"player_rating": player_rating,
 		"skill_tree_unlocked":skill_tree_unlocked,
+		"invested": invested,
+		"future": future,
 		"debug_enabled": debug_enabled,
+		"invest_claimed": invest_claimed,
 	}
 
 func load_save_data(data: Dictionary) -> void:
 	money = data.get("money", money)
+	bank_money = data.get("bank_money", bank_money)
 	username = data.get("username", username)
 	xp = data.get("xp", xp)
 	rank = data.get("rank", rank)
@@ -558,9 +567,14 @@ func load_save_data(data: Dictionary) -> void:
 	player_rating = data.get("player_rating", player_rating)
 	
 	debug_enabled = data.get("debug_enabled", debug_enabled)
+	
+	invested = data.get("invested", invested)
+	future = data.get("future", future)
+	invest_claimed = data.get("invest_claimed", invest_claimed)
 
 func reset_to_defaults() -> void:
 	money = 50.00
+	bank_money = 0.0
 	username = "margthehagler34"
 	xp = 0
 	rank = "Seller"
@@ -620,3 +634,7 @@ func reset_to_defaults() -> void:
 	player_rating = 0.0
 	
 	debug_enabled = false
+	
+	invested = false
+	future
+	invest_claimed = true
