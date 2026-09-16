@@ -37,6 +37,7 @@ ActionPopup="*uid://e63s4x5eyeed"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -97,4 +98,5 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.7912125, 1, 0.6591823, 1)
 2d/snap/snap_2d_vertices_to_pixel=true
