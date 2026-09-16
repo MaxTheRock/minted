@@ -146,9 +146,63 @@ func _on_buy_pressed() -> void:
 		Global.money -= current_price
 		_on_close_pressed()
 		_load_page()
-
+		buy_skill(data[current_id]["effect"])
 	
 
+func buy_skill(effect):
+	print(effect)
+	if effect == "money_store_1":
+		Global.max_investment = 200
+	elif effect == "money_store_2":
+		Global.max_investment = 500
+	elif effect == "money_store_3":
+		Global.max_investment = 10000
+	elif effect == "better_interest":
+		Global.interest_boost += 1.01
+	elif effect == "loan_shark_1" or effect == "loan_shark_2":
+		Global.loan_mult -= 0.1
+	elif effect == "strong_hands":
+		Inventory.player_max += 1
+	elif effect == "maore_likeable":
+		Global.likability_score *= 0.9
+	elif effect == "shelf_upgrade_2":
+		Inventory.shelf_max += 1
+		Inventory.levels["shelf"] = 2
+	elif effect == "shelf_upgrade_3":
+		Inventory.shelf_max += 2
+		Inventory.levels["shelf"] = 3
+	elif effect == "shelf_upgrade_4":
+		Inventory.shelf_max += 3
+		Inventory.levels["shelf"] = 4	
+	elif effect == "upgrade_wardrobe_2":
+		Inventory.wardrobe_max += 4
+		Inventory.levels["wardrobe"] = 2
+	elif effect == "upgrade_wardrobe_3":
+		Inventory.wardrobe_max += 4
+		Inventory.levels["wardrobe"] = 3
+	elif effect == "upgrade_wardrobe_4":
+		Inventory.wardrobe_max += 6
+		Inventory.levels["wardrobe"] = 4
+	elif effect == "sleep_upgrade_2":
+		Inventory.levels["bed"] = 2
+		Global.sleep_mult *= 1.1
+	elif effect == "sleep_upgrade_3":
+		Inventory.levels["bed"] = 3
+		Global.sleep_mult *= 1.1	
+	elif effect == "computer_upgrade_2":
+		Inventory.levels["computer"] = 2
+		Global.items_computer = 15	
+		Global.REFRESHTIME = 5*60 # had to make this not a constant, lol
+	elif effect == "computer_upgrade_3":
+		Inventory.levels["computer"] = 3
+		Global.items_computer = 18
+		Global.REFRESHTIME = 4*60
+		Global.rent_broadband_mult *= 0.8
+	elif effect == "uncommon_snatcher":
+		Global.uncommon_frequency = 1.2
+	elif effect == "faster_deliveries_2" or effect == "faster_deliveries_1":
+		Global.delivery_speed_mult -= 0.1
+									
 func _on_dragging_button_button_up() -> void:
 	dragging = false
 	

@@ -18,7 +18,8 @@ func _ready() -> void:
 		storage_ui.inventory_index = i
 		grid.add_child(storage_ui)
 
-
+func _process(delta: float) -> void:
+	inv_label.text = "Storage: " + str(Inventory.wardrobe_carry_weight) + "/" + str(Inventory.wardrobe_max)
 func _on_close_pressed() -> void:
 	Global.inWardrobe = false
 	get_tree().change_scene_to_file("res://scenes/room.tscn")

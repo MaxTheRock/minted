@@ -508,7 +508,7 @@ func _on_place_button_pressed() -> void:
 			poster_selected.emit(placed_item_data)
 		return
  
-	if Inventory.shelf_inventory.size() <= 5:
+	if Inventory.shelf_inventory.size() <= Inventory.shelf_max:
 		if Inventory.shelf_inventory.any(func(d): return d.has("type") and d["type"] == "cd_player") and item.type == "cd_player":
 			print("cannot place duplacate items on shelf!")
 		else:

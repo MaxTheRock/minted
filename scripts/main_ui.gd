@@ -38,14 +38,14 @@ func generate_items(grid: GridContainer, category: String, amount: int):
 func _ready():
 	
 	$Mintora/VBoxContainer/Control3/TabContainer/Selling/selling.page_requested.connect(show_page)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer/GridContainer, "All", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Clothes/ScrollContainer/GridContainer, "Clothes", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Toys/ScrollContainer/GridContainer, "Toys", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Home/ScrollContainer/GridContainer, "Home", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Electronics/ScrollContainer/GridContainer, "Electronics", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/BooksMedia/ScrollContainer/GridContainer, "BooksMedia", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Collectables/ScrollContainer/GridContainer, "Collectables", 15)
-	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer, "Sports", 15)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/All/ScrollContainer/GridContainer, "All", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Clothes/ScrollContainer/GridContainer, "Clothes", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Toys/ScrollContainer/GridContainer, "Toys", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Home/ScrollContainer/GridContainer, "Home", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Electronics/ScrollContainer/GridContainer, "Electronics", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/BooksMedia/ScrollContainer/GridContainer, "BooksMedia", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Collectables/ScrollContainer/GridContainer, "Collectables", 12)
+	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer, "Sports", 12)
 	
 	if Inventory.bidding_items.size() == 0:
 		for i in range(3):

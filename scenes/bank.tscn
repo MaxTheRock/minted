@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dkr1udwiclbhe" path="res://assets/next_button_hovered.png" id="7_1di4w"]
 [ext_resource type="Texture2D" uid="uid://cwssp2l3qjnc1" path="res://assets/hotbar/item_template_extension.png" id="8_evogc"]
 [ext_resource type="Texture2D" uid="uid://cxaelqidjs36f" path="res://assets/hotbar/hotbar_item_template.png" id="9_qnd04"]
+[ext_resource type="Texture2D" uid="uid://ua6io5bg0l15" path="res://assets/os/lock.png" id="10_dondp"]
 [ext_resource type="Texture2D" uid="uid://d4gjvdamffvt5" path="res://assets/buy_template.png" id="10_qnd04"]
 [ext_resource type="Texture2D" uid="uid://cukod51634gwm" path="res://assets/invest_grid.png" id="11_d5yi6"]
 [ext_resource type="Texture2D" uid="uid://bq63ihht630x3" path="res://assets/invest_bars.png" id="12_avos3"]
@@ -239,6 +240,7 @@ offset_right = 559.0
 offset_bottom = 358.0
 
 [node name="landlord_text2" type="Label" parent="left/landlord_text" unique_id=16476864]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 offset_transform_enabled = true
@@ -252,6 +254,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="landlord_text" type="Label" parent="left/landlord_text" unique_id=203436571]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
@@ -408,15 +411,18 @@ offset_bottom = 698.0
 
 [node name="loan" type="Control" parent="popup" unique_id=1571352447]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
+offset_left = -4.0
+offset_top = -47.0
+offset_right = -4.0
+offset_bottom = -47.0
 
 [node name="background" type="NinePatchRect" parent="popup/loan" unique_id=1903361717]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 34.0
-offset_right = 152.75
-offset_bottom = 174.25
+offset_left = 6.0
+offset_top = 29.0
+offset_right = 154.75
+offset_bottom = 229.0
 scale = Vector2(4, 4)
 texture = ExtResource("3_3bwp7")
 region_rect = Rect2(11, 3, 41, 56)
@@ -563,12 +569,204 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="loanButtonLS1S" type="TextureButton" parent="popup/loan" unique_id=1027345276]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 320.0
+offset_right = 158.0
+offset_bottom = 488.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButtonLS1S" unique_id=394280355]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text" type="Label" parent="popup/loan/loanButtonLS1S/background" unique_id=1896202877]
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 0
+offset_left = 3.25
+offset_top = 6.25
+offset_right = 153.25
+offset_bottom = 149.25
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 14
+text = "Loan Shark 1 
+Small Loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="lock" type="TextureRect" parent="popup/loan/loanButtonLS1S/background" unique_id=45489143]
+layout_mode = 0
+offset_left = 1.7499998
+offset_top = 2.9999998
+offset_right = 41.75
+offset_bottom = 43.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_dondp")
+expand_mode = 3
+
+[node name="loanButtonLS1L" type="TextureButton" parent="popup/loan" unique_id=464434301]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 320.0
+offset_right = 304.0
+offset_bottom = 488.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButtonLS1L" unique_id=190659163]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text2" type="Label" parent="popup/loan/loanButtonLS1L/background" unique_id=248161933]
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 0
+offset_left = 3.25
+offset_top = 5.5
+offset_right = 153.25
+offset_bottom = 148.5
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "Loan Shark 1 
+Large Loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="lock" type="TextureRect" parent="popup/loan/loanButtonLS1L/background" unique_id=1738314535]
+layout_mode = 0
+offset_left = 1.7499998
+offset_top = 2.9999998
+offset_right = 41.75
+offset_bottom = 43.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_dondp")
+expand_mode = 3
+
+[node name="loanButtonLS2S" type="TextureButton" parent="popup/loan" unique_id=429879282]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 320.0
+offset_right = 450.0
+offset_bottom = 488.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButtonLS2S" unique_id=1834851671]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text2" type="Label" parent="popup/loan/loanButtonLS2S/background" unique_id=424741778]
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 0
+offset_left = 3.25
+offset_top = 5.5
+offset_right = 153.25
+offset_bottom = 148.5
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "Loan Shark 2 
+Small Loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="lock" type="TextureRect" parent="popup/loan/loanButtonLS2S/background" unique_id=1105506370]
+layout_mode = 0
+offset_left = 1.7499998
+offset_top = 2.9999998
+offset_right = 41.75
+offset_bottom = 43.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_dondp")
+expand_mode = 3
+
+[node name="loanButtonLS2L" type="TextureButton" parent="popup/loan" unique_id=1887566715]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 320.0
+offset_right = 596.0
+offset_bottom = 488.0
+
+[node name="background" type="NinePatchRect" parent="popup/loan/loanButtonLS2L" unique_id=1935588960]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 47.0
+scale = Vector2(4, 4)
+texture = ExtResource("9_qnd04")
+region_rect = Rect2(15, 7, 33, 43)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+
+[node name="text2" type="Label" parent="popup/loan/loanButtonLS2L/background" unique_id=537946346]
+custom_maximum_size = Vector2(150, -1)
+layout_mode = 0
+offset_left = 3.25
+offset_top = 5.5
+offset_right = 153.25
+offset_bottom = 148.5
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 13
+text = "Loan Shark 2 
+Small Loan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="lock" type="TextureRect" parent="popup/loan/loanButtonLS2L/background" unique_id=394795534]
+layout_mode = 0
+offset_left = 1.7499998
+offset_top = 2.9999998
+offset_right = 41.75
+offset_bottom = 43.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("10_dondp")
+expand_mode = 3
+
 [node name="total_background" type="NinePatchRect" parent="popup/loan" unique_id=727962180]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 337.0
-offset_right = 164.0
-offset_bottom = 390.5
+offset_left = 25.0
+offset_top = 492.0
+offset_right = 162.0
+offset_bottom = 545.5
 scale = Vector2(4, 4)
 texture = ExtResource("9_qnd04")
 region_rect = Rect2(15, 7, 33, 43)
@@ -650,14 +848,38 @@ theme_override_font_sizes/font_size = 25
 text = "2 days"
 horizontal_alignment = 2
 
+[node name="min_rep_label" type="Label" parent="popup/loan/total_background" unique_id=978283195]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 35.75
+offset_right = 337.0
+offset_bottom = 105.75
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "Minimum Rep Needed"
+
+[node name="min_rep_number" type="Label" parent="popup/loan/total_background" unique_id=2008291528]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 42.75
+offset_top = 36.5
+offset_right = 484.0
+offset_bottom = 106.5
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("2_0aawc")
+theme_override_font_sizes/font_size = 25
+text = "3 (2.23)"
+horizontal_alignment = 2
+
 [node name="confirmButton" type="Button" parent="popup/loan" unique_id=1674272922]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
-offset_left = 416.0
-offset_top = 526.0
-offset_right = 537.0
-offset_bottom = 576.0
+offset_left = 435.0
+offset_top = 701.0
+offset_right = 556.0
+offset_bottom = 751.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(2, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d5yi6")
@@ -790,20 +1012,20 @@ text = "INVEST"
 
 [node name="OptionButton" type="OptionButton" parent="popup/invest" unique_id=2140224530]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 181.0
-offset_right = 266.0
-offset_bottom = 216.0
+offset_left = 53.0
+offset_top = 183.0
+offset_right = 265.0
+offset_bottom = 218.0
 item_count = 5
-popup/item_0/text = "One week (0.71% profit)"
+popup/item_0/text = "One week"
 popup/item_0/id = 0
-popup/item_1/text = "Two weeks (1.56% profit)"
+popup/item_1/text = "Two weeks"
 popup/item_1/id = 1
-popup/item_2/text = "One month (3.61% profit)"
+popup/item_2/text = "One month"
 popup/item_2/id = 2
-popup/item_3/text = "Two months (7.46% profit)"
+popup/item_3/text = "Two months"
 popup/item_3/id = 3
-popup/item_4/text = "Three months (12.33% profit)"
+popup/item_4/text = "Three month"
 popup/item_4/id = 4
 
 [node name="investMoney" type="LineEdit" parent="popup/invest" unique_id=1210048252]
@@ -1025,6 +1247,10 @@ texture_hover = ExtResource("7_1di4w")
 [connection signal="mouse_entered" from="popup/loan/loanButton3" to="." method="_on_loan_button_3_mouse_entered"]
 [connection signal="mouse_exited" from="popup/loan/loanButton3" to="." method="_on_loan_button_3_mouse_exited"]
 [connection signal="pressed" from="popup/loan/loanButton3" to="." method="_on_loan_button_3_pressed"]
+[connection signal="pressed" from="popup/loan/loanButtonLS1S" to="." method="_on_loan_button_ls_1s_pressed"]
+[connection signal="pressed" from="popup/loan/loanButtonLS1L" to="." method="_on_loan_button_ls_1l_pressed"]
+[connection signal="pressed" from="popup/loan/loanButtonLS2S" to="." method="_on_loan_button_ls_2s_pressed"]
+[connection signal="pressed" from="popup/loan/loanButtonLS2L" to="." method="_on_loan_button_ls_2l_pressed"]
 [connection signal="mouse_entered" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_entered"]
 [connection signal="mouse_exited" from="popup/loan/confirmButton" to="." method="_on_confirm_button_mouse_exited"]
 [connection signal="pressed" from="popup/loan/confirmButton" to="." method="_on_confirm_button_pressed"]
@@ -1033,5 +1259,6 @@ texture_hover = ExtResource("7_1di4w")
 [connection signal="pressed" from="popup/invest/investButton" to="." method="_on_invest_button_pressed"]
 [connection signal="item_focused" from="popup/invest/OptionButton" to="." method="_on_option_button_item_focused"]
 [connection signal="item_selected" from="popup/invest/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="popup/invest/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="text_changed" from="popup/invest/investMoney" to="." method="_on_invest_money_text_changed"]
 [connection signal="pressed" from="popup/popupBack" to="." method="_on_popup_back_pressed"]

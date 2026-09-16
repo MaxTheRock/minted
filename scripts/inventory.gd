@@ -28,8 +28,11 @@ var sell_id: int = 0
 
 var wardrobe_carry_weight = 0
 var player_inventory_weight = 0
-var player_max = 6
-var wardrobe_max = 20
+var player_max = 5
+var wardrobe_max = 8
+var shelf_max = 2
+var poster_nums = 1
+var levels = {"bed":1,"computer":1,"house":1,"shelf":1,"wardrobe":1}
 
 var market_items: Dictionary = {}
 var buyer_types = ["cheap","normal","stingy"]
@@ -289,6 +292,13 @@ func check_buy_items(buyer,id):
 		# NOTE: buyer_rating must be computed and appended BEFORE item_sold
 		# is emitted, otherwise listeners read the previous sale's rating
 		# (or the 0.0 default on the very first sale).
+		trust *= rng.randf_range(0.8,1.2)
+		var boost_odds = 1- Global.likability_score
+		var rand = rng.randf()
+		
+		if rand > boost_odds:
+			trust += 0.3
+			 
 		if trust > 0.9:
 			buyer_rating = 5.0
 		elif trust > 0.8:
@@ -513,6 +523,10 @@ func get_save_data() -> Dictionary:
 		"player_inventory": player_inventory,
 		"wardrobe_inventory": wardrobe_inventory,
 		"shelf_inventory": shelf_inventory,
+		"wardrobe_max": wardrobe_max,
+		"shelf_max": shelf_max,
+		"poster_nums": poster_nums,
+		"levels": levels,
 		"cd_inventory": cd_inventory,
 		"display_item": display_item,
 		"actual_selling": actual_selling,
@@ -650,7 +664,10 @@ func load_save_data(data: Dictionary) -> void:
 	display_poster = data.get("display_poster", display_poster)
 	buyers = data.get("buyers", buyers)
 	buyer_rating = data.get("buyer_rating", buyer_rating)
-
+	wardrobe_max = data.get("wardrobe_max",wardrobe_max)
+	shelf_max = data.get("shelf_max",shelf_max)
+	poster_nums = data.get("poster_nums",poster_nums)
+	levels = data.get("levels",levels)
 	bidding_items = data.get("bidding_items", bidding_items)
 	bidding_details = data.get("bidding_details", bidding_details)
 	bidders = data.get("bidders", bidders)
@@ -682,7 +699,13 @@ func reset_to_defaults() -> void:
 	item_id = 0
 	sell_id = 0
 	market_items = {}
-
+	wardrobe_carry_weight = 0
+	player_inventory_weight = 0
+	player_max = 5
+	wardrobe_max = 8
+	shelf_max = 2
+	poster_nums = 1
+	levels = {"bed":1,"computer":1,"house":1,"shelf":1,"wardrobe":1}
 	inventories_changed.emit()
 
 func refresh_buyers_market(category):

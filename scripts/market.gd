@@ -36,7 +36,7 @@ func _on_button_pressed() -> void:
 			for child in grid.get_children():
 				child.queue_free()
 
-			for i in range(15):
+			for i in range(Global.items_computer):
 				var item_ui = packed.instantiate()
 				grid.add_child(item_ui)
 				item_ui.get_node("item").initialize_item(category)

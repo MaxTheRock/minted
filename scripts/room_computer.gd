@@ -15,13 +15,13 @@ func run_loop() -> void:
 		flickering()
 
 func _process(delta: float) -> void:
-	if Global.current_interactable == self and Input.is_action_pressed("interact"):
+	if Global.current_interactable == self and Input.is_action_pressed("interact") and !Global.dialogue_ongoing:
 		Global.first_room = false
 		Global.rent_broadband += 0.02 * Global.rent_broadband_mult
 		Global.goto_scene("res://scenes/main_ui.tscn")
 		Global.on_computer = true
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.name == "Player_Detector":
+	if area.name == "Player_Detector" and !Global.dialogue_ongoing:
 		label_shown = true
 		Global.current_interactable = self
 		label.show()

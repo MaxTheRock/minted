@@ -65,7 +65,7 @@ var market_category = ""
 
 var rarities = {
 			"common": 500,
-			"uncommon": 250,
+			"uncommon": 250 * Global.uncommon_frequency,
 			"rare": 100,
 			"epic": 25,
 			"legendary": 5
@@ -178,7 +178,7 @@ func initialize_item(category := "All"):
 		"Bidding":
 			rarities = {
 				"common": 150,
-				"uncommon": 300,
+				"uncommon": 300 * Global.uncommon_frequency,
 				"rare": 150,
 				"epic": 50,
 				"legendary": 25
@@ -186,7 +186,7 @@ func initialize_item(category := "All"):
 			type = get_random_item(all_items)
 			rarities = {
 				"common": 500,
-				"uncommon": 300,
+				"uncommon": 300 * Global.uncommon_frequency,
 				"rare": 100,
 				"epic": 20,
 				"legendary": 4
@@ -203,7 +203,7 @@ func initialize_item(category := "All"):
 			type = get_random_item(all_items)
 			rarities = {
 				"common": 500,
-				"uncommon": 250,
+				"uncommon": 250 * Global.uncommon_frequency,
 				"rare": 100,
 				"epic": 25,
 				"legendary": 5
@@ -214,7 +214,7 @@ func initialize_item(category := "All"):
 	
 	rarities = {
 				"common": 500,
-				"uncommon": 250,
+				"uncommon": 250 * Global.uncommon_frequency,
 				"rare": 100,
 				"epic": 25,
 				"legendary": 5
@@ -860,7 +860,9 @@ func generate_parameters(type):
 	if type in placeable_items:
 		placeable = true
 	if type in posters:
-		poster = true		
+		poster = true
+	
+	shippingTime = snapped(shippingTime/Global.delivery_speed_mult,0.1)		
 	# minimum price is £1
 	if price < 1:
 		price = 1.00

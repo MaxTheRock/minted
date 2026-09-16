@@ -13,11 +13,14 @@ var current_popup: String = "none"
 var loan_value: int = 0
 var loan_interest: float = 0.0
 var loan_days: int = 0
-
+var min_rep = 0
 var invest_request: float = 0.0
 
 var selected: String = ""
 var invest_selected: int = 1
+
+var ls1 = false
+var ls2 = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,8 +30,26 @@ func _ready() -> void:
 		%investButton.disabled = false
 	%loan.hide()
 	%popupBack.hide()
-
-
+	
+	if 10 in Global.skill_tree_unlocked:
+		ls1 = true
+		$popup/loan/loanButtonLS1S/background/lock.hide()
+		$popup/loan/loanButtonLS1L/background/lock.hide()
+	else:
+		ls1 = false
+		$popup/loan/loanButtonLS1S/background/text.hide()
+		$popup/loan/loanButtonLS1L/background/text2.hide()
+	
+	
+	if 27 in Global.skill_tree_unlocked:
+		ls2 = true
+		$popup/loan/loanButtonLS2S/background/lock.hide()
+		$popup/loan/loanButtonLS2L/background/lock.hide()
+	else:
+		ls2 = false
+		$popup/loan/loanButtonLS2S/background/text2.hide()
+		$popup/loan/loanButtonLS2L/background/text2.hide()
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.invested and Global.future != null:
@@ -54,14 +75,37 @@ func _process(delta: float) -> void:
 			loan_value =  100
 			loan_interest = 5.0
 			loan_days = 2
+			min_rep = 2
 		elif selected == "medium":
 			loan_value =  500
 			loan_interest = 12.0
-			loan_days = 7
+			loan_days = 5
+			min_rep = 3
 		elif selected == "large":
 			loan_value =  2000
 			loan_interest = 25.0
-			loan_days = 15
+			loan_days = 10
+			min_rep = 4
+		elif selected == "ls1s":
+			loan_value =  250
+			loan_interest = 10.0
+			loan_days = 5
+			min_rep = 3
+		elif selected == "ls1l":
+			loan_value =  750
+			loan_interest = 10.0
+			loan_days = 5
+			min_rep = 4
+		elif selected == "ls2s":
+			loan_value =  2500
+			loan_interest = 20.0
+			loan_days = 11
+			min_rep = 3
+		elif selected == "ls2l":
+			loan_value =  7500
+			loan_interest = 20.0
+			loan_days = 11
+			min_rep = 4
 		else:
 			loan_value =  0
 			loan_interest = 0.0
@@ -70,13 +114,15 @@ func _process(delta: float) -> void:
 		amountNumber.text = "$" + str(loan_value)
 		interestNumber.text = str(loan_interest) + "%"
 		repayNumber.text = str(loan_days) + " rent days"
+		%min_rep_number.text = str(min_rep) + " (" + str(Global.player_rating) + ")"
 	elif current_popup == "invest":
 		%invest.show()
 		%loan.hide()
 	elif current_popup == "none":
 		%loan.hide()
 		%invest.hide()
-
+	
+	
 func _on_close_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/outside.tscn")
 
@@ -118,15 +164,21 @@ func _on_loan_button_3_mouse_exited() -> void:
 
 
 func _on_confirm_button_pressed() -> void:
-	if Global.loan_info == [0,0,0]:
+	if Global.loan_info == [0,0,0] and min_rep < Global.player_rating:
 		Global.money += loan_value
-		Global.loan_info[0] = loan_value
+		Global.loan_info[0] = loan_value 
 		Global.loan_info[1] = loan_days
-		Global.loan_info[2] = loan_interest
+		Global.loan_info[2] = loan_interest * Global.loan_mult
 		%confirmButtonLabel.text = "CONFIRMED"
 		await get_tree().create_timer(3.0).timeout
 		%confirmButtonLabel.text = "Confirm"
-
+	elif min_rep < Global.player_rating:
+		%landlord_text.text = "Sorry, your reputation is too low, we can't give you this loan."
+		%landlord_text2.text = "Sorry, your reputation is too low, we can't give you this loan."
+	else:
+		%landlord_text.text = "You already have a loan in progress!"
+		%landlord_text2.text = "You already have a loan in progress!"
+		
 func _on_confirm_button_mouse_entered() -> void:
 	%confirmButton.modulate.a = 0.7
 
@@ -239,15 +291,15 @@ func _on_option_button_item_focused(index: int) -> void:
 
 func invest_calc(money, option):
 	if option == 1:
-		return snapped(money * 1.0071, 0.001)
+		return snapped(money * (1.025+Global.interest_boost*option), 0.001)
 	elif option == 2:
-		return snapped(money * 1.0156, 0.001)
+		return snapped(money * (1.055+Global.interest_boost*option), 0.001)
 	elif option == 3:
-		return snapped(money * 1.0361, 0.001)
+		return snapped(money * (1.12+Global.interest_boost*option), 0.001)
 	elif option == 4:
-		return snapped(money * 1.0746, 0.001)
+		return snapped(money * (1.25+Global.interest_boost*option), 0.001)
 	elif option == 5:
-		return snapped(money * 1.1233, 0.001)
+		return snapped(money * (1.40+Global.interest_boost*option), 0.001)
 		
 
 func _on_invest_money_text_changed(new_text: String) -> void:
@@ -297,3 +349,30 @@ func _on_invest_button_pressed() -> void:
 		Global.money += Global.bank_money
 		Global.bank_money = 0
 		Global.invest_claimed = true
+
+
+func _on_option_button_pressed() -> void:
+	var texts = ["One week", "Two weeks", "One month", "Two months", "Three months"]
+	for i in range(5):
+		$popup/invest/OptionButton.set_item_text(i,texts[i]+" "+str(invest_calc(100,i+1)-100)+"%")
+
+
+func _on_loan_button_ls_1s_pressed() -> void:
+	if ls1:
+		selected = "ls1s"
+
+
+
+func _on_loan_button_ls_1l_pressed() -> void:
+	if ls1:
+		selected = "ls1l"
+
+
+func _on_loan_button_ls_2s_pressed() -> void:
+	if ls2:
+		selected = "ls2s"
+
+
+func _on_loan_button_ls_2l_pressed() -> void:
+	if ls2:
+		selected = "ls2s"

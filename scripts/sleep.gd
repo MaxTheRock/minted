@@ -16,7 +16,7 @@ var sleep_gained_int = 0
 @onready var themey = preload("res://audio/background_menu.mp3")
 var sleep_name = "Sleep"
 var sleep_vals = [8,10,12,14,16,18,20,22,25,28,31,35,41,46,50]
-var sleep_amounts = [20,25,30,33,36,40,45,48,50,52,54,56,60,64,67,70]
+var sleep_amounts = [20,25,30,33,36,40,42,46,48,50,52,54,57,61,65]
 
 func _ready() -> void:
 	var original_image = Image.load_from_file("res://assets/os/icons/sleep.png")	
@@ -43,7 +43,7 @@ func _process(delta:float) -> void:
 	elif Global.hour >= 18 and Global.hour <= 22:
 		sleep_needed_int += 10
 	sleep_needed.value = sleep_needed_int
-	sleep_gained.value = min(sleep_gained_int,sleep_gained_int-(sleep_gained_int+Global.sleep-100))
+	sleep_gained.value = round(min(sleep_gained_int*Global.sleep_mult,sleep_gained_int*Global.sleep_mult-(sleep_gained_int+Global.sleep-100)))
 	time_ui.text = Global.get_time_text()
 	sleep_gained.rotation_degrees = Global.sleep * 3.6
 	

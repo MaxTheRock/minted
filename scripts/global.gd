@@ -51,7 +51,7 @@ var paused = false
 var skip_dialogue = true
 var no_sleep = true
 var current_interactable = null
-var sleep = 40
+var sleep = 90
 var action_just_pressed = false
 var radio_on = false
 var radio_playing = "none"
@@ -71,6 +71,7 @@ var rent_frequency = 10
 var rent_ready = false
 var total_rent = 0
 var loan_info: Array = [0, 0, 0] # money, days left, interest
+var loan_mult = 1
 var do_rent = false
 
 var frequency = 150
@@ -80,7 +81,7 @@ var CLOCK_SPEED = 0.01 # ---> The lower, the faster jsuk rohan for testing
 var SPEED_MULT = 1 # just makes time even faster, default to 1.
 const months_31 = [1,3,5,7,8,10,12]
 const months_30 = [4,6,9,11]
-const REFRESHTIME: float = 6*60 # 6 in game hours
+var REFRESHTIME: float = 6*60 # 6 in game hours
 
 # newspaper
 var last_article = -1
@@ -99,9 +100,17 @@ var debug_enabled: bool
 # Skill Tree
 var skill_tree_unlocked = [0]
 
+# values changed with skill tree
 var invested: bool = false
 var future
 var invest_claimed = true
+var max_investment = 100
+var interest_boost = 0
+var likability_score = 1
+var sleep_mult = 1
+var items_computer = 12
+var uncommon_frequency = 1.2
+var delivery_speed_mult = 1
 
 func _process(delta):
 	if money != current_money:
@@ -604,8 +613,9 @@ func reset_to_defaults() -> void:
 
 	days_since_rent = 0
 	rent_triggered = false
-	no_sleep = true
-	sleep = 40
+	no_sleep = false
+	skip_dialogue = false
+	sleep = 90
 	radio_on = false
 	radio_playing = "none"
 	on_market = false
@@ -630,7 +640,7 @@ func reset_to_defaults() -> void:
 	daily_change = 0.2
 	skill_tree_unlocked = [0]
 	player_pos = Vector2(0,0)
-	player_ratings = [5.0]
+	player_ratings = [3.5]
 	player_rating = 0.0
 	
 	debug_enabled = false

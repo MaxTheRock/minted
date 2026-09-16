@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 250.0
+var SPEED = 225.0
 var moveDir = Vector2(0,0)
 
 @onready var sprite= $Player
@@ -9,6 +9,11 @@ var most_recent_dir = ""
 func _physics_process(delta: float) -> void:
 	movement(delta)
 
+func _ready() -> void:
+	SPEED = 225.0
+	if 15 in Global.skill_tree_unlocked:
+		SPEED *= 1.1
+		
 func movement(d):
 	if not Global.dialogue_ongoing:
 		if Input.is_action_pressed("right"):
