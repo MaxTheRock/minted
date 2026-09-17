@@ -35,7 +35,7 @@ func _on_button_pressed() -> void:
 		Inventory.bidding_details = [{},{},{}]
 		Inventory.bidders = []
 		
-		for i in range(3):
+		for i in range(5):
 			var packed = preload("res://scenes/item_ui.tscn")
 			var item_ui = packed.instantiate()
 			$".".add_child(item_ui)

@@ -19,7 +19,7 @@ var buyer_rating: float
 var boosted_items_news = []
 # bidding lists
 var bidding_items = []
-var bidding_details = [{},{},{}]
+var bidding_details = [{},{},{},{},{}]
 var bidders: Array = []
 var market_buyers = []
 
@@ -693,7 +693,7 @@ func reset_to_defaults() -> void:
 	buyer_rating = 0.0
 
 	bidding_items = []
-	bidding_details = [{},{},{}]
+	bidding_details = [{},{},{},{},{}]
 	bidders = []
 
 	item_id = 0
