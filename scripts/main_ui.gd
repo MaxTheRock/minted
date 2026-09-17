@@ -48,7 +48,7 @@ func _ready():
 	generate_items($Mintora/VBoxContainer/Control3/TabContainer/Home/Market/VBoxContainer/Sections/Centre/TabContainer/Sports/ScrollContainer/GridContainer, "Sports", 12)
 	
 	if Inventory.bidding_items.size() == 0:
-		for i in range(3):
+		for i in range(4):
 			var packed = preload("res://scenes/item_ui.tscn")
 			var item_ui = packed.instantiate()
 			$".".add_child(item_ui)

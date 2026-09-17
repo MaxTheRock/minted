@@ -19,7 +19,7 @@ var buyer_rating: float
 var boosted_items_news = []
 # bidding lists
 var bidding_items = []
-var bidding_details = [{},{},{},{},{}]
+var bidding_details = [{},{},{},{}]
 var bidders: Array = []
 var market_buyers = []
 
@@ -97,10 +97,6 @@ func _process(_delta) -> void:
 	var buyers_to_remove: Array = []
 	var sold_listing_ids: Array = []
 
-	# Iterate over a snapshot, since check_buy_items() can remove entries
-	# from actual_selling while we're looping over it, which used to cause
-	# an out-of-bounds crash when a second buyer for the same listing
-	# was also due in the same frame.
 	for i in actual_selling.duplicate():
 		var listing_sell_id = i["listing_sell_id"]
 		var item_id = i["ID"]

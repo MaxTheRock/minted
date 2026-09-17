@@ -32,10 +32,10 @@ func _on_button_pressed() -> void:
 		Global.refreshProgress = 0
 		Global.rent_broadband += 0.02 * Global.rent_broadband_mult
 		Inventory.bidding_items = []
-		Inventory.bidding_details = [{},{},{}]
+		Inventory.bidding_details = [{},{},{},{}]
 		Inventory.bidders = []
 		
-		for i in range(5):
+		for i in range(4):
 			var packed = preload("res://scenes/item_ui.tscn")
 			var item_ui = packed.instantiate()
 			$".".add_child(item_ui)

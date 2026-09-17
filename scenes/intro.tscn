@@ -120,8 +120,6 @@ text = "Made with Godot"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1122780310]
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=66262219]
