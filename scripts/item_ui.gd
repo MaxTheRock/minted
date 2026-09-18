@@ -280,7 +280,7 @@ func _ready() -> void:
 	elif Inventory.current_ui_type == "poster":
 		buy_button.hide()
 		take_button.hide()
-		place_button.show()
+		place_button.hide()
 		put_button.hide()
 		eject_button.hide()
 		use_button.hide()
@@ -288,21 +288,18 @@ func _ready() -> void:
 		shelf_ui_buttons.hide()
 		grid_container.show()
 		sold_container.hide()
-		
+
+		item.rarity_ui.connect(_rarity_ui)
+		if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
+				item.load_data(Inventory.player_inventory[inventory_index])
+	
 		var item_data = item.get_data()
-		if item_data["poster"] == false:
+		if item_data.get("poster", false) == true:
+			place_button.show()
+		else:
 			panel_container.custom_maximum_size = Vector2(150, 160)
 			$PanelContainer2.hide()
 			place_button.hide()
-			
-		if Inventory.player_inventory:
-			item.rarity_ui.connect(_rarity_ui)
-			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
-				item.load_data(Inventory.player_inventory[inventory_index])
-		else:
-			item.rarity_ui.connect(_rarity_ui)
-			if inventory_index >= 0 and inventory_index < Inventory.player_inventory.size():
-				item.load_data(Inventory.player_inventory[inventory_index])
 	
 	elif Inventory.current_ui_type == "display_bidding":
 		buy_button.hide()
