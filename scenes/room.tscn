@@ -46,7 +46,7 @@ script = ExtResource("1_jn645")
 position = Vector2(-640, -335)
 
 [node name="Building" parent="." unique_id=2101118295 instance=ExtResource("2_qtoah")]
-position = Vector2(0, -16)
+position = Vector2(0, 6)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1938782641]
 position = Vector2(0, 28)
@@ -57,9 +57,9 @@ position = Vector2(8, -50)
 [node name="Hotbar" parent="." unique_id=1365132077 instance=ExtResource("5_eom3m")]
 z_index = 10
 offset_left = -196.0
-offset_top = 185.0
+offset_top = 247.0
 offset_right = -196.0
-offset_bottom = 185.0
+offset_bottom = 247.0
 
 [node name="dialogue" parent="." unique_id=2010025206 instance=ExtResource("5_jxe34")]
 visible = false

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d3wijruksnob7" path="res://scripts/hotbar.gd" id="1_4qkdb"]
 [ext_resource type="Texture2D" uid="uid://lbht0cr1yow4" path="res://assets/hotbar/hotbar_box_template.png" id="1_yj1xu"]
+[ext_resource type="Texture2D" uid="uid://cwssp2l3qjnc1" path="res://assets/hotbar/item_template_extension.png" id="3_2n1yv"]
+[ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_vu8xs"]
 
 [node name="Hotbar" type="Control" unique_id=1365132077]
 layout_mode = 3
@@ -14,8 +16,8 @@ script = ExtResource("1_4qkdb")
 
 [node name="inventory" type="NinePatchRect" parent="." unique_id=716269392]
 layout_mode = 0
-offset_right = 100.0
-offset_bottom = 50.0
+offset_right = 114.0
+offset_bottom = 27.75
 scale = Vector2(4, 4)
 texture = ExtResource("1_yj1xu")
 region_rect = Rect2(11, 3, 41, 56)
@@ -26,23 +28,21 @@ patch_margin_bottom = 13
 axis_stretch_horizontal = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="inventory" unique_id=817293994]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 486.0
-offset_bottom = 184.0
-scale = Vector2(0.25, 0.25)
+layout_mode = 1
+offset_left = 9.25
+offset_top = 3.5
+offset_right = 879.7046
+offset_bottom = 183.5
+scale = Vector2(0.11, 0.11)
 size_flags_vertical = 3
 vertical_scroll_mode = 0
 scroll_horizontal_by_default = true
 scroll_deadzone = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="inventory/ScrollContainer" unique_id=1254971059]
+[node name="MarginContainer" type="CenterContainer" parent="inventory/ScrollContainer" unique_id=186602882]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="inventory/ScrollContainer/MarginContainer" unique_id=126231991]
 layout_mode = 2
@@ -52,10 +52,26 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = -50
 columns = 6
 
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1291646677]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 91.0
+offset_right = 275.75
+offset_bottom = 100.75
+scale = Vector2(4, 4)
+texture = ExtResource("3_2n1yv")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
 [node name="storage" type="Label" parent="." unique_id=1786459571]
 layout_mode = 0
-offset_left = 30.0
-offset_top = -35.0
-offset_right = 115.0
-offset_bottom = -16.0
-text = "Weight: 0/6"
+offset_left = 259.0
+offset_top = 95.0
+offset_right = 351.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0.69803923, 0.74509805, 0.8509804, 1)
+theme_override_fonts/font = ExtResource("4_vu8xs")
+theme_override_font_sizes/font_size = 10
+text = "Storage: 0/6"

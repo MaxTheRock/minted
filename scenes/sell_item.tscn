@@ -39,6 +39,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
 [node name="PhotosSection" type="VBoxContainer" parent="ScrollContainer/Sections" unique_id=2146413467]
+custom_minimum_size = Vector2(0, 275)
 layout_mode = 2
 
 [node name="title_label" type="Label" parent="ScrollContainer/Sections/PhotosSection" unique_id=1133652622]
@@ -54,7 +55,7 @@ layout_mode = 0
 offset_left = -4.0
 offset_top = 4.0
 offset_right = 309.0
-offset_bottom = 57.25
+offset_bottom = 65.5
 scale = Vector2(4, 4)
 texture = ExtResource("1_k4cy3")
 region_rect = Rect2(11, 3, 41, 56)
@@ -65,7 +66,7 @@ patch_margin_bottom = 13
 axis_stretch_horizontal = 1
 
 [node name="InventoryContainer" type="MarginContainer" parent="ScrollContainer/Sections/PhotosSection" unique_id=1289924077]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -79,6 +80,7 @@ horizontal_scroll_mode = 0
 
 [node name="InventoryGrid" type="GridContainer" parent="ScrollContainer/Sections/PhotosSection/InventoryContainer/ScrollContainer" unique_id=1856498536]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -219,19 +221,23 @@ theme_override_constants/separation = 176
 layout_mode = 2
 text = "Colours"
 
-[node name="ColorButton0" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1981806427]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1551537891]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ColorButton0" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow/HBoxContainer" unique_id=1981806427]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 text = "Green"
 
-[node name="ColorButton1" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1104021246]
+[node name="ColorButton1" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow/HBoxContainer" unique_id=1104021246]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
 text = "Green"
 
-[node name="ColorButton2" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow" unique_id=1554359412]
+[node name="ColorButton2" type="Button" parent="ScrollContainer/Sections/DetailsSection/MarginContainer/ColorRow/HBoxContainer" unique_id=1554359412]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true

@@ -85,8 +85,8 @@ columns = 2
 layout_mode = 1
 offset_left = 799.0
 offset_top = 54.0
-offset_right = 799.0
-offset_bottom = 54.0
+offset_right = 7.0
+offset_bottom = -535.0
 
 [node name="put_back" type="Button" parent="." unique_id=1438202216]
 layout_mode = 0

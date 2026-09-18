@@ -155,7 +155,7 @@ columns = 3
 layout_mode = 1
 offset_left = 693.0
 offset_top = 42.0
-offset_right = 693.0
-offset_bottom = 42.0
+offset_right = -98.0
+offset_bottom = -539.0
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
