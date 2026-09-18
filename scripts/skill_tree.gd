@@ -61,6 +61,7 @@ func _load_page() -> void:
 func _ready() -> void:
 	SignalBus.show_skill.connect(_show_skill)
 	_load_page()
+	$background2.self_modulate =Color(1,1,1,0.5)
 
 func create_connection_line(node_a: Control, node_b: Control, unlocked: bool) -> void:
 	var line = Line2D.new()

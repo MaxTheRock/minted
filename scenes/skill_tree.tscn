@@ -1,9 +1,21 @@
 [gd_scene format=3 uid="uid://bogynt6dv1h1e"]
 
 [ext_resource type="Script" uid="uid://rpc3422o50py" path="res://scripts/skill_tree.gd" id="1_tnam6"]
+[ext_resource type="Texture2D" uid="uid://k2pkwfchvggn" path="res://assets/background/skill_tree_1.png" id="2_51bdh"]
 [ext_resource type="PackedScene" uid="uid://b6x7w416aqb1l" path="res://scenes/top_bar.tscn" id="2_tnam6"]
+[ext_resource type="Texture2D" uid="uid://hov5ek5g3t40" path="res://assets/background/skill_tree_2.png" id="3_6awrb"]
 [ext_resource type="PackedScene" uid="uid://b4apwjm4ouory" path="res://scenes/navigation.tscn" id="3_a302t"]
+[ext_resource type="Shader" uid="uid://lha8oonp4j48" path="res://shaders/skill_tree.gdshader" id="3_h52vt"]
+[ext_resource type="Texture2D" uid="uid://yv4b1koxprex" path="res://assets/background/repeating_unit_sleep.png" id="4_003p6"]
 [ext_resource type="FontFile" uid="uid://gwi3hcl35u7m" path="res://fonts/Pixeled.ttf" id="4_tyjg3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h52vt"]
+shader = ExtResource("3_h52vt")
+shader_parameter/screen_height = 270.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6awrb"]
+shader = ExtResource("3_h52vt")
+shader_parameter/screen_height = 270.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyjg3"]
 content_margin_left = 10.0
@@ -27,10 +39,43 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tnam6")
 
+[node name="ParallaxLayer" type="Parallax2D" parent="." unique_id=1986295353]
+visible = false
+scale = Vector2(2, 2)
+scroll_offset = Vector2(58, -91)
+repeat_size = Vector2(64, 64)
+autoscroll = Vector2(20, 20)
+repeat_times = 10
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayer" unique_id=831975298]
+texture_repeat = 2
+offset_left = -141.0
+offset_top = -123.0
+offset_right = 1896.0
+offset_bottom = 1047.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_003p6")
+stretch_mode = 1
+
 [node name="background" type="TextureRect" parent="." unique_id=1033599515]
+material = SubResource("ShaderMaterial_h52vt")
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -135.0
+offset_top = -3.0
+offset_right = 665.0
+offset_bottom = 357.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_51bdh")
+
+[node name="background2" type="TextureRect" parent="." unique_id=1154256556]
+material = SubResource("ShaderMaterial_6awrb")
+layout_mode = 0
+offset_left = -224.0
+offset_top = -3.0
+offset_right = 576.0
+offset_bottom = 357.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_6awrb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=589978637]
 
@@ -135,6 +180,16 @@ mintora = true
 [node name="PanelContainer" parent="CanvasLayer/VBoxContainer" unique_id=156462522 instance=ExtResource("3_a302t")]
 layout_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=80189817]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 110.0
+offset_right = 626.0
+offset_bottom = 360.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+color = Color(0, 0, 0, 0.23137255)
+
 [node name="dragging_button" type="Button" parent="." unique_id=1991036773]
 layout_mode = 1
 anchors_preset = 15
@@ -157,7 +212,19 @@ offset_top = 838.0
 offset_right = 913.0
 offset_bottom = 878.0
 
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1076407597]
+z_index = 5
+layout_mode = 0
+offset_left = 34.0
+offset_top = 484.0
+offset_right = 174.0
+offset_bottom = 564.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+color = Color(0.30673206, 0.68857765, 0.5948118, 1)
+
 [node name="zoom_out" type="Button" parent="." unique_id=983667122]
+z_index = 5
 layout_mode = 0
 offset_left = 61.0
 offset_top = 519.0
@@ -167,6 +234,7 @@ theme_override_font_sizes/font_size = 50
 text = "-"
 
 [node name="zoom_in" type="Button" parent="." unique_id=1485581731]
+z_index = 5
 layout_mode = 0
 offset_left = 188.0
 offset_top = 517.0
